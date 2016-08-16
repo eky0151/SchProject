@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Data.Entity;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DbAndRepository.GenericsEFRepository
+﻿namespace DbAndRepository.GenericsEFRepository
 {
+    using System;
+    using System.Linq;
+    using System.Linq.Expressions;
+    using System.Data.Entity;
+
     public abstract class GenericsRepository<TEntity> : IGenericsRepository<TEntity> where TEntity : class
     {
-        protected internal DbContext database;
+        protected DbContext database;
 
         public GenericsRepository(DbContext newDb)
         {
