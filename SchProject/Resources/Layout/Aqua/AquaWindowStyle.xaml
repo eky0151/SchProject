@@ -25,7 +25,7 @@
             </Setter.Value>
         </Setter>
     </Style>
-    <Style x:Key="CustomWindowStyle" TargetType="{x:Type Window}">
+    <Style x:Key="AquaWindowStyle" TargetType="{x:Type Window}">
         <Setter Property="WindowChrome.WindowChrome">
             <Setter.Value>
                 <WindowChrome ResizeBorderThickness="6"

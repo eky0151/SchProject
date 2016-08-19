@@ -56,6 +56,13 @@
     <Compile Include="Resources\Layout\Aqua\AquaWindowStyle.xaml.cs">
       <DependentUpon>AquaWindowStyle.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Resources\Layout\Aqua\EmailValidationToBrush.cs" />
+    <Compile Include="Resources\Layout\Aqua\Login.xaml.cs">
+      <DependentUpon>Login.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Layout\Aqua\MainWindowAqua.xaml.cs">
+      <DependentUpon>MainWindowAqua.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -69,6 +76,18 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Resources\Layout\Aqua\AquaWindowStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Layout\Aqua\Login.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Layout\Aqua\MainWindowAqua.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Layout\Aqua\StyleResources\LoginTextBoxStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -101,7 +120,14 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Resources\Layout\Aqua\CustomControls\" />
     <Folder Include="Resources\Layout\Material\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Layout\Aqua\Images\avatar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Layout\Aqua\Images\profile-pics-8742771.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
