@@ -9,7 +9,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate>
-                    <Grid Width="13" Height="13">
+                    <Grid Width="13" Height="13" Background="White">
                         <Ellipse Fill="{TemplateBinding Background}"/>
                         <Ellipse>
                             <Ellipse.Fill>
@@ -51,11 +51,14 @@
                              Background="#E0203D"
                              Style="{StaticResource RoundMenuButtons}"
                              Click="CloseClick"
+                             Content="X"
+                             Foreground="Black"
                              DockPanel.Dock="Right"
                              WindowChrome.IsHitTestVisibleInChrome="True"/>
 
                             <Button
                              Background="#F5CD23"
+                             
                              Style="{StaticResource RoundMenuButtons}"
                              Click="MaximizeRestoreClick"   DockPanel.Dock="Right"
                              WindowChrome.IsHitTestVisibleInChrome="True" />

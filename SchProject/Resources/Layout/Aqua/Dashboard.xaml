@@ -8,6 +8,17 @@
              d:DesignHeight="600" d:DesignWidth="1000">
     <Grid Background="White ">
         <Grid HorizontalAlignment="Left" Height="600" VerticalAlignment="Top" Width="210" Background="#3D5375">
+            <Ellipse Style="{StaticResource ImageHolder}" Width="90" Height="90" StrokeThickness="3" Margin="60,50,60,460" >
+                <Ellipse.Fill>
+                    <ImageBrush ImageSource="Images/profile-pics-8742771.jpg" Stretch="UniformToFill"/>
+                </Ellipse.Fill>
+            </Ellipse>
+            <Label Content="Peter Pan" Margin="50,140,54,430" FontSize="15" Foreground="#83A4C9"  HorizontalContentAlignment="Center"/>
+            <StackPanel HorizontalAlignment="Left" Height="215" Margin="10,205,0,0" VerticalAlignment="Top" Width="190">
+                <StackPanel Orientation="Horizontal" Width="190" Height="38">
+                    <Image Width="25" Height="25" Source="Images/home.png" Stretch="UniformToFill"></Image>
+                </StackPanel>
+            </StackPanel>
         </Grid>
 
     </Grid>
