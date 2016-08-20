@@ -56,10 +56,12 @@
     <Compile Include="Resources\Layout\Aqua\Dashboard.xaml.cs">
       <DependentUpon>Dashboard.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Resources\Layout\Aqua\RootMenu.xaml.cs">
+      <DependentUpon>RootMenu.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Resources\Layout\Aqua\StyleResources\AquaWindowStyle.xaml.cs">
       <DependentUpon>AquaWindowStyle.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Resources\Layout\Aqua\EmailValidationToBrush.cs" />
     <Compile Include="Resources\Layout\Aqua\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
@@ -82,6 +84,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Resources\Layout\Aqua\RootMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Resources\Layout\Aqua\StyleResources\AquaWindowStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -98,7 +104,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Resources\Layout\Aqua\StyleResources\DashboardStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Resources\Layout\Aqua\StyleResources\LoginWindowStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Layout\Aqua\StyleResources\RootMenuStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -142,6 +156,15 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Layout\Aqua\Images\home.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Layout\Aqua\Images\home-2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Layout\Aqua\Images\error-3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Layout\Aqua\Images\Collaborator Male-100.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

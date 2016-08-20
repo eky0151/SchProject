@@ -3,5 +3,7 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="AquaWindowStyle.xaml"/>
         <ResourceDictionary Source="LoginWindowStyle.xaml"/>
+        <ResourceDictionary Source="DashboardStyle.xaml"/>
+        <ResourceDictionary Source="RootMenuStyle.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>
