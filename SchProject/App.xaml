@@ -6,8 +6,7 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Resources/Layout/Aqua/AquaWindowStyle.xaml"/>
-                <ResourceDictionary Source="Resources/Layout/Aqua/StyleResources/LoginTextBoxStyle.xaml"/>
+                <ResourceDictionary Source="Resources/Layout/Aqua/StyleResources/AquaResources.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

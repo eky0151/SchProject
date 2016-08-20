@@ -1,6 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    x:Class="SchProject.Resources.Layout.Aqua.AquaWindowStyle"
+                    x:Class="SchProject.Resources.Layout.Aqua.StyleResources.AquaWindowStyle"
                     >
     <Style x:Key="RoundMenuButtons" TargetType="Button">
         <Setter Property="Margin" Value="1.8"/>
