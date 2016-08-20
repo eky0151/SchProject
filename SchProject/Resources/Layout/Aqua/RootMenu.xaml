@@ -50,7 +50,7 @@
             </ListView>
 
         </Grid>
-        <UserControl DockPanel.Dock="Right">
+        <UserControl DockPanel.Dock="Right" Content="{Binding temp}">
 
         </UserControl>
     </DockPanel>

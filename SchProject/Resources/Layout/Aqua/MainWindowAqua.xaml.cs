@@ -23,7 +23,7 @@ namespace SchProject.Resources.Layout.Aqua
         public MainWindowAqua()
         {
             InitializeComponent();
-            IO=new Dashboard();
+            IO=new RootMenu();
             DataContext = this;
         }
     }
