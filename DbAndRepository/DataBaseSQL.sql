@@ -68,7 +68,7 @@ CREATE TABLE [dbo].[RegUser]
 
 CREATE TABLE [dbo].[SolvedQuestion]
 (
-    [Id] INT NOT NULL PRIMARY KEY IDENTITY(1,1), 
+    [ID] INT NOT NULL PRIMARY KEY IDENTITY(1,1), 
     [UserID] INT NOT NULL, 
     [WorkerID] INT NOT NULL, 
     [Question ] TEXT NOT NULL, 
@@ -82,7 +82,7 @@ CREATE TABLE [dbo].[SolvedQuestion]
 )
 
 CREATE TABLE [dbo].[TechWorks] (
-    [Id]              INT          IDENTITY (1, 1) NOT NULL,
+    [ID]              INT          IDENTITY (1, 1) NOT NULL,
     [TechID]          INT          NOT NULL,
     [Start]           DATETIME     NOT NULL,
     [Finish]          DATETIME     NOT NULL,
