@@ -1,0 +1,584 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Bank">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Account" Type="varchar" MaxLength="25" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LoginData">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="WorkerID" Type="int" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Urole" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Logs">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LoginID" Type="int" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RegUser">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Fullname" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Regtime" Type="datetime" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Points" Type="int" Nullable="false" />
+          <Property Name="Questions" Type="int" Nullable="false" />
+          <Property Name="Picture" Type="image" />
+        </EntityType>
+        <EntityType Name="SolvedQuestion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="WorkerID" Type="int" Nullable="false" />
+          <Property Name="Question " Type="text" Nullable="false" />
+          <Property Name="Answer" Type="text" Nullable="false" />
+          <Property Name="Category" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Timeasked" Type="datetime" Nullable="false" />
+          <Property Name="Timeanswered" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Technician">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="WorkerID" Type="int" Nullable="false" />
+          <Property Name="Available" Type="bit" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'C:\USERS\BENJÁMIN\DOCUMENTS\VISUAL STUDIO 2015\PROJECTS\SCHPROJECT\DBANDREPOSITORY\DATABASE.MDF.dbo.TechWorks' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="TechWorks">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="TechID" />
+            <PropertyRef Name="Start" />
+            <PropertyRef Name="Finish" />
+            <PropertyRef Name="Payment" />
+            <PropertyRef Name="Customername" />
+            <PropertyRef Name="Customeraddress" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TechID" Type="int" Nullable="false" />
+          <Property Name="Start" Type="datetime" Nullable="false" />
+          <Property Name="Finish" Type="datetime" Nullable="false" />
+          <Property Name="Payment" Type="int" Nullable="false" />
+          <Property Name="Customername" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Customeraddress" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Worker">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Fullname" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="20" />
+          <Property Name="BankID" Type="int" Nullable="false" />
+          <Property Name="Address" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Phone" Type="varchar" MaxLength="12" />
+          <Property Name="Picture" Type="image" />
+        </EntityType>
+        <Association Name="FK_Login_Worker">
+          <End Role="Worker" Type="Self.Worker" Multiplicity="1" />
+          <End Role="LoginData" Type="Self.LoginData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Worker">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="LoginData">
+              <PropertyRef Name="WorkerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LoginData_Login">
+          <End Role="LoginData" Type="Self.LoginData" Multiplicity="1" />
+          <End Role="Logs" Type="Self.Logs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LoginData">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Logs">
+              <PropertyRef Name="LoginID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SolvedQuestion_Login">
+          <End Role="LoginData" Type="Self.LoginData" Multiplicity="1" />
+          <End Role="SolvedQuestion" Type="Self.SolvedQuestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LoginData">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SolvedQuestion">
+              <PropertyRef Name="WorkerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SolvedQuestion_User">
+          <End Role="RegUser" Type="Self.RegUser" Multiplicity="1" />
+          <End Role="SolvedQuestion" Type="Self.SolvedQuestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RegUser">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SolvedQuestion">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Technician_Worker">
+          <End Role="Worker" Type="Self.Worker" Multiplicity="1" />
+          <End Role="Technician" Type="Self.Technician" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Worker">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Technician">
+              <PropertyRef Name="WorkerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TechWorks_Technician">
+          <End Role="Technician" Type="Self.Technician" Multiplicity="1" />
+          <End Role="TechWorks" Type="Self.TechWorks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Technician">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TechWorks">
+              <PropertyRef Name="TechID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Worker_Bank">
+          <End Role="Bank" Type="Self.Bank" Multiplicity="1" />
+          <End Role="Worker" Type="Self.Worker" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bank">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Worker">
+              <PropertyRef Name="BankID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DatabaseModelStoreContainer">
+          <EntitySet Name="Bank" EntityType="Self.Bank" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LoginData" EntityType="Self.LoginData" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Logs" EntityType="Self.Logs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RegUser" EntityType="Self.RegUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SolvedQuestion" EntityType="Self.SolvedQuestion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Technician" EntityType="Self.Technician" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Worker" EntityType="Self.Worker" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TechWorks" EntityType="Self.TechWorks" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [TechWorks].[Id] AS [Id], 
+    [TechWorks].[TechID] AS [TechID], 
+    [TechWorks].[Start] AS [Start], 
+    [TechWorks].[Finish] AS [Finish], 
+    [TechWorks].[Payment] AS [Payment], 
+    [TechWorks].[Customername] AS [Customername], 
+    [TechWorks].[Customeraddress] AS [Customeraddress]
+    FROM [dbo].[TechWorks] AS [TechWorks]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Login_Worker" Association="Self.FK_Login_Worker">
+            <End Role="Worker" EntitySet="Worker" />
+            <End Role="LoginData" EntitySet="LoginData" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LoginData_Login" Association="Self.FK_LoginData_Login">
+            <End Role="LoginData" EntitySet="LoginData" />
+            <End Role="Logs" EntitySet="Logs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SolvedQuestion_Login" Association="Self.FK_SolvedQuestion_Login">
+            <End Role="LoginData" EntitySet="LoginData" />
+            <End Role="SolvedQuestion" EntitySet="SolvedQuestion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SolvedQuestion_User" Association="Self.FK_SolvedQuestion_User">
+            <End Role="RegUser" EntitySet="RegUser" />
+            <End Role="SolvedQuestion" EntitySet="SolvedQuestion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Technician_Worker" Association="Self.FK_Technician_Worker">
+            <End Role="Worker" EntitySet="Worker" />
+            <End Role="Technician" EntitySet="Technician" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TechWorks_Technician" Association="Self.FK_TechWorks_Technician">
+            <End Role="Technician" EntitySet="Technician" />
+            <End Role="TechWorks" EntitySet="TechWorks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Worker_Bank" Association="Self.FK_Worker_Bank">
+            <End Role="Bank" EntitySet="Bank" />
+            <End Role="Worker" EntitySet="Worker" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Bank">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Account" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Worker" Relationship="Self.FK_Worker_Bank" FromRole="Bank" ToRole="Worker" />
+        </EntityType>
+        <EntityType Name="LoginData">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="WorkerID" Type="Int32" Nullable="false" />
+          <Property Name="Username" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Urole" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Worker" Relationship="Self.FK_Login_Worker" FromRole="LoginData" ToRole="Worker" />
+          <NavigationProperty Name="Logs" Relationship="Self.FK_LoginData_Login" FromRole="LoginData" ToRole="Logs" />
+          <NavigationProperty Name="SolvedQuestion" Relationship="Self.FK_SolvedQuestion_Login" FromRole="LoginData" ToRole="SolvedQuestion" />
+        </EntityType>
+        <EntityType Name="Logs">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LoginID" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="LoginData" Relationship="Self.FK_LoginData_Login" FromRole="Logs" ToRole="LoginData" />
+        </EntityType>
+        <EntityType Name="RegUser">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Fullname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Regtime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Username" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Points" Type="Int32" Nullable="false" />
+          <Property Name="Questions" Type="Int32" Nullable="false" />
+          <Property Name="Picture" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="SolvedQuestion" Relationship="Self.FK_SolvedQuestion_User" FromRole="RegUser" ToRole="SolvedQuestion" />
+        </EntityType>
+        <EntityType Name="SolvedQuestion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="WorkerID" Type="Int32" Nullable="false" />
+          <Property Name="Question_" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Answer" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Category" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Timeasked" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Timeanswered" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="LoginData" Relationship="Self.FK_SolvedQuestion_Login" FromRole="SolvedQuestion" ToRole="LoginData" />
+          <NavigationProperty Name="RegUser" Relationship="Self.FK_SolvedQuestion_User" FromRole="SolvedQuestion" ToRole="RegUser" />
+        </EntityType>
+        <EntityType Name="Technician">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="WorkerID" Type="Int32" Nullable="false" />
+          <Property Name="Available" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Worker" Relationship="Self.FK_Technician_Worker" FromRole="Technician" ToRole="Worker" />
+          <NavigationProperty Name="TechWorks" Relationship="Self.FK_TechWorks_Technician" FromRole="Technician" ToRole="TechWorks" />
+        </EntityType>
+        <EntityType Name="Worker">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Fullname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="BankID" Type="Int32" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="Picture" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Bank" Relationship="Self.FK_Worker_Bank" FromRole="Worker" ToRole="Bank" />
+          <NavigationProperty Name="LoginData" Relationship="Self.FK_Login_Worker" FromRole="Worker" ToRole="LoginData" />
+          <NavigationProperty Name="Technician" Relationship="Self.FK_Technician_Worker" FromRole="Worker" ToRole="Technician" />
+        </EntityType>
+        <EntityType Name="TechWorks">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="TechID" />
+            <PropertyRef Name="Start" />
+            <PropertyRef Name="Finish" />
+            <PropertyRef Name="Payment" />
+            <PropertyRef Name="Customername" />
+            <PropertyRef Name="Customeraddress" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TechID" Type="Int32" Nullable="false" />
+          <Property Name="Start" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Finish" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Payment" Type="Int32" Nullable="false" />
+          <Property Name="Customername" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Customeraddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Technician" Relationship="Self.FK_TechWorks_Technician" FromRole="TechWorks" ToRole="Technician" />
+        </EntityType>
+        <Association Name="FK_Worker_Bank">
+          <End Role="Bank" Type="Self.Bank" Multiplicity="1" />
+          <End Role="Worker" Type="Self.Worker" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bank">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Worker">
+              <PropertyRef Name="BankID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Login_Worker">
+          <End Role="Worker" Type="Self.Worker" Multiplicity="1" />
+          <End Role="LoginData" Type="Self.LoginData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Worker">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="LoginData">
+              <PropertyRef Name="WorkerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LoginData_Login">
+          <End Role="LoginData" Type="Self.LoginData" Multiplicity="1" />
+          <End Role="Logs" Type="Self.Logs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LoginData">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Logs">
+              <PropertyRef Name="LoginID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SolvedQuestion_Login">
+          <End Role="LoginData" Type="Self.LoginData" Multiplicity="1" />
+          <End Role="SolvedQuestion" Type="Self.SolvedQuestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LoginData">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SolvedQuestion">
+              <PropertyRef Name="WorkerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SolvedQuestion_User">
+          <End Role="RegUser" Type="Self.RegUser" Multiplicity="1" />
+          <End Role="SolvedQuestion" Type="Self.SolvedQuestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RegUser">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SolvedQuestion">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Technician_Worker">
+          <End Role="Worker" Type="Self.Worker" Multiplicity="1" />
+          <End Role="Technician" Type="Self.Technician" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Worker">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Technician">
+              <PropertyRef Name="WorkerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TechWorks_Technician">
+          <End Role="Technician" Type="Self.Technician" Multiplicity="1" />
+          <End Role="TechWorks" Type="Self.TechWorks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Technician">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TechWorks">
+              <PropertyRef Name="TechID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DatabaseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Bank" EntityType="Self.Bank" />
+          <EntitySet Name="LoginData" EntityType="Self.LoginData" />
+          <EntitySet Name="Logs" EntityType="Self.Logs" />
+          <EntitySet Name="RegUser" EntityType="Self.RegUser" />
+          <EntitySet Name="SolvedQuestion" EntityType="Self.SolvedQuestion" />
+          <EntitySet Name="Technician" EntityType="Self.Technician" />
+          <EntitySet Name="Worker" EntityType="Self.Worker" />
+          <EntitySet Name="TechWorks" EntityType="Self.TechWorks" />
+          <AssociationSet Name="FK_Worker_Bank" Association="Self.FK_Worker_Bank">
+            <End Role="Bank" EntitySet="Bank" />
+            <End Role="Worker" EntitySet="Worker" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Login_Worker" Association="Self.FK_Login_Worker">
+            <End Role="Worker" EntitySet="Worker" />
+            <End Role="LoginData" EntitySet="LoginData" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LoginData_Login" Association="Self.FK_LoginData_Login">
+            <End Role="LoginData" EntitySet="LoginData" />
+            <End Role="Logs" EntitySet="Logs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SolvedQuestion_Login" Association="Self.FK_SolvedQuestion_Login">
+            <End Role="LoginData" EntitySet="LoginData" />
+            <End Role="SolvedQuestion" EntitySet="SolvedQuestion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SolvedQuestion_User" Association="Self.FK_SolvedQuestion_User">
+            <End Role="RegUser" EntitySet="RegUser" />
+            <End Role="SolvedQuestion" EntitySet="SolvedQuestion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Technician_Worker" Association="Self.FK_Technician_Worker">
+            <End Role="Worker" EntitySet="Worker" />
+            <End Role="Technician" EntitySet="Technician" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TechWorks_Technician" Association="Self.FK_TechWorks_Technician">
+            <End Role="Technician" EntitySet="Technician" />
+            <End Role="TechWorks" EntitySet="TechWorks" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DatabaseModelStoreContainer" CdmEntityContainer="DatabaseEntities">
+          <EntitySetMapping Name="Bank">
+            <EntityTypeMapping TypeName="DatabaseModel.Bank">
+              <MappingFragment StoreEntitySet="Bank">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Account" ColumnName="Account" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LoginData">
+            <EntityTypeMapping TypeName="DatabaseModel.LoginData">
+              <MappingFragment StoreEntitySet="LoginData">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="WorkerID" ColumnName="WorkerID" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Urole" ColumnName="Urole" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Logs">
+            <EntityTypeMapping TypeName="DatabaseModel.Logs">
+              <MappingFragment StoreEntitySet="Logs">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="LoginID" ColumnName="LoginID" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RegUser">
+            <EntityTypeMapping TypeName="DatabaseModel.RegUser">
+              <MappingFragment StoreEntitySet="RegUser">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Fullname" ColumnName="Fullname" />
+                <ScalarProperty Name="Regtime" ColumnName="Regtime" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Points" ColumnName="Points" />
+                <ScalarProperty Name="Questions" ColumnName="Questions" />
+                <ScalarProperty Name="Picture" ColumnName="Picture" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SolvedQuestion">
+            <EntityTypeMapping TypeName="DatabaseModel.SolvedQuestion">
+              <MappingFragment StoreEntitySet="SolvedQuestion">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="WorkerID" ColumnName="WorkerID" />
+                <ScalarProperty Name="Question_" ColumnName="Question " />
+                <ScalarProperty Name="Answer" ColumnName="Answer" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="Timeasked" ColumnName="Timeasked" />
+                <ScalarProperty Name="Timeanswered" ColumnName="Timeanswered" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Technician">
+            <EntityTypeMapping TypeName="DatabaseModel.Technician">
+              <MappingFragment StoreEntitySet="Technician">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="WorkerID" ColumnName="WorkerID" />
+                <ScalarProperty Name="Available" ColumnName="Available" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Worker">
+            <EntityTypeMapping TypeName="DatabaseModel.Worker">
+              <MappingFragment StoreEntitySet="Worker">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Fullname" ColumnName="Fullname" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="BankID" ColumnName="BankID" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Picture" ColumnName="Picture" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TechWorks">
+            <EntityTypeMapping TypeName="DatabaseModel.TechWorks">
+              <MappingFragment StoreEntitySet="TechWorks">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="TechID" ColumnName="TechID" />
+                <ScalarProperty Name="Start" ColumnName="Start" />
+                <ScalarProperty Name="Finish" ColumnName="Finish" />
+                <ScalarProperty Name="Payment" ColumnName="Payment" />
+                <ScalarProperty Name="Customername" ColumnName="Customername" />
+                <ScalarProperty Name="Customeraddress" ColumnName="Customeraddress" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
