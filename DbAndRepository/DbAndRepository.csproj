@@ -86,7 +86,9 @@
     </Compile>
     <Compile Include="GenericsEFRepository\GenericsRepository.cs" />
     <Compile Include="GenericsEFRepository\IGenericsRepository.cs" />
+    <Compile Include="IRepositories\IBankRepository.cs" />
     <Compile Include="IRepositories\ILoginDataRepository.cs" />
+    <Compile Include="IRepositories\ILogsRepository.cs" />
     <Compile Include="IRepositories\IWorkerRepository.cs" />
     <Compile Include="LoginData.cs">
       <DependentUpon>DatabaseModel.tt</DependentUpon>
@@ -98,7 +100,9 @@
     <Compile Include="RegUser.cs">
       <DependentUpon>DatabaseModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Repostirories\BankRepository.cs" />
     <Compile Include="Repostirories\LoginDataRepository.cs" />
+    <Compile Include="Repostirories\LogsRepository.cs" />
     <Compile Include="Repostirories\WorkerRepository.cs" />
     <Compile Include="SolvedQuestion.cs">
       <DependentUpon>DatabaseModel.tt</DependentUpon>
@@ -151,6 +155,7 @@
       <DependentUpon>DatabaseModel.edmx</DependentUpon>
       <LastGenOutput>DatabaseModel.cs</LastGenOutput>
     </Content>
+    <Content Include="DataBaseSQL.sql" />
     <Content Include="Database_log.ldf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>Database.mdf</DependentUpon>
