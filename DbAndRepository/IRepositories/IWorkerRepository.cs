@@ -2,7 +2,7 @@
 {
     using GenericsEFRepository;
 
-    interface IWorkerRepository : IGenericsRepository<Worker>
+    public interface IWorkerRepository : IGenericsRepository<Worker>
     {
     }
 }

@@ -5,7 +5,7 @@
     using IRepositories;
     using System.Linq;
 
-    class BankRepository : GenericsRepository<Bank>, IBankRepository
+    public class BankRepository : GenericsRepository<Bank>, IBankRepository
     {
         public BankRepository(DbContext newDb) : base(newDb)
         {

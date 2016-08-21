@@ -5,7 +5,7 @@
     using System.Data.Entity;
     using System.Linq;
 
-    class LoginDataRepository : GenericsRepository<LoginData>, ILoginDataRepository
+    public class LoginDataRepository : GenericsRepository<LoginData>, ILoginDataRepository
     {
         public LoginDataRepository(DbContext newDb) : base(newDb)
         {

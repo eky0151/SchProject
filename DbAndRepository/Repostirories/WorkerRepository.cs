@@ -5,7 +5,7 @@
     using IRepositories;
     using System.Linq;
 
-    class WorkerRepository : GenericsRepository<Worker>, IWorkerRepository
+    public class WorkerRepository : GenericsRepository<Worker>, IWorkerRepository
     {
         public WorkerRepository(DbContext newDb) : base(newDb)
         {

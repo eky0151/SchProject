@@ -6,7 +6,7 @@
     using IRepositories;
     using System.Linq;
 
-    class LogsRepository : GenericsRepository<Logs>, ILogsRepository
+    public class LogsRepository : GenericsRepository<Logs>, ILogsRepository
     {
         public LogsRepository(DbContext newDb) : base(newDb)
         {

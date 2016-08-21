@@ -2,7 +2,7 @@
 {
     using GenericsEFRepository;
 
-    interface IBankRepository : IGenericsRepository<Bank>
+    public interface IBankRepository : IGenericsRepository<Bank>
     {
         Bank GetBankByWorker(Worker worker);
     }
