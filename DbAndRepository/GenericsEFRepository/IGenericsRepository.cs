@@ -4,7 +4,7 @@
     using System.Linq;
     using System.Linq.Expressions;
 
-    internal interface IGenericsRepository<TEntity> : IDisposable where TEntity : class
+    public interface IGenericsRepository<TEntity> : IDisposable where TEntity : class
     {
         void Insert(TEntity newEntity);
 

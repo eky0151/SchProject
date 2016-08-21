@@ -5,7 +5,7 @@
     using System.Linq.Expressions;
     using System.Data.Entity;
 
-    internal abstract class GenericsRepository<TEntity> : IGenericsRepository<TEntity> where TEntity : class
+    public abstract class GenericsRepository<TEntity> : IGenericsRepository<TEntity> where TEntity : class
     {
         protected DbContext database;
 
