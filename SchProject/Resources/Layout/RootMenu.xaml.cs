@@ -20,12 +20,10 @@ namespace SchProject.Resources.Layout.Aqua
     /// </summary>
     public partial class RootMenu : UserControl
     {
-        public UserControl temp { get; set; }
         public RootMenu()
         {
             InitializeComponent();
-            temp=new Dashboard();
-            DataContext = this;
+            
         }
     }
 }

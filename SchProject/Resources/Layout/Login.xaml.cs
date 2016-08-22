@@ -10,21 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace SchProject.Resources.Layout.Aqua
 {
     /// <summary>
-    /// Interaction logic for MainWindowAqua.xaml
+    /// Interaction logic for Login.xaml
     /// </summary>
-    public partial class MainWindowAqua : Window
+    public partial class Login : UserControl
     {
-        public UserControl IO { get; set; }
-        public MainWindowAqua()
+        public Login()
         {
             InitializeComponent();
-            IO=new RootMenu();
-            DataContext = this;
         }
     }
 }
