@@ -16,15 +16,14 @@ using System.Windows.Shapes;
 namespace SchProject.Resources.Layout.Aqua
 {
     /// <summary>
-    /// Interaction logic for Login.xaml
+    /// Interaction logic for RootMenu.xaml
     /// </summary>
-    public partial class Login : UserControl
+    public partial class RootMenu : UserControl
     {
-        public string Email { get; set; }
-        public Login()
+        public RootMenu()
         {
             InitializeComponent();
-            DataContext = this;
+            
         }
     }
 }

@@ -2,7 +2,6 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:SchProject.Resources.Layout.Aqua"
                     >
-    <local:EmailValidationToBrush x:Key="EmailValidationToBrush"></local:EmailValidationToBrush>
 
     <Style x:Key="LoginTextBox" TargetType="TextBox">
         <Setter Property="Template">

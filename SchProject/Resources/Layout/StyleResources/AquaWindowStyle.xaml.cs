@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace SchProject.Resources.Layout.Aqua
+namespace SchProject.Resources.Layout.Aqua.StyleResources
 {
     public partial class AquaWindowStyle : ResourceDictionary
     {

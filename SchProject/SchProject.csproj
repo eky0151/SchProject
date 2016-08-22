@@ -53,14 +53,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Resources\Layout\Aqua\AquaWindowStyle.xaml.cs">
+    <Compile Include="Resources\Layout\Dashboard.xaml.cs">
+      <DependentUpon>Dashboard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Layout\RootMenu.xaml.cs">
+      <DependentUpon>RootMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Layout\StyleResources\AquaWindowStyle.xaml.cs">
       <DependentUpon>AquaWindowStyle.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Resources\Layout\Aqua\EmailValidationToBrush.cs" />
-    <Compile Include="Resources\Layout\Aqua\Login.xaml.cs">
+    <Compile Include="Resources\Layout\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Resources\Layout\Aqua\MainWindowAqua.xaml.cs">
+    <Compile Include="Resources\Layout\MainWindowAqua.xaml.cs">
       <DependentUpon>MainWindowAqua.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
@@ -75,19 +80,39 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Resources\Layout\Aqua\AquaWindowStyle.xaml">
+    <Page Include="Resources\Layout\Dashboard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Resources\Layout\Aqua\Login.xaml">
+    <Page Include="Resources\Layout\RootMenu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Resources\Layout\Aqua\MainWindowAqua.xaml">
+    <Page Include="Resources\Layout\StyleResources\AquaWindowStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Resources\Layout\Aqua\StyleResources\LoginTextBoxStyle.xaml">
+    <Page Include="Resources\Layout\Login.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Layout\MainWindowAqua.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Layout\StyleResources\AquaResources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Layout\StyleResources\DashboardStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Layout\StyleResources\LoginWindowStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Layout\StyleResources\RootMenuStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -120,14 +145,25 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Resources\Layout\Aqua\CustomControls\" />
-    <Folder Include="Resources\Layout\Material\" />
+    <Folder Include="Resources\Layout\CustomControls\" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Layout\Aqua\Images\avatar.png" />
+    <Resource Include="Resources\Layout\Images\avatar.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Layout\Aqua\Images\profile-pics-8742771.jpg" />
+    <Resource Include="Resources\Layout\Images\profile-pics-8742771.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Layout\Images\home.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Layout\Images\home-2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Layout\Images\error-3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Layout\Images\Collaborator Male-100.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

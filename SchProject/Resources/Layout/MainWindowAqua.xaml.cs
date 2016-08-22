@@ -19,12 +19,9 @@ namespace SchProject.Resources.Layout.Aqua
     /// </summary>
     public partial class MainWindowAqua : Window
     {
-        public UserControl IO { get; set; }
         public MainWindowAqua()
         {
             InitializeComponent();
-            IO=new Login();
-            DataContext = this;
         }
     }
 }
