@@ -43,9 +43,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Window}">
                     <Grid Background="White">
-                        <AdornerDecorator>
-                            <ContentPresenter />
-                        </AdornerDecorator>
+                        <ContentPresenter />
                         <DockPanel Height="30" Margin="0,3,8,0" VerticalAlignment="Top" LastChildFill="False">
                             <Button 
                              Background="#E0203D"
