@@ -1,0 +1,45 @@
+﻿@{
+    Page.Title = "Index page";
+}
+
+
+
+@*<h1>This is from Home/Index.cshtml</h1>*@
+
+<table style="width:100%" align="center">
+    <tr>
+
+        <td align="center">
+            <div class="round">
+                <img src="~/Pictures/xy.jpg" />
+            </div>
+        </td>
+
+    </tr>
+    <tr>
+
+        <td align="center">
+            <p>
+                <b>Name:</b><br>
+                <input class="textbox" type="text" name="Name" value="">
+            </p>
+        </td>
+
+    </tr>
+    <tr>
+
+        <td align="center">
+            <b>Password:</b><br>
+            <input class="textbox" type="password" name="Password" value="">
+        </td>
+
+    </tr>
+    <tr>
+
+        <td align="center">
+            <input type="submit" value="Login">
+            <input type="button" value="Register" onclick="location.href='@Url.Action("Index", "Register")'" />
+        </td>
+
+    </tr>
+</table>
