@@ -19,11 +19,9 @@
                               IsItemsHost="True"
                               KeyboardNavigation.TabIndex="1"
                               Background="Transparent" />
-                        <StackPanel DockPanel.Dock="Right" Margin="-4,0,0,0" KeyboardNavigation.TabNavigation="Local"
+                        <ContentPresenter ContentSource="SelectedContent" DockPanel.Dock="Right" Margin="-4,0,0,0" KeyboardNavigation.TabNavigation="Local"
                             KeyboardNavigation.DirectionalNavigation="Contained"
-                            KeyboardNavigation.TabIndex="2">
-                            <ContentPresenter ContentSource="SelectedContent"/>
-                        </StackPanel>
+                            KeyboardNavigation.TabIndex="2"/>
                     </DockPanel>
                 </ControlTemplate>
             </Setter.Value>
@@ -38,15 +36,15 @@
                                 <Rectangle Width="4" Margin="0,0,15,0" Fill="#00B1FA" Height="36">
                                     <Rectangle.Visibility>
                                         <MultiBinding Converter="{StaticResource BoolToVisibilityConverter}">
-                                            <Binding Path="(controls:MenuTabItem.IsSelected)" RelativeSource="{RelativeSource FindAncestor,AncestorType=controls:MenuTabItem}"/>
-                                            <Binding Path="(controls:MenuTabItem.Header)" RelativeSource="{RelativeSource FindAncestor,AncestorType=controls:MenuTabItem}"/>
+                                            <Binding Path="(controls:MenuTabItem.IsSelected)" RelativeSource="{RelativeSource TemplatedParent}"/>
+                                            <Binding Path="(controls:MenuTabItem.Header)" RelativeSource="{RelativeSource TemplatedParent}"/>
                                         </MultiBinding>
                                     </Rectangle.Visibility>
                                 </Rectangle>
-                                <Image  Margin="0,0,3,0" x:Name="MenuIcon"  MaxWidth="22" Source="{Binding (controls:MenuTabItem.PictureSource),RelativeSource={RelativeSource FindAncestor,AncestorType=controls:MenuTabItem}}" 
+                                <Image  Margin="0,0,3,0" x:Name="MenuIcon"  MaxWidth="22" Source="{Binding (controls:MenuTabItem.PictureSource),RelativeSource={RelativeSource TemplatedParent}}" 
                                            Stretch="UniformToFill"  MaxHeight="22" VerticalAlignment="Center"/>
-                                <Label Content="{Binding (controls:MenuTabItem.Header),RelativeSource={RelativeSource FindAncestor,AncestorType=controls:MenuTabItem}}"
-                                           VerticalContentAlignment="Center" FontSize="15" FontWeight="SemiBold"  Foreground="{Binding (controls:MenuTabItem.Foreground),RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type controls:MenuTabItem}}}"
+                                <Label Content="{Binding (controls:MenuTabItem.Header),RelativeSource={RelativeSource TemplatedParent}}"
+                                           VerticalContentAlignment="Center" FontSize="15" FontWeight="SemiBold"  Foreground="{Binding (controls:MenuTabItem.Foreground),RelativeSource={RelativeSource TemplatedParent}}"
                                            FontFamily="Helve"/>
                             </StackPanel>
                         </ControlTemplate>

@@ -7,9 +7,9 @@
              xmlns:controls="clr-namespace:SchProject.Resources.Layout.CustomControls"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="1000">
-    
+
     <Grid Background="White ">
-        
+
         <StackPanel DockPanel.Dock="Left" HorizontalAlignment="Left" Width="210" Background="#3D5375">
             <Ellipse Style="{StaticResource ImageHolder}" Width="90" Height="90" StrokeThickness="3" Margin="60,50,60,0" VerticalAlignment="Top" >
                 <Ellipse.Fill>
@@ -25,16 +25,17 @@
                 </Button.Template>
             </Button>
         </StackPanel>
-        
+
         <TabControl Style="{StaticResource Menu}">
             <controls:MenuTabItem  SelectedtPicture="Images/homeSelected.png" DefaultPicture="Images/home.png" Header="DASHBOARD" HorizontalAlignment="Right"  >
                 <local:Dashboard/>
             </controls:MenuTabItem>
-            <controls:MenuTabItem SelectedtPicture="Images/adminSelected.png" DefaultPicture="Images/admin.png" Header="RENDSZERGAZDÁK"/>
+            <controls:MenuTabItem SelectedtPicture="Images/adminSelected.png" DefaultPicture="Images/admin.png" Header="RENDSZERGAZDÁK">
+            </controls:MenuTabItem>
             <controls:MenuTabItem SelectedtPicture="Images/errorSelected.png" DefaultPicture="Images/error.png" Header="HIBÁK" />
             <controls:MenuTabItem SelectedtPicture="Images/settingsSelected.png" DefaultPicture="Images/settings.png" Margin="10,236,177,-231" Width="Auto"/>
             <controls:MenuTabItem SelectedtPicture="Images/bugreportSelected.png" DefaultPicture="Images/bugreport.png" Margin="35,198,152,-193" Width="Auto"/>
         </TabControl>
-        
+
     </Grid>
 </UserControl>

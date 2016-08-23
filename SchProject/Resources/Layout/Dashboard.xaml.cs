@@ -18,11 +18,18 @@ namespace SchProject.Resources.Layout.Aqua
     /// <summary>
     /// Interaction logic for Dashboard.xaml
     /// </summary>
+    public class Name
+    {
+        public string FullName { get; set; }
+    }
     public partial class Dashboard : UserControl
     {
+        public List<Name> Nevek { get; set; }
         public Dashboard()
         {
             InitializeComponent();
+            Nevek=new List<Name>() {new Name() {FullName = "Peter Parker"}, new Name() { FullName = "asdasd asdasdv" } , new Name() { FullName = "Petvrvter ertvertv" }, new Name() { FullName = "ervtevrt sdvsdve" }, new Name() { FullName = "ervtevrt sdvsdve" }, new Name() { FullName = "ervtevrt sdvsdve" }, new Name() { FullName = "ervtevrt sdvsdve" }, new Name() { FullName = "ervtevrt sdvsdve" }, new Name() { FullName = "ervtevrt sdvsdve" }, new Name() { FullName = "ervtevrt sdvsdve" }, new Name() { FullName = "ervtevrt sdvsdve" } };
+            DataContext = this;
         }
     }
 }

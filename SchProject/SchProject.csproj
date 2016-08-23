@@ -75,10 +75,11 @@
     </ApplicationDefinition>
     <Compile Include="Resources\Layout\Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Resources\Layout\CustomControls\MenuTabItem.cs" />
+    <Compile Include="Resources\Layout\CustomControls\StatusBox.cs" />
     <Compile Include="Resources\Layout\Dashboard.xaml.cs">
       <DependentUpon>Dashboard.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Resources\Layout\EmailToColorConverter.cs" />
+    <Compile Include="Resources\Layout\Converters\EmailToColorConverter.cs" />
     <Compile Include="Resources\Layout\RootMenu.xaml.cs">
       <DependentUpon>RootMenu.xaml</DependentUpon>
     </Compile>
@@ -203,6 +204,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Layout\Images\bugreport.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Layout\Images\demoPicSmall.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
