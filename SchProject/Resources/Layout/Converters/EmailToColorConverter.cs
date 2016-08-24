@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows.Media;
 
-namespace SchProject.Resources.Layout
+namespace SchProject.Resources.Layout.Converters
 {
     class EmailToColorConverter : IValueConverter
     {

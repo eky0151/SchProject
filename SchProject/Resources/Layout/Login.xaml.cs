@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SchProject.Resources.Layout.Aqua
+namespace SchProject.Resources.Layout
 {
     /// <summary>
     /// Interaction logic for Login.xaml

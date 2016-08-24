@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace SchProject.Resources.Layout.Aqua.StyleResources
+namespace SchProject.Resources.Layout.StyleResources
 {
     public partial class AquaWindowStyle : ResourceDictionary
     {
@@ -21,10 +21,7 @@ namespace SchProject.Resources.Layout.Aqua.StyleResources
         private void MaximizeRestoreClick(object sender, RoutedEventArgs e)
         {
             var window = (Window)((FrameworkElement)sender).TemplatedParent;
-            if (window.WindowState == System.Windows.WindowState.Normal)
-                window.WindowState = System.Windows.WindowState.Maximized;
-            else
-                window.WindowState = System.Windows.WindowState.Normal;
+            window.WindowState = window.WindowState == System.Windows.WindowState.Normal ? System.Windows.WindowState.Maximized : System.Windows.WindowState.Normal;
         }
 
         private void MinimizeClick(object sender, RoutedEventArgs e)

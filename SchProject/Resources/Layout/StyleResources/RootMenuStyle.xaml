@@ -1,6 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="clr-namespace:SchProject.Resources.Layout.Aqua.StyleResources"
+                    xmlns:local="clr-namespace:SchProject.Resources.Layout.StyleResources"
                     xmlns:converters="clr-namespace:SchProject.Resources.Layout.Converters"
                     xmlns:controls="clr-namespace:SchProject.Resources.Layout.CustomControls">
     <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
