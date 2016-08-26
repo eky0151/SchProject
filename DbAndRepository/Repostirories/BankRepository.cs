@@ -7,6 +7,8 @@
 
     public class BankRepository : GenericsRepository<Bank>, IBankRepository
     {
+        private Bank bank;
+
         public BankRepository(DbContext newDb) : base(newDb)
         {
         }
@@ -18,7 +20,9 @@
 
         public override void Delete(int id)
         {
-            database.Set<Bank>().Remove(GetById(id));
+            bank = GetById(id);
+            database.Set<Bank>().Remove(b);
+            database.Entry<Bank>(b).State = EntityState.Deleted;
             database.SaveChanges();
         }
 
@@ -30,6 +34,7 @@
         public override void Update(Bank entityToModify)
         {
             database.Entry(GetById(entityToModify.ID)).CurrentValues.SetValues(entityToModify);
+            database.Entry<Bank>(entityToModify).State = EntityState.Modified;
             database.SaveChanges();
         }
     }
