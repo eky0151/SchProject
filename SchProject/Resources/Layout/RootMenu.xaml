@@ -3,39 +3,42 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:SchProject.Resources.Layout"
+             xmlns:local="clr-namespace:SchProject.ViewModel"
              xmlns:controls="clr-namespace:SchProject.Resources.Layout.CustomControls"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="1000">
-
-    <Grid Background="White ">
-
-        <StackPanel DockPanel.Dock="Left" HorizontalAlignment="Left" Width="210" Background="#3D5375">
+    <UserControl.DataContext>
+        <local:RootMenuViewModel/>
+    </UserControl.DataContext>
+    <DockPanel Background="White ">
+        <Grid DockPanel.Dock="Left" HorizontalAlignment="Left" Width="210" Background="#3D5375">
             <Ellipse Style="{StaticResource ImageHolder}" Width="90" Height="90" StrokeThickness="3" Margin="60,50,60,0" VerticalAlignment="Top" >
                 <Ellipse.Fill>
                     <ImageBrush ImageSource="Images/demoPic.jpg" Stretch="UniformToFill"/>
                 </Ellipse.Fill>
             </Ellipse>
-            <Label Content="Peter Pan" Margin="50,5,54,395" FontSize="15" Foreground="#83A4C9"  HorizontalContentAlignment="Center"/>
-            <Button Width="15" Height="15" Margin="175,0,0,0" VerticalAlignment="Bottom" >
-                <Button.Template>
-                    <ControlTemplate>
-                        <Image Source="Images/logout.png"/>
-                    </ControlTemplate>
-                </Button.Template>
-            </Button>
-        </StackPanel>
-
-        <TabControl Style="{StaticResource Menu}">
-            <controls:MenuTabItem  SelectedtPicture="Images/homeSelected.png" DefaultPicture="Images/home.png" Header="DASHBOARD" HorizontalAlignment="Right"  >
-                <local:Dashboard/>
-            </controls:MenuTabItem>
-            <controls:MenuTabItem SelectedtPicture="Images/adminSelected.png" DefaultPicture="Images/admin.png" Header="RENDSZERGAZDÁK">
-            </controls:MenuTabItem>
-            <controls:MenuTabItem SelectedtPicture="Images/errorSelected.png" DefaultPicture="Images/error.png" Header="HIBÁK" />
-            <controls:MenuTabItem SelectedtPicture="Images/settingsSelected.png" DefaultPicture="Images/settings.png" Margin="10,236,177,-231" Width="Auto"/>
-            <controls:MenuTabItem SelectedtPicture="Images/bugreportSelected.png" DefaultPicture="Images/bugreport.png" Margin="35,198,152,-193" Width="Auto"/>
-        </TabControl>
-
-    </Grid>
+            <Label Content="Peter Pan" Margin="50,155,54,0" VerticalAlignment="Top" FontSize="15" Height="30" Foreground="#83A4C9"  HorizontalContentAlignment="Center"/>
+            <controls:MenuButton Style="{StaticResource MenuButton}" Content="DASHBOARD" SelectedtPicture="Images/homeSelected.png" DefaultPicture="Images/home.png" NavigateTo="Home" IsChecked="True" Margin="0,220,0,0" VerticalAlignment="Top"/>
+            <controls:MenuButton Style="{StaticResource MenuButton}" Content="RENDSZERGAZDÁK" SelectedtPicture="Images/adminSelected.png" DefaultPicture="Images/admin.png" NavigateTo="Admins" Margin="0,258,0,0" VerticalAlignment="Top"/>
+            <ItemsControl ItemsSource="{Binding MenuButtons}" Margin="0,296,0,50" >
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <controls:MenuButton Content="{Binding Name}" DefaultPicture="{Binding DefaultPicture}" SelectedtPicture="{Binding SelectedPicture}" NavigateTo="{Binding UserControl}"  Style="{StaticResource MenuButton}"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" Margin="0,0,0,5">
+                <controls:MenuButton Style="{StaticResource MenuButtonMini}" SelectedtPicture="Images/settingsSelected.png" DefaultPicture="Images/settings.png" NavigateTo="Settings" Margin="10,0,0,0"  Width="22" Height="22" />
+                <controls:MenuButton Style="{StaticResource MenuButtonMini}" SelectedtPicture="Images/bugreportSelected.png" DefaultPicture="Images/bugreport.png" NavigateTo="Bugreport"  Width="22" Height="22"/>
+                <Button Width="15" Height="15" Margin="130,0,0,0" VerticalAlignment="Center" >
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Image Source="Images/logout.png"/>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </StackPanel>
+        </Grid>
+        <ContentControl DockPanel.Dock="Right" Content="{Binding CurrentView}"/>
+    </DockPanel>
 </UserControl>

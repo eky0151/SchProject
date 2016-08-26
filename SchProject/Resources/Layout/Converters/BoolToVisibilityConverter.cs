@@ -9,21 +9,16 @@ using System.Windows.Data;
 
 namespace SchProject.Resources.Layout.Converters
 {
-    class BoolToVisibilityConverter : IMultiValueConverter
+    class BoolToVisibilityConverter : IValueConverter
     {
-
-        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+     
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            bool isselected = (bool) values[0];
-            string header = (string) values[1];
-            if (!String.IsNullOrEmpty(header))
-            {
-                return isselected ? Visibility.Visible : Visibility.Hidden;
-            }
-            return Visibility.Collapsed;
+            bool isChecked = (bool) value;
+            return isChecked ? Visibility.Visible : Visibility.Hidden;
         }
 
-        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
         }

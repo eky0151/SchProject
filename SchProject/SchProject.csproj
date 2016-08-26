@@ -73,8 +73,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Resources\Layout\Admins.xaml.cs">
+      <DependentUpon>Admins.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Layout\Bugreport.xaml.cs">
+      <DependentUpon>Bugreport.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Resources\Layout\Converters\BoolToVisibilityConverter.cs" />
-    <Compile Include="Resources\Layout\CustomControls\MenuTabItem.cs" />
+    <Compile Include="Resources\Layout\CustomControls\MenuButton.cs" />
     <Compile Include="Resources\Layout\CustomControls\StatusBox.cs" />
     <Compile Include="Resources\Layout\Dashboard.xaml.cs">
       <DependentUpon>Dashboard.xaml</DependentUpon>
@@ -82,6 +88,9 @@
     <Compile Include="Resources\Layout\Converters\EmailToColorConverter.cs" />
     <Compile Include="Resources\Layout\RootMenu.xaml.cs">
       <DependentUpon>RootMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Layout\Settings.xaml.cs">
+      <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>
     <Compile Include="Resources\Layout\StyleResources\AquaWindowStyle.xaml.cs">
       <DependentUpon>AquaWindowStyle.xaml</DependentUpon>
@@ -92,6 +101,9 @@
     <Compile Include="Resources\Layout\MainWindowAqua.xaml.cs">
       <DependentUpon>MainWindowAqua.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\RootMenuViewModel.cs" />
+    <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -104,11 +116,23 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Resources\Layout\Admins.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Layout\Bugreport.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Resources\Layout\Dashboard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\Layout\RootMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Layout\Settings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
