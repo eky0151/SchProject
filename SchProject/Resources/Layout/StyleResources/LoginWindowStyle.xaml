@@ -1,0 +1,160 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:SchProject.Resources.Layout"
+                    xmlns:converters="clr-namespace:SchProject.Resources.Layout.Converters">
+    <converters:EmailToColorConverter x:Key="EmailToColorConverter"/>
+    
+    
+    <Style x:Key="LoginTextBox" TargetType="TextBox">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Border Name="Border"  Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="7" >
+                        <ScrollViewer x:Name="PART_ContentHost"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="MinWidth" Value="250"/>
+        <Setter Property="MinHeight" Value="26"/>
+        <Setter Property="TextAlignment" Value="Center"/>
+        <Setter Property="TextWrapping" Value="Wrap"/>
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="Foreground" Value="#717171"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="BorderBrush" Value="#95989A"/>
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect Direction="0"  BlurRadius="20" ShadowDepth="0" Opacity="0.1"/>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsFocused" Value="True">
+                <Setter Property="Border.Background" Value="#E6F4FF"></Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="PasswdBox" TargetType="PasswordBox">
+        <Setter Property="MinWidth" Value="250"/>
+        <Setter Property="MinHeight" Value="26"/>
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="Foreground" Value="#717171"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect Direction="0"  BlurRadius="20" ShadowDepth="0" Opacity="0.1"/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Border Background="{TemplateBinding Background}" x:Name="Bd" BorderBrush="#95989A"
+                        BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="7" >
+                        <ScrollViewer x:Name="PART_ContentHost"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    
+    <Style TargetType="Button" x:Key="TabButton">
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="MinWidth" Value="112"/>
+        <Setter Property="MinHeight" Value="27"/>
+        <Setter Property="FontSize" Value="15"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="RenderTransform">
+            <Setter.Value>
+                <ScaleTransform ScaleX="1" ScaleY="1"/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="RenderTransformOrigin" Value="0.5 0.5"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border CornerRadius="5" Background="#17BAD0" x:Name="CustomButton" >
+                        <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" 
+                                          Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                          Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        <Border.Effect>
+                            <DropShadowEffect Direction="0" ShadowDepth="0" BlurRadius="3" Opacity="0.3"/>
+                        </Border.Effect>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <EventTrigger RoutedEvent="MouseEnter">
+                <EventTrigger.Actions>
+                    <BeginStoryboard>
+                        <Storyboard TargetProperty="RenderTransform.ScaleX" SpeedRatio="8" Name="ScaleEnterX">
+                            <DoubleAnimation  To="1.09" Duration="0:0:0:1"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                    <BeginStoryboard>
+                        <Storyboard TargetProperty="RenderTransform.ScaleY" SpeedRatio="8"  Name="ScaleEnterY">
+                            <DoubleAnimation  To="1.09"  Duration="0:0:0:1"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger.Actions>
+            </EventTrigger>
+            <EventTrigger RoutedEvent="MouseLeave">
+                <EventTrigger.Actions>
+                    <BeginStoryboard>
+                        <Storyboard TargetProperty="RenderTransform.ScaleX" SpeedRatio="8">
+                            <DoubleAnimation To="1" Duration="0:0:0:1"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                    <BeginStoryboard>
+                        <Storyboard TargetProperty="RenderTransform.ScaleY" SpeedRatio="8">
+                            <DoubleAnimation To="1"  Duration="0:0:0:1"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger.Actions>
+            </EventTrigger>
+            <EventTrigger RoutedEvent="PreviewMouseDown">
+                <BeginStoryboard>
+                    <Storyboard TargetProperty="RenderTransform.ScaleX" SpeedRatio="8">
+                        <DoubleAnimation  To="1.05" Duration="0:0:0:1"/>
+                    </Storyboard>
+                </BeginStoryboard>
+                <BeginStoryboard>
+                    <Storyboard TargetProperty="RenderTransform.ScaleY" SpeedRatio="8">
+                        <DoubleAnimation  To="1.05"  Duration="0:0:0:1"/>
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+            <EventTrigger RoutedEvent="PreviewMouseUp">
+                <BeginStoryboard>
+                    <Storyboard TargetProperty="RenderTransform.ScaleX" SpeedRatio="8">
+                        <DoubleAnimation To="1.09" Duration="0:0:0:1"/>
+                    </Storyboard>
+                </BeginStoryboard>
+                <BeginStoryboard>
+                    <Storyboard TargetProperty="RenderTransform.ScaleY" SpeedRatio="8">
+                        <DoubleAnimation To="1.09"  Duration="0:0:0:1"/>
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+        </Style.Triggers>
+    </Style>
+    
+    
+    <Style TargetType="Ellipse" x:Key="ImageHolder">
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect Color="Black" Direction="0 " ShadowDepth="0" BlurRadius="40" Opacity=".18" />
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Stroke" Value="#6A99B5"/>
+    </Style>
+</ResourceDictionary>

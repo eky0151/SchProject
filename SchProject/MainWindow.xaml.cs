@@ -1,6 +1,7 @@
-﻿namespace SchProject
+﻿using System.Windows;
+
+namespace SchProject
 {
-    using System.Windows;
 
     public partial class MainWindow : Window
     {

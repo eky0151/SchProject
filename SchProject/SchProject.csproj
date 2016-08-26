@@ -73,6 +73,25 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Resources\Layout\Converters\BoolToVisibilityConverter.cs" />
+    <Compile Include="Resources\Layout\CustomControls\MenuTabItem.cs" />
+    <Compile Include="Resources\Layout\CustomControls\StatusBox.cs" />
+    <Compile Include="Resources\Layout\Dashboard.xaml.cs">
+      <DependentUpon>Dashboard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Layout\Converters\EmailToColorConverter.cs" />
+    <Compile Include="Resources\Layout\RootMenu.xaml.cs">
+      <DependentUpon>RootMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Layout\StyleResources\AquaWindowStyle.xaml.cs">
+      <DependentUpon>AquaWindowStyle.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Layout\Login.xaml.cs">
+      <DependentUpon>Login.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Layout\MainWindowAqua.xaml.cs">
+      <DependentUpon>MainWindowAqua.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -85,6 +104,42 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Resources\Layout\Dashboard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Layout\RootMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Layout\StyleResources\AquaWindowStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Layout\Login.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Layout\MainWindowAqua.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Layout\StyleResources\AquaResources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Layout\StyleResources\DashboardStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Layout\StyleResources\LoginWindowStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Layout\StyleResources\RootMenuStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -113,6 +168,45 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Layout\Images\demoPic.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Layout\Images\home.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Layout\Images\homeSelected.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Layout\Images\adminSelected.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Layout\Images\admin.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Layout\Images\errorSelected.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Layout\Images\error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Layout\Images\settings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Layout\Images\settingsSelected.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Layout\Images\logout.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Layout\Images\bugreportSelected.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Layout\Images\bugreport.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Layout\Images\demoPicSmall.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

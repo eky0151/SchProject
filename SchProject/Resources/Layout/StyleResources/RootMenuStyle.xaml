@@ -1,0 +1,67 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:SchProject.Resources.Layout.StyleResources"
+                    xmlns:converters="clr-namespace:SchProject.Resources.Layout.Converters"
+                    xmlns:controls="clr-namespace:SchProject.Resources.Layout.CustomControls">
+    <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+    
+    
+    <Style TargetType="TabControl" x:Key="Menu">
+        <Setter Property="TabStripPlacement" Value="Left"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="TabControl">
+                    <DockPanel>
+                        <TabPanel DockPanel.Dock="Left" x:Name="HeaderPanel"
+                              Panel.ZIndex="1"
+                              Margin="0,210,4,-1"
+                                  Width="210"
+                              IsItemsHost="True"
+                              KeyboardNavigation.TabIndex="1"
+                              Background="Transparent" />
+                        <ContentPresenter ContentSource="SelectedContent" DockPanel.Dock="Right" Margin="-4,0,0,0" KeyboardNavigation.TabNavigation="Local"
+                            KeyboardNavigation.DirectionalNavigation="Contained"
+                            KeyboardNavigation.TabIndex="2"/>
+                    </DockPanel>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Resources>
+            <Style TargetType="controls:MenuTabItem">
+                <Setter Property="Width" Value="210"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate>
+                            <StackPanel Orientation="Horizontal" Width="190" Height="38" HorizontalAlignment="Left">
+                                <Rectangle Width="4" Margin="0,0,15,0" Fill="#00B1FA" Height="36">
+                                    <Rectangle.Visibility>
+                                        <MultiBinding Converter="{StaticResource BoolToVisibilityConverter}">
+                                            <Binding Path="(controls:MenuTabItem.IsSelected)" RelativeSource="{RelativeSource TemplatedParent}"/>
+                                            <Binding Path="(controls:MenuTabItem.Header)" RelativeSource="{RelativeSource TemplatedParent}"/>
+                                        </MultiBinding>
+                                    </Rectangle.Visibility>
+                                </Rectangle>
+                                <Image  Margin="0,0,3,0" x:Name="MenuIcon"  MaxWidth="22" Source="{Binding (controls:MenuTabItem.PictureSource),RelativeSource={RelativeSource TemplatedParent}}" 
+                                           Stretch="UniformToFill"  MaxHeight="22" VerticalAlignment="Center"/>
+                                <Label Content="{Binding (controls:MenuTabItem.Header),RelativeSource={RelativeSource TemplatedParent}}"
+                                           VerticalContentAlignment="Center" FontSize="15" FontWeight="SemiBold"  Foreground="{Binding (controls:MenuTabItem.Foreground),RelativeSource={RelativeSource TemplatedParent}}"
+                                           FontFamily="Helve"/>
+                            </StackPanel>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Style.Triggers>
+                    <Trigger Property="IsSelected" Value="True">
+                        <Setter Property="Foreground" Value="#01AFF7"/>
+                        <Setter Property="PictureSource" Value="{Binding (controls:MenuTabItem.SelectedtPicture),RelativeSource={RelativeSource Self}}"/>
+                    </Trigger>
+                    <Trigger Property="IsSelected" Value="False">
+                        <Setter Property="Foreground" Value="#89ABD0"/>
+                        <Setter Property="PictureSource" Value="{Binding (controls:MenuTabItem.DefaultPicture),RelativeSource={RelativeSource Self}}"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+        </Style.Resources>
+    </Style>
+    
+</ResourceDictionary>
