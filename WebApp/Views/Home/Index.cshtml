@@ -2,44 +2,36 @@
     Page.Title = "Index page";
 }
 
-
-
 @*<h1>This is from Home/Index.cshtml</h1>*@
 
-<table style="width:100%" align="center">
-    <tr>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
 
-        <td align="center">
-            <div class="round">
-                <img src="~/Pictures/xy.jpg" />
-            </div>
-        </td>
+    <link rel="stylesheet" href="css/style.css">
 
-    </tr>
-    <tr>
+</head>
 
-        <td align="center">
-            <p>
-                <b>Name:</b><br>
-                <input class="textbox" type="text" name="Name" value="">
-            </p>
-        </td>
+<body>
 
-    </tr>
-    <tr>
-
-        <td align="center">
-            <b>Password:</b><br>
-            <input class="textbox" type="password" name="Password" value="">
-        </td>
-
-    </tr>
-    <tr>
-
-        <td align="center">
-            <input type="submit" value="Login">
-            <input type="button" value="Register" onclick="location.href='@Url.Action("Index", "Register")'" />
-        </td>
-
-    </tr>
-</table>
+    <div class="container">
+        <div class="login">
+            <h1 class="login-heading">
+                <strong>Welcome.</strong> Please login.
+            </h1>
+            <form method="post">
+                <input type="text" name="user" placeholder="Username" class="input-txt" />
+                <input type="password" name="password" placeholder="Password" class="input-txt" />
+                <div class="login-footer">
+                    <a href="#hovamenjen a link" class="lnk">
+                        I forgot my password...
+                    </a>
+                    <button type="button" class="btn" onclick="location.href='@Url.Action("Index", "User")'">Sign in</button>
+                    <button type="button" class="btn" onclick="location.href='@Url.Action("Index", "Register")'">Registration</button>                           
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

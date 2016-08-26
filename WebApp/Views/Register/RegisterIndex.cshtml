@@ -2,50 +2,35 @@
     Page.Title = "RegisterIndex page";
 }
 
-<!DOCTYPE html>
+@*<h1>Hello World! Register/RegisterIndex.cshtml</h1>*@
 
+<!DOCTYPE html>
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="css/style.css">
+
 </head>
+
 <body>
-    @*<h1>Hello World! Register/RegisterIndex.cshtml</h1>*@
 
-    <table style="width:100%" align="center">
-        <tr>
-
-            <td align="center">
-                <div class="round">
-                    <img src="~/Pictures/xy.jpg" />
+    <div class="container">
+        <div class="login">
+            <h1 class="login-heading">
+                <strong>Registration</strong>
+            </h1>
+            <form method="post">
+                <input type="text" name="user" placeholder="Username" required class="input-txt" />
+                <input type="password" name="password" placeholder="Password" required class="input-txt" />
+                <input type="password" placeholder="Password again" required class="input-txt" />
+                <input type="email" placeholder="E-mail" required class="input-txt" />
+                <input type="email" placeholder="E-mail again" required class="input-txt" />
+                <div class="login-footer">
+                    <button type="submit" class="btn">Registration</button>
                 </div>
-            </td>
-
-        </tr>
-        <tr>
-
-            <td align="center">
-                <p>
-                    <b>Name:</b><br>
-                    <input class="textbox" type="text" name="Name" value="">
-                </p>
-            </td>
-
-        </tr>
-        <tr>
-
-            <td align="center">
-                <b>Password:</b><br>
-                <input class="textbox" type="password" name="Password" value="">
-            </td>
-
-        </tr>
-        <tr>
-
-            <td align="center">
-                <input type="submit" value="Register">
-            </td>
-
-        </tr>
-    </table>
+            </form>
+        </div>
+    </div>
 </body>
 </html>
