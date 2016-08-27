@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -12,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace SchProject.Resources.Layout
 {
@@ -24,12 +27,13 @@ namespace SchProject.Resources.Layout
     }
     public partial class Dashboard : UserControl
     {
-        public List<Name> Nevek { get; set; }
+        public ObservableCollection<Name> Nevek { get; set; }
         public Dashboard()
         {
             InitializeComponent();
-            Nevek=new List<Name>() {new Name() {FullName = "Peter Parker"}, new Name() { FullName = "asdasd asdasdv" } , new Name() { FullName = "Petvrvter ertvertv" }, new Name() { FullName = "ervtevrt sdvsdve" }, new Name() { FullName = "ervtevrt sdvsdve" }, new Name() { FullName = "ervtevrt sdvsdve" }, new Name() { FullName = "ervtevrt sdvsdve" }, new Name() { FullName = "ervtevrt sdvsdve" }, new Name() { FullName = "ervtevrt sdvsdve" }, new Name() { FullName = "ervtevrt sdvsdve" }, new Name() { FullName = "ervtevrt sdvsdve" } };
+            Nevek=new ObservableCollection<Name>() {new Name() {FullName = "Peter Parker"}, new Name() { FullName = "asdasd asdasdv" } , new Name() { FullName = "Petvrvter ertvertv" }, new Name() { FullName = "ervtevrt sdvsdve" }, new Name() { FullName = "ervtevrt sdvsdve" }, new Name() { FullName = "ervtevrt sdvsdve" }, new Name() { FullName = "ervtevrt sdvsdve" }, new Name() { FullName = "ervtevrt sdvsdve" }, new Name() { FullName = "ervtevrt sdvsdve" }, new Name() { FullName = "ervtevrt sdvsdve" }, new Name() { FullName = "ervtevrt sdvsdve" } };
             DataContext = this;
         }
+
     }
 }

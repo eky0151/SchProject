@@ -3,58 +3,98 @@
                     xmlns:local="clr-namespace:SchProject.Resources.Layout.StyleResources"
                     xmlns:converters="clr-namespace:SchProject.Resources.Layout.Converters"
                     xmlns:controls="clr-namespace:SchProject.Resources.Layout.CustomControls">
-    <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
-    <Style TargetType="controls:MenuButton" x:Key="MenuButtonMini">
-        <Setter Property="GroupName" Value="MenuItem"/>
-        <Setter Property="Command" Value="{Binding Path=DataContext.Navigation, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"/>
-        <Setter Property="CommandParameter" Value="{Binding NavigateTo,RelativeSource={RelativeSource Self}}"/>
+
+
+    <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+
+
+    <Style TargetType="controls:MenuButton"
+           x:Key="MenuButtonMini">
+        <Setter Property="GroupName"
+                Value="MenuItem" />
+        <Setter Property="Command"
+                Value="{Binding Path=DataContext.Navigation, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" />
+        <Setter Property="CommandParameter"
+                Value="{Binding NavigateTo,RelativeSource={RelativeSource Self}}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate>
-                    <Image x:Name="MenuIcon"  MaxWidth="22" Source="{Binding (controls:MenuButton.PictureSource),RelativeSource={RelativeSource TemplatedParent}}" 
-                                           Stretch="UniformToFill"  MaxHeight="22" VerticalAlignment="Center"/>
+                    <Image x:Name="MenuIcon"
+                           MaxWidth="22"
+                           Source="{Binding (controls:MenuButton.PictureSource),RelativeSource={RelativeSource TemplatedParent}}"
+                           Stretch="UniformToFill"
+                           MaxHeight="22"
+                           VerticalAlignment="Center" />
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
         <Style.Triggers>
-            <Trigger Property="IsChecked" Value="True">
-                <Setter Property="Foreground" Value="#01AFF7"/>
-                <Setter Property="PictureSource" Value="{Binding (controls:MenuButton.SelectedtPicture),RelativeSource={RelativeSource Self}}"/>
+            <Trigger Property="IsChecked"
+                     Value="True">
+                <Setter Property="Foreground"
+                        Value="#01AFF7" />
             </Trigger>
-            <Trigger Property="IsChecked" Value="False">
-                <Setter Property="Foreground" Value="#89ABD0"/>
-                <Setter Property="PictureSource" Value="{Binding (controls:MenuButton.DefaultPicture),RelativeSource={RelativeSource Self}}"/>
+            <Trigger Property="IsChecked"
+                     Value="False">
+                <Setter Property="Foreground"
+                        Value="#89ABD0" />
             </Trigger>
         </Style.Triggers>
     </Style>
 
-    <Style TargetType="controls:MenuButton" x:Key="MenuButton">
-        <Setter Property="Width" Value="210"/>
-        <Setter Property="GroupName" Value="MenuItem"/>
-        <Setter Property="Command" Value="{Binding Path=DataContext.Navigation, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"/>
-        <Setter Property="CommandParameter" Value="{Binding NavigateTo,RelativeSource={RelativeSource Self}}"/>
+    
+    <Style TargetType="controls:MenuButton"
+           x:Key="MenuButton">
+        <Setter Property="Width"
+                Value="210" />
+        <Setter Property="GroupName"
+                Value="MenuItem" />
+        <Setter Property="Command"
+                Value="{Binding Path=DataContext.Navigation,
+                               RelativeSource={RelativeSource FindAncestor,
+                               AncestorType={x:Type UserControl}}}" />
+        <Setter Property="CommandParameter"
+                Value="{Binding NavigateTo,RelativeSource={RelativeSource Self}}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate>
-                    <StackPanel Orientation="Horizontal" Width="190" Height="38" HorizontalAlignment="Left">
-                        <Rectangle Width="4" Margin="0,0,15,0" Fill="#00B1FA" Height="36" Visibility="{Binding (controls:MenuButton.IsChecked),RelativeSource={RelativeSource TemplatedParent},Converter={StaticResource BoolToVisibilityConverter}}"/>
-                        <Image  Margin="0,0,3,0" x:Name="MenuIcon"  MaxWidth="22" Source="{Binding (controls:MenuButton.PictureSource),RelativeSource={RelativeSource TemplatedParent}}" 
-                                           Stretch="UniformToFill"  MaxHeight="22" VerticalAlignment="Center"/>
+                    <StackPanel Orientation="Horizontal"
+                                Width="190"
+                                Height="38"
+                                HorizontalAlignment="Left">
+                        <Rectangle Width="4"
+                                   Margin="0,0,15,0"
+                                   Fill="#00B1FA"
+                                   Height="36"
+                                   Visibility="{Binding (controls:MenuButton.IsChecked),RelativeSource={RelativeSource TemplatedParent},
+                                                          Converter={StaticResource BoolToVisibilityConverter}}" />
+                        <Image  Margin="0,0,3,0"
+                                x:Name="MenuIcon"
+                                MaxWidth="22"
+                                Source="{Binding (controls:MenuButton.PictureSource),RelativeSource={RelativeSource TemplatedParent}}"
+                                Stretch="UniformToFill"
+                                MaxHeight="22"
+                                VerticalAlignment="Center" />
                         <Label Content="{Binding (controls:MenuButton.Content),RelativeSource={RelativeSource TemplatedParent}}"
-                                           VerticalContentAlignment="Center" FontSize="15" FontWeight="SemiBold"  Foreground="{Binding (controls:MenuButton.Foreground),RelativeSource={RelativeSource TemplatedParent}}"
-                                           FontFamily="Helve"/>
+                               VerticalContentAlignment="Center"
+                               FontSize="15"
+                               FontWeight="SemiBold"
+                               Foreground="{Binding (controls:MenuButton.Foreground),RelativeSource={RelativeSource TemplatedParent}}"
+                               FontFamily="Helve" />
                     </StackPanel>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
         <Style.Triggers>
-            <Trigger Property="IsChecked" Value="True">
-                <Setter Property="Foreground" Value="#01AFF7"/>
-                <Setter Property="PictureSource" Value="{Binding (controls:MenuButton.SelectedtPicture),RelativeSource={RelativeSource Self}}"/>
+            <Trigger Property="IsChecked"
+                     Value="True">
+                <Setter Property="Foreground"
+                        Value="#01AFF7" />
             </Trigger>
-            <Trigger Property="IsChecked" Value="False">
-                <Setter Property="Foreground" Value="#89ABD0"/>
-                <Setter Property="PictureSource" Value="{Binding (controls:MenuButton.DefaultPicture),RelativeSource={RelativeSource Self}}"/>
+            <Trigger Property="IsChecked"
+                     Value="False">
+                <Setter Property="Foreground"
+                        Value="#89ABD0" />
             </Trigger>
         </Style.Triggers>
     </Style>

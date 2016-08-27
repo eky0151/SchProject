@@ -6,8 +6,10 @@
         xmlns:local="clr-namespace:SchProject.Resources.Layout"
         mc:Ignorable="d"
         Style="{StaticResource AquaWindowStyle}"
-        Title="MainWindowAqua" Height="300" Width="300">
+        Title="MainWindowAqua"
+        Height="300"
+        Width="300">
     <UserControl Content="{Binding Path=IO}">
-        
+
     </UserControl>
 </Window>

@@ -60,5 +60,28 @@ namespace SchProject.Resources.Layout.CustomControls
             get { return (ImageSource)GetValue(SelectedPictureProperty); }
             set { SetValue(SelectedPictureProperty, value); }
         }
+
+        public MenuButton()
+        {
+            this.Checked += MenuButton_Checked;
+            this.Unchecked += MenuButton_Unchecked;
+            this.Loaded += MenuButton_Loaded;
+        }
+
+        private void MenuButton_Loaded(object sender, RoutedEventArgs e)
+        {
+            PictureSource = DefaultPicture;
+        }
+
+        private void MenuButton_Unchecked(object sender, RoutedEventArgs e)
+        {
+            this.PictureSource = DefaultPicture;
+        }
+
+        private void MenuButton_Checked(object sender, RoutedEventArgs e)
+        {
+            this.PictureSource = SelectedtPicture;
+        }
+
     }
 }
