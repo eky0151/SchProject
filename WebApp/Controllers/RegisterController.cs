@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WebApp.Models;
 
 namespace WebApp.Controllers
 {
@@ -12,6 +13,17 @@ namespace WebApp.Controllers
         public ActionResult Index()
         {
             return View("RegisterIndex");
+        }
+
+        [HttpPost]
+        public ActionResult Register(RegisterModel registermodel)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(registermodel);
+            }            
+
+            return RedirectToAction("Success");
         }
     }
 }

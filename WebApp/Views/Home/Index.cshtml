@@ -2,18 +2,17 @@
     Page.Title = "Index page";
 }
 
-@*<h1>This is from Home/Index.cshtml</h1>*@
+@model WebApp.Models.UserModel
 
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
-
-    <link rel="stylesheet" href="css/style.css">
-
 </head>
-
 <body>
+
+@using (Html.BeginForm("Login", "User", FormMethod.Post))
+{
 
     <div class="container">
         <div class="login">
@@ -21,17 +20,27 @@
                 <strong>Welcome.</strong> Please login.
             </h1>
             <form method="post">
-                <input type="text" name="user" placeholder="Username" class="input-txt" />
-                <input type="password" name="password" placeholder="Password" class="input-txt" />
-                <div class="login-footer">
+                @Html.TextBoxFor(m => m.Username, new { @class = "input-txt", placeholder = "Username" })
+                @*@Html.ValidationMessageFor(m => m.Username)*@
+                @Html.PasswordFor(m => m.Password, new { @class = "input-txt", placeholder = "Password" })
+                @*@Html.ValidationMessageFor(m => m.Password)*@
+                <div class="login-footer">                  
+                    <button type="button" class="btn" onclick="location.href='@Url.Action("Index", "Register")'">Registration</button>
+                    <input type="submit" class="btn" value="Sign in" />               
+                </div>
+            
+                <div class="lnkdiv">
                     <a href="#hovamenjen a link" class="lnk">
                         I forgot my password...
                     </a>
-                    <button type="button" class="btn" onclick="location.href='@Url.Action("Index", "User")'">Sign in</button>
-                    <button type="button" class="btn" onclick="location.href='@Url.Action("Index", "Register")'">Registration</button>                           
                 </div>
+            
             </form>
         </div>
     </div>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.js"></script>
+    <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.js"></script>
+    <script src="//ajax.aspnetcdn.com/ajax/mvc/5.2.3/jquery.validate.unobtrusive.js"></script>
+}
 </body>
 </html>

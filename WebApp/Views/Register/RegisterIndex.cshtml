@@ -2,14 +2,14 @@
     Page.Title = "RegisterIndex page";
 }
 
+@model WebApp.Models.RegisterModel
+
 @*<h1>Hello World! Register/RegisterIndex.cshtml</h1>*@
 
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
-
-    <link rel="stylesheet" href="css/style.css">
 
 </head>
 
@@ -21,16 +21,29 @@
                 <strong>Registration</strong>
             </h1>
             <form method="post">
-                <input type="text" name="user" placeholder="Username" required class="input-txt" />
-                <input type="password" name="password" placeholder="Password" required class="input-txt" />
-                <input type="password" placeholder="Password again" required class="input-txt" />
-                <input type="email" placeholder="E-mail" required class="input-txt" />
-                <input type="email" placeholder="E-mail again" required class="input-txt" />
+
+                @Html.TextBoxFor(m => m.Username, new { @class = "input-txt", placeholder = "Username" })
+                @*@Html.ValidationMessageFor(m => m.Username)*@
+                @Html.PasswordFor(m => m.Password, new { @class = "input-txt", placeholder = "Password" })
+                @*@Html.ValidationMessageFor(m => m.Password)*@
+                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "input-txt", placeholder = "Password Again" })
+                @*@Html.ValidationMessageFor(m => m.ConfirmPassword)*@
+                @Html.TextBoxFor(m => m.Email, new { @class = "input-txt", placeholder = "Email" })
+                @*@Html.ValidationMessageFor(m => m.Email)*@
+                @Html.TextBoxFor(m => m.ConfirmEmail, new { @class = "input-txt", placeholder = "Email Again" })
+                @*@Html.ValidationMessageFor(m => m.ConfirmEmail)*@
+
+
+
                 <div class="login-footer">
-                    <button type="button" class="btn">Registration</button>
+                    <input type="submit" class="btn" value="Registration" />
                 </div>
             </form>
         </div>
     </div>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.js"></script>
+    <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.js"></script>
+    <script src="//ajax.aspnetcdn.com/ajax/mvc/5.2.3/jquery.validate.unobtrusive.js"></script>
+
 </body>
 </html>

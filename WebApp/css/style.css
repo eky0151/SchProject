@@ -18,6 +18,7 @@ html {
 .login-heading {
   font: 1.8em/48px "Tenor Sans", sans-serif;
   color: white;
+  text-align:center;
 }
 
 .input-txt {
@@ -49,8 +50,9 @@ html {
 .login-footer {
   margin: 10px 0;
   overlow: hidden;
-  float: left;
   width: 100%;
+  position:relative;
+  text-align:center;
 }
 
 .btn {
@@ -63,7 +65,8 @@ html {
     display: inline-block;
     font-size: 16px;
     cursor: pointer;
-    float: right;
+
+
 }
 
 .btn:hover {
@@ -83,4 +86,16 @@ html {
   line-height: 3em;
   color: white;
   text-decoration: none;
+}
+
+.lnkdiv {
+	    text-align: center;
+}
+
+input.input-validation-error,
+textarea.input-validation-error,
+select.input-validation-error
+{
+	background: #FEF1EC;
+    border: 1px solid red;
 }

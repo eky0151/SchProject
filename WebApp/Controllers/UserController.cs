@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using WebApp.Models;
 
 namespace WebApp.Controllers
 {
@@ -14,11 +16,10 @@ namespace WebApp.Controllers
             return View("UserIndex");
         }
 
-        public ActionResult Login()
+        [HttpPost]
+        public ActionResult Login(HomeModel homemodel)
         {
-            //TODO: Check form input
-            Session["UserID"] = 42;
-            return RedirectToAction("Index");
+            return View("UserIndex");
         }
     }
 }
