@@ -12,7 +12,7 @@ namespace ChatService
         [OperationContract(IsOneWay = true)]
         void ReceiveMessage(Message message);
 
-        [OperationContract(IsOneWay = true]
+        [OperationContract(IsOneWay = true)]
         void ReceiveFileMessage(FileMessage fileMessage);
 
         [OperationContract(IsOneWay = true)]

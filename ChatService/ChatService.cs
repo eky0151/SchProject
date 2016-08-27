@@ -14,13 +14,7 @@ namespace ChatService
 
         private static object sync = new object();
 
-        public IChatCallback CurrentCallBack
-        {
-            get
-            {
-                return OperationContext.Current.GetCallbackChannel<IChatCallback>();
-            }
-        }
+        private IChatCallback currentCallback;
 
         public bool Connect(Client client)
         {
@@ -28,8 +22,8 @@ namespace ChatService
                 return false;
             lock(sync)
             {
-                clients.Add(client, CurrentCallBack);
-                CurrentCallBack.ClientConnect(client.Name);
+                clients.Add(client, currentCallback);
+                currentCallback.ClientConnect(client.Name);
             }
             return true;
         }

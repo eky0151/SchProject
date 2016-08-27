@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ChatService
 {
@@ -13,8 +9,10 @@ namespace ChatService
         [DataMember]
         public string Sender { get; set; }
 
+        [DataMember]
         public string Content { get; set; }
 
+        [DataMember]
         public DateTime TimeSended { get; set; }
     }
 }
