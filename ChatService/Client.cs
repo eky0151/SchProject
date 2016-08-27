@@ -1,7 +1,7 @@
-﻿using System.Runtime.Serialization;
-
-namespace ChatService
+﻿namespace ChatService
 {
+    using System.Runtime.Serialization;
+
     [DataContract]
     public class Client
     {
@@ -10,8 +10,5 @@ namespace ChatService
 
         [DataMember]
         public string Name { get; set; }
-
-
-
     }
 }

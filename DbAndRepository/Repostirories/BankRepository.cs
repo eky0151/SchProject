@@ -21,8 +21,8 @@
         public override void Delete(int id)
         {
             bank = GetById(id);
-            database.Set<Bank>().Remove(b);
-            database.Entry<Bank>(b).State = EntityState.Deleted;
+            database.Set<Bank>().Remove(bank);
+            database.Entry<Bank>(bank).State = EntityState.Deleted;
             database.SaveChanges();
         }
 

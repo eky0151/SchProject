@@ -25,6 +25,11 @@ namespace DbAndRepository.Repostirories
             throw new NotImplementedException();
         }
 
+        public List<TechWorks> GetWorksByTechnician(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public override void Update(Technician entityToModify)
         {
             throw new NotImplementedException();

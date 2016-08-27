@@ -1,11 +1,11 @@
-﻿IF OBJECT_ID('Bank', 'U') IS NOT NULL DROP TABLE Bank;
-IF OBJECT_ID('Worker', 'U') IS NOT NULL DROP TABLE Worker;
-IF OBJECT_ID('Logs', 'U') IS NOT NULL DROP TABLE Logs;
-IF OBJECT_ID('LoginData', 'U') IS NOT NULL DROP TABLE LoginData;
-IF OBJECT_ID('Technician', 'U') IS NOT NULL DROP TABLE Technician;
-IF OBJECT_ID('RegUser', 'U') IS NOT NULL DROP TABLE RegUser;
-IF OBJECT_ID('SolvedQuestion', 'U') IS NOT NULL DROP TABLE SolvedQuestion;
-GO
+﻿--IF OBJECT_ID('Bank', 'U') IS NOT NULL DROP TABLE Bank;
+--IF OBJECT_ID('Worker', 'U') IS NOT NULL DROP TABLE Worker;
+--IF OBJECT_ID('Logs', 'U') IS NOT NULL DROP TABLE Logs;
+--IF OBJECT_ID('LoginData', 'U') IS NOT NULL DROP TABLE LoginData;
+--IF OBJECT_ID('Technician', 'U') IS NOT NULL DROP TABLE Technician;
+--IF OBJECT_ID('RegUser', 'U') IS NOT NULL DROP TABLE RegUser;
+--IF OBJECT_ID('SolvedQuestion', 'U') IS NOT NULL DROP TABLE SolvedQuestion;
+--GO
 
 
 CREATE TABLE [dbo].[Bank]

@@ -1,8 +1,8 @@
-﻿using System;
-using System.Runtime.Serialization;
-
-namespace ChatService
+﻿namespace ChatService
 {
+    using System;
+    using System.Runtime.Serialization;
+
     [DataContract]
     public class Message
     {

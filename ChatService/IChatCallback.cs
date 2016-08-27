@@ -1,24 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.ServiceModel;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ChatService
+﻿namespace ChatService
 {
+    using System.ServiceModel;
+
     public interface IChatCallback
     {
         [OperationContract(IsOneWay = true)]
-        void ReceiveMessage(Message message);
+        void ReceiveMessageCallback(Message message, Client receiver);
 
         [OperationContract(IsOneWay = true)]
-        void ReceiveFileMessage(FileMessage fileMessage);
+        void ReceiveFileMessageeCallback(FileMessage fileMessage, Client receiver);
 
         [OperationContract(IsOneWay = true)]
-        void ClientConnect(string name);
+        void ClientConnectCallback(string name);
 
         [OperationContract(IsOneWay = true)]
-        void ClientLeave(string name);
+        void ClientLeaveCallback(string name);
+
+        [OperationContract(IsOneWay = true)]
+        void IsWritingCallback(Client client);
     }
 }
