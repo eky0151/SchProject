@@ -16,9 +16,9 @@ namespace ChatService
         void ReceiveFileMessage(FileMessage fileMessage);
 
         [OperationContract(IsOneWay = true)]
-        void ClientConnect(Client client);
+        void ClientConnect(string name);
 
         [OperationContract(IsOneWay = true)]
-        void ClientLeave(Client client);
+        void ClientLeave(string name);
     }
 }

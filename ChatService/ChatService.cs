@@ -26,7 +26,12 @@ namespace ChatService
         {
             if (clients.ContainsKey(client))
                 return false;
-            clients.Add()
+            lock(sync)
+            {
+                clients.Add(client, CurrentCallBack);
+                CurrentCallBack.ClientConnect(client.Name);
+            }
+            return true;
         }
 
         public void Disconnect(Client client)
