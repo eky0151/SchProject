@@ -4,18 +4,25 @@
     using GenericsEFRepository;
     using IRepositories;
     using System.Linq;
+    using System;
+    using System.Collections.Generic;
 
     public class WorkerRepository : GenericsRepository<Worker>, IWorkerRepository
     {
+        private Worker w;
+
         public WorkerRepository(DbContext newDb) : base(newDb)
         {
         }
 
         public override void Delete(int id)
         {
-            database.Set<Worker>().Remove(GetById(id));
+            Worker w = GetById(id);
+            database.Set<Worker>().Remove(w);
+            database.Entry<Worker>(w).State = EntityState.Deleted;
             database.SaveChanges();
         }
+
 
         public override Worker GetById(int id)
         {
@@ -25,6 +32,7 @@
         public override void Update(Worker entityToModify)
         {
             database.Entry(GetById(entityToModify.ID)).CurrentValues.SetValues(entityToModify);
+            database.Entry<Worker>(entityToModify).State = EntityState.Modified;
             database.SaveChanges();
         }
     }

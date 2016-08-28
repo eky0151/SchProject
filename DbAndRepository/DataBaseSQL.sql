@@ -1,11 +1,11 @@
-﻿IF OBJECT_ID('Bank', 'U') IS NOT NULL DROP TABLE Bank;
-IF OBJECT_ID('Worker', 'U') IS NOT NULL DROP TABLE Worker;
-IF OBJECT_ID('Logs', 'U') IS NOT NULL DROP TABLE Logs;
-IF OBJECT_ID('LoginData', 'U') IS NOT NULL DROP TABLE LoginData;
-IF OBJECT_ID('Technician', 'U') IS NOT NULL DROP TABLE Technician;
-IF OBJECT_ID('RegUser', 'U') IS NOT NULL DROP TABLE RegUser;
-IF OBJECT_ID('SolvedQuestion', 'U') IS NOT NULL DROP TABLE SolvedQuestion;
-GO
+﻿--IF OBJECT_ID('Bank', 'U') IS NOT NULL DROP TABLE Bank;
+--IF OBJECT_ID('Worker', 'U') IS NOT NULL DROP TABLE Worker;
+--IF OBJECT_ID('Logs', 'U') IS NOT NULL DROP TABLE Logs;
+--IF OBJECT_ID('LoginData', 'U') IS NOT NULL DROP TABLE LoginData;
+--IF OBJECT_ID('Technician', 'U') IS NOT NULL DROP TABLE Technician;
+--IF OBJECT_ID('RegUser', 'U') IS NOT NULL DROP TABLE RegUser;
+--IF OBJECT_ID('SolvedQuestion', 'U') IS NOT NULL DROP TABLE SolvedQuestion;
+--GO
 
 
 CREATE TABLE [dbo].[Bank]
@@ -64,6 +64,7 @@ CREATE TABLE [dbo].[RegUser]
     [Points] INT NOT NULL, 
     [Questions] INT NOT NULL, 
     [Picture] IMAGE NULL,
+	[Password] VARCHAR(20) NOT NULL
 )
 
 CREATE TABLE [dbo].[SolvedQuestion]
@@ -75,7 +76,8 @@ CREATE TABLE [dbo].[SolvedQuestion]
     [Answer] TEXT NOT NULL, 
     [Category] VARCHAR(20) NOT NULL, 
     [Timeasked] DATETIME NOT NULL, 
-    [Timeanswered] DATETIME NOT NULL, 
+    [Timeanswered] DATETIME NOT NULL,
+	[KeyWords] VARCHAR(MAX) NOT NULL, 
     CONSTRAINT [FK_SolvedQuestion_User] FOREIGN KEY ([UserID]) REFERENCES [RegUser]([ID]), 
     CONSTRAINT [FK_SolvedQuestion_Login] FOREIGN KEY ([WorkerID]) REFERENCES [LoginData]([ID]), 
     CONSTRAINT [CK_SolvedQuestion_Category] CHECK ( Category in ('Tech','Develop','Support'))
@@ -89,7 +91,8 @@ CREATE TABLE [dbo].[TechWorks] (
     [Payment]         INT          NOT NULL,
     [Customername]    VARCHAR (50) NOT NULL,
     [Customeraddress] VARCHAR (50) NOT NULL,
-    CONSTRAINT [FK_TechWorks_Technician] FOREIGN KEY ([TechID]) REFERENCES [dbo].[Technician] ([Id])
+    CONSTRAINT [FK_TechWorks_Technician] FOREIGN KEY ([TechID]) REFERENCES [dbo].[Technician] ([Id]),
+	CONSTRAINT [PK_TechWorks] PRIMARY KEY ([ID])
 );
 
 GO

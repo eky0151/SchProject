@@ -24,6 +24,7 @@
         public void Delete(TEntity entityToDelete)
         {
             database.Set<TEntity>().Remove(entityToDelete);
+            database.Entry<TEntity>(entityToDelete).State = EntityState.Deleted;
             database.SaveChanges();
         }
 
@@ -40,6 +41,7 @@
         public void Insert(TEntity newEntity)
         {
             database.Set<TEntity>().Add(newEntity);
+            database.Entry<TEntity>(newEntity).State = EntityState.Added;
             database.SaveChanges();
         }
 

@@ -1,13 +1,45 @@
-﻿<UserControl x:Class="SchProject.Resources.Layout.Aqua.Dashboard"
+﻿<UserControl x:Class="SchProject.Resources.Layout.Dashboard"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:SchProject.Resources.Layout.Aqua"
-             mc:Ignorable="d" 
-             d:DesignHeight="600" d:DesignWidth="790">
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:SchProject.Resources.Layout"
+             xmlns:controls="clr-namespace:SchProject.Resources.Layout.CustomControls"
+             mc:Ignorable="d"
+             d:DesignHeight="600"
+             d:DesignWidth="790">
     <Grid Background="White">
-        <Label Content="Ez itt a Dashboard" HorizontalAlignment="Left" Margin="320,250,0,0" VerticalAlignment="Top"/>
-
+        <controls:StatusBox Header="Megoldott hibák"
+                            Value="58"
+                            Margin="0,50,0,0"
+                            Background="#73D673"
+                            Foreground="White"
+                            HorizontalAlignment="Center"
+                            Width="230"
+                            Height="90"
+                            VerticalAlignment="Top" />
+        <controls:StatusBox Header="Új hibák"
+                            Value="149"
+                            Margin="25,50,0,0"
+                            Background="#89B1FA"
+                            Foreground="White"
+                            HorizontalAlignment="Left"
+                            Width="230"
+                            Height="90"
+                            VerticalAlignment="Top" />
+        <controls:StatusBox Header="Folyamatban lévő"
+                            Value="35"
+                            Margin="0,50,25,0"
+                            Background="#FF839E"
+                            Foreground="White"
+                            HorizontalAlignment="Right"
+                            Width="230"
+                            Height="90"
+                            VerticalAlignment="Top" />
+        <HeaderedItemsControl Header="Legutóbbi kliensek"
+                              Margin="535,170,20,20"
+                              Foreground="#8B8B8B"
+                              Background="White"
+                              ItemsSource="{Binding Nevek}" />
     </Grid>
 </UserControl>

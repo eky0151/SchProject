@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp", "WebApp\WebApp.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseAndRepositoryTests", "DatabaseAndRepositoryTests\DatabaseAndRepositoryTests.csproj", "{EA227977-6DDF-4A45-BFC8-29528D23C78C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SupportBot", "SupportBotAzure\SupportBot.csproj", "{A8BA1066-5695-4D71-ABB4-65E5A5E0C3D4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatService", "ChatService\ChatService.csproj", "{E01C25A7-4A53-4E40-8133-30CE57FEBCA4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,10 +35,10 @@ Global
 		{EA227977-6DDF-4A45-BFC8-29528D23C78C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EA227977-6DDF-4A45-BFC8-29528D23C78C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EA227977-6DDF-4A45-BFC8-29528D23C78C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A8BA1066-5695-4D71-ABB4-65E5A5E0C3D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A8BA1066-5695-4D71-ABB4-65E5A5E0C3D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A8BA1066-5695-4D71-ABB4-65E5A5E0C3D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A8BA1066-5695-4D71-ABB4-65E5A5E0C3D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E01C25A7-4A53-4E40-8133-30CE57FEBCA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E01C25A7-4A53-4E40-8133-30CE57FEBCA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E01C25A7-4A53-4E40-8133-30CE57FEBCA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E01C25A7-4A53-4E40-8133-30CE57FEBCA4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

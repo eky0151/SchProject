@@ -28,6 +28,8 @@ namespace DbAndRepository
         public int Points { get; set; }
         public int Questions { get; set; }
         public byte[] Picture { get; set; }
+
+        public string Password { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SolvedQuestion> SolvedQuestion { get; set; }
