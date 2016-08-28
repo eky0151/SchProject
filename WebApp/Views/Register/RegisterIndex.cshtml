@@ -15,6 +15,10 @@
 
 <body>
 
+
+@using (Html.BeginForm("Registration", "Register", FormMethod.Post))
+{
+
     <div class="container">
         <div class="login">
             <h1 class="login-heading">
@@ -33,8 +37,6 @@
                 @Html.TextBoxFor(m => m.ConfirmEmail, new { @class = "input-txt", placeholder = "Email Again", autocomplete = "off" })
                 @*@Html.ValidationMessageFor(m => m.ConfirmEmail)*@
 
-
-
                 <div class="login-footer">
                     <input type="submit" class="btn" value="Registration" />
                 </div>
@@ -45,6 +47,6 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.js"></script>
     <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.js"></script>
     <script src="//ajax.aspnetcdn.com/ajax/mvc/5.2.3/jquery.validate.unobtrusive.js"></script>
-
+}
 </body>
 </html>
