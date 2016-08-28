@@ -11,28 +11,35 @@ namespace DbAndRepository.Repostirories
 {
     class TechninicanRepository : GenericsRepository<Technician>, ITechnicianRepository
     {
+        private Technician tc;
+
         public TechninicanRepository(DbContext newDb) : base(newDb)
         {
         }
 
         public override void Delete(int id)
         {
-            throw new NotImplementedException();
+            tc = GetById(id);
+            database.Set<Technician>().Remove(tc);
+            database.Entry<Technician>(tc).State = EntityState.Deleted;
+            database.SaveChanges();
         }
 
         public override Technician GetById(int id)
         {
-            throw new NotImplementedException();
+            return Get(i => i.ID == id).FirstOrDefault();
         }
 
         public List<TechWorks> GetWorksByTechnician(int id)
         {
-            throw new NotImplementedException();
+            return 
         }
 
         public override void Update(Technician entityToModify)
         {
-            throw new NotImplementedException();
+            database.Entry(GetById(entityToModify.ID)).CurrentValues.SetValues(entityToModify);
+            database.Entry(entityToModify).State = EntityState.Modified;
+            database.SaveChanges();
         }
     }
 }

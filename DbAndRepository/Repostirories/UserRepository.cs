@@ -43,7 +43,8 @@ namespace DbAndRepository.Repostirories
 
         public BitmapImage GetPicture(string userName)
         {
-            return (BitmapImage)new ImageSourceConverter().ConvertFrom((Get(i => i.Username == userName).FirstOrDefault().Picture));
+            return (BitmapImage)new ImageSourceConverter().
+                ConvertFrom((Get(i => i.Username == userName).FirstOrDefault().Picture));
         }
 
         public override void Update(RegUser entityToModify)
