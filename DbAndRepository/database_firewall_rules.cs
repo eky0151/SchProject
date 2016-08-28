@@ -12,16 +12,13 @@ namespace DbAndRepository
     using System;
     using System.Collections.Generic;
     
-    public partial class TechWorks
+    public partial class database_firewall_rules
     {
-        public int ID { get; set; }
-        public int TechID { get; set; }
-        public System.DateTime Start { get; set; }
-        public System.DateTime Finish { get; set; }
-        public int Payment { get; set; }
-        public string Customername { get; set; }
-        public string Customeraddress { get; set; }
-    
-        public virtual Technician Technician { get; set; }
+        public int id { get; set; }
+        public string name { get; set; }
+        public string start_ip_address { get; set; }
+        public string end_ip_address { get; set; }
+        public System.DateTime create_date { get; set; }
+        public System.DateTime modify_date { get; set; }
     }
 }

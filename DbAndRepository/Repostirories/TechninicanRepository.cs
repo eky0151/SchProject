@@ -32,7 +32,7 @@ namespace DbAndRepository.Repostirories
 
         public List<TechWorks> GetWorksByTechnician(int id)
         {
-            return 
+            throw new NotImplementedException();
         }
 
         public override void Update(Technician entityToModify)
