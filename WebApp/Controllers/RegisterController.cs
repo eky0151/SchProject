@@ -18,11 +18,6 @@ namespace WebApp.Controllers
         [HttpPost]
         public ActionResult Register(RegisterModel registermodel)
         {
-            if (!ModelState.IsValid)
-            {
-                return View(registermodel);
-            }            
-
             return RedirectToAction("Success");
         }
     }

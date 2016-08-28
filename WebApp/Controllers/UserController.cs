@@ -13,13 +13,13 @@ namespace WebApp.Controllers
         // GET: User
         public ActionResult Index()
         {
-            return View("UserIndex");
+            return View();
         }
 
         [HttpPost]
-        public ActionResult Login(HomeModel homemodel)
+        public ActionResult Login(string username, string password)
         {
-            return View("UserIndex");
+            return View(new HomeModel(username, password));
         }
     }
 }

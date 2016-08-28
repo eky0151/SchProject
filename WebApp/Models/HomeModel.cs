@@ -9,6 +9,15 @@ namespace WebApp.Models
 {
     public class HomeModel
     {
+        [Required(ErrorMessage = "Username Is Empty")]
+        public string Username { get; set; }
+        [Required(ErrorMessage = "Password Is Empty")]
+        public string Password { get; set; }
 
+        public HomeModel(string username, string password)
+        {
+            this.Username = username;
+            this.Password = password;
+        }
     }
 }

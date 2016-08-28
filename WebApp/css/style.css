@@ -18,7 +18,7 @@ html {
 .login-heading {
   font: 1.8em/48px "Tenor Sans", sans-serif;
   color: white;
-  text-align:center;
+  text-align: center;
 }
 
 .input-txt {
@@ -37,15 +37,7 @@ html {
 .input-txt:focus {
   background-color: #4478a0;
 }
-.input-txt:-moz-placeholder {
-  color: #81aac9;
-}
-.input-txt:-ms-input-placeholder {
-  color: #81aac9;
-}
-.input-txt::-webkit-input-placeholder {
-  color: #81aac9;
-}
+
 
 .login-footer {
   margin: 10px 0;
@@ -98,4 +90,9 @@ select.input-validation-error
 {
 	background: #FEF1EC;
     border: 1px solid red;
+}
+
+input.valid
+{
+    background: solid Green;
 }

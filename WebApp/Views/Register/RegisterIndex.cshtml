@@ -22,15 +22,15 @@
             </h1>
             <form method="post">
 
-                @Html.TextBoxFor(m => m.Username, new { @class = "input-txt", placeholder = "Username" })
+                @Html.TextBoxFor(m => m.Username, new { @class = "input-txt", placeholder = "Username", autocomplete = "off" })
                 @*@Html.ValidationMessageFor(m => m.Username)*@
                 @Html.PasswordFor(m => m.Password, new { @class = "input-txt", placeholder = "Password" })
                 @*@Html.ValidationMessageFor(m => m.Password)*@
                 @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "input-txt", placeholder = "Password Again" })
                 @*@Html.ValidationMessageFor(m => m.ConfirmPassword)*@
-                @Html.TextBoxFor(m => m.Email, new { @class = "input-txt", placeholder = "Email" })
+                @Html.TextBoxFor(m => m.Email, new { @class = "input-txt", placeholder = "Email", autocomplete = "off" })
                 @*@Html.ValidationMessageFor(m => m.Email)*@
-                @Html.TextBoxFor(m => m.ConfirmEmail, new { @class = "input-txt", placeholder = "Email Again" })
+                @Html.TextBoxFor(m => m.ConfirmEmail, new { @class = "input-txt", placeholder = "Email Again", autocomplete = "off" })
                 @*@Html.ValidationMessageFor(m => m.ConfirmEmail)*@
 
 
@@ -38,6 +38,7 @@
                 <div class="login-footer">
                     <input type="submit" class="btn" value="Registration" />
                 </div>
+
             </form>
         </div>
     </div>
