@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="TechSupportDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Bank">
           <Key>
             <PropertyRef Name="ID" />
@@ -43,12 +43,13 @@
           <Property Name="Points" Type="int" Nullable="false" />
           <Property Name="Questions" Type="int" Nullable="false" />
           <Property Name="Picture" Type="image" />
+          <Property Name="Password" Type="varchar" MaxLength="20" Nullable="false" />
         </EntityType>
         <EntityType Name="SolvedQuestion">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserID" Type="int" Nullable="false" />
           <Property Name="WorkerID" Type="int" Nullable="false" />
           <Property Name="Question " Type="text" Nullable="false" />
@@ -56,6 +57,7 @@
           <Property Name="Category" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="Timeasked" Type="datetime" Nullable="false" />
           <Property Name="Timeanswered" Type="datetime" Nullable="false" />
+          <Property Name="KeyWords" Type="varchar(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="Technician">
           <Key>
@@ -65,19 +67,11 @@
           <Property Name="WorkerID" Type="int" Nullable="false" />
           <Property Name="Available" Type="bit" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'C:\USERS\BENJÁMIN\DOCUMENTS\VISUAL STUDIO 2015\PROJECTS\SCHPROJECT\DBANDREPOSITORY\DATABASE.MDF.dbo.TechWorks' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="TechWorks">
           <Key>
-            <PropertyRef Name="Id" />
-            <PropertyRef Name="TechID" />
-            <PropertyRef Name="Start" />
-            <PropertyRef Name="Finish" />
-            <PropertyRef Name="Payment" />
-            <PropertyRef Name="Customername" />
-            <PropertyRef Name="Customeraddress" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TechID" Type="int" Nullable="false" />
           <Property Name="Start" Type="datetime" Nullable="false" />
           <Property Name="Finish" Type="datetime" Nullable="false" />
@@ -96,6 +90,24 @@ warning 6002: The table/view 'C:\USERS\BENJÁMIN\DOCUMENTS\VISUAL STUDIO 2015\PR
           <Property Name="Address" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Phone" Type="varchar" MaxLength="12" />
           <Property Name="Picture" Type="image" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TechSupportDatabase.sys.database_firewall_rules' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="database_firewall_rules">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="name" />
+            <PropertyRef Name="start_ip_address" />
+            <PropertyRef Name="end_ip_address" />
+            <PropertyRef Name="create_date" />
+            <PropertyRef Name="modify_date" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="start_ip_address" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="end_ip_address" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="create_date" Type="datetime" Nullable="false" />
+          <Property Name="modify_date" Type="datetime" Nullable="false" />
         </EntityType>
         <Association Name="FK_Login_Worker">
           <End Role="Worker" Type="Self.Worker" Multiplicity="1" />
@@ -181,24 +193,24 @@ warning 6002: The table/view 'C:\USERS\BENJÁMIN\DOCUMENTS\VISUAL STUDIO 2015\PR
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="DatabaseModelStoreContainer">
+        <EntityContainer Name="TechSupportDatabaseModelStoreContainer">
           <EntitySet Name="Bank" EntityType="Self.Bank" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LoginData" EntityType="Self.LoginData" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Logs" EntityType="Self.Logs" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RegUser" EntityType="Self.RegUser" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SolvedQuestion" EntityType="Self.SolvedQuestion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Technician" EntityType="Self.Technician" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TechWorks" EntityType="Self.TechWorks" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Worker" EntityType="Self.Worker" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TechWorks" EntityType="Self.TechWorks" store:Type="Tables" store:Schema="dbo">
+          <EntitySet Name="database_firewall_rules" EntityType="Self.database_firewall_rules" store:Type="Views" store:Schema="sys">
             <DefiningQuery>SELECT 
-    [TechWorks].[Id] AS [Id], 
-    [TechWorks].[TechID] AS [TechID], 
-    [TechWorks].[Start] AS [Start], 
-    [TechWorks].[Finish] AS [Finish], 
-    [TechWorks].[Payment] AS [Payment], 
-    [TechWorks].[Customername] AS [Customername], 
-    [TechWorks].[Customeraddress] AS [Customeraddress]
-    FROM [dbo].[TechWorks] AS [TechWorks]</DefiningQuery>
+    [database_firewall_rules].[id] AS [id], 
+    [database_firewall_rules].[name] AS [name], 
+    [database_firewall_rules].[start_ip_address] AS [start_ip_address], 
+    [database_firewall_rules].[end_ip_address] AS [end_ip_address], 
+    [database_firewall_rules].[create_date] AS [create_date], 
+    [database_firewall_rules].[modify_date] AS [modify_date]
+    FROM [sys].[database_firewall_rules] AS [database_firewall_rules]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="FK_Login_Worker" Association="Self.FK_Login_Worker">
             <End Role="Worker" EntitySet="Worker" />
@@ -233,7 +245,7 @@ warning 6002: The table/view 'C:\USERS\BENJÁMIN\DOCUMENTS\VISUAL STUDIO 2015\PR
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="DatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="TechSupportDatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Bank">
           <Key>
             <PropertyRef Name="ID" />
@@ -277,13 +289,14 @@ warning 6002: The table/view 'C:\USERS\BENJÁMIN\DOCUMENTS\VISUAL STUDIO 2015\PR
           <Property Name="Points" Type="Int32" Nullable="false" />
           <Property Name="Questions" Type="Int32" Nullable="false" />
           <Property Name="Picture" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="SolvedQuestion" Relationship="Self.FK_SolvedQuestion_User" FromRole="RegUser" ToRole="SolvedQuestion" />
         </EntityType>
         <EntityType Name="SolvedQuestion">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UserID" Type="Int32" Nullable="false" />
           <Property Name="WorkerID" Type="Int32" Nullable="false" />
           <Property Name="Question_" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
@@ -291,6 +304,7 @@ warning 6002: The table/view 'C:\USERS\BENJÁMIN\DOCUMENTS\VISUAL STUDIO 2015\PR
           <Property Name="Category" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Timeasked" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Timeanswered" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="KeyWords" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="LoginData" Relationship="Self.FK_SolvedQuestion_Login" FromRole="SolvedQuestion" ToRole="LoginData" />
           <NavigationProperty Name="RegUser" Relationship="Self.FK_SolvedQuestion_User" FromRole="SolvedQuestion" ToRole="RegUser" />
         </EntityType>
@@ -303,6 +317,19 @@ warning 6002: The table/view 'C:\USERS\BENJÁMIN\DOCUMENTS\VISUAL STUDIO 2015\PR
           <Property Name="Available" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Worker" Relationship="Self.FK_Technician_Worker" FromRole="Technician" ToRole="Worker" />
           <NavigationProperty Name="TechWorks" Relationship="Self.FK_TechWorks_Technician" FromRole="Technician" ToRole="TechWorks" />
+        </EntityType>
+        <EntityType Name="TechWorks">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TechID" Type="Int32" Nullable="false" />
+          <Property Name="Start" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Finish" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Payment" Type="Int32" Nullable="false" />
+          <Property Name="Customername" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Customeraddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Technician" Relationship="Self.FK_TechWorks_Technician" FromRole="TechWorks" ToRole="Technician" />
         </EntityType>
         <EntityType Name="Worker">
           <Key>
@@ -319,24 +346,21 @@ warning 6002: The table/view 'C:\USERS\BENJÁMIN\DOCUMENTS\VISUAL STUDIO 2015\PR
           <NavigationProperty Name="LoginData" Relationship="Self.FK_Login_Worker" FromRole="Worker" ToRole="LoginData" />
           <NavigationProperty Name="Technician" Relationship="Self.FK_Technician_Worker" FromRole="Worker" ToRole="Technician" />
         </EntityType>
-        <EntityType Name="TechWorks">
+        <EntityType Name="database_firewall_rules">
           <Key>
-            <PropertyRef Name="Id" />
-            <PropertyRef Name="TechID" />
-            <PropertyRef Name="Start" />
-            <PropertyRef Name="Finish" />
-            <PropertyRef Name="Payment" />
-            <PropertyRef Name="Customername" />
-            <PropertyRef Name="Customeraddress" />
+            <PropertyRef Name="id" />
+            <PropertyRef Name="name" />
+            <PropertyRef Name="start_ip_address" />
+            <PropertyRef Name="end_ip_address" />
+            <PropertyRef Name="create_date" />
+            <PropertyRef Name="modify_date" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TechID" Type="Int32" Nullable="false" />
-          <Property Name="Start" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Finish" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Payment" Type="Int32" Nullable="false" />
-          <Property Name="Customername" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Customeraddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Technician" Relationship="Self.FK_TechWorks_Technician" FromRole="TechWorks" ToRole="Technician" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="start_ip_address" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="end_ip_address" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="create_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="modify_date" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
         <Association Name="FK_Worker_Bank">
           <End Role="Bank" Type="Self.Bank" Multiplicity="1" />
@@ -422,15 +446,16 @@ warning 6002: The table/view 'C:\USERS\BENJÁMIN\DOCUMENTS\VISUAL STUDIO 2015\PR
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="DatabaseEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="TechSupportDatabaseEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Bank" EntityType="Self.Bank" />
           <EntitySet Name="LoginData" EntityType="Self.LoginData" />
           <EntitySet Name="Logs" EntityType="Self.Logs" />
           <EntitySet Name="RegUser" EntityType="Self.RegUser" />
           <EntitySet Name="SolvedQuestion" EntityType="Self.SolvedQuestion" />
           <EntitySet Name="Technician" EntityType="Self.Technician" />
-          <EntitySet Name="Worker" EntityType="Self.Worker" />
           <EntitySet Name="TechWorks" EntityType="Self.TechWorks" />
+          <EntitySet Name="Worker" EntityType="Self.Worker" />
+          <EntitySet Name="database_firewall_rules" EntityType="Self.database_firewall_rules" />
           <AssociationSet Name="FK_Worker_Bank" Association="Self.FK_Worker_Bank">
             <End Role="Bank" EntitySet="Bank" />
             <End Role="Worker" EntitySet="Worker" />
@@ -465,9 +490,9 @@ warning 6002: The table/view 'C:\USERS\BENJÁMIN\DOCUMENTS\VISUAL STUDIO 2015\PR
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="DatabaseModelStoreContainer" CdmEntityContainer="DatabaseEntities">
+        <EntityContainerMapping StorageEntityContainer="TechSupportDatabaseModelStoreContainer" CdmEntityContainer="TechSupportDatabaseEntities">
           <EntitySetMapping Name="Bank">
-            <EntityTypeMapping TypeName="DatabaseModel.Bank">
+            <EntityTypeMapping TypeName="TechSupportDatabaseModel.Bank">
               <MappingFragment StoreEntitySet="Bank">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -476,7 +501,7 @@ warning 6002: The table/view 'C:\USERS\BENJÁMIN\DOCUMENTS\VISUAL STUDIO 2015\PR
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="LoginData">
-            <EntityTypeMapping TypeName="DatabaseModel.LoginData">
+            <EntityTypeMapping TypeName="TechSupportDatabaseModel.LoginData">
               <MappingFragment StoreEntitySet="LoginData">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="WorkerID" ColumnName="WorkerID" />
@@ -487,7 +512,7 @@ warning 6002: The table/view 'C:\USERS\BENJÁMIN\DOCUMENTS\VISUAL STUDIO 2015\PR
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Logs">
-            <EntityTypeMapping TypeName="DatabaseModel.Logs">
+            <EntityTypeMapping TypeName="TechSupportDatabaseModel.Logs">
               <MappingFragment StoreEntitySet="Logs">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="LoginID" ColumnName="LoginID" />
@@ -496,7 +521,7 @@ warning 6002: The table/view 'C:\USERS\BENJÁMIN\DOCUMENTS\VISUAL STUDIO 2015\PR
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="RegUser">
-            <EntityTypeMapping TypeName="DatabaseModel.RegUser">
+            <EntityTypeMapping TypeName="TechSupportDatabaseModel.RegUser">
               <MappingFragment StoreEntitySet="RegUser">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Fullname" ColumnName="Fullname" />
@@ -506,13 +531,14 @@ warning 6002: The table/view 'C:\USERS\BENJÁMIN\DOCUMENTS\VISUAL STUDIO 2015\PR
                 <ScalarProperty Name="Points" ColumnName="Points" />
                 <ScalarProperty Name="Questions" ColumnName="Questions" />
                 <ScalarProperty Name="Picture" ColumnName="Picture" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SolvedQuestion">
-            <EntityTypeMapping TypeName="DatabaseModel.SolvedQuestion">
+            <EntityTypeMapping TypeName="TechSupportDatabaseModel.SolvedQuestion">
               <MappingFragment StoreEntitySet="SolvedQuestion">
-                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="WorkerID" ColumnName="WorkerID" />
                 <ScalarProperty Name="Question_" ColumnName="Question " />
@@ -520,11 +546,12 @@ warning 6002: The table/view 'C:\USERS\BENJÁMIN\DOCUMENTS\VISUAL STUDIO 2015\PR
                 <ScalarProperty Name="Category" ColumnName="Category" />
                 <ScalarProperty Name="Timeasked" ColumnName="Timeasked" />
                 <ScalarProperty Name="Timeanswered" ColumnName="Timeanswered" />
+                <ScalarProperty Name="KeyWords" ColumnName="KeyWords" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Technician">
-            <EntityTypeMapping TypeName="DatabaseModel.Technician">
+            <EntityTypeMapping TypeName="TechSupportDatabaseModel.Technician">
               <MappingFragment StoreEntitySet="Technician">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="WorkerID" ColumnName="WorkerID" />
@@ -532,8 +559,21 @@ warning 6002: The table/view 'C:\USERS\BENJÁMIN\DOCUMENTS\VISUAL STUDIO 2015\PR
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="TechWorks">
+            <EntityTypeMapping TypeName="TechSupportDatabaseModel.TechWorks">
+              <MappingFragment StoreEntitySet="TechWorks">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TechID" ColumnName="TechID" />
+                <ScalarProperty Name="Start" ColumnName="Start" />
+                <ScalarProperty Name="Finish" ColumnName="Finish" />
+                <ScalarProperty Name="Payment" ColumnName="Payment" />
+                <ScalarProperty Name="Customername" ColumnName="Customername" />
+                <ScalarProperty Name="Customeraddress" ColumnName="Customeraddress" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Worker">
-            <EntityTypeMapping TypeName="DatabaseModel.Worker">
+            <EntityTypeMapping TypeName="TechSupportDatabaseModel.Worker">
               <MappingFragment StoreEntitySet="Worker">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Fullname" ColumnName="Fullname" />
@@ -545,16 +585,15 @@ warning 6002: The table/view 'C:\USERS\BENJÁMIN\DOCUMENTS\VISUAL STUDIO 2015\PR
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TechWorks">
-            <EntityTypeMapping TypeName="DatabaseModel.TechWorks">
-              <MappingFragment StoreEntitySet="TechWorks">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="TechID" ColumnName="TechID" />
-                <ScalarProperty Name="Start" ColumnName="Start" />
-                <ScalarProperty Name="Finish" ColumnName="Finish" />
-                <ScalarProperty Name="Payment" ColumnName="Payment" />
-                <ScalarProperty Name="Customername" ColumnName="Customername" />
-                <ScalarProperty Name="Customeraddress" ColumnName="Customeraddress" />
+          <EntitySetMapping Name="database_firewall_rules">
+            <EntityTypeMapping TypeName="TechSupportDatabaseModel.database_firewall_rules">
+              <MappingFragment StoreEntitySet="database_firewall_rules">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="start_ip_address" ColumnName="start_ip_address" />
+                <ScalarProperty Name="end_ip_address" ColumnName="end_ip_address" />
+                <ScalarProperty Name="create_date" ColumnName="create_date" />
+                <ScalarProperty Name="modify_date" ColumnName="modify_date" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

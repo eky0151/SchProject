@@ -14,7 +14,7 @@ namespace DbAndRepository
     
     public partial class SolvedQuestion
     {
-        public int Id { get; set; }
+        public int ID { get; set; }
         public int UserID { get; set; }
         public int WorkerID { get; set; }
         public string Question_ { get; set; }
@@ -22,6 +22,7 @@ namespace DbAndRepository
         public string Category { get; set; }
         public System.DateTime Timeasked { get; set; }
         public System.DateTime Timeanswered { get; set; }
+        public string KeyWords { get; set; }
     
         public virtual LoginData LoginData { get; set; }
         public virtual RegUser RegUser { get; set; }
