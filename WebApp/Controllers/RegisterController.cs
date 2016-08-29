@@ -16,9 +16,9 @@ namespace WebApp.Controllers
         }
 
         [HttpPost]
-        public ActionResult Register(RegisterModel registermodel)
+        public ActionResult Registration(string username, string password, string email)
         {
-            return RedirectToAction("Success");
+            return View(new RegisterModel(username, password, email));
         }
     }
 }

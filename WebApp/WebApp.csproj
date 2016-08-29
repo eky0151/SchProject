@@ -152,8 +152,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Register\RegisterIndex.cshtml" />
-    <Content Include="Views\User\UserIndex.cshtml" />
     <Content Include="Views\User\Login.cshtml" />
+    <Content Include="Views\Register\Registration.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -164,6 +164,9 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Pictures\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

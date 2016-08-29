@@ -24,5 +24,14 @@ namespace WebApp.Models
         [Compare("Email", ErrorMessage = "Confirm email doesn't match, Type again !")]
         [DataType(DataType.EmailAddress)]
         public string ConfirmEmail { get; set; }
+
+        public RegisterModel(string username, string password, string email)
+        {
+            this.Username = username;
+            this.Password = password;
+            this.Email = email;
+        }
     }
+
+
 }

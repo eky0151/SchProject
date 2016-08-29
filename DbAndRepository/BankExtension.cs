@@ -9,5 +9,9 @@ namespace DbAndRepository
     public partial class Bank
     {
         public Worker SingleWorker { get { return Worker.SingleOrDefault(); } }
+        void xxx()
+        {
+            //TechSupportDatabaseEntities
+        }
     }
 }
