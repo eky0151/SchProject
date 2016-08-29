@@ -16,15 +16,18 @@
         {
         }
 
-        public bool Authenticate(string username, string password, out string fullName)
+        public bool Authenticate(string username, string password, out string fullName, out string role)
         {
-            fullName = string.Empty;
+            fullName = role = string.Empty;
             l = Get(i => i.Username == username && i.Password == password).FirstOrDefault();
             if (l == null)
                 return false;
+
             fullName = (from i in database.Set<Worker>()
                         where i.ID == l.ID
                         select i.Fullname).ToString();
+            role = l.Urole;
+
             return true;
         }
 
