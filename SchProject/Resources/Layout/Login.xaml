@@ -1,20 +1,42 @@
 ﻿<UserControl x:Class="SchProject.Resources.Layout.Login"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:SchProject.Resources.Layout"
-             mc:Ignorable="d" 
-             d:DesignHeight="600" d:DesignWidth="1000">
+             mc:Ignorable="d"
+             d:DesignHeight="600"
+             d:DesignWidth="1000">
     <Grid Background="White">
-        <Ellipse Style="{StaticResource ImageHolder}" StrokeThickness="5" Margin="0,105,0,295" HorizontalAlignment="Center" Height="200" Width="200">
+        
+        <Ellipse Style="{StaticResource ImageHolder}"
+                 StrokeThickness="5"
+                 Margin="0,105,0,295"
+                 HorizontalAlignment="Center"
+                 Height="200"
+                 Width="200">
             <Ellipse.Fill>
-                <ImageBrush ImageSource="Images/demoPic.jpg" Stretch="UniformToFill"></ImageBrush>
+                <ImageBrush ImageSource="Images/demoPic.jpg"
+                            Stretch="UniformToFill"></ImageBrush>
             </Ellipse.Fill>
         </Ellipse>
-        <TextBox Style="{StaticResource LoginTextBox}"   Margin="0,338,0,0"  Width="250" Height="26" VerticalAlignment="Top" />
-        <PasswordBox Style="{StaticResource PasswdBox}"  Margin="0,377,0,0"  Width="250" Height="26" VerticalAlignment="Top" />
         
-        <Button Style="{StaticResource TabButton}" Content="Login" Margin="0,415,0,158" VerticalAlignment="Stretch" Width="112"/>
+        <TextBox Style="{StaticResource LoginTextBox}"
+                 Margin="0,338,0,0"
+                 Width="250"
+                 Height="26"
+                 VerticalAlignment="Top" />
+        
+        <PasswordBox Style="{StaticResource PasswdBox}"
+                     Margin="0,377,0,0"
+                     Width="250"
+                     Height="26"
+                     VerticalAlignment="Top" />
+
+        <Button Style="{StaticResource TabButton}"
+                Content="Login"
+                Margin="0,415,0,158"
+                VerticalAlignment="Stretch"
+                Width="112" />
     </Grid>
 </UserControl>
