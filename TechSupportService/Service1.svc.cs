@@ -21,14 +21,19 @@ namespace TechSupportService
 
         public TechSupportService1()
         {
-           TechSupportDatabaseEntities1 d=new TechSupportDatabaseEntities1();
-           Auth=new LoginDataRepository(d);
+           TechSupportDatabaseEntities d = new TechSupportDatabaseEntities();
+           Auth = new LoginDataRepository(d);
         }
         public LoginResult Login(string username, string password)
         {
-            string name = "";
-            bool a= Auth.Authenticate(username, password,out name);
-            return new LoginResult() {Role = "",Valid = a};
+            string name = string.Empty,
+                   role = string.Empty;
+            bool a= Auth.Authenticate(username, password,out name, out role);
+            return new LoginResult()
+            {
+                Role = role,
+                Valid = a
+            };
         }
 
     }
