@@ -18,12 +18,12 @@ namespace SchProject.ViewModel
 {
     public class RootMenuViewModel : ViewModelBase
     {
+        public string _fullName;
         private Navigator _rootNavigator;
         public List<MenuButtonData> MenuButtons { get; private set; }
         public UserControl CurrentView { get; private set; }
         public ICommand Navigation { get; private set; }
         public ICommand Logout { get; private set; }
-        public string FullName { get; private set; }
         private Dictionary<string, UserControl> Views { get; } = new Dictionary<string, UserControl>();
 
         public RootMenuViewModel()
@@ -38,10 +38,15 @@ namespace SchProject.ViewModel
             Navigation = new RelayCommand<object>(param => Navigate(param));
             Logout = new RelayCommand(NavLogout);
             _rootNavigator = NavigatorFactory.Navigator;
-            Messenger.Default.Register<LoginResult>(this,LoginSet);
+            Messenger.Default.Register<LoginResult>(this, LoginSet);
 
         }
 
+        public string FullName
+        {
+            get { return _fullName; }
+            set { Set(ref _fullName, value); }
+        }
         private void LoginSet(LoginResult res)
         {
             FullName = res.FullName;
