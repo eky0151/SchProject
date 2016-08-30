@@ -19,11 +19,10 @@ namespace SchProject.Resources.Layout
     /// </summary>
     public partial class MainWindowAqua : Window
     {
-        public UserControl IO { get; set; }
+       
         public MainWindowAqua()
         {
-            InitializeComponent();
-            IO=new RootMenu();
+            InitializeComponent();            
             DataContext = this;
         }
     }
