@@ -10,6 +10,7 @@ namespace WebApp.Controllers
 {
     public class UserController : Controller
     {
+
         // GET: User
         public ActionResult Index()
         {
@@ -18,7 +19,7 @@ namespace WebApp.Controllers
 
         [HttpPost]
         public ActionResult Login(string username, string password)
-        {
+        {   
             return View(new HomeModel(username, password));
         }
     }
