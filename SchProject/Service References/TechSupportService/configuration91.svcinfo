@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="WU8XuprpG6i0ZlXNVDvfQNtxSl4=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="tiVTryaSk7ndATpEXkbics0o4Bc=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="basicHttpBinding" name="BasicHttpBinding_ITechSupportService1">
       <properties>
@@ -112,10 +112,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="BasicHttpBinding_ITechSupportService1" contract="TechSupportServer.ITechSupportService1" bindingType="basicHttpBinding" address="http://techsupportservice.azurewebsites.net/Service1.svc" bindingConfiguration="BasicHttpBinding_ITechSupportService1">
+    <endpoint name="BasicHttpBinding_ITechSupportService1" contract="TechSupportService.ITechSupportService1" bindingType="basicHttpBinding" address="http://techsupportservice.azurewebsites.net/TechSupportService.svc" bindingConfiguration="BasicHttpBinding_ITechSupportService1">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://techsupportservice.azurewebsites.net/Service1.svc</serializedValue>
+          <serializedValue>http://techsupportservice.azurewebsites.net/TechSupportService.svc</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -127,7 +127,7 @@
           <serializedValue>BasicHttpBinding_ITechSupportService1</serializedValue>
         </property>
         <property path="/contract" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>TechSupportServer.ITechSupportService1</serializedValue>
+          <serializedValue>TechSupportService.ITechSupportService1</serializedValue>
         </property>
         <property path="/headers" isComplexType="true" isExplicitlyDefined="false" clrType="System.ServiceModel.Configuration.AddressHeaderCollectionElement, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>System.ServiceModel.Configuration.AddressHeaderCollectionElement</serializedValue>

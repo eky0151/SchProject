@@ -75,6 +75,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Navigator.cs" />
+    <Compile Include="Properties\Annotations1.cs" />
     <Compile Include="Resources\Layout\Admins.xaml.cs">
       <DependentUpon>Admins.xaml</DependentUpon>
     </Compile>
@@ -103,7 +105,7 @@
     <Compile Include="Resources\Layout\MainWindowAqua.xaml.cs">
       <DependentUpon>MainWindowAqua.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Service References\TechSupportServer\Reference.cs">
+    <Compile Include="Service References\TechSupportService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -111,13 +113,11 @@
     <Compile Include="ViewModel\AdminsViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
-    <Compile Include="ViewModel\RootControlViewModel.cs" />
     <Compile Include="ViewModel\RootMenuViewModel.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Page Include="Resources\Layout\Admins.xaml">
       <SubType>Designer</SubType>
@@ -196,19 +196,19 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <None Include="Service References\TechSupportServer\SchProject.TechSupportServer.LoginResult.datasource">
+    <None Include="Service References\TechSupportService\SchProject.TechSupportService.LoginResult.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\TechSupportServer\Service1.xsd">
+    <None Include="Service References\TechSupportService\TechSupportService.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\TechSupportServer\Service11.xsd">
+    <None Include="Service References\TechSupportService\TechSupportService1.wsdl" />
+    <None Include="Service References\TechSupportService\TechSupportService1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\TechSupportServer\Service12.xsd">
+    <None Include="Service References\TechSupportService\TechSupportService2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\TechSupportServer\TechSupportService1.wsdl" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -256,19 +256,19 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Service References\TechSupportServer\" />
+    <WCFMetadataStorage Include="Service References\TechSupportService\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\TechSupportServer\Service1.disco" />
+    <None Include="Service References\TechSupportService\TechSupportService.disco" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\TechSupportServer\configuration91.svcinfo" />
+    <None Include="Service References\TechSupportService\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\TechSupportServer\configuration.svcinfo" />
+    <None Include="Service References\TechSupportService\configuration.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\TechSupportServer\Reference.svcmap">
+    <None Include="Service References\TechSupportService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

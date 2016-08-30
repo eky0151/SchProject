@@ -1,24 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.CommandWpf;
+using GalaSoft.MvvmLight.Messaging;
 using SchProject.Resources.Layout;
 using SchProject.Resources.Layout.CustomControls;
+using SchProject.TechSupportService;
 
 namespace SchProject.ViewModel
 {
     public class RootMenuViewModel : ViewModelBase
     {
+        private Navigator _rootNavigator;
         public List<MenuButtonData> MenuButtons { get; private set; }
         public UserControl CurrentView { get; private set; }
         public ICommand Navigation { get; private set; }
-
+        public ICommand Logout { get; private set; }
+        public string FullName { get; private set; }
         private Dictionary<string, UserControl> Views { get; } = new Dictionary<string, UserControl>();
 
         public RootMenuViewModel()
@@ -28,10 +33,25 @@ namespace SchProject.ViewModel
                 new MenuButtonData(new BitmapImage(new Uri(@"C:\Users\dancs\Documents\GitRepos\SchProject\SchProject\Resources\Layout\Images\error.png")),
                     new BitmapImage(new Uri(@"C:\Users\dancs\Documents\GitRepos\SchProject\SchProject\Resources\Layout\Images\errorSelected.png")), "b", "HIBÁK")
             };
-
+            Views["Dashboard"] = new Dashboard();
+            CurrentView = Views["Dashboard"];
             Navigation = new RelayCommand<object>(param => Navigate(param));
+            Logout = new RelayCommand(NavLogout);
+            _rootNavigator = NavigatorFactory.Navigator;
+            Messenger.Default.Register<LoginResult>(this,LoginSet);
+
         }
 
+        private void LoginSet(LoginResult res)
+        {
+            FullName = res.FullName;
+        }
+
+        private void NavLogout()
+        {
+            Views.Clear();
+            _rootNavigator.Logout();
+        }
         private void Navigate(object o)
         {
             string d = (string)o;
@@ -40,15 +60,15 @@ namespace SchProject.ViewModel
                 switch (d)
                 {
                     case "Settings":
-                        Views[d]=new Settings();break;
+                        Views[d] = new Settings(); break;
                     case "Bugreport":
-                        Views[d]=new Bugreport();break;
+                        Views[d] = new Bugreport(); break;
                     case "Home":
-                        Views[d]=new Dashboard();break;
+                        Views[d] = new Dashboard(); break;
                     case "Admins":
                         Views[d] = new Admins(); break;
                     default:
-                        Views[d]=new Dashboard();break;
+                        Views[d] = new Dashboard(); break;
                 }
 
             }

@@ -8,59 +8,42 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
+using GalaSoft.MvvmLight.Messaging;
 using SchProject.Resources.Layout;
-using SchProject.TechSupportServer;
+using SchProject.TechSupportService;
 
 namespace SchProject.ViewModel
 {
-    public class Navigator : ViewModelBase
-    {
-        private UserControl rootControl;
-
-        public UserControl RootControl
-        {
-            get { return rootControl; }
-            private set
-            {
-                rootControl = value;
-                RaisePropertyChanged("RootControl");
-            }
-        }
-
-        public Navigator()
-        {
-            RootControl=new Login();
-        }
-
-        public void Login()
-        {
-            RootControl = new Dashboard();
-        }
-
-        public void Logout()
-        {
-            RootControl = new Login();
-        }
-    }
     public class LoginViewModel : ViewModelBase
     {
+        private Navigator _navigator;
         public ICommand LoginCommand { get; private set; }
         public string UserName { get; set; }
-        public string PassWd { get; set; }
 
         public LoginViewModel()
         {
-            LoginCommand = new RelayCommand(() => { Login(); });
+            LoginCommand = new RelayCommand<PasswordBox>(Login);
+            Messenger.Default.Register<Navigator>(this, SetNavigator);
         }
 
-        private void Login()
+        private void SetNavigator(Navigator e)
         {
-            TechSupportService1Client client = new TechSupportService1Client();
-            var res = client.Login(UserName, PassWd);
-            if (res.Valid)
+            _navigator = e;
+            Messenger.Default.Unregister<Navigator>(this,SetNavigator);
+        }
+        private void Login(PasswordBox box)
+        {
+            using (TechSupportService1Client client = new TechSupportService1Client())
             {
-                ViewModelBase.Navigation.Login();
+                client.Open();
+                var res = client.Login(UserName, box.Password);
+                if (res.Valid)
+                {
+                    _navigator.Login();
+                    Messenger.Default.Send<LoginResult>(res);
+                }
             }
         }
     }

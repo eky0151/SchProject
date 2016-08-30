@@ -24,5 +24,6 @@ namespace SchProject.Resources.Layout
         {
             InitializeComponent();
         }
+
     }
 }
