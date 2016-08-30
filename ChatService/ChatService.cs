@@ -11,7 +11,7 @@
 
         private static object syncObj = new object();
 
-        //private IChatCallback currentCallback; //= OperationContext.Current.GetCallbackChannel<IChatCallback>();
+        private IChatCallback currentCallback; //= OperationContext.Current.GetCallbackChannel<IChatCallback>();
 
         public bool Connect(Client client)
         {
