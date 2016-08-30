@@ -22,7 +22,7 @@ namespace DbAndRepository.Repostirories
 
         public override TechWorks GetById(int id)
         {
-            return Get(i => i.Id == id).FirstOrDefault();
+            return Get(i => i.ID == id).FirstOrDefault();
         }
 
         public List<TechWorks> GetByTechnician(int id)

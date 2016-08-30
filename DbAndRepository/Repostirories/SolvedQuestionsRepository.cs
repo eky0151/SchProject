@@ -20,7 +20,7 @@ namespace DbAndRepository.Repostirories
 
         public override SolvedQuestion GetById(int id)
         {
-            return Get(i => i.Id == id).FirstOrDefault();
+            return Get(i => i.ID == id).FirstOrDefault();
         }
 
         public List<SolvedQuestion> GetByWorker(int id)
