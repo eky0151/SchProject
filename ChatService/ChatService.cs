@@ -44,10 +44,10 @@
         {
             foreach (var i in clients.Keys)
             {
-                if(i.Name == receiver.Name)
+                if (i.Name == receiver.Name)
                 {
                     IChatCallback callback = clients[i];
-                    callback.ReceiveFileMessageeCallback(fileMessage, receiver);
+                    callback.ReceiveFileMessageeCallback(fileMessage.Data, i.Name);
                 }
             }
         }
@@ -56,10 +56,10 @@
         {
             foreach (var i in clients.Keys)
             {
-                if(i.Name == receiver.Name)
+                if (i.Name == receiver.Name)
                 {
                     IChatCallback callback = clients[i];
-                    callback.ReceiveMessageCallback(message, receiver);
+                    callback.ReceiveMessageCallback(message.Content, i.Name);
                 }
             }
         }
@@ -68,5 +68,7 @@
         {
             throw new NotImplementedException();
         }
+
+       
     }
 }

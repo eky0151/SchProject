@@ -25,7 +25,7 @@
 
             fullName = (from i in database.Set<Worker>()
                         where i.ID == l.ID
-                        select i.Fullname).ToString();
+                        select i.Fullname).FirstOrDefault()?.ToString();
             role = l.Urole;
 
             return true;

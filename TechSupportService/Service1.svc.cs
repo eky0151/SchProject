@@ -28,7 +28,7 @@ namespace TechSupportService
         {
             string name = string.Empty,
                    role = string.Empty;
-            bool a= Auth.Authenticate(username, password,out name, out role);
+            bool a= Auth.Authenticate(username, password ,out name, out role);
             return new LoginResult()
             {
                 Role = role,
