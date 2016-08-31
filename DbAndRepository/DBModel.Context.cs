@@ -25,7 +25,7 @@ namespace DbAndRepository
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<RegUser> Bank { get; set; }
+        public virtual DbSet<Bank> Bank { get; set; }
         public virtual DbSet<LoginData> LoginData { get; set; }
         public virtual DbSet<Logs> Logs { get; set; }
         public virtual DbSet<RegUser> RegUser { get; set; }
@@ -33,6 +33,5 @@ namespace DbAndRepository
         public virtual DbSet<Technician> Technician { get; set; }
         public virtual DbSet<TechWorks> TechWorks { get; set; }
         public virtual DbSet<Worker> Worker { get; set; }
-        public virtual DbSet<database_firewall_rules> database_firewall_rules { get; set; }
     }
 }

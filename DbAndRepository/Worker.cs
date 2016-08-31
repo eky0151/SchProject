@@ -29,7 +29,7 @@ namespace DbAndRepository
         public string Phone { get; set; }
         public byte[] Picture { get; set; }
     
-        public virtual RegUser Bank { get; set; }
+        public virtual Bank Bank { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<LoginData> LoginData { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
