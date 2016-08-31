@@ -25,10 +25,10 @@
         [OperationContract(IsOneWay = true)]
         void ClientConnectCallback(string name);
 
-        [OperationContract(IsOneWay = true)]
-        void ClientLeaveCallback(string name);
+        //[OperationContract(IsOneWay = true)]
+        //void ClientLeaveCallback(string name);
 
-        [OperationContract(IsOneWay = true)]
-        void IsWritingCallback(Client client);
+        //[OperationContract(IsOneWay = true)]
+        //void IsWritingCallback(Client client);
     }
 }

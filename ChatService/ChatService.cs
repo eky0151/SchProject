@@ -11,7 +11,11 @@
 
         private static object syncObj = new object();
 
-        private IChatCallback currentCallback; //= OperationContext.Current.GetCallbackChannel<IChatCallback>();
+        private IChatCallback currentCallback
+        {
+            get { return OperationContext.Current.GetCallbackChannel<IChatCallback>(); }
+        }
+
 
         public bool Connect(Client client)
         {
@@ -20,9 +24,8 @@
 
             lock(syncObj)
             {
-                //clients.Add(client, currentCallback);
-
-                //currentCallback.ClientConnectCallback(client.Name);
+                clients.Add(client, currentCallback);
+                currentCallback.ClientConnectCallback(client.Name);
             }
 
             return true;
@@ -36,7 +39,7 @@
             lock (syncObj)
             {
                 clients.Remove(client);
-                //currentCallback.ClientLeaveCallback(client.Name);
+                currentCallback.ClientLeaveCallback(client.Name);
             }
         }
 
