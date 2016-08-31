@@ -102,6 +102,7 @@
     </Compile>
     <Compile Include="Resources\Layout\Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Resources\Layout\CustomControls\MenuButton.cs" />
+    <Compile Include="Resources\Layout\CustomControls\RoundedButton.cs" />
     <Compile Include="Resources\Layout\CustomControls\StatusBox.cs" />
     <Compile Include="Resources\Layout\Dashboard.xaml.cs">
       <DependentUpon>Dashboard.xaml</DependentUpon>
