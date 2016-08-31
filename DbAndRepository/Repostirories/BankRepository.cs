@@ -7,7 +7,7 @@
 
     public class BankRepository : GenericsRepository<Bank>, IBankRepository
     {
-        private RegUser bank;
+        private Bank bank;
 
         public BankRepository(DbContext newDb) : base(newDb)
         {
