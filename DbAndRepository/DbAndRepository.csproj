@@ -120,7 +120,6 @@
     <Compile Include="IRepositories\ISolvedQuestionsRepository.cs" />
     <Compile Include="IRepositories\ITechnicianRepository.cs" />
     <Compile Include="IRepositories\ITechWorksRepository.cs" />
-    <Compile Include="IRepositories\IUserRepository.cs" />
     <Compile Include="IRepositories\IWorkerRepository.cs" />
     <Compile Include="LoginData.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
@@ -139,7 +138,6 @@
     <Compile Include="Repostirories\SolvedQuestionsRepository.cs" />
     <Compile Include="Repostirories\TechninicanRepository.cs" />
     <Compile Include="Repostirories\TechWorksRepository.cs" />
-    <Compile Include="Repostirories\UserRepository.cs" />
     <Compile Include="Repostirories\WorkerRepository.cs" />
     <Compile Include="SolvedQuestion.cs">
       <DependentUpon>DBModel.tt</DependentUpon>

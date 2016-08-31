@@ -15,15 +15,14 @@ namespace TechSupportService
     // NOTE: In order to launch WCF Test Client for testing this service, please select TechSupportService1.svc or TechSupportService1.svc.cs at the Solution Explorer and start debugging.
     public class TechSupportService1 : ITechSupportService1
     {
-
         private ILoginDataRepository Auth;
-        private IRegUserRepository authUser;
+        private IRegUserRepository aspUsers;
 
         public TechSupportService1()
         {
             TechSupportDatabaseEntities d = new TechSupportDatabaseEntities();
             Auth = new LoginDataRepository(d);
-            authUser = new RegUserRepository(d);
+            aspUsers = new RegUserRepository(d);
         }
         public LoginResult Login(string username, string password)
         {
@@ -38,9 +37,26 @@ namespace TechSupportService
             };
         }
 
+        //Register a new user from the aps.net registration form
+        public void RegisterNewUser(string fullName, string email, string userName, string password)
+        {
+            aspUsers.Insert(new RegUser
+            {
+                //ID = aspUsers.GetAll().LastOrDefault().ID == default(int) ?
+                //                                                    default(int) + 1 :
+                //                                                    aspUsers.GetAll().LastOrDefault().ID + 1,
+                Fullname = fullName,
+                Email = email,
+                Username = userName,
+                Password = password,
+                Points = 1,
+                Regtime = DateTime.Now,
+            });
+        }
+
         public bool UserLogin(string username, string password)
         {
-            return authUser.Autenthicate(username, password);
+            return aspUsers.Autenthicate(username, password);
         }
     }
 }

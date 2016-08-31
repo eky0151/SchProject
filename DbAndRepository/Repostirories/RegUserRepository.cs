@@ -1,9 +1,12 @@
 ﻿namespace DbAndRepository.Repostirories
 {
+    using System;
     using System.Data.Entity;
     using System.Linq;
     using DbAndRepository.GenericsEFRepository;
     using DbAndRepository.IRepositories;
+    using System.Windows.Media.Imaging;
+    using System.Windows.Media;
 
     public class RegUserRepository : GenericsRepository<RegUser>, IRegUserRepository
     {
@@ -32,6 +35,12 @@
         public override RegUser GetById(int id)
         {
             return database.Set<RegUser>().FirstOrDefault(i => i.ID == id);
+        }
+
+        public BitmapImage GetPicture(string userName)
+        {
+            return (BitmapImage)new ImageSourceConverter().
+                ConvertFrom((Get(i => i.Username == userName).FirstOrDefault().Picture));
         }
 
         public override void Update(RegUser entityToModify)

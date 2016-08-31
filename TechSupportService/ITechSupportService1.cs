@@ -18,6 +18,11 @@ namespace TechSupportService
         [OperationContract]
         bool UserLogin(string username, string password);
 
+        [OperationContract]
+        void RegisterNewUser(string fullName, string email, string userName, string password);
+
+
+
     }
     [DataContract]
     public class LoginResult
