@@ -5,19 +5,16 @@
     [ServiceContract(SessionMode = SessionMode.Required, CallbackContract = typeof(IChatCallback))]
     public interface IChat
     {
-        [OperationContract(IsInitiating = true/*, IsOneWay = true*/)]
-        bool Connect(Client client);
+        [OperationContract(IsInitiating = true, IsOneWay = true)]
+        void Connect(string client);
 
-        [OperationContract(IsTerminating  = true /*,IsOneWay = true*/)]
-        void Disconnect(Client client);
+        [OperationContract(IsTerminating  = true ,IsOneWay = true)]
+        void Disconnect(string client);
 
-        [OperationContract(/*IsOneWay = true*/)]
-        void SendFile(FileMessage fileMessage, Client receiver);
+        [OperationContract(IsOneWay = true)]
+        void SendFile(byte[] content, string description, string receiverName);
 
-        [OperationContract(/*IsOneWay = true*/)]
-        void SendMessage(Message message, Client receiver);
-
-        [OperationContract(/*IsOneWay = true*/)]
-        void IsWriting(Client client);
+        [OperationContract(IsOneWay = true)]
+        void SendMessage(string message, string receiverName);
     }
 }

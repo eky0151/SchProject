@@ -56,6 +56,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChatEventArgs.cs" />
     <Compile Include="Client.cs" />
     <Compile Include="FileMessage.cs" />
     <Compile Include="IChat.cs" />
