@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DbAndRepository
 {
-    public partial class Bank
+    public partial class RegUser
     {
         public Worker SingleWorker { get { return Worker.SingleOrDefault(); } }
         void xxx()

@@ -25,7 +25,7 @@ namespace DbAndRepository
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Bank> Bank { get; set; }
+        public virtual DbSet<RegUser> Bank { get; set; }
         public virtual DbSet<LoginData> LoginData { get; set; }
         public virtual DbSet<Logs> Logs { get; set; }
         public virtual DbSet<RegUser> RegUser { get; set; }

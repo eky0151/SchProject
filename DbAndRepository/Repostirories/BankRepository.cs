@@ -7,34 +7,35 @@
 
     public class BankRepository : GenericsRepository<Bank>, IBankRepository
     {
-        private Bank bank;
+        private RegUser bank;
 
         public BankRepository(DbContext newDb) : base(newDb)
         {
         }
 
-        public Bank GetBankByWorker(Worker worker)
+        public RegUser GetBankByWorker(Worker worker)
         {
-            return database.Set<Bank>().FirstOrDefault(i => i.ID == worker.BankID);
+            return database.Set<RegUser>().FirstOrDefault(i => i.ID == worker.BankID);
         }
 
         public override void Delete(int id)
         {
             bank = GetById(id);
-            database.Set<Bank>().Remove(bank);
-            database.Entry<Bank>(bank).State = EntityState.Deleted;
+            database.Set<RegUser>().Remove(bank);
+            database.Entry<RegUser>(bank).State = EntityState.Deleted;
             database.SaveChanges();
         }
 
-        public override Bank GetById(int id)
+        public override RegUser GetById(int id)
         {
-            return database.Set<Bank>().FirstOrDefault(x => x.ID == id);
+            //return database.Set<RegUser>().FirstOrDefault(x => x.ID == id);
+            throw new System.NotImplementedException();
         }
 
-        public override void Update(Bank entityToModify)
+        public override void Update(RegUser entityToModify)
         {
             database.Entry(GetById(entityToModify.ID)).CurrentValues.SetValues(entityToModify);
-            database.Entry<Bank>(entityToModify).State = EntityState.Modified;
+            database.Entry<RegUser>(entityToModify).State = EntityState.Modified;
             database.SaveChanges();
         }
     }

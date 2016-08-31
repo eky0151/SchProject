@@ -113,6 +113,7 @@
     <Compile Include="IRepositories\IBankRepository.cs" />
     <Compile Include="IRepositories\ILoginDataRepository.cs" />
     <Compile Include="IRepositories\ILogsRepository.cs" />
+    <Compile Include="IRepositories\IRegUserRepository.cs" />
     <Compile Include="IRepositories\ISolvedQuestionsRepository.cs" />
     <Compile Include="IRepositories\ITechnicianRepository.cs" />
     <Compile Include="IRepositories\ITechWorksRepository.cs" />
@@ -131,6 +132,7 @@
     <Compile Include="Repostirories\BankRepository.cs" />
     <Compile Include="Repostirories\LoginDataRepository.cs" />
     <Compile Include="Repostirories\LogsRepository.cs" />
+    <Compile Include="Repostirories\RegUserRepository.cs" />
     <Compile Include="Repostirories\SolvedQuestionsRepository.cs" />
     <Compile Include="Repostirories\TechninicanRepository.cs" />
     <Compile Include="Repostirories\TechWorksRepository.cs" />

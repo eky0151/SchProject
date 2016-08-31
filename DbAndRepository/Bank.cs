@@ -12,10 +12,10 @@ namespace DbAndRepository
     using System;
     using System.Collections.Generic;
     
-    public partial class Bank
+    public partial class RegUser
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Bank()
+        public RegUser()
         {
             this.Worker = new HashSet<Worker>();
         }
