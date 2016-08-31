@@ -84,7 +84,7 @@
             {
                 EventHandler<ChatEventArgs> hostGet = Workers[receiverName];
                 if (hostGet != null)
-                    hostGet(this, new ChatEventArgs { Content = content });
+                    hostGet(this, new ChatEventArgs { Content = message });
             }
         }
     }
