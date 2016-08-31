@@ -114,6 +114,8 @@
     <Compile Include="GenericsEFRepository\GenericsRepository.cs" />
     <Compile Include="GenericsEFRepository\IGenericsRepository.cs" />
     <Compile Include="IRepositories\IBankRepository.cs" />
+    <Compile Include="IRepositories\IBugreportRepository.cs" />
+    <Compile Include="IRepositories\IFileRepository.cs" />
     <Compile Include="IRepositories\ILoginDataRepository.cs" />
     <Compile Include="IRepositories\ILogsRepository.cs" />
     <Compile Include="IRepositories\IRegUserRepository.cs" />
@@ -132,6 +134,8 @@
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Repostirories\BankRepository.cs" />
+    <Compile Include="Repostirories\BugreportRepository.cs" />
+    <Compile Include="Repostirories\FilesRepository.cs" />
     <Compile Include="Repostirories\LoginDataRepository.cs" />
     <Compile Include="Repostirories\LogsRepository.cs" />
     <Compile Include="Repostirories\RegUserRepository.cs" />
