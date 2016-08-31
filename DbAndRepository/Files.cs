@@ -12,20 +12,12 @@ namespace DbAndRepository
     using System;
     using System.Collections.Generic;
     
-    public partial class SolvedQuestion
+    public partial class Files
     {
         public int ID { get; set; }
-        public int UserID { get; set; }
-        public int WorkerID { get; set; }
-        public string Question_ { get; set; }
-        public string Answer { get; set; }
-        public string Category { get; set; }
-        public System.DateTime Timeasked { get; set; }
-        public System.DateTime Timeanswered { get; set; }
-        public string KeyWords { get; set; }
-        public string Topic { get; set; }
+        public int BugreportID { get; set; }
+        public byte[] File { get; set; }
     
-        public virtual LoginData LoginData { get; set; }
-        public virtual RegUser RegUser { get; set; }
+        public virtual Bugreport Bugreport { get; set; }
     }
 }

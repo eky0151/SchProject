@@ -13,6 +13,23 @@
           <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Account" Type="varchar" MaxLength="25" Nullable="false" />
         </EntityType>
+        <EntityType Name="Bugreport">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Message" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Sender" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="SendTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Files">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="BugreportID" Type="int" Nullable="false" />
+          <Property Name="File" Type="image" Nullable="false" />
+        </EntityType>
         <EntityType Name="LoginData">
           <Key>
             <PropertyRef Name="ID" />
@@ -57,6 +74,7 @@
           <Property Name="Timeasked" Type="datetime" Nullable="false" />
           <Property Name="Timeanswered" Type="datetime" Nullable="false" />
           <Property Name="KeyWords" Type="varchar(max)" Nullable="false" />
+          <Property Name="Topic" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Technician">
           <Key>
@@ -90,6 +108,18 @@
           <Property Name="Phone" Type="varchar" MaxLength="12" />
           <Property Name="Picture" Type="image" />
         </EntityType>
+        <Association Name="FK_Files_Bugreport">
+          <End Role="Bugreport" Type="Self.Bugreport" Multiplicity="1" />
+          <End Role="Files" Type="Self.Files" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bugreport">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Files">
+              <PropertyRef Name="BugreportID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Login_Worker">
           <End Role="Worker" Type="Self.Worker" Multiplicity="1" />
           <End Role="LoginData" Type="Self.LoginData" Multiplicity="*" />
@@ -176,6 +206,8 @@
         </Association>
         <EntityContainer Name="TechSupportDatabaseModelStoreContainer">
           <EntitySet Name="Bank" EntityType="Self.Bank" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Bugreport" EntityType="Self.Bugreport" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Files" EntityType="Self.Files" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LoginData" EntityType="Self.LoginData" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Logs" EntityType="Self.Logs" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RegUser" EntityType="Self.RegUser" Schema="dbo" store:Type="Tables" />
@@ -183,6 +215,10 @@
           <EntitySet Name="Technician" EntityType="Self.Technician" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TechWorks" EntityType="Self.TechWorks" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Worker" EntityType="Self.Worker" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Files_Bugreport" Association="Self.FK_Files_Bugreport">
+            <End Role="Bugreport" EntitySet="Bugreport" />
+            <End Role="Files" EntitySet="Files" />
+          </AssociationSet>
           <AssociationSet Name="FK_Login_Worker" Association="Self.FK_Login_Worker">
             <End Role="Worker" EntitySet="Worker" />
             <End Role="LoginData" EntitySet="LoginData" />
@@ -225,6 +261,25 @@
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Account" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Worker" Relationship="Self.FK_Worker_Bank" FromRole="Bank" ToRole="Worker" />
+        </EntityType>
+        <EntityType Name="Bugreport">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Message" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Sender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SendTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Files" Relationship="Self.FK_Files_Bugreport" FromRole="Bugreport" ToRole="Files" />
+        </EntityType>
+        <EntityType Name="Files">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="BugreportID" Type="Int32" Nullable="false" />
+          <Property Name="File" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <NavigationProperty Name="Bugreport" Relationship="Self.FK_Files_Bugreport" FromRole="Files" ToRole="Bugreport" />
         </EntityType>
         <EntityType Name="LoginData">
           <Key>
@@ -275,6 +330,7 @@
           <Property Name="Timeasked" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Timeanswered" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="KeyWords" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Topic" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="LoginData" Relationship="Self.FK_SolvedQuestion_Login" FromRole="SolvedQuestion" ToRole="LoginData" />
           <NavigationProperty Name="RegUser" Relationship="Self.FK_SolvedQuestion_User" FromRole="SolvedQuestion" ToRole="RegUser" />
         </EntityType>
@@ -325,6 +381,18 @@
             </Principal>
             <Dependent Role="Worker">
               <PropertyRef Name="BankID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Files_Bugreport">
+          <End Role="Bugreport" Type="Self.Bugreport" Multiplicity="1" />
+          <End Role="Files" Type="Self.Files" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bugreport">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Files">
+              <PropertyRef Name="BugreportID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -402,6 +470,8 @@
         </Association>
         <EntityContainer Name="TechSupportDatabaseEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Bank" EntityType="Self.Bank" />
+          <EntitySet Name="Bugreport" EntityType="Self.Bugreport" />
+          <EntitySet Name="Files" EntityType="Self.Files" />
           <EntitySet Name="LoginData" EntityType="Self.LoginData" />
           <EntitySet Name="Logs" EntityType="Self.Logs" />
           <EntitySet Name="RegUser" EntityType="Self.RegUser" />
@@ -412,6 +482,10 @@
           <AssociationSet Name="FK_Worker_Bank" Association="Self.FK_Worker_Bank">
             <End Role="Bank" EntitySet="Bank" />
             <End Role="Worker" EntitySet="Worker" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Files_Bugreport" Association="Self.FK_Files_Bugreport">
+            <End Role="Bugreport" EntitySet="Bugreport" />
+            <End Role="Files" EntitySet="Files" />
           </AssociationSet>
           <AssociationSet Name="FK_Login_Worker" Association="Self.FK_Login_Worker">
             <End Role="Worker" EntitySet="Worker" />
@@ -450,6 +524,25 @@
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Account" ColumnName="Account" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Bugreport">
+            <EntityTypeMapping TypeName="TechSupportDatabaseModel.Bugreport">
+              <MappingFragment StoreEntitySet="Bugreport">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="Sender" ColumnName="Sender" />
+                <ScalarProperty Name="SendTime" ColumnName="SendTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Files">
+            <EntityTypeMapping TypeName="TechSupportDatabaseModel.Files">
+              <MappingFragment StoreEntitySet="Files">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="BugreportID" ColumnName="BugreportID" />
+                <ScalarProperty Name="File" ColumnName="File" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -499,6 +592,7 @@
                 <ScalarProperty Name="Timeasked" ColumnName="Timeasked" />
                 <ScalarProperty Name="Timeanswered" ColumnName="Timeanswered" />
                 <ScalarProperty Name="KeyWords" ColumnName="KeyWords" />
+                <ScalarProperty Name="Topic" ColumnName="Topic" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

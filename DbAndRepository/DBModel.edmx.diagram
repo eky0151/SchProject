@@ -4,8 +4,10 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="86557bec739f440bbf947242ead2d383" Name="Diagram1" ZoomLevel="62">
+      <Diagram DiagramId="d88b431cf7dc4dada5308aa5ab826d08" Name="Diagram1" ZoomLevel="47">
         <EntityTypeShape EntityType="TechSupportDatabaseModel.Bank" Width="1.5" PointX="0.75" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechSupportDatabaseModel.Bugreport" Width="1.5" PointX="0.75" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechSupportDatabaseModel.Files" Width="1.5" PointX="3" PointY="11.875" IsExpanded="true" />
         <EntityTypeShape EntityType="TechSupportDatabaseModel.LoginData" Width="1.5" PointX="5.25" PointY="4.875" IsExpanded="true" />
         <EntityTypeShape EntityType="TechSupportDatabaseModel.Logs" Width="1.5" PointX="7.5" PointY="5.25" IsExpanded="true" />
         <EntityTypeShape EntityType="TechSupportDatabaseModel.RegUser" Width="1.5" PointX="8.25" PointY="0.75" IsExpanded="true" />
@@ -14,6 +16,7 @@
         <EntityTypeShape EntityType="TechSupportDatabaseModel.TechWorks" Width="1.5" PointX="7.5" PointY="8.125" IsExpanded="true" />
         <EntityTypeShape EntityType="TechSupportDatabaseModel.Worker" Width="1.5" PointX="3" PointY="6.25" IsExpanded="true" />
         <AssociationConnector Association="TechSupportDatabaseModel.FK_Worker_Bank" ManuallyRouted="false" />
+        <AssociationConnector Association="TechSupportDatabaseModel.FK_Files_Bugreport" ManuallyRouted="false" />
         <AssociationConnector Association="TechSupportDatabaseModel.FK_Login_Worker" ManuallyRouted="false" />
         <AssociationConnector Association="TechSupportDatabaseModel.FK_LoginData_Login" ManuallyRouted="false" />
         <AssociationConnector Association="TechSupportDatabaseModel.FK_SolvedQuestion_Login" ManuallyRouted="false" />
