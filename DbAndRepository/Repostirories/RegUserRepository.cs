@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using DbAndRepository.GenericsEFRepository;
-using DbAndRepository.IRepositories;
-
-namespace DbAndRepository.Repostirories
+﻿namespace DbAndRepository.Repostirories
 {
+    using System.Data.Entity;
+    using System.Linq;
+    using DbAndRepository.GenericsEFRepository;
+    using DbAndRepository.IRepositories;
+
     public class RegUserRepository : GenericsRepository<RegUser>, IRegUserRepository
     {
         private RegUser user;
@@ -28,17 +23,22 @@ namespace DbAndRepository.Repostirories
 
         public override void Delete(int id)
         {
-            throw new NotImplementedException();
+            user = GetById(id);
+            database.Set<RegUser>().Remove(user);
+            database.Entry<RegUser>(user).State = EntityState.Deleted;
+            database.SaveChanges();
         }
 
         public override RegUser GetById(int id)
         {
-            throw new NotImplementedException();
+            return database.Set<RegUser>().FirstOrDefault(i => i.ID == id);
         }
 
         public override void Update(RegUser entityToModify)
         {
-            throw new NotImplementedException();
+            database.Entry(GetById(entityToModify.ID)).CurrentValues.SetValues(entityToModify);
+            database.Entry<RegUser>(entityToModify).State = EntityState.Modified;
+            database.SaveChanges();
         }
     }
 }

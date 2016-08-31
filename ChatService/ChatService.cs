@@ -11,22 +11,22 @@
         private Dictionary<string, IChatCallback> clients = new Dictionary<string, IChatCallback>();
 
         //from the wcf host you can get the clients name or sessionId
-        public List<string> LoggedInClients
-        {
-            get { return new List<string>(clients.Keys); }
-        }
+        //public List<string> LoggedInClients
+        //{
+        //    get { return new List<string>(clients.Keys); }
+        //}
        
         private static object syncObj = new object();
 
-        public Dictionary<string, EventHandler<ChatEventArgs>> Workers { get; private set; } =
-            new Dictionary<string, EventHandler<ChatEventArgs>>();
+        //public Dictionary<string, EventHandler<ChatEventArgs>> Workers { get; private set; } =
+        //    new Dictionary<string, EventHandler<ChatEventArgs>>();
 
         private IChatCallback currentCallback
         {
             get { return OperationContext.Current.GetCallbackChannel<IChatCallback>(); }
         }
 
-        public EventHandler<ChatEventArgs> WorkerMessageHandler;
+        //public EventHandler<ChatEventArgs> WorkerMessageHandler;
 
 
         /// <summary>
@@ -57,33 +57,53 @@
             }
         }
 
+        #region WPFHOST
+        //public void SendFile(byte[] content, string description, string receiverName)
+        //{
+        //    if(clients.ContainsKey(receiverName)) //from host to service reference
+        //    {
+        //        IChatCallback callback = clients[receiverName];
+        //        callback.ReceiveFileMessageeCallback(content, "File");
+        //    }
+        //    else if(Workers.ContainsKey(receiverName))
+        //    {
+        //        EventHandler<ChatEventArgs> hostGet = Workers[receiverName];
+        //        if (hostGet != null)
+        //            hostGet(this, new ChatEventArgs { Content = content });
+        //    }
+        //}
+
+        //public void SendMessage(string message, string receiverName)
+        //{
+        //    if(clients.ContainsKey(receiverName))
+        //    {
+        //        IChatCallback callback = clients[receiverName];
+        //        callback.ReceiveMessageCallback(message, receiverName);
+        //    }
+        //    else if(Workers.ContainsKey(receiverName))
+        //    {
+        //        EventHandler<ChatEventArgs> hostGet = Workers[receiverName];
+        //        if (hostGet != null)
+        //            hostGet(this, new ChatEventArgs { Content = message });
+        //    }
+        //}
+        #endregion
+
         public void SendFile(byte[] content, string description, string receiverName)
         {
-            if(clients.ContainsKey(receiverName)) //from host to service reference
+            if (clients.ContainsKey(receiverName)) 
             {
                 IChatCallback callback = clients[receiverName];
                 callback.ReceiveFileMessageeCallback(content, "File");
-            }
-            else if(Workers.ContainsKey(receiverName))
-            {
-                EventHandler<ChatEventArgs> hostGet = Workers[receiverName];
-                if (hostGet != null)
-                    hostGet(this, new ChatEventArgs { Content = content });
             }
         }
 
         public void SendMessage(string message, string receiverName)
         {
-            if(clients.ContainsKey(receiverName))
+            if (clients.ContainsKey(receiverName))
             {
                 IChatCallback callback = clients[receiverName];
                 callback.ReceiveMessageCallback(message, receiverName);
-            }
-            else if(Workers.ContainsKey(receiverName))
-            {
-                EventHandler<ChatEventArgs> hostGet = Workers[receiverName];
-                if (hostGet != null)
-                    hostGet(this, new ChatEventArgs { Content = message });
             }
         }
     }

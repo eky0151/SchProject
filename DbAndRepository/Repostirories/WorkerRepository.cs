@@ -4,8 +4,6 @@
     using GenericsEFRepository;
     using IRepositories;
     using System.Linq;
-    using System;
-    using System.Collections.Generic;
 
     public class WorkerRepository : GenericsRepository<Worker>, IWorkerRepository
     {
@@ -17,7 +15,7 @@
 
         public override void Delete(int id)
         {
-            Worker w = GetById(id);
+            w = GetById(id);
             database.Set<Worker>().Remove(w);
             database.Entry<Worker>(w).State = EntityState.Deleted;
             database.SaveChanges();
