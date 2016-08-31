@@ -26,7 +26,6 @@ namespace DbAndRepository
         public string Username { get; set; }
         public string Email { get; set; }
         public int Points { get; set; }
-        public int Questions { get; set; }
         public byte[] Picture { get; set; }
         public string Password { get; set; }
     

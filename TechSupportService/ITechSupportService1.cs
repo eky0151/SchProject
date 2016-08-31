@@ -15,6 +15,9 @@ namespace TechSupportService
         [OperationContract]
         LoginResult Login(string username, string password);
 
+        [OperationContract]
+        bool UserLogin(string username, string password);
+
     }
     [DataContract]
     public class LoginResult

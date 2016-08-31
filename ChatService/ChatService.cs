@@ -44,7 +44,6 @@
                 clients.Add(client, currentCallback);
                 currentCallback.ClientConnectCallback(client); //eg: user Bill joined on 2016.02.30
             }
-
         }
 
         public void Disconnect(string client)

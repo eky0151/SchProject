@@ -4,6 +4,6 @@
 
     public interface IBankRepository : IGenericsRepository<Bank>
     {
-        Bank GetBankByWorker(Worker worker);
+        Worker GetBankByWorker(Worker worker);
     }
 }

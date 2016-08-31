@@ -7,15 +7,15 @@
 
     public class BankRepository : GenericsRepository<Bank>, IBankRepository
     {
-        private Bank bank;
+        private RegUser bank;
 
         public BankRepository(DbContext newDb) : base(newDb)
         {
         }
 
-        public Bank GetBankByWorker(Worker worker)
+        public Worker GetBankByWorker(Worker worker)
         {
-            return database.Set<Bank>().FirstOrDefault(i => i.ID == worker.BankID);
+            return database.Set<Worker>().FirstOrDefault(i => i.ID == worker.BankID);
         }
 
         public override void Delete(int id)
@@ -28,7 +28,8 @@
 
         public override Bank GetById(int id)
         {
-            return database.Set<Bank>().FirstOrDefault(x => x.ID == id);
+            //return database.Set<RegUser>().FirstOrDefault(x => x.ID == id);
+            throw new System.NotImplementedException();
         }
 
         public override void Update(Bank entityToModify)
