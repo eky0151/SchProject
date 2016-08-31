@@ -28,8 +28,7 @@
 
         public override Bank GetById(int id)
         {
-            //return database.Set<RegUser>().FirstOrDefault(x => x.ID == id);
-            throw new System.NotImplementedException();
+            return database.Set<Bank>().FirstOrDefault(x => x.ID == id);  
         }
 
         public override void Update(Bank entityToModify)
