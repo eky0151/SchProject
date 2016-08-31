@@ -22,8 +22,7 @@ namespace SchProject.Resources.Layout
        
         public MainWindowAqua()
         {
-            InitializeComponent();            
-            DataContext = this;
+            InitializeComponent(); 
         }
     }
 }

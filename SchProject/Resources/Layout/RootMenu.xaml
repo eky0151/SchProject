@@ -27,7 +27,7 @@
                                 Stretch="UniformToFill" />
                 </Ellipse.Fill>
             </Ellipse>
-            <Label Content="Peter Pan"
+            <Label Content="{Binding FullName}"
                    Margin="50,155,54,0"
                    VerticalAlignment="Top"
                    FontSize="15"
@@ -79,8 +79,9 @@
                                      Height="22" />
                 <Button Width="15"
                         Height="15"
-                        Margin="130,0,0,0"
-                        VerticalAlignment="Center">
+                        Margin="133,0,0,0"
+                        VerticalAlignment="Center"
+                        Command="{Binding Logout}">
                     <Button.Template>
                         <ControlTemplate>
                             <Image Source="Images/logout.png" />

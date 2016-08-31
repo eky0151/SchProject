@@ -8,8 +8,9 @@
         Style="{StaticResource AquaWindowStyle}"
         Title="MainWindowAqua"
         Height="300"
-        Width="300">
-    <UserControl Content="{Binding Path=IO}">
+        Width="300"
+        DataContext="{Binding Source={StaticResource Locator},Path=Main}">
+    <ContentControl Content="{Binding Navigator.RootControl}">
 
-    </UserControl>
+    </ContentControl>
 </Window>

@@ -43,8 +43,20 @@ namespace SchProject.ViewModel
             ////}
 
             SimpleIoc.Default.Register<MainViewModel>();
+            SimpleIoc.Default.Register<LoginViewModel>();
+            SimpleIoc.Default.Register<RootMenuViewModel>();
+            SimpleIoc.Default.Register<BugreportViewModel>();
         }
 
+        public BugreportViewModel BugReport
+        {
+            get { return ServiceLocator.Current.GetInstance<BugreportViewModel>(); }
+        }
+
+        public RootMenuViewModel Menu
+        {
+            get { return ServiceLocator.Current.GetInstance<RootMenuViewModel>(); }
+        }
         public MainViewModel Main
         {
             get
@@ -52,7 +64,14 @@ namespace SchProject.ViewModel
                 return ServiceLocator.Current.GetInstance<MainViewModel>();
             }
         }
-        
+
+        public LoginViewModel Login
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<LoginViewModel>();
+            }
+        }
         public static void Cleanup()
         {
             // TODO Clear the ViewModels

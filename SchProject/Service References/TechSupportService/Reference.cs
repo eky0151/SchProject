@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SchProject.TechSupportServer {
+namespace SchProject.TechSupportService {
     using System.Runtime.Serialization;
     using System;
     
@@ -23,6 +23,9 @@ namespace SchProject.TechSupportServer {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string FullNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string RoleField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -35,6 +38,19 @@ namespace SchProject.TechSupportServer {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string FullName {
+            get {
+                return this.FullNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FullNameField, value) != true)) {
+                    this.FullNameField = value;
+                    this.RaisePropertyChanged("FullName");
+                }
             }
         }
         
@@ -75,23 +91,23 @@ namespace SchProject.TechSupportServer {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="TechSupportServer.ITechSupportService1")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="TechSupportService.ITechSupportService1")]
     public interface ITechSupportService1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportService1/Login", ReplyAction="http://tempuri.org/ITechSupportService1/LoginResponse")]
-        SchProject.TechSupportServer.LoginResult Login(string username, string password);
+        SchProject.TechSupportService.LoginResult Login(string username, string password);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportService1/Login", ReplyAction="http://tempuri.org/ITechSupportService1/LoginResponse")]
-        System.Threading.Tasks.Task<SchProject.TechSupportServer.LoginResult> LoginAsync(string username, string password);
+        System.Threading.Tasks.Task<SchProject.TechSupportService.LoginResult> LoginAsync(string username, string password);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface ITechSupportService1Channel : SchProject.TechSupportServer.ITechSupportService1, System.ServiceModel.IClientChannel {
+    public interface ITechSupportService1Channel : SchProject.TechSupportService.ITechSupportService1, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class TechSupportService1Client : System.ServiceModel.ClientBase<SchProject.TechSupportServer.ITechSupportService1>, SchProject.TechSupportServer.ITechSupportService1 {
+    public partial class TechSupportService1Client : System.ServiceModel.ClientBase<SchProject.TechSupportService.ITechSupportService1>, SchProject.TechSupportService.ITechSupportService1 {
         
         public TechSupportService1Client() {
         }
@@ -112,11 +128,11 @@ namespace SchProject.TechSupportServer {
                 base(binding, remoteAddress) {
         }
         
-        public SchProject.TechSupportServer.LoginResult Login(string username, string password) {
+        public SchProject.TechSupportService.LoginResult Login(string username, string password) {
             return base.Channel.Login(username, password);
         }
         
-        public System.Threading.Tasks.Task<SchProject.TechSupportServer.LoginResult> LoginAsync(string username, string password) {
+        public System.Threading.Tasks.Task<SchProject.TechSupportService.LoginResult> LoginAsync(string username, string password) {
             return base.Channel.LoginAsync(username, password);
         }
     }

@@ -23,9 +23,7 @@
             if (l == null)
                 return false;
 
-            fullName = (from i in database.Set<Worker>()
-                        where i.ID == l.ID
-                        select i.Fullname).FirstOrDefault()?.ToString();
+            fullName = l.Worker.Fullname;
             role = l.Urole;
 
             return true;

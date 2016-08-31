@@ -6,7 +6,8 @@
              xmlns:local="clr-namespace:SchProject.Resources.Layout"
              mc:Ignorable="d"
              d:DesignHeight="600"
-             d:DesignWidth="1000">
+             d:DesignWidth="1000"
+             DataContext="{Binding Source={StaticResource Locator},Path=Login}">
     <Grid Background="White">
         
         <Ellipse Style="{StaticResource ImageHolder}"
@@ -17,7 +18,7 @@
                  Width="200">
             <Ellipse.Fill>
                 <ImageBrush ImageSource="Images/demoPic.jpg"
-                            Stretch="UniformToFill"></ImageBrush>
+                            Stretch="UniformToFill"/>
             </Ellipse.Fill>
         </Ellipse>
         
@@ -25,18 +26,21 @@
                  Margin="0,338,0,0"
                  Width="250"
                  Height="26"
-                 VerticalAlignment="Top" />
+                 VerticalAlignment="Top"
+                 Text="{Binding UserName}"/>
         
         <PasswordBox Style="{StaticResource PasswdBox}"
                      Margin="0,377,0,0"
                      Width="250"
                      Height="26"
-                     VerticalAlignment="Top" />
+                     VerticalAlignment="Top"
+                     Name="PasswordBox"/>
 
         <Button Style="{StaticResource TabButton}"
                 Content="Login"
                 Margin="0,415,0,158"
                 VerticalAlignment="Stretch"
-                Width="112" />
+                Width="112"
+                Command="{Binding LoginCommand}" CommandParameter="{Binding ElementName=PasswordBox}"/>
     </Grid>
 </UserControl>
