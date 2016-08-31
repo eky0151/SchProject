@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:SchProject.Resources.Layout"
+             xmlns:controls="clr-namespace:SchProject.Resources.Layout.CustomControls"
              mc:Ignorable="d"
              d:DesignHeight="600"
              d:DesignWidth="790"
@@ -16,7 +17,7 @@
                Height="auto"
                FontSize="30"
                FontWeight="SemiBold" />
-        
+
         <Border Background="White"
                 Width="700"
                 Height="350"
@@ -24,8 +25,8 @@
                 BorderBrush="#585757"
                 BorderThickness="1"
                 Padding="6">
-            
-            
+
+
             <StackPanel>
                 <TextBox Height="300"
                          BorderThickness="0"
@@ -33,17 +34,17 @@
                          FontSize="15"
                          AcceptsReturn="True"
                          Text="{Binding Report}" />
-                
+
                 <Separator />
-                
+
                 <StackPanel Orientation="Horizontal">
-                    
+
                     <ScrollViewer VerticalScrollBarVisibility="Auto">
                         <ItemsControl ItemsSource="{Binding AttachedFiles}"
                                       Height="33"
                                       Width="653" />
                     </ScrollViewer>
-                    
+
                     <Button Command="{Binding AttachFile}"
                             Width="25"
                             Height="25">
@@ -53,18 +54,24 @@
                             </ControlTemplate>
                         </Button.Template>
                     </Button>
-                    
+
                 </StackPanel>
-                
+
             </StackPanel>
-            
+
             <Border.Effect>
                 <DropShadowEffect BlurRadius="25"
                                   Direction="0"
                                   ShadowDepth="0"
-                                  Opacity="0.04" />
+                                  Opacity="0.1" />
             </Border.Effect>
-            
+
         </Border>
+        <controls:RoundedButton Content="Send Bugreport"
+                                CornerRadius="5"
+                                Background="#17BAD0"
+                                Foreground="White"
+                                Margin="30"
+                                Style="{StaticResource RoundedButton}" Width="100" Height="30" />
     </StackPanel>
 </UserControl>
