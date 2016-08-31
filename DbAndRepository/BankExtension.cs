@@ -8,7 +8,7 @@ namespace DbAndRepository
 {
     public partial class RegUser
     {
-        public Worker SingleWorker { get { return Worker.SingleOrDefault(); } }
+        //public Worker SingleWorker { get { return Worker.SingleOrDefault(); } }
         void xxx()
         {
             //TechSupportDatabaseEntities
