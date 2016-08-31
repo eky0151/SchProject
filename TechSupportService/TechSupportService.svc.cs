@@ -17,11 +17,13 @@ namespace TechSupportService
     {
 
         private ILoginDataRepository Auth;
+        private IRegUserRepository authUser;
 
         public TechSupportService1()
         {
             TechSupportDatabaseEntities d = new TechSupportDatabaseEntities();
             Auth = new LoginDataRepository(d);
+            authUser = new RegUserRepository(d);
         }
         public LoginResult Login(string username, string password)
         {
@@ -34,6 +36,11 @@ namespace TechSupportService
                 Valid = result,
                 FullName = name
             };
+        }
+
+        public bool UserLogin(string username, string password)
+        {
+            return authUser.Autenthicate(username, password);
         }
     }
 }

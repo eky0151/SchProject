@@ -10,10 +10,20 @@ using DbAndRepository.IRepositories;
 
 namespace DbAndRepository.Repostirories
 {
-    class RegUserRepository : GenericsRepository<RegUser>, IRegUserRepository
+    public class RegUserRepository : GenericsRepository<RegUser>, IRegUserRepository
     {
+        private RegUser user;
+
         public RegUserRepository(DbContext newDb) : base(newDb)
         {
+        }
+
+        public bool Autenthicate(string userName, string password)
+        {
+            user = Get(i => i.Username == userName && i.Password == password).FirstOrDefault();
+            if (user == null)
+                return false;
+            return true;
         }
 
         public override void Delete(int id)

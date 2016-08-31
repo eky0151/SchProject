@@ -13,29 +13,29 @@
         {
         }
 
-        public RegUser GetBankByWorker(Worker worker)
+        public Worker GetBankByWorker(Worker worker)
         {
-            return database.Set<RegUser>().FirstOrDefault(i => i.ID == worker.BankID);
+            return database.Set<Worker>().FirstOrDefault(i => i.ID == worker.BankID);
         }
 
         public override void Delete(int id)
         {
             bank = GetById(id);
-            database.Set<RegUser>().Remove(bank);
-            database.Entry<RegUser>(bank).State = EntityState.Deleted;
+            database.Set<Bank>().Remove(bank);
+            database.Entry<Bank>(bank).State = EntityState.Deleted;
             database.SaveChanges();
         }
 
-        public override RegUser GetById(int id)
+        public override Bank GetById(int id)
         {
             //return database.Set<RegUser>().FirstOrDefault(x => x.ID == id);
             throw new System.NotImplementedException();
         }
 
-        public override void Update(RegUser entityToModify)
+        public override void Update(Bank entityToModify)
         {
             database.Entry(GetById(entityToModify.ID)).CurrentValues.SetValues(entityToModify);
-            database.Entry<RegUser>(entityToModify).State = EntityState.Modified;
+            database.Entry<Bank>(entityToModify).State = EntityState.Modified;
             database.SaveChanges();
         }
     }

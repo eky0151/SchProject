@@ -7,7 +7,9 @@ using System.Threading.Tasks;
 
 namespace DbAndRepository.IRepositories
 {
-    interface IRegUserRepository : IGenericsRepository<RegUser>
+    public interface IRegUserRepository : IGenericsRepository<RegUser>
     {
+        bool Autenthicate(string userName, string password);
+
     }
 }

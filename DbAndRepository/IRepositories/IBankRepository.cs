@@ -2,8 +2,8 @@
 {
     using GenericsEFRepository;
 
-    public interface IBankRepository : IGenericsRepository<RegUser>
+    public interface IBankRepository : IGenericsRepository<Bank>
     {
-        RegUser GetBankByWorker(Worker worker);
+        Worker GetBankByWorker(Worker worker);
     }
 }
