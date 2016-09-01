@@ -6,5 +6,7 @@
         <ResourceDictionary Source="DashboardStyle.xaml" />
         <ResourceDictionary Source="RootMenuStyle.xaml" />
         <ResourceDictionary Source="UniversalStyles.xaml" />
+        <ResourceDictionary Source="AdminStyle.xaml" />
+
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>
