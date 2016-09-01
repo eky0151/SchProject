@@ -1,4 +1,4 @@
-﻿namespace ChatService
+﻿namespace AzureChatService
 {
     using System.ServiceModel;
 
@@ -8,7 +8,7 @@
         [OperationContract(IsInitiating = true, IsOneWay = true)]
         void Connect(string client);
 
-        [OperationContract(IsTerminating  = true ,IsOneWay = true)]
+        [OperationContract(IsTerminating = true, IsOneWay = true)]
         void Disconnect(string client);
 
         [OperationContract(IsOneWay = true)]
