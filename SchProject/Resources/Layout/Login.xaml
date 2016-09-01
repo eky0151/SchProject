@@ -9,7 +9,7 @@
              d:DesignWidth="1000"
              DataContext="{Binding Source={StaticResource Locator},Path=Login}">
     <Grid Background="White">
-        
+
         <Ellipse Style="{StaticResource ImageHolder}"
                  StrokeThickness="5"
                  Margin="0,105,0,295"
@@ -18,29 +18,31 @@
                  Width="200">
             <Ellipse.Fill>
                 <ImageBrush ImageSource="Images/demoPic.jpg"
-                            Stretch="UniformToFill"/>
+                            Stretch="UniformToFill" />
             </Ellipse.Fill>
         </Ellipse>
-        
+
         <TextBox Style="{StaticResource LoginTextBox}"
                  Margin="0,338,0,0"
                  Width="250"
                  Height="26"
                  VerticalAlignment="Top"
-                 Text="{Binding UserName}"/>
-        
+                 Text="{Binding UserName}" />
+
         <PasswordBox Style="{StaticResource PasswdBox}"
                      Margin="0,377,0,0"
                      Width="250"
                      Height="26"
                      VerticalAlignment="Top"
-                     Name="PasswordBox"/>
+                     Name="PasswordBox" />
 
         <Button Style="{StaticResource TabButton}"
                 Content="Login"
                 Margin="0,415,0,158"
                 VerticalAlignment="Stretch"
                 Width="112"
-                Command="{Binding LoginCommand}" CommandParameter="{Binding ElementName=PasswordBox}"/>
+                IsEnabled="{Binding LoginEnabled}"
+                Command="{Binding LoginCommand}"
+                CommandParameter="{Binding ElementName=PasswordBox}" />
     </Grid>
 </UserControl>

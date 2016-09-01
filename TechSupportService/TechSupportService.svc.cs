@@ -5,6 +5,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
+using System.Threading.Tasks;
 using DbAndRepository;
 using DbAndRepository.IRepositories;
 using DbAndRepository.Repostirories;
@@ -15,26 +16,32 @@ namespace TechSupportService
     // NOTE: In order to launch WCF Test Client for testing this service, please select TechSupportService1.svc or TechSupportService1.svc.cs at the Solution Explorer and start debugging.
     public class TechSupportService1 : ITechSupportService1
     {
-        private ILoginDataRepository Auth;
+        private readonly ILoginDataRepository _auth;
         private IRegUserRepository aspUsers;
+        private readonly ILogsRepository _logs;
 
         public TechSupportService1()
         {
-            TechSupportDatabaseEntities d = new TechSupportDatabaseEntities();
-            Auth = new LoginDataRepository(d);
-            aspUsers = new RegUserRepository(d);
+            TechSupportDatabaseEntities db = new TechSupportDatabaseEntities();
+            _auth = new LoginDataRepository(db);
+            _logs=new LogsRepository(db);
+            aspUsers = new RegUserRepository(db);
         }
-        public LoginResult Login(string username, string password)
+        public async Task<LoginResult> LoginAsync(string username, string password)
         {
-            string name = string.Empty,
-                   role = string.Empty;
-            bool result = Auth.Authenticate(username, password, out name, out role);
-            return new LoginResult()
-            {
-                Role = role,
-                Valid = result,
-                FullName = name
-            };
+            var authenticate = await Task.Factory.StartNew(() =>
+              {
+                  string name = string.Empty,
+                      role = string.Empty;
+                  bool result = _auth.Authenticate(username, password, out name, out role);
+                  return new LoginResult()
+                  {
+                      Role = role,
+                      Valid = result,
+                      FullName = name
+                  };
+              });
+            return authenticate;
         }
 
         //Register a new user from the aps.net registration form
@@ -42,9 +49,6 @@ namespace TechSupportService
         {
             aspUsers.Insert(new RegUser
             {
-                //ID = aspUsers.GetAll().LastOrDefault().ID == default(int) ?
-                //                                                    default(int) + 1 :
-                //                                                    aspUsers.GetAll().LastOrDefault().ID + 1,
                 Fullname = fullName,
                 Email = email,
                 Username = userName,
@@ -58,5 +62,6 @@ namespace TechSupportService
         {
             return aspUsers.Autenthicate(username, password);
         }
+
     }
 }

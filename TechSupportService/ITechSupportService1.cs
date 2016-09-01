@@ -5,6 +5,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace TechSupportService
 {
@@ -12,8 +13,8 @@ namespace TechSupportService
     public interface ITechSupportService1
     {
 
-        [OperationContract]
-        LoginResult Login(string username, string password);
+        [OperationContract(AsyncPattern = true)]
+        Task<LoginResult> LoginAsync(string username, string password);
 
         [OperationContract]
         bool UserLogin(string username, string password);

@@ -99,6 +99,18 @@ namespace SchProject.TechSupportService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportService1/Login", ReplyAction="http://tempuri.org/ITechSupportService1/LoginResponse")]
         System.Threading.Tasks.Task<SchProject.TechSupportService.LoginResult> LoginAsync(string username, string password);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportService1/UserLogin", ReplyAction="http://tempuri.org/ITechSupportService1/UserLoginResponse")]
+        bool UserLogin(string username, string password);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportService1/UserLogin", ReplyAction="http://tempuri.org/ITechSupportService1/UserLoginResponse")]
+        System.Threading.Tasks.Task<bool> UserLoginAsync(string username, string password);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportService1/RegisterNewUser", ReplyAction="http://tempuri.org/ITechSupportService1/RegisterNewUserResponse")]
+        void RegisterNewUser(string fullName, string email, string userName, string password);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportService1/RegisterNewUser", ReplyAction="http://tempuri.org/ITechSupportService1/RegisterNewUserResponse")]
+        System.Threading.Tasks.Task RegisterNewUserAsync(string fullName, string email, string userName, string password);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -134,6 +146,22 @@ namespace SchProject.TechSupportService {
         
         public System.Threading.Tasks.Task<SchProject.TechSupportService.LoginResult> LoginAsync(string username, string password) {
             return base.Channel.LoginAsync(username, password);
+        }
+        
+        public bool UserLogin(string username, string password) {
+            return base.Channel.UserLogin(username, password);
+        }
+        
+        public System.Threading.Tasks.Task<bool> UserLoginAsync(string username, string password) {
+            return base.Channel.UserLoginAsync(username, password);
+        }
+        
+        public void RegisterNewUser(string fullName, string email, string userName, string password) {
+            base.Channel.RegisterNewUser(fullName, email, userName, password);
+        }
+        
+        public System.Threading.Tasks.Task RegisterNewUserAsync(string fullName, string email, string userName, string password) {
+            return base.Channel.RegisterNewUserAsync(fullName, email, userName, password);
         }
     }
 }

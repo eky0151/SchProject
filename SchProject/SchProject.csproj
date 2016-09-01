@@ -279,6 +279,9 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\Layout\Images\add.png" />
+  </ItemGroup>
+  <ItemGroup>
     <WCFMetadataStorage Include="Service References\TechSupportService\" />
   </ItemGroup>
   <ItemGroup>
@@ -295,9 +298,6 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Layout\Images\add.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

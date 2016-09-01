@@ -13,16 +13,54 @@
   <wsdl:message name="ITechSupportService1_Login_OutputMessage">
     <wsdl:part name="parameters" element="tns:LoginResponse" />
   </wsdl:message>
+  <wsdl:message name="ITechSupportService1_UserLogin_InputMessage">
+    <wsdl:part name="parameters" element="tns:UserLogin" />
+  </wsdl:message>
+  <wsdl:message name="ITechSupportService1_UserLogin_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UserLoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITechSupportService1_RegisterNewUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:RegisterNewUser" />
+  </wsdl:message>
+  <wsdl:message name="ITechSupportService1_RegisterNewUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RegisterNewUserResponse" />
+  </wsdl:message>
   <wsdl:portType name="ITechSupportService1">
     <wsdl:operation name="Login">
       <wsdl:input wsaw:Action="http://tempuri.org/ITechSupportService1/Login" message="tns:ITechSupportService1_Login_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ITechSupportService1/LoginResponse" message="tns:ITechSupportService1_Login_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UserLogin">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITechSupportService1/UserLogin" message="tns:ITechSupportService1_UserLogin_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITechSupportService1/UserLoginResponse" message="tns:ITechSupportService1_UserLogin_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RegisterNewUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITechSupportService1/RegisterNewUser" message="tns:ITechSupportService1_RegisterNewUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITechSupportService1/RegisterNewUserResponse" message="tns:ITechSupportService1_RegisterNewUser_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_ITechSupportService1" type="tns:ITechSupportService1">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="Login">
       <soap:operation soapAction="http://tempuri.org/ITechSupportService1/Login" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UserLogin">
+      <soap:operation soapAction="http://tempuri.org/ITechSupportService1/UserLogin" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegisterNewUser">
+      <soap:operation soapAction="http://tempuri.org/ITechSupportService1/RegisterNewUser" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

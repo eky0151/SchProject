@@ -126,7 +126,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
                     <Border CornerRadius="5"
-                            Background="#17BAD0"
+                            Background="{TemplateBinding Background}"
                             x:Name="CustomButton">
                         <ContentPresenter x:Name="contentPresenter"
                                           ContentTemplate="{TemplateBinding ContentTemplate}"
@@ -145,6 +145,15 @@
             </Setter.Value>
         </Setter>
         <Style.Triggers>
+            <Trigger Property="IsEnabled"
+                     Value="False">
+                <Setter Property="Background"
+                        Value="#95989A" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="True">
+                <Setter Property="Background"
+                        Value="#17BAD0"/>
+            </Trigger>
             <EventTrigger RoutedEvent="MouseEnter">
                 <EventTrigger.Actions>
                     <BeginStoryboard>
