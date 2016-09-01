@@ -1,4 +1,4 @@
-﻿namespace ChatService
+﻿namespace AzureChatService
 {
     using System.ServiceModel;
 

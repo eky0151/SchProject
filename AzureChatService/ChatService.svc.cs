@@ -1,4 +1,4 @@
-﻿namespace ChatService
+﻿namespace AzureChatService
 {
     using System.Collections.Generic;
     using System.ServiceModel;
@@ -14,7 +14,7 @@
         //{
         //    get { return new List<string>(clients.Keys); }
         //}
-       
+
         private static object syncObj = new object();
 
         //public Dictionary<string, EventHandler<ChatEventArgs>> Workers { get; private set; } =
@@ -38,7 +38,7 @@
             if (clients.ContainsKey(client))
                 return;
 
-            lock(syncObj)
+            lock (syncObj)
             {
                 clients.Add(client, currentCallback);
                 currentCallback.ClientConnectCallback(client); //eg: user Bill joined on 2016.02.30
@@ -56,41 +56,11 @@
             }
         }
 
-        #region WPFHOST
-        //public void SendFile(byte[] content, string description, string receiverName)
-        //{
-        //    if(clients.ContainsKey(receiverName)) //from host to service reference
-        //    {
-        //        IChatCallback callback = clients[receiverName];
-        //        callback.ReceiveFileMessageeCallback(content, "File");
-        //    }
-        //    else if(Workers.ContainsKey(receiverName))
-        //    {
-        //        EventHandler<ChatEventArgs> hostGet = Workers[receiverName];
-        //        if (hostGet != null)
-        //            hostGet(this, new ChatEventArgs { Content = content });
-        //    }
-        //}
-
-        //public void SendMessage(string message, string receiverName)
-        //{
-        //    if(clients.ContainsKey(receiverName))
-        //    {
-        //        IChatCallback callback = clients[receiverName];
-        //        callback.ReceiveMessageCallback(message, receiverName);
-        //    }
-        //    else if(Workers.ContainsKey(receiverName))
-        //    {
-        //        EventHandler<ChatEventArgs> hostGet = Workers[receiverName];
-        //        if (hostGet != null)
-        //            hostGet(this, new ChatEventArgs { Content = message });
-        //    }
-        //}
-        #endregion
+      
 
         public void SendFile(byte[] content, string description, string receiverName)
         {
-            if (clients.ContainsKey(receiverName)) 
+            if (clients.ContainsKey(receiverName))
             {
                 IChatCallback callback = clients[receiverName];
                 callback.ReceiveFileMessageeCallback(content, "File");

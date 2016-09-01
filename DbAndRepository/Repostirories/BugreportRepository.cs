@@ -7,7 +7,7 @@
     using System.Data.Entity;
     using System.Collections.Generic;
 
-    class BugreportRepository : GenericsRepository<Bugreport>, IBugreportRepository
+    public class BugreportRepository : GenericsRepository<Bugreport>, IBugreportRepository
     {
         private Bugreport bg;
 
