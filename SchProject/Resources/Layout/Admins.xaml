@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:SchProject.ViewModel"
+             xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
              mc:Ignorable="d"
              d:DesignHeight="600"
              d:DesignWidth="790">
@@ -30,5 +31,11 @@
                 </Style>
             </ListView.ItemContainerStyle>
         </ListView>
+        <Grid DockPanel.Dock="Right">
+            <m:Map CredentialsProvider="AjDCS0YT0DFQE8N-bTWLzwkrCvkI7rV_EFccjII8rj5SYYPoC5B7BmRv_ZmZbI9q"
+                   Center="47.620574,-122.34942" ZoomLevel="12" Height="250" VerticalAlignment="Bottom">
+                <m:Pushpin Location="47.620574,-122.34942" />
+            </m:Map>
+        </Grid>
     </DockPanel>
 </UserControl>
