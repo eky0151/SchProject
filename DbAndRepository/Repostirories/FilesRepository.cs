@@ -1,15 +1,11 @@
-﻿using DbAndRepository.GenericsEFRepository;
-using DbAndRepository.IRepositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data.Entity;
-
-namespace DbAndRepository.Repostirories
+﻿namespace DbAndRepository.Repostirories
 {
-    class FilesRepository : GenericsRepository<Files>, IFileRepository
+    using DbAndRepository.GenericsEFRepository;
+    using DbAndRepository.IRepositories;
+    using System;
+    using System.Data.Entity;
+
+    public class FilesRepository : GenericsRepository<Files>, IFileRepository
     {
         public FilesRepository(DbContext newDb) : base(newDb)
         {
