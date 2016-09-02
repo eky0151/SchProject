@@ -36,10 +36,14 @@ namespace SchProject.ViewModel
     }
     public class AdminsViewModel : ViewModelBase
     {
-        private AdminTemporaryModel _selectedTechnician = new AdminTemporaryModel(1, "FSfadfas dfgsdfgs",
-            new BitmapImage(
-                new Uri(@"C:\Users\dancs\Documents\GitRepos\SchProject\SchProject\Resources\Layout\Images\demoPic.jpg")),
-            true, "momfsdfm@dsfd.gz", "0484848484", "Ugyféltől jön", new Location(47.539519, 19.074154));
+        public ObservableCollection<AdminTemporaryModel> Admins { get; set; } = new ObservableCollection<AdminTemporaryModel>()
+        {
+            new AdminTemporaryModel(1,"FSfadfas dfgsdfgs",new BitmapImage(new Uri(@"C:\Users\dancs\Documents\GitRepos\SchProject\SchProject\Resources\Layout\Images\demoPic.jpg")),true,"momfsdfm@dsfd.gz","0484848484","Ugyféltől jön",new Location(47.539519, 19.074154) ),
+            new AdminTemporaryModel(1,"ASafsd sdfsdaf",new BitmapImage(new Uri(@"C:\Users\dancs\Documents\GitRepos\SchProject\SchProject\Resources\Layout\Images\demoPic.jpg")),true,"fasdfasd@dsfd.gz","334563456","U56345gyféltől jön",new Location(47.589519, 19.074154) ),
+            new AdminTemporaryModel(1,"INMK jndsuiajnvs",new BitmapImage(new Uri(@"C:\Users\dancs\Documents\GitRepos\SchProject\SchProject\Resources\Layout\Images\demoPic.jpg")),false,"gasdg@dsfd.gz","345634","Ugyféltől jön",new Location(47.519519, 19.074154) )
+        };
+
+        private AdminTemporaryModel _selectedTechnician;
 
         public AdminTemporaryModel SelectedTechnician
         {
@@ -47,11 +51,10 @@ namespace SchProject.ViewModel
             set { Set(ref _selectedTechnician, value); }
         }
 
-        public ObservableCollection<AdminTemporaryModel> Admins { get; set; } = new ObservableCollection<AdminTemporaryModel>()
+        public AdminsViewModel()
         {
-            new AdminTemporaryModel(1,"FSfadfas dfgsdfgs",new BitmapImage(new Uri(@"C:\Users\dancs\Documents\GitRepos\SchProject\SchProject\Resources\Layout\Images\demoPic.jpg")),true,"momfsdfm@dsfd.gz","0484848484","Ugyféltől jön",new Location(47.539519, 19.074154) ),
-            new AdminTemporaryModel(1,"ASafsd sdfsdaf",new BitmapImage(new Uri(@"C:\Users\dancs\Documents\GitRepos\SchProject\SchProject\Resources\Layout\Images\demoPic.jpg")),true,"fasdfasd@dsfd.gz","334563456","U56345gyféltől jön",new Location(47.589519, 19.074154) ),
-            new AdminTemporaryModel(1,"INMK jndsuiajnvs",new BitmapImage(new Uri(@"C:\Users\dancs\Documents\GitRepos\SchProject\SchProject\Resources\Layout\Images\demoPic.jpg")),false,"gasdg@dsfd.gz","345634","Ugyféltől jön",new Location(47.519519, 19.074154) )
-        };
+            SelectedTechnician = Admins.First();
+        }
+
     }
 }

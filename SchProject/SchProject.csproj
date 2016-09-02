@@ -105,6 +105,7 @@
     <Compile Include="Resources\Layout\Converters\BoolToImageSourceConverter.cs" />
     <Compile Include="Resources\Layout\Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Resources\Layout\Converters\ParametersToArrayConverter.cs" />
+    <Compile Include="Resources\Layout\CustomControls\MapHelper.cs" />
     <Compile Include="Resources\Layout\CustomControls\MenuButton.cs" />
     <Compile Include="Resources\Layout\CustomControls\RoundedButton.cs" />
     <Compile Include="Resources\Layout\CustomControls\StatusBox.cs" />

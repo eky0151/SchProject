@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:SchProject.ViewModel"
              xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
+             xmlns:customControls="clr-namespace:SchProject.Resources.Layout.CustomControls"
              mc:Ignorable="d"
              d:DesignHeight="600"
              d:DesignWidth="790">
@@ -102,11 +103,11 @@
                 </Border.Effect>
             </Border>
             <m:Map CredentialsProvider="AjDCS0YT0DFQE8N-bTWLzwkrCvkI7rV_EFccjII8rj5SYYPoC5B7BmRv_ZmZbI9q"
-                   Center="{Binding LastLocation,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                    ZoomLevel="12"
                    Height="250"
                    VerticalAlignment="Bottom"
-                   DataContext="{Binding SelectedTechnician}">
+                   DataContext="{Binding SelectedTechnician}"
+                   customControls:MapHelper.Center="{Binding LastLocation}">
                 <m:Pushpin Location="{Binding LastLocation}" />
             </m:Map>
         </Grid>
