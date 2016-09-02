@@ -46,8 +46,13 @@ namespace SchProject.ViewModel
             SimpleIoc.Default.Register<LoginViewModel>();
             SimpleIoc.Default.Register<RootMenuViewModel>();
             SimpleIoc.Default.Register<BugreportViewModel>();
+            SimpleIoc.Default.Register<SettingsViewModel>();
         }
 
+        public SettingsViewModel Settings
+        {
+            get { return ServiceLocator.Current.GetInstance<SettingsViewModel>(); }
+        }
         public BugreportViewModel BugReport
         {
             get { return ServiceLocator.Current.GetInstance<BugreportViewModel>(); }

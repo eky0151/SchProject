@@ -68,6 +68,7 @@
       <HintPath>..\packages\Newtonsoft.Json.8.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="PresentationFramework.Aero2" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Runtime.Serialization" />
@@ -103,6 +104,7 @@
     </Compile>
     <Compile Include="Resources\Layout\Converters\BoolToImageSourceConverter.cs" />
     <Compile Include="Resources\Layout\Converters\BoolToVisibilityConverter.cs" />
+    <Compile Include="Resources\Layout\Converters\ParametersToArrayConverter.cs" />
     <Compile Include="Resources\Layout\CustomControls\MenuButton.cs" />
     <Compile Include="Resources\Layout\CustomControls\RoundedButton.cs" />
     <Compile Include="Resources\Layout\CustomControls\StatusBox.cs" />
@@ -139,6 +141,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ViewModel\SettingsViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Page Include="Resources\Layout\Admins.xaml">
       <SubType>Designer</SubType>
