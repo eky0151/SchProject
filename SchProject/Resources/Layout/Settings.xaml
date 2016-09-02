@@ -5,14 +5,13 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:SchProject.Resources.Layout"
              mc:Ignorable="d"
-             d:DesignHeight="600"
+             d:DesignHeight="630"
              d:DesignWidth="790">
     <StackPanel Orientation="Horizontal"
                 Background="White"
                 DataContext="{Binding Source={StaticResource Locator},Path=Settings}">
         <Border Background="White"
-                Width="380"
-                Height="550"
+                Width="385"
                 Margin="50,25,0,25"
                 CornerRadius="20"
                 BorderThickness="1"
@@ -142,10 +141,10 @@
                 </Button>
             </StackPanel>
             <Border.Effect>
-                <DropShadowEffect BlurRadius="10"
+                <DropShadowEffect BlurRadius="7"
                                   Direction="0"
                                   ShadowDepth="0"
-                                  Opacity="0.3" />
+                                  Opacity="0.2" />
             </Border.Effect>
         </Border>
     </StackPanel>

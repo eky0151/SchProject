@@ -39,7 +39,7 @@
 
                 <StackPanel Orientation="Horizontal">
 
-                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <ScrollViewer VerticalScrollBarVisibility="Hidden" CanContentScroll="True">
                         <ItemsControl ItemsSource="{Binding AttachedFiles}"
                                       Height="33"
                                       Width="653" />

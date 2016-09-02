@@ -6,7 +6,7 @@ namespace SchProject.Resources.Layout.CustomControls
     public class StatusBox : Control
     {
         public static readonly DependencyProperty HeaderProperty = DependencyProperty.Register("Header", typeof(string), typeof(StatusBox));
-        public static readonly DependencyProperty ValueProperty = DependencyProperty.Register("Value", typeof(string), typeof(StatusBox), new FrameworkPropertyMetadata("", FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public static readonly DependencyProperty ValueProperty = DependencyProperty.Register("Value", typeof(int), typeof(StatusBox));
 
         public string Header
         {
@@ -14,9 +14,9 @@ namespace SchProject.Resources.Layout.CustomControls
             set { SetValue(HeaderProperty, value); }
         }
 
-        public string Value
+        public int Value
         {
-            get { return (string)GetValue(ValueProperty); }
+            get { return (int)GetValue(ValueProperty); }
             set { SetValue(ValueProperty, value); }
         }
     }

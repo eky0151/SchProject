@@ -105,6 +105,8 @@
     <Compile Include="Resources\Layout\Converters\BoolToImageSourceConverter.cs" />
     <Compile Include="Resources\Layout\Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Resources\Layout\Converters\ParametersToArrayConverter.cs" />
+    <Compile Include="Resources\Layout\Converters\StaffStatusToBrushConverter.cs" />
+    <Compile Include="Resources\Layout\Converters\TicketStatusToBrushConverter.cs" />
     <Compile Include="Resources\Layout\CustomControls\MapHelper.cs" />
     <Compile Include="Resources\Layout\CustomControls\MenuButton.cs" />
     <Compile Include="Resources\Layout\CustomControls\RoundedButton.cs" />
@@ -113,6 +115,7 @@
       <DependentUpon>Dashboard.xaml</DependentUpon>
     </Compile>
     <Compile Include="Resources\Layout\Converters\EmailToColorConverter.cs" />
+    <Compile Include="Resources\Layout\Converters\NumberToBrushConverter.cs" />
     <Compile Include="Resources\Layout\RootMenu.xaml.cs">
       <DependentUpon>RootMenu.xaml</DependentUpon>
     </Compile>
@@ -128,6 +131,7 @@
     <Compile Include="Resources\Layout\MainWindowAqua.xaml.cs">
       <DependentUpon>MainWindowAqua.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\DashboardViewModel.cs" />
     <Compile Include="Service References\TechSupportService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

@@ -7,7 +7,7 @@
              xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
              xmlns:customControls="clr-namespace:SchProject.Resources.Layout.CustomControls"
              mc:Ignorable="d"
-             d:DesignHeight="600"
+             d:DesignHeight="630"
              d:DesignWidth="790">
     <DockPanel Background="White"
                Margin="0">
@@ -69,7 +69,7 @@
                            Margin="3,0,0,0" />
                 </StackPanel>
             </StackPanel>
-            <Border Height="120"
+            <Border Height="130"
                     VerticalAlignment="Top"
                     Margin="40,200,40,0"
                     CornerRadius="9"
@@ -104,7 +104,7 @@
             </Border>
             <m:Map CredentialsProvider="AjDCS0YT0DFQE8N-bTWLzwkrCvkI7rV_EFccjII8rj5SYYPoC5B7BmRv_ZmZbI9q"
                    ZoomLevel="12"
-                   Height="250"
+                   Height="260"
                    VerticalAlignment="Bottom"
                    DataContext="{Binding SelectedTechnician}"
                    customControls:MapHelper.Center="{Binding LastLocation}">
