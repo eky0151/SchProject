@@ -16,6 +16,7 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
 using SchProject.Resources.Layout.StyleResources;
+using System.ServiceModel;
 
 namespace SchProject.ViewModel
 {
@@ -49,6 +50,10 @@ namespace SchProject.ViewModel
             SimpleIoc.Default.Register<BugreportViewModel>();
             SimpleIoc.Default.Register<SettingsViewModel>();
             SimpleIoc.Default.Register<DashboardViewModel>();
+            SimpleIoc.Default.Register<ChatViewModel>();
+
+            //wcf
+            //SimpleIoc.Default.Register<Chatservice.ChatClient>();
         }
 
         public DashboardViewModel Dashboard
@@ -83,6 +88,17 @@ namespace SchProject.ViewModel
                 return ServiceLocator.Current.GetInstance<LoginViewModel>();
             }
         }
+
+        public ChatViewModel Chat
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<ChatViewModel>();
+            }
+        }
+
+      
+
         public static void Cleanup()
         {
             // TODO Clear the ViewModels

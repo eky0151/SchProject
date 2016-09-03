@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchProject", "SchProject\SchProject.csproj", "{853E5F23-12B3-460A-ADD0-D6B2700CD5D9}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C4F912C6-C838-4BB1-BD46-3B1B5197E256} = {C4F912C6-C838-4BB1-BD46-3B1B5197E256}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbAndRepository", "DbAndRepository\DbAndRepository.csproj", "{72BD122C-9E79-481B-A377-86C192F10505}"
 EndProject

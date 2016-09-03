@@ -16,5 +16,14 @@
 
         [OperationContract(IsOneWay = true)]
         void SendMessage(string message, string receiverName);
+
+        [OperationContract]
+        bool IsAnyWorker();
+
+        [OperationContract]
+        void AddWorker(string name);
+
+        [OperationContract]
+        void RemoveWorker(string name);
     }
 }

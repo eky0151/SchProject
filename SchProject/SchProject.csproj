@@ -102,6 +102,9 @@
     <Compile Include="Resources\Layout\Bugreport.xaml.cs">
       <DependentUpon>Bugreport.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Resources\Layout\Chat.xaml.cs">
+      <DependentUpon>Chat.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Resources\Layout\Converters\BoolToImageSourceConverter.cs" />
     <Compile Include="Resources\Layout\Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Resources\Layout\Converters\ParametersToArrayConverter.cs" />
@@ -131,6 +134,12 @@
     <Compile Include="Resources\Layout\MainWindowAqua.xaml.cs">
       <DependentUpon>MainWindowAqua.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Service References\Chatservice\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\ChatViewModel.cs" />
     <Compile Include="ViewModel\DashboardViewModel.cs" />
     <Compile Include="Service References\TechSupportService\Reference.cs">
       <AutoGen>True</AutoGen>
@@ -153,6 +162,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\Layout\Bugreport.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Layout\Chat.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -230,6 +243,13 @@
     </None>
     <AppDesigner Include="Properties\" />
     <Resource Include="Resources\Layout\Fonts\HelveticaNeue.ttf" />
+    <None Include="Service References\Chatservice\ChatService.wsdl" />
+    <None Include="Service References\Chatservice\ChatService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\Chatservice\ChatService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\TechSupportService\SchProject.TechSupportService.LoginResult.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -293,6 +313,7 @@
     <Resource Include="Resources\Layout\Images\add.png" />
   </ItemGroup>
   <ItemGroup>
+    <WCFMetadataStorage Include="Service References\Chatservice\" />
     <WCFMetadataStorage Include="Service References\TechSupportService\" />
   </ItemGroup>
   <ItemGroup>
@@ -317,6 +338,21 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Layout\Images\send-symbol.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\Chatservice\ChatService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\Chatservice\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\Chatservice\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\Chatservice\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
