@@ -18,7 +18,7 @@ namespace DbAndRepository
         public int TechID { get; set; }
         public System.DateTime Start { get; set; }
         public System.DateTime Finish { get; set; }
-        public int Payment { get; set; }
+        public int Price { get; set; }
         public string Customername { get; set; }
         public string Customeraddress { get; set; }
     

@@ -22,7 +22,8 @@ namespace DbAndRepository
     
         public int ID { get; set; }
         public int WorkerID { get; set; }
-        public bool Available { get; set; }
+        public string Available { get; set; }
+        public System.Data.Entity.Spatial.DbGeography Lastlocation { get; set; }
     
         public virtual Worker Worker { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

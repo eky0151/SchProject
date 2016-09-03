@@ -3,6 +3,7 @@ using DbAndRepository.Repostirories;
 using DbAndRepository;
 using DbAndRepository.IRepositories;
 using System.Collections.Generic;
+using System;
 
 namespace DatabaseAndRepositoryTests
 {
@@ -10,16 +11,17 @@ namespace DatabaseAndRepositoryTests
     public sealed class WorkerRepositoryTest
     {
         private IWorkerRepository workerRepo;
-        private TechSupportDatabaseEntities db;
+        private TechSupportDatabaseEntities db =  new TechSupportDatabaseEntities();
         private List<Worker> workerList;
+        private ILogsRepository logs;
 
         #region Initialize and Cleanup
         [TestInitialize]
         public void InitializeTest()
         {
-           
             workerRepo = new WorkerRepository(db);
             workerList = new List<Worker>(workerRepo.GetAll());
+            logs = new LogsRepository(db);
         }
 
         [TestCleanup]
@@ -51,6 +53,8 @@ namespace DatabaseAndRepositoryTests
 
             r.Update(datas[0]);
         }
+
+     
 
 
     }

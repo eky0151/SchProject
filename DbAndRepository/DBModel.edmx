@@ -82,7 +82,8 @@
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="WorkerID" Type="int" Nullable="false" />
-          <Property Name="Available" Type="bit" Nullable="false" />
+          <Property Name="Available" Type="varchar" MaxLength="20" />
+          <Property Name="Lastlocation" Type="geography" />
         </EntityType>
         <EntityType Name="TechWorks">
           <Key>
@@ -92,7 +93,7 @@
           <Property Name="TechID" Type="int" Nullable="false" />
           <Property Name="Start" Type="datetime" Nullable="false" />
           <Property Name="Finish" Type="datetime" Nullable="false" />
-          <Property Name="Payment" Type="int" Nullable="false" />
+          <Property Name="Price" Type="int" Nullable="false" />
           <Property Name="Customername" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Customeraddress" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
@@ -340,7 +341,8 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="WorkerID" Type="Int32" Nullable="false" />
-          <Property Name="Available" Type="Boolean" Nullable="false" />
+          <Property Name="Available" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Lastlocation" Type="Geography" />
           <NavigationProperty Name="Worker" Relationship="Self.FK_Technician_Worker" FromRole="Technician" ToRole="Worker" />
           <NavigationProperty Name="TechWorks" Relationship="Self.FK_TechWorks_Technician" FromRole="Technician" ToRole="TechWorks" />
         </EntityType>
@@ -352,7 +354,7 @@
           <Property Name="TechID" Type="Int32" Nullable="false" />
           <Property Name="Start" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Finish" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Payment" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Int32" Nullable="false" />
           <Property Name="Customername" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Customeraddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Technician" Relationship="Self.FK_TechWorks_Technician" FromRole="TechWorks" ToRole="Technician" />
@@ -602,6 +604,7 @@
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="WorkerID" ColumnName="WorkerID" />
                 <ScalarProperty Name="Available" ColumnName="Available" />
+                <ScalarProperty Name="Lastlocation" ColumnName="Lastlocation" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -612,7 +615,7 @@
                 <ScalarProperty Name="TechID" ColumnName="TechID" />
                 <ScalarProperty Name="Start" ColumnName="Start" />
                 <ScalarProperty Name="Finish" ColumnName="Finish" />
-                <ScalarProperty Name="Payment" ColumnName="Payment" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="Customername" ColumnName="Customername" />
                 <ScalarProperty Name="Customeraddress" ColumnName="Customeraddress" />
               </MappingFragment>
