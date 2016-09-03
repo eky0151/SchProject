@@ -27,8 +27,8 @@ namespace SchProject.ViewModel
         private void OpenDialog()
         {
             OpenFileDialog dlg = new OpenFileDialog();
-            dlg.DefaultExt = ".png";
-            dlg.Filter = "JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg|GIF Files (*.gif)|*.gif";
+            dlg.DefaultExt = "*.png";
+            dlg.Filter = "PNG Files (*.png)|*.png|JPEG Files (*.jpeg)|*.jpeg|JPG Files (*.jpg)|*.jpg|GIF Files (*.gif)|*.gif";
             bool? result = dlg.ShowDialog();
             if (result == true)
             {

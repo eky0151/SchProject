@@ -50,7 +50,7 @@
         <Setter Property="MinWidth"
                 Value="1000"></Setter>
         <Setter Property="MinHeight"
-                Value="600"></Setter>
+                Value="625"></Setter>
         <Setter Property="Background"
                 Value="Transparent" />
         <Setter Property="Template">

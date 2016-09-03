@@ -5,10 +5,12 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:SchProject.ViewModel"
              xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
+             xmlns:customControls="clr-namespace:SchProject.Resources.Layout.CustomControls"
              mc:Ignorable="d"
-             d:DesignHeight="600"
+             d:DesignHeight="630"
              d:DesignWidth="790">
-    <DockPanel Background="White">
+    <DockPanel Background="White"
+               Margin="0">
         <DockPanel.DataContext>
             <local:AdminsViewModel />
         </DockPanel.DataContext>
@@ -16,25 +18,97 @@
                   DockPanel.Dock="Left"
                   HorizontalAlignment="Left"
                   ItemsSource="{Binding Admins}"
-                  BorderThickness="0">
-            <ListView.ItemContainerStyle>
-                <Style TargetType="{x:Type ListViewItem}">
-                    <Setter Property="Background"
-                            Value="Transparent" />
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="{x:Type ListViewItem}">
-                                <ContentPresenter />
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                </Style>
-            </ListView.ItemContainerStyle>
-        </ListView>
+                  BorderBrush="#D5D6D7"
+                  SelectedItem="{Binding SelectedTechnician}"
+                  Style="{StaticResource AdminList}"
+                  BorderThickness="0,2,2,2" />
+
         <Grid DockPanel.Dock="Right">
+
+            <Ellipse Width="136"
+                     Height="136"
+                     StrokeThickness="3"
+                     Stroke="White"
+                     VerticalAlignment="Top"
+                     HorizontalAlignment="Left"
+                     Margin="40,40,0,0">
+                <Ellipse.Fill>
+                    <ImageBrush ImageSource="Images/demoPic.jpg"
+                                Stretch="UniformToFill" />
+                </Ellipse.Fill>
+                <Ellipse.Effect>
+                    <DropShadowEffect BlurRadius="3"
+                                      Direction="0"
+                                      ShadowDepth="0"
+                                      Opacity="0.2" />
+                </Ellipse.Effect>
+            </Ellipse>
+            <StackPanel DataContext="{Binding SelectedTechnician}"
+                        VerticalAlignment="Top"
+                        HorizontalAlignment="Center"
+                        Width="300"
+                        Height="115"
+                        Margin="140,75,0,0">
+                <Label Style="{StaticResource AdminTextStyle}"
+                       Content="{Binding Name}" />
+                <Label  Style="{StaticResource AdminTextStyle}"
+                        Content="{Binding Email}" />
+                <Label  Style="{StaticResource AdminTextStyle}"
+                        Content="{Binding PhoneNumber}" />
+                <StackPanel Orientation="Horizontal">
+                    <Ellipse Width="18"
+                             Height="18">
+                        <Ellipse.Fill>
+                            <ImageBrush ImageSource="{Binding Available,Converter={StaticResource BoolToImageSourceConverter}}" />
+                        </Ellipse.Fill>
+                    </Ellipse>
+                    <Label FontSize="15"
+                           Foreground="#585757"
+                           FontWeight="SemiBold"
+                           Content="{Binding AdditionalData}"
+                           Margin="3,0,0,0" />
+                </StackPanel>
+            </StackPanel>
+            <Border Height="130"
+                    VerticalAlignment="Top"
+                    Margin="40,200,40,0"
+                    CornerRadius="9"
+                    BorderBrush="#D5D6D7"
+                    BorderThickness="1"
+                    Background="White">
+                <Grid>
+                    <TextBox Margin="3"
+                             TextWrapping="Wrap"
+                             FontSize="15"
+                             FontWeight="SemiBold"
+                             Foreground="#585757"
+                             BorderThickness="0"
+                             Style="{StaticResource AdminMessageBoxStyle}" />
+                    <Button Style="{StaticResource ImageButton}"
+                            Width="20"
+                            Height="20"
+                            Margin="10,88,428,10">
+                        <Button.Template>
+                            <ControlTemplate>
+                                <Image Source="Images/send-symbol.png" />
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </Grid>
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="2"
+                                      Direction="0"
+                                      ShadowDepth="0"
+                                      Opacity="0.2"></DropShadowEffect>
+                </Border.Effect>
+            </Border>
             <m:Map CredentialsProvider="AjDCS0YT0DFQE8N-bTWLzwkrCvkI7rV_EFccjII8rj5SYYPoC5B7BmRv_ZmZbI9q"
-                   Center="47.620574,-122.34942" ZoomLevel="12" Height="250" VerticalAlignment="Bottom">
-                <m:Pushpin Location="47.620574,-122.34942" />
+                   ZoomLevel="12"
+                   Height="260"
+                   VerticalAlignment="Bottom"
+                   DataContext="{Binding SelectedTechnician}"
+                   customControls:MapHelper.Center="{Binding LastLocation}">
+                <m:Pushpin Location="{Binding LastLocation}" />
             </m:Map>
         </Grid>
     </DockPanel>

@@ -15,6 +15,7 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
+using SchProject.Resources.Layout.StyleResources;
 
 namespace SchProject.ViewModel
 {
@@ -46,8 +47,18 @@ namespace SchProject.ViewModel
             SimpleIoc.Default.Register<LoginViewModel>();
             SimpleIoc.Default.Register<RootMenuViewModel>();
             SimpleIoc.Default.Register<BugreportViewModel>();
+            SimpleIoc.Default.Register<SettingsViewModel>();
+            SimpleIoc.Default.Register<DashboardViewModel>();
         }
 
+        public DashboardViewModel Dashboard
+        {
+            get { return ServiceLocator.Current.GetInstance<DashboardViewModel>(); }
+        }
+        public SettingsViewModel Settings
+        {
+            get { return ServiceLocator.Current.GetInstance<SettingsViewModel>(); }
+        }
         public BugreportViewModel BugReport
         {
             get { return ServiceLocator.Current.GetInstance<BugreportViewModel>(); }
