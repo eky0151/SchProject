@@ -16,6 +16,11 @@ using SchProject.TechSupportService;
 
 namespace SchProject.ViewModel
 {
+    public class SendFullNameMessage
+    {
+        public string FullName { get; set; }
+    }
+
     public class RootMenuViewModel : ViewModelBase
     {
         public string _fullName;
@@ -39,6 +44,10 @@ namespace SchProject.ViewModel
             Logout = new RelayCommand(NavLogout);
             _rootNavigator = NavigatorFactory.Navigator;
             Messenger.Default.Register<LoginResult>(this, LoginSet);
+
+            //for the chatservice connect method we'll need a name, so we send the name, and we register for
+            //this message in the ChatViewModel
+            Messenger.Default.Send(new SendFullNameMessage { FullName = FullName });
 
         }
 

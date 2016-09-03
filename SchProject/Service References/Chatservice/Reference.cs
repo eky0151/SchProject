@@ -38,6 +38,24 @@ namespace SchProject.Chatservice {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChat/SendMessage")]
         System.Threading.Tasks.Task SendMessageAsync(string message, string receiverName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChat/IsAnyWorker", ReplyAction="http://tempuri.org/IChat/IsAnyWorkerResponse")]
+        bool IsAnyWorker();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChat/IsAnyWorker", ReplyAction="http://tempuri.org/IChat/IsAnyWorkerResponse")]
+        System.Threading.Tasks.Task<bool> IsAnyWorkerAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChat/AddWorker", ReplyAction="http://tempuri.org/IChat/AddWorkerResponse")]
+        void AddWorker(string name);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChat/AddWorker", ReplyAction="http://tempuri.org/IChat/AddWorkerResponse")]
+        System.Threading.Tasks.Task AddWorkerAsync(string name);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChat/RemoveWorker", ReplyAction="http://tempuri.org/IChat/RemoveWorkerResponse")]
+        void RemoveWorker(string name);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChat/RemoveWorker", ReplyAction="http://tempuri.org/IChat/RemoveWorkerResponse")]
+        System.Threading.Tasks.Task RemoveWorkerAsync(string name);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -111,6 +129,30 @@ namespace SchProject.Chatservice {
         
         public System.Threading.Tasks.Task SendMessageAsync(string message, string receiverName) {
             return base.Channel.SendMessageAsync(message, receiverName);
+        }
+        
+        public bool IsAnyWorker() {
+            return base.Channel.IsAnyWorker();
+        }
+        
+        public System.Threading.Tasks.Task<bool> IsAnyWorkerAsync() {
+            return base.Channel.IsAnyWorkerAsync();
+        }
+        
+        public void AddWorker(string name) {
+            base.Channel.AddWorker(name);
+        }
+        
+        public System.Threading.Tasks.Task AddWorkerAsync(string name) {
+            return base.Channel.AddWorkerAsync(name);
+        }
+        
+        public void RemoveWorker(string name) {
+            base.Channel.RemoveWorker(name);
+        }
+        
+        public System.Threading.Tasks.Task RemoveWorkerAsync(string name) {
+            return base.Channel.RemoveWorkerAsync(name);
         }
     }
 }

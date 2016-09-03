@@ -31,6 +31,24 @@
   <wsdl:message name="IChat_SendMessage_InputMessage">
     <wsdl:part name="parameters" element="tns:SendMessage" />
   </wsdl:message>
+  <wsdl:message name="IChat_IsAnyWorker_InputMessage">
+    <wsdl:part name="parameters" element="tns:IsAnyWorker" />
+  </wsdl:message>
+  <wsdl:message name="IChat_IsAnyWorker_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IsAnyWorkerResponse" />
+  </wsdl:message>
+  <wsdl:message name="IChat_AddWorker_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddWorker" />
+  </wsdl:message>
+  <wsdl:message name="IChat_AddWorker_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddWorkerResponse" />
+  </wsdl:message>
+  <wsdl:message name="IChat_RemoveWorker_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveWorker" />
+  </wsdl:message>
+  <wsdl:message name="IChat_RemoveWorker_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveWorkerResponse" />
+  </wsdl:message>
   <wsdl:message name="IChat_ReceiveMessageCallback_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:ReceiveMessageCallback" />
   </wsdl:message>
@@ -52,6 +70,18 @@
     </wsdl:operation>
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="SendMessage">
       <wsdl:input wsaw:Action="http://tempuri.org/IChat/SendMessage" message="tns:IChat_SendMessage_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="IsAnyWorker">
+      <wsdl:input wsaw:Action="http://tempuri.org/IChat/IsAnyWorker" message="tns:IChat_IsAnyWorker_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IChat/IsAnyWorkerResponse" message="tns:IChat_IsAnyWorker_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="AddWorker">
+      <wsdl:input wsaw:Action="http://tempuri.org/IChat/AddWorker" message="tns:IChat_AddWorker_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IChat/AddWorkerResponse" message="tns:IChat_AddWorker_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="RemoveWorker">
+      <wsdl:input wsaw:Action="http://tempuri.org/IChat/RemoveWorker" message="tns:IChat_RemoveWorker_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IChat/RemoveWorkerResponse" message="tns:IChat_RemoveWorker_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="ReceiveMessageCallback">
       <wsdl:output wsaw:Action="http://tempuri.org/IChat/ReceiveMessageCallback" message="tns:IChat_ReceiveMessageCallback_OutputCallbackMessage" />
@@ -89,6 +119,33 @@
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="IsAnyWorker">
+      <soap12:operation soapAction="http://tempuri.org/IChat/IsAnyWorker" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddWorker">
+      <soap12:operation soapAction="http://tempuri.org/IChat/AddWorker" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveWorker">
+      <soap12:operation soapAction="http://tempuri.org/IChat/RemoveWorker" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="ReceiveMessageCallback">
       <soap12:operation soapAction="http://tempuri.org/IChat/ReceiveMessageCallback" style="document" />

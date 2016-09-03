@@ -15,11 +15,17 @@ using System.Windows.Shapes;
 
 namespace SchProject.Resources.Layout
 {
-    /// <summary>
-    /// Interaction logic for Chat.xaml
-    /// </summary>
     public partial class Chat : UserControl
     {
+        //public string UserName
+        //{
+        //    get { return (string)GetValue(NameProperty); }
+        //    set { SetValue(NameProperty, value); }
+        //}
+
+        //public static readonly DependencyProperty UserNameProperty =
+        //    DependencyProperty.Register("UserName", typeof(string), typeof(Chat), new PropertyMetadata(0));
+
         public Chat()
         {
             InitializeComponent();
