@@ -19,6 +19,7 @@ namespace SchProject.ViewModel
     public class SendFullNameMessage
     {
         public string FullName { get; set; }
+        public BitmapImage Image { get; set; }
     }
 
     public class RootMenuViewModel : ViewModelBase
@@ -47,7 +48,7 @@ namespace SchProject.ViewModel
 
             //for the chatservice connect method we'll need a name, so we send the name, and we register for
             //this message in the ChatViewModel
-            Messenger.Default.Send(new SendFullNameMessage { FullName = FullName });
+            Messenger.Default.Send(new SendFullNameMessage { FullName = FullName, Image = null});
 
         }
 
