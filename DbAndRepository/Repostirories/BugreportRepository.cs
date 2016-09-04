@@ -28,11 +28,11 @@
             return database.Set<Bugreport>().FirstOrDefault(x => x.ID == id);
         }
 
-        public List<byte[]> GetFilesByBugreportID(int id)
+        public List<string> GetFilesByBugreportID(int id)
         {
             return (from i in database.Set<Files>()
                     where i.ID == id
-                    select i.File).ToList<byte[]>();
+                    select i.File).ToList<string>();
         }
 
         public override void Update(Bugreport entityToModify)

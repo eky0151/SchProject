@@ -21,9 +21,9 @@ namespace DbAndRepository
         }
     
         public int ID { get; set; }
+        public int Sender { get; set; }
         public string Message { get; set; }
-        public string Sender { get; set; }
-        public System.DateTime SendTime { get; set; }
+        public System.DateTime Date { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Files> Files { get; set; }

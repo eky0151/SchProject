@@ -6,9 +6,9 @@
     using IRepositories;
     using System.Linq;
 
-    public class LogsRepository : GenericsRepository<Logs>, ILogsRepository
+    public class LoginLogsRepository : GenericsRepository<LoginLogs>, ILoginLogsRepository
     {
-        public LogsRepository(DbContext newDb) : base(newDb)
+        public LoginLogsRepository(DbContext newDb) : base(newDb)
         {
         }
 
@@ -17,17 +17,17 @@
             throw new System.NotImplementedException();
         }
 
-        public override Logs GetById(int id)
+        public override LoginLogs GetById(int id)
         {
             throw new System.NotImplementedException();
         }
 
-        public List<Logs> GetByWorker(Worker worker)
+        public List<LoginLogs> GetByWorker(Worker worker)
         {
-            return GetAll().Where(i => i.ID == worker.ID).ToList();
+            throw new System.NotImplementedException();
         }
 
-        public override void Update(Logs entityToModify)
+        public override void Update(LoginLogs entityToModify)
         {
             throw new System.NotImplementedException();
         }

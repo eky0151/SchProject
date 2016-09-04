@@ -5,6 +5,8 @@
       <xsd:import schemaLocation="http://techsupportservice.azurewebsites.net/TechSupportService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
       <xsd:import schemaLocation="http://techsupportservice.azurewebsites.net/TechSupportService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import schemaLocation="http://techsupportservice.azurewebsites.net/TechSupportService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/TechSupportService" />
+      <xsd:import schemaLocation="http://techsupportservice.azurewebsites.net/TechSupportService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/System.Security" />
+      <xsd:import schemaLocation="http://techsupportservice.azurewebsites.net/TechSupportService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/TechSupportService.DataContract" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="ITechSupportService1_Login_InputMessage">
@@ -25,6 +27,48 @@
   <wsdl:message name="ITechSupportService1_RegisterNewUser_OutputMessage">
     <wsdl:part name="parameters" element="tns:RegisterNewUserResponse" />
   </wsdl:message>
+  <wsdl:message name="ITechSupportService1_UsernameValidation_InputMessage">
+    <wsdl:part name="parameters" element="tns:UsernameValidation" />
+  </wsdl:message>
+  <wsdl:message name="ITechSupportService1_UsernameValidation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UsernameValidationResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITechSupportService1_RegisterNewStaffMember_InputMessage">
+    <wsdl:part name="parameters" element="tns:RegisterNewStaffMember" />
+  </wsdl:message>
+  <wsdl:message name="ITechSupportService1_RegisterNewStaffMember_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RegisterNewStaffMemberResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITechSupportService1_LastCustomerList_InputMessage">
+    <wsdl:part name="parameters" element="tns:LastCustomerList" />
+  </wsdl:message>
+  <wsdl:message name="ITechSupportService1_LastCustomerList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LastCustomerListResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITechSupportService1_StaffList_InputMessage">
+    <wsdl:part name="parameters" element="tns:StaffList" />
+  </wsdl:message>
+  <wsdl:message name="ITechSupportService1_StaffList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:StaffListResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITechSupportService1_ChangeWorkerStatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:ChangeWorkerStatus" />
+  </wsdl:message>
+  <wsdl:message name="ITechSupportService1_ChangeWorkerStatus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ChangeWorkerStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITechSupportService1_SendBugreport_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendBugreport" />
+  </wsdl:message>
+  <wsdl:message name="ITechSupportService1_SendBugreport_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SendBugreportResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITechSupportService1_ChangeWorkerPassWD_InputMessage">
+    <wsdl:part name="parameters" element="tns:ChangeWorkerPassWD" />
+  </wsdl:message>
+  <wsdl:message name="ITechSupportService1_ChangeWorkerPassWD_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ChangeWorkerPassWDResponse" />
+  </wsdl:message>
   <wsdl:portType name="ITechSupportService1">
     <wsdl:operation name="Login">
       <wsdl:input wsaw:Action="http://tempuri.org/ITechSupportService1/Login" message="tns:ITechSupportService1_Login_InputMessage" />
@@ -37,6 +81,34 @@
     <wsdl:operation name="RegisterNewUser">
       <wsdl:input wsaw:Action="http://tempuri.org/ITechSupportService1/RegisterNewUser" message="tns:ITechSupportService1_RegisterNewUser_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ITechSupportService1/RegisterNewUserResponse" message="tns:ITechSupportService1_RegisterNewUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UsernameValidation">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITechSupportService1/UsernameValidation" message="tns:ITechSupportService1_UsernameValidation_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITechSupportService1/UsernameValidationResponse" message="tns:ITechSupportService1_UsernameValidation_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RegisterNewStaffMember">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITechSupportService1/RegisterNewStaffMember" message="tns:ITechSupportService1_RegisterNewStaffMember_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITechSupportService1/RegisterNewStaffMemberResponse" message="tns:ITechSupportService1_RegisterNewStaffMember_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LastCustomerList">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITechSupportService1/LastCustomerList" message="tns:ITechSupportService1_LastCustomerList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITechSupportService1/LastCustomerListResponse" message="tns:ITechSupportService1_LastCustomerList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="StaffList">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITechSupportService1/StaffList" message="tns:ITechSupportService1_StaffList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITechSupportService1/StaffListResponse" message="tns:ITechSupportService1_StaffList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeWorkerStatus">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITechSupportService1/ChangeWorkerStatus" message="tns:ITechSupportService1_ChangeWorkerStatus_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITechSupportService1/ChangeWorkerStatusResponse" message="tns:ITechSupportService1_ChangeWorkerStatus_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SendBugreport">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITechSupportService1/SendBugreport" message="tns:ITechSupportService1_SendBugreport_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITechSupportService1/SendBugreportResponse" message="tns:ITechSupportService1_SendBugreport_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeWorkerPassWD">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITechSupportService1/ChangeWorkerPassWD" message="tns:ITechSupportService1_ChangeWorkerPassWD_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITechSupportService1/ChangeWorkerPassWDResponse" message="tns:ITechSupportService1_ChangeWorkerPassWD_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_ITechSupportService1" type="tns:ITechSupportService1">
@@ -61,6 +133,69 @@
     </wsdl:operation>
     <wsdl:operation name="RegisterNewUser">
       <soap:operation soapAction="http://tempuri.org/ITechSupportService1/RegisterNewUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UsernameValidation">
+      <soap:operation soapAction="http://tempuri.org/ITechSupportService1/UsernameValidation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegisterNewStaffMember">
+      <soap:operation soapAction="http://tempuri.org/ITechSupportService1/RegisterNewStaffMember" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LastCustomerList">
+      <soap:operation soapAction="http://tempuri.org/ITechSupportService1/LastCustomerList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StaffList">
+      <soap:operation soapAction="http://tempuri.org/ITechSupportService1/StaffList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeWorkerStatus">
+      <soap:operation soapAction="http://tempuri.org/ITechSupportService1/ChangeWorkerStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendBugreport">
+      <soap:operation soapAction="http://tempuri.org/ITechSupportService1/SendBugreport" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeWorkerPassWD">
+      <soap:operation soapAction="http://tempuri.org/ITechSupportService1/ChangeWorkerPassWD" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

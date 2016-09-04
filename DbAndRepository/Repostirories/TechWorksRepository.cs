@@ -9,7 +9,7 @@ using System.Data.Entity;
 
 namespace DbAndRepository.Repostirories
 {
-    class TechWorksRepository : GenericsRepository<TechWorks>, ITechWorksRepository
+    public class TechWorksRepository : GenericsRepository<TechWorks>, ITechWorksRepository
     {
         public TechWorksRepository(DbContext newDb) : base(newDb)
         {

@@ -5,7 +5,7 @@
                     xmlns:converters="clr-namespace:SchProject.Resources.Layout.Converters">
     <converters:NumberToBrushConverter x:Key="NumberToBrushConverter" />
     <converters:StaffStatusToBrushConverter x:Key="StaffStatusToBrushConverter" />
-    <converters:TicketStatusToBrushConverter x:Key="TicketStatusToBrushConverter"/>
+    <converters:TicketStatusToBrushConverter x:Key="TicketStatusToBrushConverter" />
     <Style TargetType="controls:StatusBox">
         <Setter Property="Template">
             <Setter.Value>
@@ -121,6 +121,20 @@
         </Setter>
     </Style>
 
+
+    <Style TargetType="Label"
+           x:Key="CellLabelStyle">
+        <Setter Property="HorizontalContentAlignment"
+                Value="Center" />
+        <Setter Property="VerticalContentAlignment"
+                Value="Center" />
+        <Setter Property="Foreground"
+                Value="#545454" />
+        <Setter Property="FontSize"
+                Value="12" />
+        <Setter Property="Height"
+                Value="25" />
+    </Style>
     <Style TargetType="HeaderedItemsControl"
            x:Key="LastTickets">
         <Setter Property="AlternationCount"
@@ -171,11 +185,7 @@
                                 BorderThickness="0,0,1,1"
                                 BorderBrush="#CFCFCF">
                             <Label Content="{Binding ID}"
-                                   Foreground="#545454"
-                                   Height="25"
-                                   FontSize="12"
-                                   VerticalContentAlignment="Center"
-                                   HorizontalContentAlignment="Center"
+                                   Style="{StaticResource CellLabelStyle}"
                                    Width="120" />
                         </Border>
                         <Border Background="{Binding (ItemsControl.Background),RelativeSource={RelativeSource TemplatedParent}}"
@@ -184,21 +194,15 @@
                                 BorderBrush="#CFCFCF">
                             <Label Content="{Binding Question}"
                                    Width="280"
-                                   Height="25"
-                                   FontSize="12"
-                                   Foreground="#545454"
-                                   HorizontalContentAlignment="Center" />
+                                   Style="{StaticResource CellLabelStyle}" />
                         </Border>
                         <Border Background="{Binding (ItemsControl.Background),RelativeSource={RelativeSource TemplatedParent}}"
                                 BorderThickness="0,0,0,1"
                                 Height="25"
                                 BorderBrush="#CFCFCF">
                             <Label Content="{Binding Status}"
-                                   Width="93"
-                                   Height="25"
-                                   FontSize="12"
-                                   Foreground="{Binding Status,Converter={StaticResource TicketStatusToBrushConverter}}"
-                                   HorizontalContentAlignment="Center" />
+                                   Style="{StaticResource CellLabelStyle}"
+                                   Foreground="{Binding Status,Converter={StaticResource TicketStatusToBrushConverter}}" />
                         </Border>
                     </VirtualizingStackPanel>
                     <DataTemplate.Triggers>
@@ -231,11 +235,7 @@
                                         BorderThickness="0,1,1,1"
                                         BorderBrush="#CFCFCF">
                                     <Label Content="Azonosító"
-                                           Foreground="#545454"
-                                           Height="25"
-                                           FontSize="12"
-                                           VerticalContentAlignment="Center"
-                                           HorizontalContentAlignment="Center"
+                                           Style="{StaticResource CellLabelStyle}"
                                            Width="120" />
                                 </Border>
                                 <Border Background="#FBFBFB"
@@ -244,9 +244,7 @@
                                         BorderBrush="#CFCFCF">
                                     <Label Content="Üzenet"
                                            Width="260"
-                                           Height="25"
-                                           FontSize="12"
-                                           Foreground="#545454"
+                                           Style="{StaticResource CellLabelStyle}"
                                            Margin="20,0,0,0"
                                            HorizontalContentAlignment="Left" />
                                 </Border>
@@ -256,10 +254,7 @@
                                         BorderBrush="#CFCFCF">
                                     <Label Content="Állapot"
                                            Width="93"
-                                           Height="25"
-                                           FontSize="12"
-                                           Foreground="#747474"
-                                           HorizontalContentAlignment="Center" />
+                                           Style="{StaticResource CellLabelStyle}"/>
                                 </Border>
                             </StackPanel>
                             <ItemsPresenter />
@@ -326,11 +321,7 @@
                                 BorderThickness="0,0,1,1"
                                 BorderBrush="#CFCFCF">
                             <Label Content="{Binding ID}"
-                                   Foreground="#545454"
-                                   Height="25"
-                                   FontSize="12"
-                                   VerticalContentAlignment="Center"
-                                   HorizontalContentAlignment="Center"
+                                   Style="{StaticResource CellLabelStyle}"
                                    Width="120" />
                         </Border>
                         <Border Background="{Binding (ItemsControl.Background),RelativeSource={RelativeSource TemplatedParent}}"
@@ -339,10 +330,7 @@
                                 BorderBrush="#CFCFCF">
                             <Label Content="{Binding FullName}"
                                    Width="130"
-                                   Height="25"
-                                   FontSize="12"
-                                   Foreground="#545454"
-                                   HorizontalContentAlignment="Center" />
+                                   Style="{StaticResource CellLabelStyle}" />
                         </Border>
                         <Border Background="{Binding (ItemsControl.Background),RelativeSource={RelativeSource TemplatedParent}}"
                                 BorderThickness="0,0,1,1"
@@ -350,10 +338,7 @@
                                 BorderBrush="#CFCFCF">
                             <Label Content="{Binding Role}"
                                    Width="130"
-                                   Height="25"
-                                   FontSize="12"
-                                   Foreground="#545454"
-                                   HorizontalContentAlignment="Center" />
+                                   Style="{StaticResource CellLabelStyle}"/>
                         </Border>
                         <Border Background="{Binding (ItemsControl.Background),RelativeSource={RelativeSource TemplatedParent}}"
                                 BorderThickness="0,0,0,1"
@@ -361,10 +346,8 @@
                                 BorderBrush="#CFCFCF">
                             <Label Content="{Binding Status}"
                                    Width="113"
-                                   Height="25"
-                                   FontSize="12"
-                                   Foreground="{Binding Status,Converter={StaticResource StaffStatusToBrushConverter}}"
-                                   HorizontalContentAlignment="Center" />
+                                   Style="{StaticResource CellLabelStyle}"
+                                   Foreground="{Binding Status,Converter={StaticResource StaffStatusToBrushConverter}}"/>
                         </Border>
                     </VirtualizingStackPanel>
                     <DataTemplate.Triggers>
@@ -397,11 +380,7 @@
                                         BorderThickness="0,1,1,1"
                                         BorderBrush="#CFCFCF">
                                     <Label Content="Azonosító"
-                                           Foreground="#545454"
-                                           Height="25"
-                                           FontSize="12"
-                                           VerticalContentAlignment="Center"
-                                           HorizontalContentAlignment="Center"
+                                           Style="{StaticResource CellLabelStyle}"
                                            Width="120" />
                                 </Border>
                                 <Border Background="#FBFBFB"
@@ -410,10 +389,7 @@
                                         BorderBrush="#CFCFCF">
                                     <Label Content="Név"
                                            Width="130"
-                                           Height="25"
-                                           FontSize="12"
-                                           Foreground="#545454"
-                                           HorizontalContentAlignment="Center" />
+                                           Style="{StaticResource CellLabelStyle}" />
                                 </Border>
                                 <Border Background="#FBFBFB"
                                         BorderThickness="0,1,1,1"
@@ -421,10 +397,7 @@
                                         BorderBrush="#CFCFCF">
                                     <Label Content="Típus"
                                            Width="130"
-                                           Height="25"
-                                           FontSize="12"
-                                           Foreground="#545454"
-                                           HorizontalContentAlignment="Center" />
+                                           Style="{StaticResource CellLabelStyle}" />
                                 </Border>
                                 <Border Background="#FBFBFB"
                                         BorderThickness="0,1,0,1"
@@ -432,10 +405,7 @@
                                         BorderBrush="#CFCFCF">
                                     <Label Content="Állapot"
                                            Width="113"
-                                           Height="25"
-                                           FontSize="12"
-                                           Foreground="#747474"
-                                           HorizontalContentAlignment="Center" />
+                                           Style="{StaticResource CellLabelStyle}" />
                                 </Border>
                             </StackPanel>
                             <ItemsPresenter />

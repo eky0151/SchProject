@@ -33,7 +33,7 @@ namespace SchProject.ViewModel
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
-            
+
 
             ////if (ViewModelBase.IsInDesignModeStatic)
             ////{
@@ -48,32 +48,33 @@ namespace SchProject.ViewModel
 
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<LoginViewModel>();
-            SimpleIoc.Default.Register<RootMenuViewModel>();
-            SimpleIoc.Default.Register<BugreportViewModel>();
-            SimpleIoc.Default.Register<SettingsViewModel>();
-            SimpleIoc.Default.Register<DashboardViewModel>();
             SimpleIoc.Default.Register<ChatViewModel>();
 
             //wcf
             //SimpleIoc.Default.Register<Chatservice.ChatClient>();
+           // SimpleIoc.Default.Register<TechSupportService.TechSupportService1Client>();
         }
 
+        public ManagementViewModel Management
+        {
+            get { return new ManagementViewModel(); }
+        }
         public DashboardViewModel Dashboard
         {
-            get { return ServiceLocator.Current.GetInstance<DashboardViewModel>(); }
+            get { return new DashboardViewModel(); }
         }
         public SettingsViewModel Settings
         {
-            get { return ServiceLocator.Current.GetInstance<SettingsViewModel>(); }
+            get { return new SettingsViewModel(); }
         }
         public BugreportViewModel BugReport
         {
-            get { return ServiceLocator.Current.GetInstance<BugreportViewModel>(); }
+            get { return new BugreportViewModel(); }
         }
 
         public RootMenuViewModel Menu
         {
-            get { return ServiceLocator.Current.GetInstance<RootMenuViewModel>(); }
+            get { return new RootMenuViewModel(); }
         }
         public MainViewModel Main
         {
@@ -99,7 +100,7 @@ namespace SchProject.ViewModel
             }
         }
 
-      
+
 
         public static void Cleanup()
         {

@@ -17,7 +17,7 @@ namespace DbAndRepository
         public int ID { get; set; }
         public int UserID { get; set; }
         public int WorkerID { get; set; }
-        public string Question_ { get; set; }
+        public string Question { get; set; }
         public string Answer { get; set; }
         public string Category { get; set; }
         public System.DateTime Timeasked { get; set; }
@@ -25,7 +25,7 @@ namespace DbAndRepository
         public string KeyWords { get; set; }
         public string Topic { get; set; }
     
-        public virtual LoginData LoginData { get; set; }
         public virtual RegUser RegUser { get; set; }
+        public virtual Worker Worker { get; set; }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace DbAndRepository.GenericsEFRepository
+﻿using System.Data.Entity.Validation;
+
+namespace DbAndRepository.GenericsEFRepository
 {
     using System;
     using System.Linq;
@@ -9,7 +11,7 @@
     {
         protected DbContext database;
 
-        public GenericsRepository(DbContext newDb)
+        protected GenericsRepository(DbContext newDb)
         {
             if (newDb == null)
                 throw new ArgumentNullException(nameof(newDb));
@@ -38,11 +40,20 @@
             return database.Set<TEntity>();
         }
 
-        public void Insert(TEntity newEntity)
+        public virtual void Insert(TEntity newEntity)
         {
             database.Set<TEntity>().Add(newEntity);
-            database.Entry<TEntity>(newEntity).State = EntityState.Added;
-            database.SaveChanges();
+            database.Entry(newEntity).State = EntityState.Added;
+            try
+            {
+                database.SaveChanges();
+
+            }
+            catch (DbEntityValidationException e)
+            {
+                var newException = new FormattedDbEntityValidationException(e);
+                throw newException;
+            }
         }
 
         public void Dispose()
