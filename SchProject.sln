@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechSupportService", "TechS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureChatService", "AzureChatService\AzureChatService.csproj", "{C4F912C6-C838-4BB1-BD46-3B1B5197E256}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechSharedLibraries", "TechSharedLibraries\TechSharedLibraries.csproj", "{86E64CF5-55D1-4B73-BCB0-8EDB66DD348F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{C4F912C6-C838-4BB1-BD46-3B1B5197E256}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C4F912C6-C838-4BB1-BD46-3B1B5197E256}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C4F912C6-C838-4BB1-BD46-3B1B5197E256}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86E64CF5-55D1-4B73-BCB0-8EDB66DD348F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86E64CF5-55D1-4B73-BCB0-8EDB66DD348F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86E64CF5-55D1-4B73-BCB0-8EDB66DD348F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86E64CF5-55D1-4B73-BCB0-8EDB66DD348F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
