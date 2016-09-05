@@ -1,16 +1,34 @@
-﻿using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.CommandWpf;
-using GalaSoft.MvvmLight.Messaging;
-using System;
-using System.Collections.ObjectModel;
-using System.Windows.Input;
-
-namespace SchProject.ViewModel
+﻿namespace SchProject.ViewModel
 {
+    using GalaSoft.MvvmLight;
+    using GalaSoft.MvvmLight.CommandWpf;
+    using GalaSoft.MvvmLight.Messaging;
+    using System;
+    using System.Collections.ObjectModel;
+    using System.IO;
+    using System.Windows.Controls;
+    using System.Windows.Input;
+    using System.Windows.Media.Imaging;
+
     public class ChatViewModel : ViewModelBase, Chatservice.IChatCallback
     {
         //for the methods only
         Chatservice.ChatClient client;
+
+        private string message;
+        public string Message
+        {
+            get { return message; }
+            set { Set(ref message, value); }
+        }
+
+
+        private string fullName;
+        public string FullName
+        {
+            get { return fullName; }
+            set { Set(ref fullName, value); }
+        }
 
         public ICommand SendMessageCommand
         {
@@ -28,21 +46,7 @@ namespace SchProject.ViewModel
             }
         }
 
-        private string message;
-        public string Message
-        {
-            get { return message; }
-            set { Set(ref message, value); }
-        }
-
         public ObservableCollection<object> Messages { get; private set; }
-
-        private string fullName;
-        public string FullName
-        {
-            get { return fullName; }
-            set { Set(ref fullName, value); }
-        }
 
 
         public ChatViewModel()
@@ -60,7 +64,7 @@ namespace SchProject.ViewModel
 
         private void SendMessage(string message)
         {
-
+            
         }
 
         public void ClientConnectCallback(string name)
@@ -70,7 +74,8 @@ namespace SchProject.ViewModel
 
         public void ReceiveFileMessageeCallback(byte[] fileMessage, string description)
         {
-            throw new NotImplementedException();
+            MemoryStream ms = new MemoryStream(fileMessage);
+            //Image image = Image.FromStream(ms);
         }
 
         public void ReceiveMessageCallback(string message, string receiver)

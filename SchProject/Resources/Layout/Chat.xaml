@@ -13,7 +13,6 @@
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction Command="{Binding Path=LoginWorkerCommand}"/>
-                                   <!--CommandParameter="{Binding UserName}"-->
         </i:EventTrigger>
     </i:Interaction.Triggers>
     
