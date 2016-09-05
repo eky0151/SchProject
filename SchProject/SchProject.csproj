@@ -296,6 +296,16 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <None Include="Service References\Chatservice\ChatService.wsdl" />
+    <None Include="Service References\Chatservice\ChatService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\Chatservice\ChatService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\Chatservice\ChatService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\TechSupportService\SchProject.TechSupportService.CustomerLoginData.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -325,13 +335,6 @@
       <SubType>Designer</SubType>
     </None>
     <Resource Include="Resources\Layout\Fonts\HelveticaNeue.ttf" />
-    <None Include="Service References\Chatservice\ChatService.wsdl" />
-    <None Include="Service References\Chatservice\ChatService.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\Chatservice\ChatService1.xsd">
-      <SubType>Designer</SubType>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -394,21 +397,6 @@
     <Resource Include="Resources\Layout\Images\send-symbol.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\Chatservice\ChatService.disco" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\Chatservice\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\Chatservice\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\Chatservice\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\TechSharedLibraries\TechSharedLibraries.csproj">
       <Project>{86e64cf5-55d1-4b73-bcb0-8edb66dd348f}</Project>
       <Name>TechSharedLibraries</Name>
@@ -434,6 +422,21 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Layout\Images\managementSelected.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\Chatservice\ChatService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\Chatservice\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\Chatservice\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\Chatservice\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

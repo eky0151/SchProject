@@ -17,6 +17,7 @@
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import schemaLocation="http://localhost:36565/ChatService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
       <xsd:import schemaLocation="http://localhost:36565/ChatService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:36565/ChatService.svc?xsd=xsd2" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IChat_Connect_InputMessage">
@@ -48,6 +49,12 @@
   </wsdl:message>
   <wsdl:message name="IChat_RemoveWorker_OutputMessage">
     <wsdl:part name="parameters" element="tns:RemoveWorkerResponse" />
+  </wsdl:message>
+  <wsdl:message name="IChat_GetQuestions_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetQuestions" />
+  </wsdl:message>
+  <wsdl:message name="IChat_GetQuestions_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetQuestionsResponse" />
   </wsdl:message>
   <wsdl:message name="IChat_ReceiveMessageCallback_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:ReceiveMessageCallback" />
@@ -82,6 +89,10 @@
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="RemoveWorker">
       <wsdl:input wsaw:Action="http://tempuri.org/IChat/RemoveWorker" message="tns:IChat_RemoveWorker_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IChat/RemoveWorkerResponse" message="tns:IChat_RemoveWorker_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetQuestions">
+      <wsdl:input wsaw:Action="http://tempuri.org/IChat/GetQuestions" message="tns:IChat_GetQuestions_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IChat/GetQuestionsResponse" message="tns:IChat_GetQuestions_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="ReceiveMessageCallback">
       <wsdl:output wsaw:Action="http://tempuri.org/IChat/ReceiveMessageCallback" message="tns:IChat_ReceiveMessageCallback_OutputCallbackMessage" />
@@ -140,6 +151,15 @@
     </wsdl:operation>
     <wsdl:operation name="RemoveWorker">
       <soap12:operation soapAction="http://tempuri.org/IChat/RemoveWorker" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetQuestions">
+      <soap12:operation soapAction="http://tempuri.org/IChat/GetQuestions" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
