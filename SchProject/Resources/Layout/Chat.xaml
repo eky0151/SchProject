@@ -14,9 +14,9 @@
         <i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction Command="{Binding Path=LoginWorkerCommand}"/>
         </i:EventTrigger>
-        <i:EventTrigger EventName="Closing">
+        <!--<i:EventTrigger EventName="Closing">
             
-        </i:EventTrigger>
+        </i:EventTrigger>-->
     </i:Interaction.Triggers>
     
     <Grid>
