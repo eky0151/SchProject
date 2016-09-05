@@ -89,6 +89,9 @@ namespace SchProject.ViewModel
                     case "Management":
                         Views[d] = new Management();
                         break;
+                    case "Error":
+                        Views[d] = new Chat();
+                        break;
                     default:
                         Views[d] = new Dashboard(); break;
                 }

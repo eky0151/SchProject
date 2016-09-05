@@ -26,7 +26,6 @@
             get { return OperationContext.Current.GetCallbackChannel<IChatCallback>(); }
         }
 
-
         public void Connect(string client)
         {
             lock (syncObj)
@@ -41,7 +40,6 @@
 
         public void Disconnect(string client)
         {
-            
             lock (syncObj)
             {
                 if (!clients.ContainsKey(client))

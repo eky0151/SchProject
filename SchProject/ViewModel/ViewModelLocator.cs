@@ -35,16 +35,16 @@ namespace SchProject.ViewModel
 
 
 
-            ////if (ViewModelBase.IsInDesignModeStatic)
-            ////{
-            ////    // Create design time view services and models
-            ////    SimpleIoc.Default.Register<IDataService, DesignDataService>();
-            ////}
-            ////else
-            ////{
-            ////    // Create run time view services and models
-            ////    SimpleIoc.Default.Register<IDataService, DataService>();
-            ////}
+            //if (ViewModelBase.IsInDesignModeStatic)
+            //{
+            //    // Create design time view services and models
+            //    SimpleIoc.Default.Register<TechSupportService.ITechSupportService1, new TechSupportService.()>();
+            //}
+            //else
+            //{
+            //    // Create run time view services and models
+            //    SimpleIoc.Default.Register<IDataService, DataService>();
+            //}
 
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<LoginViewModel>();

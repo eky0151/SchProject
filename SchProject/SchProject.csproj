@@ -190,6 +190,7 @@
     <Compile Include="ViewModel\DashboardViewModel.cs" />
     <Compile Include="ViewModel\AdminsViewModel.cs" />
     <Compile Include="ViewModel\BugreportViewModel.cs" />
+    <Compile Include="ViewModel\Global.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ManagementViewModel.cs" />

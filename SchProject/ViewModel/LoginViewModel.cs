@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.ServiceModel;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -13,7 +7,6 @@ using System.Windows.Media.Imaging;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using GalaSoft.MvvmLight.Messaging;
-using SchProject.Resources.Layout;
 using SchProject.TechSupportService;
 
 namespace SchProject.ViewModel
@@ -75,12 +68,11 @@ namespace SchProject.ViewModel
             {
                 _navigator.Login();
                 Messenger.Default.Send<LoginResult>(result);
+                Global.FullName = result.FullName;
             }
             LoginEnabled = true;
 
-            //for the chatservice connect method we'll need a name, so we send the name, and we register for
-            //this message in the ChatViewModel
-            Messenger.Default.Send(new SendFullNameMessage { FullName = result.FullName , Image = null });
+            
         }
     }
 }

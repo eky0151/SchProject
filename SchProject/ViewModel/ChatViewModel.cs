@@ -13,10 +13,6 @@
 
     public class ChatViewModel : ViewModelBase
     {
-        
-        private static InstanceContext ctx = new InstanceContext(new ChatCallback());
-        Chatservice.ChatClient client  = new Chatservice.ChatClient(ctx);
-
         private string message;
         public string Message
         {
@@ -48,15 +44,23 @@
             }
         }
 
-        public ObservableCollection<object> Messages { get; private set; }
+        public ObservableCollection<object> Messages { get; private set; } = new ObservableCollection<object>();
 
+        private Chatservice.ChatClient client;
 
         public ChatViewModel()
         {
-            Messages = new ObservableCollection<object>();
+
+            InstanceContext ctx = new InstanceContext(new ChatCallback());
+            client  = new Chatservice.ChatClient(ctx);
+
+            fullName = Global.FullName;
+
             Messenger.Default.Register<SendFullNameMessage>(this, (SendFullNameMessage s) => fullName = s.FullName);
+
             Messenger.Default.Register(this, (SendClientConnect s) => Messages.Add(string.Format(
                 "{0} is connected at {1}", s.Name, DateTime.Now.ToShortTimeString())));
+
             Messenger.Default.Register(this, (SendReceiveMessage s) => Messages.Add(s.Message));
         }
 
@@ -71,22 +75,6 @@
         {
             
         }
-
-        //public void ClientConnectCallback(string name)
-        //{
-        //    Messages.Add(string.Format("{0} is connected at {1}", name, DateTime.Now));
-        //}
-
-        //public void ReceiveFileMessageeCallback(byte[] fileMessage, string description)
-        //{
-        //    MemoryStream ms = new MemoryStream(fileMessage);
-        //    Image image = Image.FromStream(ms);
-        //}
-
-        //public void ReceiveMessageCallback(string message, string receiver)
-        //{
-        //    Messages.Add(message);
-        //}
     }
 
     public class ChatCallback : Chatservice.IChatCallback
