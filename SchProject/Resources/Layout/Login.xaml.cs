@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using GalaSoft.MvvmLight.Messaging;
+using SchProject.TechSupportService;
 
 namespace SchProject.Resources.Layout
 {
@@ -25,5 +27,26 @@ namespace SchProject.Resources.Layout
             InitializeComponent();
         }
 
+        private void UserNameTextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            string username = ((TextBox)sender).Text;
+            ValidateUsername(username);
+
+        }
+
+        private void ValidateUsername(string username)
+        {
+            //var task =  Task.Factory.StartNew(() =>
+            //{
+            using (TechSupportService1Client host = new TechSupportService1Client())
+            {
+                host.Open();
+                var res = host.UsernameValidation(username);
+                if (res.Valid)
+                    Messenger.Default.Send<UsernameValidationResult>(res);
+            }
+            //});
+            //return task;
+        }
     }
 }

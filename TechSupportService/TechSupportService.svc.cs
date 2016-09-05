@@ -42,13 +42,14 @@ namespace TechSupportService
         public async Task<LoginResult> LoginAsync(string username, string password)
         {
             var authenticate = await Task.Factory.StartNew(() =>
-              {
+            {
+                string UUID = Guid.NewGuid().ToString("N");
                   string name = string.Empty,
                       role = string.Empty;
                   bool result = _auth.Authenticate(username, password, out name, out role);
                   return new LoginResult()
                   {
-                      Role = role,
+                      Role =(Role)Enum.Parse(typeof(Role),role),
                       Valid = result,
                       FullName = name
                   };

@@ -26,7 +26,7 @@ namespace SchProject.TechSupportService {
         private string FullNameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string RoleField;
+        private SchProject.TechSupportService.Role RoleField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Security.SecureString UUIDField;
@@ -58,12 +58,12 @@ namespace SchProject.TechSupportService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Role {
+        public SchProject.TechSupportService.Role Role {
             get {
                 return this.RoleField;
             }
             set {
-                if ((object.ReferenceEquals(this.RoleField, value) != true)) {
+                if ((this.RoleField.Equals(value) != true)) {
                     this.RoleField = value;
                     this.RaisePropertyChanged("Role");
                 }
@@ -104,6 +104,23 @@ namespace SchProject.TechSupportService {
                 propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
             }
         }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Role", Namespace="http://schemas.datacontract.org/2004/07/TechSupportService.DataContract")]
+    public enum Role : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        HelpDesk = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Admin = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Technician = 2,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Boss = 3,
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -411,23 +428,6 @@ namespace SchProject.TechSupportService {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
         OTP = 3,
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Role", Namespace="http://schemas.datacontract.org/2004/07/TechSupportService.DataContract")]
-    public enum Role : int {
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        HelpDesk = 0,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Admin = 1,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Technician = 2,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Boss = 3,
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
