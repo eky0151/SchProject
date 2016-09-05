@@ -1,5 +1,6 @@
 ﻿using System.Runtime.Serialization;
 using System.Security;
+using TechSupportService.DataContract;
 
 namespace TechSupportService
 {
@@ -10,7 +11,7 @@ namespace TechSupportService
         public bool Valid { get; set; }
 
         [DataMember]
-        public string Role { get; set; }
+        public Role Role { get; set; }
 
         [DataMember]
         public string FullName { get; set; }

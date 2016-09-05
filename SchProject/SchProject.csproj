@@ -129,6 +129,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="MenuButtonFactory.cs" />
     <Compile Include="Navigator.cs" />
     <Compile Include="Properties\Annotations1.cs" />
     <Compile Include="Resources\Layout\Admins.xaml.cs">
@@ -407,6 +408,12 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\TechSharedLibraries\TechSharedLibraries.csproj">
+      <Project>{86e64cf5-55d1-4b73-bcb0-8edb66dd348f}</Project>
+      <Name>TechSharedLibraries</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
     <None Include="Service References\TechSupportService\TechSupportService.disco" />
   </ItemGroup>
   <ItemGroup>
@@ -422,10 +429,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TechSharedLibraries\TechSharedLibraries.csproj">
-      <Project>{86e64cf5-55d1-4b73-bcb0-8edb66dd348f}</Project>
-      <Name>TechSharedLibraries</Name>
-    </ProjectReference>
+    <Resource Include="Resources\Layout\Images\management.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Layout\Images\managementSelected.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
