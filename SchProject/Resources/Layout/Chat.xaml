@@ -12,8 +12,7 @@
     
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
-            <i:InvokeCommandAction Command="{Binding Path=LoginWorkerCommand}"/>
-                                   <!--CommandParameter="{Binding UserName}"-->
+            <i:InvokeCommandAction Command="{Binding Path=LoginWorkerCommand}"/> <!-- inkább gomb -> connect/ unconnect-->
         </i:EventTrigger>
     </i:Interaction.Triggers>
     

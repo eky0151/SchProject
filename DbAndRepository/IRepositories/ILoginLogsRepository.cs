@@ -3,8 +3,8 @@
     using GenericsEFRepository;
     using System.Collections.Generic;
 
-    public interface ILogsRepository : IGenericsRepository<Logs>
+    public interface ILoginLogsRepository : IGenericsRepository<LoginLogs>
     {
-        List<Logs> GetByWorker(Worker worker);
+        List<LoginLogs> GetByWorker(Worker worker);
     }
 }

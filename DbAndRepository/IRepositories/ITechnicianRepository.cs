@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DbAndRepository.IRepositories
 {
-    interface ITechnicianRepository : IGenericsRepository<Technician>
+    public interface ITechnicianRepository : IGenericsRepository<Technician>
     {
         List<TechWorks> GetWorksByTechnician(int id);
     }

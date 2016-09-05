@@ -14,13 +14,6 @@ namespace DbAndRepository
     
     public partial class LoginData
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public LoginData()
-        {
-            this.Logs = new HashSet<Logs>();
-            this.SolvedQuestion = new HashSet<SolvedQuestion>();
-        }
-    
         public int ID { get; set; }
         public int WorkerID { get; set; }
         public string Username { get; set; }
@@ -28,9 +21,5 @@ namespace DbAndRepository
         public string Urole { get; set; }
     
         public virtual Worker Worker { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Logs> Logs { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SolvedQuestion> SolvedQuestion { get; set; }
     }
 }

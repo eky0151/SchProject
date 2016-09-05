@@ -29,9 +29,10 @@ namespace DbAndRepository
         public virtual DbSet<Bugreport> Bugreport { get; set; }
         public virtual DbSet<Files> Files { get; set; }
         public virtual DbSet<LoginData> LoginData { get; set; }
-        public virtual DbSet<Logs> Logs { get; set; }
+        public virtual DbSet<LoginLogs> LoginLogs { get; set; }
         public virtual DbSet<RegUser> RegUser { get; set; }
         public virtual DbSet<SolvedQuestion> SolvedQuestion { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Technician> Technician { get; set; }
         public virtual DbSet<TechWorks> TechWorks { get; set; }
         public virtual DbSet<Worker> Worker { get; set; }

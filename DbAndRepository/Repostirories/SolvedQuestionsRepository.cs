@@ -7,7 +7,7 @@ using System.Data.Entity;
 
 namespace DbAndRepository.Repostirories
 {
-    class SolvedQuestionsRepository : GenericsRepository<SolvedQuestion>, ISolvedQuestionsRepository
+    public class SolvedQuestionsRepository : GenericsRepository<SolvedQuestion>, ISolvedQuestionsRepository
     {
         public SolvedQuestionsRepository(DbContext newDb) : base(newDb)
         {

@@ -56,6 +56,12 @@ namespace SchProject.Chatservice {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChat/RemoveWorker", ReplyAction="http://tempuri.org/IChat/RemoveWorkerResponse")]
         System.Threading.Tasks.Task RemoveWorkerAsync(string name);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChat/GetQuestions", ReplyAction="http://tempuri.org/IChat/GetQuestionsResponse")]
+        System.Collections.Generic.Dictionary<string, string[]> GetQuestions();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChat/GetQuestions", ReplyAction="http://tempuri.org/IChat/GetQuestionsResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<string, string[]>> GetQuestionsAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -153,6 +159,14 @@ namespace SchProject.Chatservice {
         
         public System.Threading.Tasks.Task RemoveWorkerAsync(string name) {
             return base.Channel.RemoveWorkerAsync(name);
+        }
+        
+        public System.Collections.Generic.Dictionary<string, string[]> GetQuestions() {
+            return base.Channel.GetQuestions();
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<string, string[]>> GetQuestionsAsync() {
+            return base.Channel.GetQuestionsAsync();
         }
     }
 }

@@ -25,7 +25,7 @@ namespace SchProject.ViewModel
     {
         public string _fullName;
         private Navigator _rootNavigator;
-        public List<MenuButtonData> MenuButtons { get; private set; }
+        private List<MenuButtonData> _menuButtons;
         public UserControl CurrentView { get; private set; }
         public ICommand Navigation { get; private set; }
         public ICommand Logout { get; private set; }
@@ -33,23 +33,23 @@ namespace SchProject.ViewModel
 
         public RootMenuViewModel()
         {
-            MenuButtons = new List<MenuButtonData>()
-            {
-                new MenuButtonData(new BitmapImage(new Uri(@"C:\Users\dancs\Documents\GitRepos\SchProject\SchProject\Resources\Layout\Images\error.png")),
-                    new BitmapImage(new Uri(@"C:\Users\dancs\Documents\GitRepos\SchProject\SchProject\Resources\Layout\Images\errorSelected.png")), "b", "HIBÁK")
-            };
             Views["Dashboard"] = new Dashboard();
             CurrentView = Views["Dashboard"];
             Navigation = new RelayCommand<object>(param => Navigate(param));
             Logout = new RelayCommand(NavLogout);
             _rootNavigator = NavigatorFactory.Navigator;
             Messenger.Default.Register<LoginResult>(this, LoginSet);
-
             //for the chatservice connect method we'll need a name, so we send the name, and we register for
-            //this message in the ChatViewModel
+            //this message in the ChatViewModel"
             Messenger.Default.Send(new SendFullNameMessage { FullName = FullName });
 
         }
+        public List<MenuButtonData> MenuButtons
+        {
+            get { return _menuButtons; }
+            private set { Set(ref _menuButtons, value); }
+        }
+
 
         public string FullName
         {
@@ -59,6 +59,7 @@ namespace SchProject.ViewModel
         private void LoginSet(LoginResult res)
         {
             FullName = res.FullName;
+            MenuButtons = MenuButtonFactory.Create(res.Role);
         }
 
         private void NavLogout()
@@ -74,13 +75,23 @@ namespace SchProject.ViewModel
                 switch (d)
                 {
                     case "Settings":
-                        Views[d] = new Settings(); break;
+                        Views[d] = new Settings();
+                        break;
                     case "Bugreport":
-                        Views[d] = new Bugreport(); break;
+                        Views[d] = new Bugreport();
+                        break;
                     case "Home":
-                        Views[d] = new Dashboard(); break;
+                        Views[d] = new Dashboard();
+                        break;
                     case "Admins":
-                        Views[d] = new Admins(); break;
+                        Views[d] = new Admins();
+                        break;
+                    case "Management":
+                        Views[d] = new Management();
+                        break;
+                    case "Error":
+                        Views[d] = new Chat();
+                        break;
                     default:
                         Views[d] = new Dashboard(); break;
                 }

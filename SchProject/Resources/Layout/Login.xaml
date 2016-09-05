@@ -17,12 +17,13 @@
                  Height="200"
                  Width="200">
             <Ellipse.Fill>
-                <ImageBrush ImageSource="Images/demoPic.jpg"
+                <ImageBrush ImageSource="{Binding ProfilePicture}"
                             Stretch="UniformToFill" />
             </Ellipse.Fill>
         </Ellipse>
 
         <TextBox Style="{StaticResource LoginTextBox}"
+                 LostFocus="UserNameTextBox_LostFocus"
                  Margin="0,338,0,0"
                  Width="250"
                  Height="26"

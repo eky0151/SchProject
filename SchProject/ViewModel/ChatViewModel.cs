@@ -1,33 +1,19 @@
-﻿using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.CommandWpf;
-using GalaSoft.MvvmLight.Messaging;
-using System;
-using System.Collections.ObjectModel;
-using System.Windows.Input;
-
-namespace SchProject.ViewModel
+﻿namespace SchProject.ViewModel
 {
-    public class ChatViewModel : ViewModelBase, Chatservice.IChatCallback
+    using GalaSoft.MvvmLight;
+    using GalaSoft.MvvmLight.CommandWpf;
+    using GalaSoft.MvvmLight.Messaging;
+    using System;
+    using System.Collections.ObjectModel;
+    using System.IO;
+    using System.Windows.Controls;
+    using System.Windows.Input;
+    using System.Windows.Media.Imaging;
+    using System.ServiceModel;
+    using System.Collections.Generic;
+
+    public class ChatViewModel : ViewModelBase
     {
-        //for the methods only
-        Chatservice.ChatClient client;
-
-        public ICommand SendMessageCommand
-        {
-            get
-            {
-                return SendMessageCommand ?? new RelayCommand<string>(SendMessage);
-            }
-        }
-
-        public ICommand LoginWorkerCommand
-        {
-            get
-            {
-                return LoginWorkerCommand ?? new RelayCommand(LoginWorker);
-            }
-        }
-
         private string message;
         public string Message
         {
@@ -35,7 +21,6 @@ namespace SchProject.ViewModel
             set { Set(ref message, value); }
         }
 
-        public ObservableCollection<object> Messages { get; private set; }
 
         private string fullName;
         public string FullName
@@ -44,11 +29,54 @@ namespace SchProject.ViewModel
             set { Set(ref fullName, value); }
         }
 
+        private string aspClientName;
+
+        public ICommand SendMessageCommand
+        {
+            get
+            {
+                return new RelayCommand<string>(SendMessage);
+            }
+        }
+
+        public ICommand LoginWorkerCommand
+        {
+            get
+            {
+                return new RelayCommand(LoginWorker);
+            }
+        }
+
+        public ObservableCollection<object> Messages { get; private set; } = new ObservableCollection<object>();
+
+        private Chatservice.ChatClient client;
 
         public ChatViewModel()
         {
-            Messages = new ObservableCollection<object>();
-            Messenger.Default.Register(this, (SendFullNameMessage s) => fullName = s.FullName);
+            InstanceContext ctx = new InstanceContext(new ChatCallback());
+            client  = new Chatservice.ChatClient(ctx);
+
+            fullName = Global.FullName;
+
+            Messenger.Default.Register(this, (SendClientConnect s) => Messages.Add(string.Format(
+                "{0} is connected at {1}", s.Name, DateTime.Now.ToShortTimeString())));
+
+            Messenger.Default.Register(this, (SendReceiveMessage s) => Messages.Add(s.Message));
+
+            //test
+            Dictionary<string, string[]> q = client.GetQuestions();
+
+            if (q == null)
+                Messages.Add("No question");
+            else
+            {
+                string[] key = new string[1];
+                q.Keys.CopyTo(key, 0);
+                foreach (var i in q[key[0]])
+                {
+                    Messages.Add(key[0] + i);
+                }
+            }
         }
 
         //when de window loaded we connect to the chatservice
@@ -60,12 +88,17 @@ namespace SchProject.ViewModel
 
         private void SendMessage(string message)
         {
-
+            
         }
+    }
+
+
+    public class ChatCallback : Chatservice.IChatCallback
+    {
 
         public void ClientConnectCallback(string name)
         {
-            Messages.Add(string.Format("{0} is connected at {1}", name, DateTime.Now));
+            Messenger.Default.Send<SendClientConnect>(new SendClientConnect { Name = name });
         }
 
         public void ReceiveFileMessageeCallback(byte[] fileMessage, string description)
@@ -75,7 +108,17 @@ namespace SchProject.ViewModel
 
         public void ReceiveMessageCallback(string message, string receiver)
         {
-            Messages.Add(message);
+            Messenger.Default.Send<SendReceiveMessage>(new SendReceiveMessage { Message = message });
         }
+    }
+
+    public class SendClientConnect
+    {
+        public string Name { get; set; }
+    }
+
+    public class SendReceiveMessage
+    {
+        public string Message { get; set; }
     }
 }

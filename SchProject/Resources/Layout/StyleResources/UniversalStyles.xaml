@@ -119,4 +119,39 @@
         </Style.Triggers>
     </Style>
 
+    <Style TargetType="TextBox"
+           x:Key="RoundedText">
+        <Setter Property="HorizontalContentAlignment"
+                Value="Center" />
+        <Setter Property="VerticalContentAlignment"
+                Value="Center" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Border CornerRadius="8"
+                            Background="{Binding (TextBox.Background),RelativeSource={RelativeSource TemplatedParent}}"
+                            BorderThickness="1"
+                            BorderBrush="#585757">
+                        <ScrollViewer x:Name="PART_ContentHost" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="PasswordBox"
+           x:Key="RoundedPassbox">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Border CornerRadius="8"
+                            Background="{Binding (PasswordBox.Background),RelativeSource={RelativeSource TemplatedParent}}"
+                            BorderThickness="1"
+                            BorderBrush="#585757">
+                        <ScrollViewer x:Name="PART_ContentHost" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>
