@@ -34,7 +34,9 @@ namespace SchProject.ViewModel
 
         public RootMenuViewModel()
         {
-            MenuButtons = new List<MenuButtonData>(){};
+            MenuButtons = new List<MenuButtonData>(){
+               new MenuButtonData(new BitmapImage(new Uri(@"pack://application:,,,/Resources/Layout/Images/error.png")),new BitmapImage(new Uri(@"pack://application:,,,/Resources/Layout/Images/errorSelected.png")), "Error", "HIBÁK" )
+            };
             Views["Dashboard"] = new Dashboard();
             CurrentView = Views["Dashboard"];
             Navigation = new RelayCommand<object>(param => Navigate(param));
@@ -79,7 +81,7 @@ namespace SchProject.ViewModel
                         Views[d] = new Dashboard(); break;
                     case "Admins":
                         Views[d] = new Management(); break;
-                    case "Chat":
+                    case "Error":
                         Views[d] = new Chat(); break;
                     default:
                         Views[d] = new Dashboard(); break;

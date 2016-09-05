@@ -9,11 +9,14 @@
     using System.Windows.Controls;
     using System.Windows.Input;
     using System.Windows.Media.Imaging;
+    using System.ServiceModel;
 
     public class ChatViewModel : ViewModelBase, Chatservice.IChatCallback
     {
         //for the methods only
-        Chatservice.ChatClient client;
+        //InstanceContext ctx = new InstanceContext();
+
+        Chatservice.ChatClient client;  /*= new Chatservice.ChatClient(ctx);*/
 
         private string message;
         public string Message
@@ -34,7 +37,9 @@
         {
             get
             {
-                return SendMessageCommand ?? new RelayCommand<string>(SendMessage);
+                return new RelayCommand<string>(SendMessage);
+                //return SendMessageCommand ?? new RelayCommand<string>(SendMessage);
+                //stackoverflow
             }
         }
 
@@ -42,7 +47,7 @@
         {
             get
             {
-                return LoginWorkerCommand ?? new RelayCommand(LoginWorker);
+                return new RelayCommand(LoginWorker);
             }
         }
 
