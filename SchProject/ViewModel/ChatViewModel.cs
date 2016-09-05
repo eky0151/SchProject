@@ -11,12 +11,11 @@
     using System.Windows.Media.Imaging;
     using System.ServiceModel;
 
-    public class ChatViewModel : ViewModelBase, Chatservice.IChatCallback
+    public class ChatViewModel : ViewModelBase
     {
-        //for the methods only
-        //InstanceContext ctx = new InstanceContext();
-
-        Chatservice.ChatClient client;  /*= new Chatservice.ChatClient(ctx);*/
+        
+        private static InstanceContext ctx = new InstanceContext(new ChatCallback());
+        Chatservice.ChatClient client  = new Chatservice.ChatClient(ctx);
 
         private string message;
         public string Message
@@ -38,8 +37,6 @@
             get
             {
                 return new RelayCommand<string>(SendMessage);
-                //return SendMessageCommand ?? new RelayCommand<string>(SendMessage);
-                //stackoverflow
             }
         }
 
@@ -57,7 +54,10 @@
         public ChatViewModel()
         {
             Messages = new ObservableCollection<object>();
-            Messenger.Default.Register(this, (SendFullNameMessage s) => fullName = s.FullName);
+            Messenger.Default.Register<SendFullNameMessage>(this, (SendFullNameMessage s) => fullName = s.FullName);
+            Messenger.Default.Register(this, (SendClientConnect s) => Messages.Add(string.Format(
+                "{0} is connected at {1}", s.Name, DateTime.Now.ToShortTimeString())));
+            Messenger.Default.Register(this, (SendReceiveMessage s) => Messages.Add(s.Message));
         }
 
         //when de window loaded we connect to the chatservice
@@ -72,20 +72,49 @@
             
         }
 
+        //public void ClientConnectCallback(string name)
+        //{
+        //    Messages.Add(string.Format("{0} is connected at {1}", name, DateTime.Now));
+        //}
+
+        //public void ReceiveFileMessageeCallback(byte[] fileMessage, string description)
+        //{
+        //    MemoryStream ms = new MemoryStream(fileMessage);
+        //    Image image = Image.FromStream(ms);
+        //}
+
+        //public void ReceiveMessageCallback(string message, string receiver)
+        //{
+        //    Messages.Add(message);
+        //}
+    }
+
+    public class ChatCallback : Chatservice.IChatCallback
+    {
+
         public void ClientConnectCallback(string name)
         {
-            Messages.Add(string.Format("{0} is connected at {1}", name, DateTime.Now));
+            Messenger.Default.Send<SendClientConnect>(new SendClientConnect { Name = name });
         }
 
         public void ReceiveFileMessageeCallback(byte[] fileMessage, string description)
         {
-            MemoryStream ms = new MemoryStream(fileMessage);
-            //Image image = Image.FromStream(ms);
+            throw new NotImplementedException();
         }
 
         public void ReceiveMessageCallback(string message, string receiver)
         {
-            Messages.Add(message);
+            Messenger.Default.Send<SendReceiveMessage>(new SendReceiveMessage { Message = message });
         }
+    }
+
+    public class SendClientConnect
+    {
+        public string Name { get; set; }
+    }
+
+    public class SendReceiveMessage
+    {
+        public string Message { get; set; }
     }
 }

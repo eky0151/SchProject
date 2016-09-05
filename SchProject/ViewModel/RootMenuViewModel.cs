@@ -44,9 +44,7 @@ namespace SchProject.ViewModel
             _rootNavigator = NavigatorFactory.Navigator;
             Messenger.Default.Register<LoginResult>(this, LoginSet);
 
-            //for the chatservice connect method we'll need a name, so we send the name, and we register for
-            //this message in the ChatViewModel
-            Messenger.Default.Send(new SendFullNameMessage { FullName = FullName, Image = null});
+           
 
         }
 

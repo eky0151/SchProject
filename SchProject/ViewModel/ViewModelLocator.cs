@@ -48,7 +48,7 @@ namespace SchProject.ViewModel
 
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<LoginViewModel>();
-            SimpleIoc.Default.Register<ChatViewModel>();
+            //SimpleIoc.Default.Register<ChatViewModel>();
 
             //wcf
             //SimpleIoc.Default.Register<Chatservice.ChatClient>();
@@ -96,7 +96,7 @@ namespace SchProject.ViewModel
         {
             get
             {
-                return ServiceLocator.Current.GetInstance<ChatViewModel>();
+                return new ChatViewModel();
             }
         }
 

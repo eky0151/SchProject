@@ -61,6 +61,10 @@ namespace SchProject.ViewModel
                 Messenger.Default.Send<LoginResult>(result);
             }
             LoginEnabled = true;
+
+            //for the chatservice connect method we'll need a name, so we send the name, and we register for
+            //this message in the ChatViewModel
+            Messenger.Default.Send(new SendFullNameMessage { FullName = result.FullName , Image = null });
         }
     }
 }
