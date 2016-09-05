@@ -16,7 +16,7 @@ namespace DbAndRepository
     {
         public int ID { get; set; }
         public int BugreportID { get; set; }
-        public byte[] File { get; set; }
+        public string File { get; set; }
     
         public virtual Bugreport Bugreport { get; set; }
     }

@@ -18,20 +18,24 @@ namespace DbAndRepository
         public Worker()
         {
             this.LoginData = new HashSet<LoginData>();
+            this.SolvedQuestion = new HashSet<SolvedQuestion>();
             this.Technician = new HashSet<Technician>();
         }
     
         public int ID { get; set; }
-        public string Fullname { get; set; }
+        public string FullName { get; set; }
         public string Email { get; set; }
-        public int BankID { get; set; }
+        public Nullable<int> BankID { get; set; }
         public string Address { get; set; }
         public string Phone { get; set; }
-        public byte[] Picture { get; set; }
+        public string Status { get; set; }
+        public string ProfilePicture { get; set; }
     
         public virtual Bank Bank { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<LoginData> LoginData { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SolvedQuestion> SolvedQuestion { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Technician> Technician { get; set; }
     }

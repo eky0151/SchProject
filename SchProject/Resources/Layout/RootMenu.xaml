@@ -90,7 +90,10 @@
                 </Button>
             </StackPanel>
         </Grid>
-        <ContentControl DockPanel.Dock="Right"
-                        Content="{Binding CurrentView}" />
+        <ScrollViewer VerticalScrollBarVisibility="Disabled"
+                      HorizontalScrollBarVisibility="Auto">
+            <ContentControl DockPanel.Dock="Right"
+                            Content="{Binding CurrentView}" />
+        </ScrollViewer>
     </DockPanel>
 </UserControl>

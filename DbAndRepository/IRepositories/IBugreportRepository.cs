@@ -5,6 +5,6 @@ namespace DbAndRepository.IRepositories
 {
     public interface IBugreportRepository : IGenericsRepository<Bugreport>
     {
-        List<byte[]> GetFilesByBugreportID(int id);
+        List<string> GetFilesByBugreportID(int id);
     }
 }

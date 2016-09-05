@@ -23,9 +23,17 @@
             if (l == null)
                 return false;
 
-            fullName = l.Worker.Fullname;
+            fullName = l.Worker.FullName;
             role = l.Urole;
 
+            return true;
+        }
+
+        public bool CheckUsername(string username)
+        {
+            var login = Get(x => x.Username == username).FirstOrDefault();
+            if (login == null)
+                return false;
             return true;
         }
 
@@ -47,9 +55,9 @@
         //     await Task.Run(() => (BitmapImage)new ImageSourceConverter().ConvertFrom((Get(i => i.Username == userName).FirstOrDefault().Worker.Picture)));
         //}
 
-        public BitmapImage GetPicture(string userName)
+        public string GetPicture(string userName)
         {
-            return (BitmapImage)new ImageSourceConverter().ConvertFrom((Get(i => i.Username == userName).FirstOrDefault().Worker.Picture));
+            return Get(i => i.Username == userName).FirstOrDefault()?.Worker.ProfilePicture;
         }
 
         public override void Update(LoginData entityToModify)

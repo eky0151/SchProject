@@ -37,10 +37,9 @@
             return database.Set<RegUser>().FirstOrDefault(i => i.ID == id);
         }
 
-        public BitmapImage GetPicture(string userName)
+        public string GetPicture(string userName)
         {
-            return (BitmapImage)new ImageSourceConverter().
-                ConvertFrom((Get(i => i.Username == userName).FirstOrDefault().Picture));
+            return Get(i => i.Username == userName).FirstOrDefault()?.Picture;
         }
 
         public override void Update(RegUser entityToModify)

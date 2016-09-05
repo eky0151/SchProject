@@ -9,7 +9,7 @@ using System.Data.Entity;
 
 namespace DbAndRepository.Repostirories
 {
-    class TechninicanRepository : GenericsRepository<Technician>, ITechnicianRepository
+    public class TechninicanRepository : GenericsRepository<Technician>, ITechnicianRepository
     {
         private Technician tc;
 
@@ -24,7 +24,6 @@ namespace DbAndRepository.Repostirories
             database.Entry<Technician>(tc).State = EntityState.Deleted;
             database.SaveChanges();
         }
-
         public override Technician GetById(int id)
         {
             return Get(i => i.ID == id).FirstOrDefault();

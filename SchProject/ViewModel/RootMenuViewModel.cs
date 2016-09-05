@@ -34,11 +34,7 @@ namespace SchProject.ViewModel
 
         public RootMenuViewModel()
         {
-            MenuButtons = new List<MenuButtonData>()
-            {
-                new MenuButtonData(new BitmapImage(new Uri(@"C:\Users\dancs\Documents\GitRepos\SchProject\SchProject\Resources\Layout\Images\error.png")),
-                    new BitmapImage(new Uri(@"C:\Users\dancs\Documents\GitRepos\SchProject\SchProject\Resources\Layout\Images\errorSelected.png")), "b", "HIBÁK")
-            };
+            MenuButtons = new List<MenuButtonData>(){};
             Views["Dashboard"] = new Dashboard();
             CurrentView = Views["Dashboard"];
             Navigation = new RelayCommand<object>(param => Navigate(param));
@@ -60,6 +56,7 @@ namespace SchProject.ViewModel
         private void LoginSet(LoginResult res)
         {
             FullName = res.FullName;
+
         }
 
         private void NavLogout()
@@ -81,7 +78,7 @@ namespace SchProject.ViewModel
                     case "Home":
                         Views[d] = new Dashboard(); break;
                     case "Admins":
-                        Views[d] = new Admins(); break;
+                        Views[d] = new Management(); break;
                     default:
                         Views[d] = new Dashboard(); break;
                 }

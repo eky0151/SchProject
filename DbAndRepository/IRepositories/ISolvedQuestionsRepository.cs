@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DbAndRepository.IRepositories
 {
-    interface ISolvedQuestionsRepository : IGenericsRepository<SolvedQuestion>
+    public interface ISolvedQuestionsRepository : IGenericsRepository<SolvedQuestion>
     {
         List<SolvedQuestion> GetByWorker(int id);
     }

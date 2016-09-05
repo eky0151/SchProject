@@ -12,7 +12,7 @@ namespace DbAndRepository.IRepositories
     {
         bool Autenthicate(string userName, string password);
 
-        BitmapImage GetPicture(string userName);
+        string GetPicture(string userName);
 
     }
 }
