@@ -30,6 +30,7 @@
         }
 
         private string aspClientName;
+        Dictionary<string, string[]> questionsByOneUser;
 
         public ICommand SendMessageCommand
         {
@@ -43,7 +44,7 @@
         {
             get
             {
-                return new RelayCommand(LoginWorker);
+                return new RelayCommand(LoginWorker, () => fullName != string.Empty );
             }
         }
 
@@ -53,6 +54,7 @@
 
         public ChatViewModel()
         {
+            //remove to ServiceLocator
             InstanceContext ctx = new InstanceContext(new ChatCallback());
             client  = new Chatservice.ChatClient(ctx);
 
@@ -62,21 +64,6 @@
                 "{0} is connected at {1}", s.Name, DateTime.Now.ToShortTimeString())));
 
             Messenger.Default.Register(this, (SendReceiveMessage s) => Messages.Add(s.Message));
-
-            //test
-            Dictionary<string, string[]> q = client.GetQuestions();
-
-            if (q == null)
-                Messages.Add("No question");
-            else
-            {
-                string[] key = new string[1];
-                q.Keys.CopyTo(key, 0);
-                foreach (var i in q[key[0]])
-                {
-                    Messages.Add(key[0] + i);
-                }
-            }
         }
 
         //when de window loaded we connect to the chatservice
@@ -90,25 +77,53 @@
         {
             
         }
+
+        //get the first message from the chatservice 
+        private async void GetFirstMessage()
+        {
+            Messages.Clear();
+            questionsByOneUser = await client.GetQuestionsAsync();
+            if (questionsByOneUser == null)
+                Messages.Add("No question");
+            else
+            {
+                string[] key = new string[1];
+                aspClientName = key[0];
+                questionsByOneUser.Keys.CopyTo(key, 0);
+                foreach (var i in questionsByOneUser[key[0]])
+                {
+                    Messages.Add(aspClientName + i);
+                }
+            }
+        }
     }
 
 
     public class ChatCallback : Chatservice.IChatCallback
     {
-
         public void ClientConnectCallback(string name)
         {
-            Messenger.Default.Send<SendClientConnect>(new SendClientConnect { Name = name });
+            Messenger.Default.Send<SendClientConnect>(new SendClientConnect
+            {
+                Name = name
+            });
         }
 
         public void ReceiveFileMessageeCallback(byte[] fileMessage, string description)
         {
-            throw new NotImplementedException();
+            Messenger.Default.Send<SendFileMessage>(new SendFileMessage
+            {
+                Content = fileMessage,
+                Description = description
+            });
         }
 
         public void ReceiveMessageCallback(string message, string receiver)
         {
-            Messenger.Default.Send<SendReceiveMessage>(new SendReceiveMessage { Message = message });
+            Messenger.Default.Send<SendReceiveMessage>(new SendReceiveMessage
+            {
+                Message = message
+            });
         }
     }
 
@@ -120,5 +135,11 @@
     public class SendReceiveMessage
     {
         public string Message { get; set; }
+    }
+
+    public class SendFileMessage
+    {
+        public byte[] Content { get; set; }
+        public string Description { get; set; }
     }
 }
