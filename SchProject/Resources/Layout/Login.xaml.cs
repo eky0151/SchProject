@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using GalaSoft.MvvmLight.Messaging;
-using SchProject.TechSupportService;
+using SchProject.TechSupportSecure;
 
 namespace SchProject.Resources.Layout
 {
@@ -38,8 +38,10 @@ namespace SchProject.Resources.Layout
         {
             var task = Task.Factory.StartNew(() =>
            {
-               using (TechSupportService1Client host = new TechSupportService1Client())
+               using (TechSupportServiceSecure1Client host = new TechSupportServiceSecure1Client())
                {
+                   host.ClientCredentials.UserName.UserName = "Flynn";
+                   host.ClientCredentials.UserName.Password = "sam";
                    host.Open();
                    var res = host.UsernameValidation(username);
                    if (res.Valid)

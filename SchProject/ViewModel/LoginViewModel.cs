@@ -14,7 +14,7 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using GalaSoft.MvvmLight.Messaging;
 using SchProject.Resources.Layout;
-using SchProject.TechSupportService;
+using SchProject.TechSupportSecure;
 
 namespace SchProject.ViewModel
 {
@@ -62,7 +62,7 @@ namespace SchProject.ViewModel
 
             var task = Task.Factory.StartNew(() =>
             {
-                using (TechSupportService1Client client = new TechSupportService1Client())
+                using (TechSupportServiceSecure1Client client = new TechSupportServiceSecure1Client())
                 {
                     client.Open();
                     var res = client.Login(UserName, box.Password);

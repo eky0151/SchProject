@@ -12,7 +12,7 @@ using GalaSoft.MvvmLight.CommandWpf;
 using GalaSoft.MvvmLight.Messaging;
 using SchProject.Resources.Layout;
 using SchProject.Resources.Layout.CustomControls;
-using SchProject.TechSupportService;
+using SchProject.TechSupportSecure;
 
 namespace SchProject.ViewModel
 {

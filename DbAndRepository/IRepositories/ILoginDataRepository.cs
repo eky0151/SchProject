@@ -5,7 +5,7 @@
 
     public interface ILoginDataRepository : IGenericsRepository<LoginData>
     {
-        bool Authenticate(string username, string password, out string fullName, out string role);
+        bool Authenticate(string username, string password);
         bool CheckUsername(string username);
         string GetPicture(string userName);
     }
