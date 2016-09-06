@@ -41,11 +41,6 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="RegisterNewUserResponse">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
   <xs:element name="UsernameValidation">
     <xs:complexType>
       <xs:sequence>

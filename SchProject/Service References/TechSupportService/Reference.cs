@@ -486,10 +486,10 @@ namespace SchProject.TechSupportService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportService1/UserLogin", ReplyAction="http://tempuri.org/ITechSupportService1/UserLoginResponse")]
         System.Threading.Tasks.Task<bool> UserLoginAsync(string username, string password);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportService1/RegisterNewUser", ReplyAction="http://tempuri.org/ITechSupportService1/RegisterNewUserResponse")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ITechSupportService1/RegisterNewUser")]
         void RegisterNewUser(string fullName, string email, string userName, string password);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportService1/RegisterNewUser", ReplyAction="http://tempuri.org/ITechSupportService1/RegisterNewUserResponse")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ITechSupportService1/RegisterNewUser")]
         System.Threading.Tasks.Task RegisterNewUserAsync(string fullName, string email, string userName, string password);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportService1/UsernameValidation", ReplyAction="http://tempuri.org/ITechSupportService1/UsernameValidationResponse")]

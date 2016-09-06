@@ -414,6 +414,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\Layout\Images\management.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Layout\Images\managementSelected.png" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="Service References\TechSupportService\TechSupportService.disco" />
   </ItemGroup>
   <ItemGroup>
@@ -427,12 +433,6 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Layout\Images\management.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Layout\Images\managementSelected.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -18,7 +18,7 @@ namespace TechSupportService
         [OperationContract]
         bool UserLogin(string username, string password);
 
-        [OperationContract]
+        [OperationContract(IsOneWay = true)]
         void RegisterNewUser(string fullName, string email, string userName, string password);
 
         [OperationContract]

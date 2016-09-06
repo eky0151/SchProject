@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="77f4604b-2af5-432f-9a15-d20c9690a304" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="4fd48e97-75f5-44d2-ac73-ed90f6ec3260" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -19,16 +19,16 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://techsupportservice.azurewebsites.net/techsupportservice.svc" Protocol="http" SourceId="1" />
+    <MetadataSource Address="https://techsupportservice.azurewebsites.net/techsupportservice.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="TechSupportService.xsd" MetadataType="Schema" ID="84e8b70a-8fa6-4ac8-86bd-4495e4d4826a" SourceId="1" SourceUrl="http://techsupportservice.azurewebsites.net/TechSupportService.svc?xsd=xsd4" />
-    <MetadataFile FileName="TechSupportService1.xsd" MetadataType="Schema" ID="52a25b52-e11b-4ca7-974f-4c5b9782d0b9" SourceId="1" SourceUrl="http://techsupportservice.azurewebsites.net/TechSupportService.svc?xsd=xsd2" />
-    <MetadataFile FileName="TechSupportService2.xsd" MetadataType="Schema" ID="1fcecd08-6f6c-43af-baae-bf68c8ee762c" SourceId="1" SourceUrl="http://techsupportservice.azurewebsites.net/TechSupportService.svc?xsd=xsd1" />
-    <MetadataFile FileName="TechSupportService3.xsd" MetadataType="Schema" ID="bf76dcea-b027-489a-90a7-aa50f98bd350" SourceId="1" SourceUrl="http://techsupportservice.azurewebsites.net/TechSupportService.svc?xsd=xsd3" />
-    <MetadataFile FileName="TechSupportService1.wsdl" MetadataType="Wsdl" ID="3e2bcfc5-bd61-4e7d-91e9-628765fada12" SourceId="1" SourceUrl="http://techsupportservice.azurewebsites.net/TechSupportService.svc?wsdl" />
-    <MetadataFile FileName="TechSupportService.disco" MetadataType="Disco" ID="08578c77-47f0-4f00-9288-bbfc274f4ecb" SourceId="1" SourceUrl="http://techsupportservice.azurewebsites.net/TechSupportService.svc?disco" />
-    <MetadataFile FileName="TechSupportService4.xsd" MetadataType="Schema" ID="c14a6fc8-2dad-4b58-84d6-78aa77d13cae" SourceId="1" SourceUrl="http://techsupportservice.azurewebsites.net/TechSupportService.svc?xsd=xsd0" />
+    <MetadataFile FileName="TechSupportService.xsd" MetadataType="Schema" ID="46633d1d-095d-49ef-ad71-29030fba7037" SourceId="1" SourceUrl="http://techsupportservice.azurewebsites.net/TechSupportService.svc?xsd=xsd4" />
+    <MetadataFile FileName="TechSupportService1.xsd" MetadataType="Schema" ID="10781bc5-8c39-498d-92ca-f68075722452" SourceId="1" SourceUrl="http://techsupportservice.azurewebsites.net/TechSupportService.svc?xsd=xsd2" />
+    <MetadataFile FileName="TechSupportService2.xsd" MetadataType="Schema" ID="d03bebeb-7747-4f4d-a882-b31316a34db5" SourceId="1" SourceUrl="http://techsupportservice.azurewebsites.net/TechSupportService.svc?xsd=xsd1" />
+    <MetadataFile FileName="TechSupportService3.xsd" MetadataType="Schema" ID="a2e0bd25-fb6c-483b-8f56-a22dff4eab43" SourceId="1" SourceUrl="http://techsupportservice.azurewebsites.net/TechSupportService.svc?xsd=xsd3" />
+    <MetadataFile FileName="TechSupportService1.wsdl" MetadataType="Wsdl" ID="d42d35ee-ba52-4576-a6e6-52c6953c571b" SourceId="1" SourceUrl="http://techsupportservice.azurewebsites.net/TechSupportService.svc?wsdl" />
+    <MetadataFile FileName="TechSupportService.disco" MetadataType="Disco" ID="d9ff2e57-a0ad-4649-b39d-28d91bc62c81" SourceId="1" SourceUrl="http://techsupportservice.azurewebsites.net/TechSupportService.svc?disco" />
+    <MetadataFile FileName="TechSupportService4.xsd" MetadataType="Schema" ID="2f0634ef-3f6c-47cc-9600-cb84ac027abe" SourceId="1" SourceUrl="http://techsupportservice.azurewebsites.net/TechSupportService.svc?xsd=xsd0" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

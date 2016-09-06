@@ -36,17 +36,20 @@ namespace SchProject.Resources.Layout
 
         private void ValidateUsername(string username)
         {
-            //var task =  Task.Factory.StartNew(() =>
-            //{
-            using (TechSupportService1Client host = new TechSupportService1Client())
-            {
-                host.Open();
-                var res = host.UsernameValidation(username);
-                if (res.Valid)
-                    Messenger.Default.Send<UsernameValidationResult>(res);
-            }
-            //});
-            //return task;
+            var task = Task.Factory.StartNew(() =>
+           {
+               using (TechSupportService1Client host = new TechSupportService1Client())
+               {
+                   host.Open();
+                   var res = host.UsernameValidation(username);
+                   if (res.Valid)
+                   {
+                       Dispatcher.Invoke(() => { Messenger.Default.Send<UsernameValidationResult>(res); });
+
+                   }
+               }
+           });
+
         }
     }
 }
