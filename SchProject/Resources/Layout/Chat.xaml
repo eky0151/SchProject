@@ -5,19 +5,16 @@
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:SchProject.Resources.Layout"
+             xmlns:class="clr-namespace:SchProject.ViewModel"
              mc:Ignorable="d" 
-             d:DesignHeight="625" d:DesignWidth="700"
+             d:DesignHeight="525" d:DesignWidth="500"
              DataContext="{Binding Source={StaticResource Locator}, Path=Chat}">
 
     <!--Material Design Themes-->
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBox.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
+                <ResourceDictionary Source="StyleResources/MaterialDesignThemes.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
@@ -30,7 +27,61 @@
     </i:Interaction.Triggers>
 
     <Grid>
-        <TextBlock  HorizontalAlignment="Left" Height="78" Margin="84,468,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="408"/>
-       
+        <Button Content="Button" HorizontalAlignment="Left" Height="31" Margin="121,487,0,0" VerticalAlignment="Top" Width="129"/>
+        <ScrollViewer HorizontalAlignment="Left" Height="384" Margin="25,25,0,0" VerticalAlignment="Top" Width="443">
+            <ItemsControl ItemsSource="{Binding Path=Messages}" SnapsToDevicePixels="True">
+                <ItemsControl.Resources>
+                    
+                    <!--DataTemplate For Client Connect-->
+                    <DataTemplate DataType="{x:Type class:SendClientConnect}">
+                        <Border x:Name="Border" Padding="8" BorderThickness="0 0 0 1" BorderBrush="{DynamicResource MaterialDesignDivider}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition SharedSizeGroup="Checkerz" />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Margin="8 0 0 0" Grid.Column="1">
+                                    <TextBlock FontWeight="Bold" Text="{Binding Path=Name}" />
+                                    <TextBlock Text="{Binding ConnectTime, StringFormat='Connected at {0}'}"/>
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+                        <DataTemplate.Triggers>
+                            <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                                <Setter TargetName="Border" Property="Background" Value="{DynamicResource MaterialDesignSelection}" />
+                            </DataTrigger>
+                        </DataTemplate.Triggers>
+                    </DataTemplate>
+
+                    <!--DataTemplate For Message Received-->
+                    <DataTemplate DataType="{x:Type class:SendReceiveMessage}">
+                        <Border x:Name="Border" Padding="8" BorderThickness="0 0 0 1" BorderBrush="{DynamicResource MaterialDesignDivider}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition SharedSizeGroup="Checkerz" />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Margin="8 0 0 0" Grid.Column="1">
+                                    <TextBlock FontWeight="Bold" Text="{Binding Path=Sender}" />
+                                    <TextBlock Text="{Binding Content}"/>
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+                        <DataTemplate.Triggers>
+                            <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                                <Setter TargetName="Border" Property="Background" Value="{DynamicResource MaterialDesignSelection}" />
+                            </DataTrigger>
+                        </DataTemplate.Triggers>
+                    </DataTemplate>
+
+                    <!--DataTemplate For Message Received-->
+                    <DataTemplate DataType="{x:Type class:SendFileMessage}">
+                        
+                    </DataTemplate>
+
+                </ItemsControl.Resources>
+            </ItemsControl>
+        </ScrollViewer>
+
     </Grid>
 </UserControl>

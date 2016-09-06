@@ -11,6 +11,7 @@
     using System.Windows.Media.Imaging;
     using System.ServiceModel;
     using System.Collections.Generic;
+    using System.Drawing;
 
     public class ChatViewModel : ViewModelBase
     {
@@ -48,6 +49,7 @@
             }
         }
 
+        //for SendClientConnect, SendReceiveMessage, 
         public ObservableCollection<object> Messages { get; private set; } = new ObservableCollection<object>();
 
         private Chatservice.ChatClient client;
@@ -60,10 +62,14 @@
 
             fullName = Global.FullName;
 
-            Messenger.Default.Register(this, (SendClientConnect s) => Messages.Add(string.Format(
-                "{0} is connected at {1}", s.Name, DateTime.Now.ToShortTimeString())));
+            Messenger.Default.Register(this, (SendClientConnect s) => Messages.Add(s));
 
-            Messenger.Default.Register(this, (SendReceiveMessage s) => Messages.Add(s.Message));
+            Messenger.Default.Register(this, (SendReceiveMessage s) =>
+            {
+                SendReceiveMessage temp = s;
+                temp.Sender = aspClientName;
+                Messages.Add(temp);
+            });
         }
 
         //when de window loaded we connect to the chatservice
@@ -105,15 +111,17 @@
         {
             Messenger.Default.Send<SendClientConnect>(new SendClientConnect
             {
-                Name = name
+                Name = name,
+                ConnectTime = DateTime.Now
             });
         }
 
         public void ReceiveFileMessageeCallback(byte[] fileMessage, string description)
         {
-            Messenger.Default.Send<SendFileMessage>(new SendFileMessage
+            ImageConverter converter = new ImageConverter();
+            Messenger.Default.Send<SendReceiveFileMessage>(new SendReceiveFileMessage
             {
-                Content = fileMessage,
+                Content = new Bitmap((System.Drawing.Image)converter.ConvertFrom(fileMessage)),
                 Description = description
             });
         }
@@ -122,7 +130,7 @@
         {
             Messenger.Default.Send<SendReceiveMessage>(new SendReceiveMessage
             {
-                Message = message
+                Content = message
             });
         }
     }
@@ -130,16 +138,20 @@
     public class SendClientConnect
     {
         public string Name { get; set; }
+
+        public DateTime ConnectTime { get; set; }
     }
 
     public class SendReceiveMessage
     {
-        public string Message { get; set; }
+        public string Content { get; set; }
+
+        public string Sender { get; set; }
     }
 
-    public class SendFileMessage
+    public class SendReceiveFileMessage
     {
-        public byte[] Content { get; set; }
+        public Bitmap Content { get; set; }
         public string Description { get; set; }
     }
 }
