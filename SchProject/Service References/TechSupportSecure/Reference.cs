@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SchProject.TechSupportService {
+namespace SchProject.TechSupportSecure {
     using System.Runtime.Serialization;
     using System;
     
@@ -26,7 +26,7 @@ namespace SchProject.TechSupportService {
         private string FullNameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private SchProject.TechSupportService.Role RoleField;
+        private SchProject.TechSupportSecure.Role RoleField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Security.SecureString UUIDField;
@@ -58,7 +58,7 @@ namespace SchProject.TechSupportService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public SchProject.TechSupportService.Role Role {
+        public SchProject.TechSupportSecure.Role Role {
             get {
                 return this.RoleField;
             }
@@ -188,7 +188,7 @@ namespace SchProject.TechSupportService {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="WorkerData", Namespace="http://schemas.datacontract.org/2004/07/TechSupportService")]
     [System.SerializableAttribute()]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SchProject.TechSupportService.WorkerDataRegistrationData))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SchProject.TechSupportSecure.WorkerDataRegistrationData))]
     public partial class WorkerData : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
@@ -198,7 +198,7 @@ namespace SchProject.TechSupportService {
         private string AddressField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private SchProject.TechSupportService.Bank BankField;
+        private SchProject.TechSupportSecure.Bank BankField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string BankAccountField;
@@ -216,10 +216,10 @@ namespace SchProject.TechSupportService {
         private string ProfilePictureField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private SchProject.TechSupportService.Role RoleField;
+        private SchProject.TechSupportSecure.Role RoleField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private SchProject.TechSupportService.Status StatusField;
+        private SchProject.TechSupportSecure.Status StatusField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string UsernameField;
@@ -248,7 +248,7 @@ namespace SchProject.TechSupportService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public SchProject.TechSupportService.Bank Bank {
+        public SchProject.TechSupportSecure.Bank Bank {
             get {
                 return this.BankField;
             }
@@ -326,7 +326,7 @@ namespace SchProject.TechSupportService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public SchProject.TechSupportService.Role Role {
+        public SchProject.TechSupportSecure.Role Role {
             get {
                 return this.RoleField;
             }
@@ -339,7 +339,7 @@ namespace SchProject.TechSupportService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public SchProject.TechSupportService.Status Status {
+        public SchProject.TechSupportSecure.Status Status {
             get {
                 return this.StatusField;
             }
@@ -378,7 +378,7 @@ namespace SchProject.TechSupportService {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="WorkerDataRegistrationData", Namespace="http://schemas.datacontract.org/2004/07/TechSupportService")]
     [System.SerializableAttribute()]
-    public partial class WorkerDataRegistrationData : SchProject.TechSupportService.WorkerData {
+    public partial class WorkerDataRegistrationData : SchProject.TechSupportSecure.WorkerData {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string PassWDField;
@@ -471,102 +471,96 @@ namespace SchProject.TechSupportService {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="TechSupportService.ITechSupportService1")]
-    public interface ITechSupportService1 {
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="TechSupportSecure.ITechSupportServiceSecure1")]
+    public interface ITechSupportServiceSecure1 {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportService1/Login", ReplyAction="http://tempuri.org/ITechSupportService1/LoginResponse")]
-        SchProject.TechSupportService.LoginResult Login(string username, string password);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportServiceSecure1/Login", ReplyAction="http://tempuri.org/ITechSupportServiceSecure1/LoginResponse")]
+        SchProject.TechSupportSecure.LoginResult Login(string username, string password);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportService1/Login", ReplyAction="http://tempuri.org/ITechSupportService1/LoginResponse")]
-        System.Threading.Tasks.Task<SchProject.TechSupportService.LoginResult> LoginAsync(string username, string password);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportServiceSecure1/Login", ReplyAction="http://tempuri.org/ITechSupportServiceSecure1/LoginResponse")]
+        System.Threading.Tasks.Task<SchProject.TechSupportSecure.LoginResult> LoginAsync(string username, string password);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportService1/UserLogin", ReplyAction="http://tempuri.org/ITechSupportService1/UserLoginResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportServiceSecure1/UserLogin", ReplyAction="http://tempuri.org/ITechSupportServiceSecure1/UserLoginResponse")]
         bool UserLogin(string username, string password);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportService1/UserLogin", ReplyAction="http://tempuri.org/ITechSupportService1/UserLoginResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportServiceSecure1/UserLogin", ReplyAction="http://tempuri.org/ITechSupportServiceSecure1/UserLoginResponse")]
         System.Threading.Tasks.Task<bool> UserLoginAsync(string username, string password);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportService1/RegisterNewUser", ReplyAction="http://tempuri.org/ITechSupportService1/RegisterNewUserResponse")]
-        void RegisterNewUser(string fullName, string email, string userName, string password);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportServiceSecure1/UsernameValidation", ReplyAction="http://tempuri.org/ITechSupportServiceSecure1/UsernameValidationResponse")]
+        SchProject.TechSupportSecure.UsernameValidationResult UsernameValidation(string username);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportService1/RegisterNewUser", ReplyAction="http://tempuri.org/ITechSupportService1/RegisterNewUserResponse")]
-        System.Threading.Tasks.Task RegisterNewUserAsync(string fullName, string email, string userName, string password);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportServiceSecure1/UsernameValidation", ReplyAction="http://tempuri.org/ITechSupportServiceSecure1/UsernameValidationResponse")]
+        System.Threading.Tasks.Task<SchProject.TechSupportSecure.UsernameValidationResult> UsernameValidationAsync(string username);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportService1/UsernameValidation", ReplyAction="http://tempuri.org/ITechSupportService1/UsernameValidationResponse")]
-        SchProject.TechSupportService.UsernameValidationResult UsernameValidation(string username);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportServiceSecure1/RegisterNewStaffMember", ReplyAction="http://tempuri.org/ITechSupportServiceSecure1/RegisterNewStaffMemberResponse")]
+        void RegisterNewStaffMember(SchProject.TechSupportSecure.WorkerDataRegistrationData regData);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportService1/UsernameValidation", ReplyAction="http://tempuri.org/ITechSupportService1/UsernameValidationResponse")]
-        System.Threading.Tasks.Task<SchProject.TechSupportService.UsernameValidationResult> UsernameValidationAsync(string username);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportServiceSecure1/RegisterNewStaffMember", ReplyAction="http://tempuri.org/ITechSupportServiceSecure1/RegisterNewStaffMemberResponse")]
+        System.Threading.Tasks.Task RegisterNewStaffMemberAsync(SchProject.TechSupportSecure.WorkerDataRegistrationData regData);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportService1/RegisterNewStaffMember", ReplyAction="http://tempuri.org/ITechSupportService1/RegisterNewStaffMemberResponse")]
-        void RegisterNewStaffMember(SchProject.TechSupportService.WorkerDataRegistrationData regData);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportServiceSecure1/LastCustomerList", ReplyAction="http://tempuri.org/ITechSupportServiceSecure1/LastCustomerListResponse")]
+        SchProject.TechSupportSecure.CustomerLoginData[] LastCustomerList();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportService1/RegisterNewStaffMember", ReplyAction="http://tempuri.org/ITechSupportService1/RegisterNewStaffMemberResponse")]
-        System.Threading.Tasks.Task RegisterNewStaffMemberAsync(SchProject.TechSupportService.WorkerDataRegistrationData regData);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportServiceSecure1/LastCustomerList", ReplyAction="http://tempuri.org/ITechSupportServiceSecure1/LastCustomerListResponse")]
+        System.Threading.Tasks.Task<SchProject.TechSupportSecure.CustomerLoginData[]> LastCustomerListAsync();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportService1/LastCustomerList", ReplyAction="http://tempuri.org/ITechSupportService1/LastCustomerListResponse")]
-        SchProject.TechSupportService.CustomerLoginData[] LastCustomerList();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportServiceSecure1/StaffList", ReplyAction="http://tempuri.org/ITechSupportServiceSecure1/StaffListResponse")]
+        SchProject.TechSupportSecure.WorkerData[] StaffList();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportService1/LastCustomerList", ReplyAction="http://tempuri.org/ITechSupportService1/LastCustomerListResponse")]
-        System.Threading.Tasks.Task<SchProject.TechSupportService.CustomerLoginData[]> LastCustomerListAsync();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportServiceSecure1/StaffList", ReplyAction="http://tempuri.org/ITechSupportServiceSecure1/StaffListResponse")]
+        System.Threading.Tasks.Task<SchProject.TechSupportSecure.WorkerData[]> StaffListAsync();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportService1/StaffList", ReplyAction="http://tempuri.org/ITechSupportService1/StaffListResponse")]
-        SchProject.TechSupportService.WorkerData[] StaffList();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportServiceSecure1/ChangeWorkerStatus", ReplyAction="http://tempuri.org/ITechSupportServiceSecure1/ChangeWorkerStatusResponse")]
+        void ChangeWorkerStatus(string username, SchProject.TechSupportSecure.Status status);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportService1/StaffList", ReplyAction="http://tempuri.org/ITechSupportService1/StaffListResponse")]
-        System.Threading.Tasks.Task<SchProject.TechSupportService.WorkerData[]> StaffListAsync();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportServiceSecure1/ChangeWorkerStatus", ReplyAction="http://tempuri.org/ITechSupportServiceSecure1/ChangeWorkerStatusResponse")]
+        System.Threading.Tasks.Task ChangeWorkerStatusAsync(string username, SchProject.TechSupportSecure.Status status);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportService1/ChangeWorkerStatus", ReplyAction="http://tempuri.org/ITechSupportService1/ChangeWorkerStatusResponse")]
-        void ChangeWorkerStatus(string username, SchProject.TechSupportService.Status status);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportService1/ChangeWorkerStatus", ReplyAction="http://tempuri.org/ITechSupportService1/ChangeWorkerStatusResponse")]
-        System.Threading.Tasks.Task ChangeWorkerStatusAsync(string username, SchProject.TechSupportService.Status status);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportService1/SendBugreport", ReplyAction="http://tempuri.org/ITechSupportService1/SendBugreportResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportServiceSecure1/SendBugreport", ReplyAction="http://tempuri.org/ITechSupportServiceSecure1/SendBugreportResponse")]
         void SendBugreport(string message, string sender, string file);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportService1/SendBugreport", ReplyAction="http://tempuri.org/ITechSupportService1/SendBugreportResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportServiceSecure1/SendBugreport", ReplyAction="http://tempuri.org/ITechSupportServiceSecure1/SendBugreportResponse")]
         System.Threading.Tasks.Task SendBugreportAsync(string message, string sender, string file);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportService1/ChangeWorkerPassWD", ReplyAction="http://tempuri.org/ITechSupportService1/ChangeWorkerPassWDResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportServiceSecure1/ChangeWorkerPassWD", ReplyAction="http://tempuri.org/ITechSupportServiceSecure1/ChangeWorkerPassWDResponse")]
         void ChangeWorkerPassWD(string uuid, string username, string newPassWD);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportService1/ChangeWorkerPassWD", ReplyAction="http://tempuri.org/ITechSupportService1/ChangeWorkerPassWDResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportServiceSecure1/ChangeWorkerPassWD", ReplyAction="http://tempuri.org/ITechSupportServiceSecure1/ChangeWorkerPassWDResponse")]
         System.Threading.Tasks.Task ChangeWorkerPassWDAsync(string uuid, string username, string newPassWD);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface ITechSupportService1Channel : SchProject.TechSupportService.ITechSupportService1, System.ServiceModel.IClientChannel {
+    public interface ITechSupportServiceSecure1Channel : SchProject.TechSupportSecure.ITechSupportServiceSecure1, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class TechSupportService1Client : System.ServiceModel.ClientBase<SchProject.TechSupportService.ITechSupportService1>, SchProject.TechSupportService.ITechSupportService1 {
+    public partial class TechSupportServiceSecure1Client : System.ServiceModel.ClientBase<SchProject.TechSupportSecure.ITechSupportServiceSecure1>, SchProject.TechSupportSecure.ITechSupportServiceSecure1 {
         
-        public TechSupportService1Client() {
+        public TechSupportServiceSecure1Client() {
         }
         
-        public TechSupportService1Client(string endpointConfigurationName) : 
+        public TechSupportServiceSecure1Client(string endpointConfigurationName) : 
                 base(endpointConfigurationName) {
         }
         
-        public TechSupportService1Client(string endpointConfigurationName, string remoteAddress) : 
+        public TechSupportServiceSecure1Client(string endpointConfigurationName, string remoteAddress) : 
                 base(endpointConfigurationName, remoteAddress) {
         }
         
-        public TechSupportService1Client(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+        public TechSupportServiceSecure1Client(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(endpointConfigurationName, remoteAddress) {
         }
         
-        public TechSupportService1Client(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+        public TechSupportServiceSecure1Client(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
         }
         
-        public SchProject.TechSupportService.LoginResult Login(string username, string password) {
+        public SchProject.TechSupportSecure.LoginResult Login(string username, string password) {
             return base.Channel.Login(username, password);
         }
         
-        public System.Threading.Tasks.Task<SchProject.TechSupportService.LoginResult> LoginAsync(string username, string password) {
+        public System.Threading.Tasks.Task<SchProject.TechSupportSecure.LoginResult> LoginAsync(string username, string password) {
             return base.Channel.LoginAsync(username, password);
         }
         
@@ -578,51 +572,43 @@ namespace SchProject.TechSupportService {
             return base.Channel.UserLoginAsync(username, password);
         }
         
-        public void RegisterNewUser(string fullName, string email, string userName, string password) {
-            base.Channel.RegisterNewUser(fullName, email, userName, password);
-        }
-        
-        public System.Threading.Tasks.Task RegisterNewUserAsync(string fullName, string email, string userName, string password) {
-            return base.Channel.RegisterNewUserAsync(fullName, email, userName, password);
-        }
-        
-        public SchProject.TechSupportService.UsernameValidationResult UsernameValidation(string username) {
+        public SchProject.TechSupportSecure.UsernameValidationResult UsernameValidation(string username) {
             return base.Channel.UsernameValidation(username);
         }
         
-        public System.Threading.Tasks.Task<SchProject.TechSupportService.UsernameValidationResult> UsernameValidationAsync(string username) {
+        public System.Threading.Tasks.Task<SchProject.TechSupportSecure.UsernameValidationResult> UsernameValidationAsync(string username) {
             return base.Channel.UsernameValidationAsync(username);
         }
         
-        public void RegisterNewStaffMember(SchProject.TechSupportService.WorkerDataRegistrationData regData) {
+        public void RegisterNewStaffMember(SchProject.TechSupportSecure.WorkerDataRegistrationData regData) {
             base.Channel.RegisterNewStaffMember(regData);
         }
         
-        public System.Threading.Tasks.Task RegisterNewStaffMemberAsync(SchProject.TechSupportService.WorkerDataRegistrationData regData) {
+        public System.Threading.Tasks.Task RegisterNewStaffMemberAsync(SchProject.TechSupportSecure.WorkerDataRegistrationData regData) {
             return base.Channel.RegisterNewStaffMemberAsync(regData);
         }
         
-        public SchProject.TechSupportService.CustomerLoginData[] LastCustomerList() {
+        public SchProject.TechSupportSecure.CustomerLoginData[] LastCustomerList() {
             return base.Channel.LastCustomerList();
         }
         
-        public System.Threading.Tasks.Task<SchProject.TechSupportService.CustomerLoginData[]> LastCustomerListAsync() {
+        public System.Threading.Tasks.Task<SchProject.TechSupportSecure.CustomerLoginData[]> LastCustomerListAsync() {
             return base.Channel.LastCustomerListAsync();
         }
         
-        public SchProject.TechSupportService.WorkerData[] StaffList() {
+        public SchProject.TechSupportSecure.WorkerData[] StaffList() {
             return base.Channel.StaffList();
         }
         
-        public System.Threading.Tasks.Task<SchProject.TechSupportService.WorkerData[]> StaffListAsync() {
+        public System.Threading.Tasks.Task<SchProject.TechSupportSecure.WorkerData[]> StaffListAsync() {
             return base.Channel.StaffListAsync();
         }
         
-        public void ChangeWorkerStatus(string username, SchProject.TechSupportService.Status status) {
+        public void ChangeWorkerStatus(string username, SchProject.TechSupportSecure.Status status) {
             base.Channel.ChangeWorkerStatus(username, status);
         }
         
-        public System.Threading.Tasks.Task ChangeWorkerStatusAsync(string username, SchProject.TechSupportService.Status status) {
+        public System.Threading.Tasks.Task ChangeWorkerStatusAsync(string username, SchProject.TechSupportSecure.Status status) {
             return base.Channel.ChangeWorkerStatusAsync(username, status);
         }
         

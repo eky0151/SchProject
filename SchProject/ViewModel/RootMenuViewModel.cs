@@ -12,15 +12,10 @@ using GalaSoft.MvvmLight.CommandWpf;
 using GalaSoft.MvvmLight.Messaging;
 using SchProject.Resources.Layout;
 using SchProject.Resources.Layout.CustomControls;
-using SchProject.TechSupportService;
+using SchProject.TechSupportSecure;
 
 namespace SchProject.ViewModel
 {
-    public class SendFullNameMessage
-    {
-        public string FullName { get; set; }
-    }
-
     public class RootMenuViewModel : ViewModelBase
     {
         public string _fullName;

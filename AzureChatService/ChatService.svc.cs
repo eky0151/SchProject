@@ -103,6 +103,7 @@
             string[] keys = new string[messages.Keys.Count];
             messages.Keys.CopyTo(keys, 0);
             userQuestons.Add(keys[0], new List<string>());
+
             foreach (var i in messages[keys[0]])
             {
                 userQuestons[keys[0]].Add(i);

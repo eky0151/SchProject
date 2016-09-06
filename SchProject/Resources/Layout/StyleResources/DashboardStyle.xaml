@@ -201,6 +201,7 @@
                                 Height="25"
                                 BorderBrush="#CFCFCF">
                             <Label Content="{Binding Status}"
+                                   Width="93"
                                    Style="{StaticResource CellLabelStyle}"
                                    Foreground="{Binding Status,Converter={StaticResource TicketStatusToBrushConverter}}" />
                         </Border>
