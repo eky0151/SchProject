@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
 using SchProject.Resources.Layout.CustomControls;
-using SchProject.TechSupportSecure;
+using SchProject.TechSupportSecure1;
 
 namespace SchProject
 {
@@ -37,7 +37,7 @@ namespace SchProject
                 case Role.Boss:
                     return new List<MenuButtonData>() { CreateButton(MenuButtonType.Manager), };
                 case Role.HelpDesk:
-                    return new List<MenuButtonData>() { CreateButton(MenuButtonType.Error) };
+                    return new List<MenuButtonData>() { CreateButton(MenuButtonType.Error), CreateButton(MenuButtonType.Manager) };
                 case Role.Technician:
                     return new List<MenuButtonData>() { CreateButton(MenuButtonType.Manager) };
                 default: throw new ArgumentException();

@@ -1,5 +1,7 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.Runtime.Serialization;
+using DbAndRepository;
 using TechSupportService.DataContract;
 
 namespace TechSupportService
@@ -22,13 +24,14 @@ namespace TechSupportService
         [DataMember]
         public Status Status { get; private set; }
         [DataMember]
-        public Bank Bank { get; private set; }
-        [DataMember]
-        public string BankAccount { get; private set; }
-        [DataMember]
         public Role Role { get; private set; }
 
-        public WorkerData(string fullName, string username, string email, string phone, string address, string profilePicture, Status status, Bank bank, string bankAccount, Role role)
+        public static explicit operator WorkerData(LoginData w)
+        {
+            WorkerData data = new WorkerData(w.Worker.FullName, w.Username, w.Worker.Email, w.Worker.Phone, w.Worker.Address, w.Worker.ProfilePicture, (Status)Enum.Parse(typeof(Status), w.Worker.Status), (Role)Enum.Parse(typeof(Role), w.Urole));
+            return data;
+        }
+        public WorkerData(string fullName, string username, string email, string phone, string address, string profilePicture, Status status, Role role)
         {
             FullName = fullName;
             Username = username;
@@ -37,8 +40,6 @@ namespace TechSupportService
             Address = address;
             ProfilePicture = profilePicture;
             Status = status;
-            Bank = bank;
-            BankAccount = bankAccount;
             Role = role;
         }
     }

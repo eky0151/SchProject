@@ -13,7 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using GalaSoft.MvvmLight.Messaging;
-using SchProject.TechSupportSecure;
+using SchProject.TechSupportSecure1;
+using SchProject.TechSupportService;
 
 namespace SchProject.Resources.Layout
 {
@@ -34,19 +35,17 @@ namespace SchProject.Resources.Layout
 
         }
 
-        private void ValidateUsername(string username)
+        private async void ValidateUsername(string username)
         {
-            var task = Task.Factory.StartNew(() =>
+            var task = Task.Factory.StartNew( () =>
            {
-               using (TechSupportServiceSecure1Client host = new TechSupportServiceSecure1Client())
+               using (TechSupportService1Client host = new TechSupportService1Client())
                {
-                   host.ClientCredentials.UserName.UserName = "Flynn";
-                   host.ClientCredentials.UserName.Password = "sam";
                    host.Open();
-                   var res = host.UsernameValidation(username);
-                   if (res.Valid)
+                   var res = host.GetProfilePicture(username);
+                   if (!String.IsNullOrEmpty(res))
                    {
-                       Dispatcher.Invoke(() => { Messenger.Default.Send<UsernameValidationResult>(res); });
+                       Dispatcher.Invoke(() => { Messenger.Default.Send<string>(res); });
 
                    }
                }

@@ -6,8 +6,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
+using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
-using SchProject.TechSupportService;
+using Microsoft.Practices.ServiceLocation;
+using SchProject.TechSupportSecure1;
 
 namespace SchProject.ViewModel
 {
@@ -24,12 +26,12 @@ namespace SchProject.ViewModel
             LoginEnabled = true;
             LoginCommand = new RelayCommand<PasswordBox>(Login);
             Messenger.Default.Register<Navigator>(this, SetNavigator);
-            Messenger.Default.Register<UsernameValidationResult>(this,SetProfilePicture);
+            Messenger.Default.Register<string>(this,SetProfilePicture);
         }
 
-        private void SetProfilePicture(UsernameValidationResult res)
+        private void SetProfilePicture(string res)
         {
-           this.ProfilePicture=new BitmapImage(new Uri("https://techsupportfiles.blob.core.windows.net/images/original/"+res.ProfilePicture, UriKind.RelativeOrAbsolute));
+           this.ProfilePicture=new BitmapImage(new Uri("https://techsupportfiles.blob.core.windows.net/images/original/"+res, UriKind.RelativeOrAbsolute));
         }
 
         public ImageSource ProfilePicture
@@ -49,30 +51,18 @@ namespace SchProject.ViewModel
             _navigator = e;
             Messenger.Default.Unregister<Navigator>(this, SetNavigator);
         }
-        private async void Login(PasswordBox box)
+        private void Login(PasswordBox box)
         {
-            LoginEnabled = false;
-
-            var task = Task.Factory.StartNew(() =>
+            LoginResult res;
+            using (TechSupportServiceSecure1Client client=new TechSupportServiceSecure1Client())
             {
-                using (TechSupportService1Client client = new TechSupportService1Client())
-                {
-                    client.Open();
-                    var res = client.Login(UserName, box.Password);
-                    return res;
-                }
-            });
-
-            var result = await task;
-            if (result.Valid)
-            {
+                client.ClientCredentials.UserName.UserName = "Flynn";
+                client.ClientCredentials.UserName.Password = "sam";
+                client.Open();
+                res = client.GetWorkerData();
+                ServiceLocator.Current.GetInstance<UserData>().SetData(res);
                 _navigator.Login();
-                Messenger.Default.Send<LoginResult>(result);
-                Global.FullName = result.FullName;
             }
-            LoginEnabled = true;
-
-            
         }
     }
 }

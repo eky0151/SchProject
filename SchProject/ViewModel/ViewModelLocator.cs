@@ -48,13 +48,13 @@ namespace SchProject.ViewModel
 
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<LoginViewModel>();
+            SimpleIoc.Default.Register<UserData>();
             //SimpleIoc.Default.Register<ChatViewModel>();
 
             //wcf
             //SimpleIoc.Default.Register<Chatservice.ChatClient>();
            // SimpleIoc.Default.Register<TechSupportService.TechSupportService1Client>();
         }
-
         public ManagementViewModel Management
         {
             get { return new ManagementViewModel(); }

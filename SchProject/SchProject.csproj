@@ -181,11 +181,17 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Service References\TechSupportSecure1\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Service References\TechSupportService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="UserData.cs" />
     <Compile Include="ViewModel\ChatViewModel.cs" />
     <Compile Include="ViewModel\DashboardViewModel.cs" />
     <Compile Include="ViewModel\AdminsViewModel.cs" />
@@ -306,32 +312,36 @@
     <None Include="Service References\Chatservice\ChatService2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\TechSupportService\SchProject.TechSupportService.CustomerLoginData.datasource">
+    <None Include="Service References\TechSupportSecure1\SchProject.TechSupportSecure1.CustomerLoginData.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\TechSupportService\SchProject.TechSupportService.LoginResult.datasource">
+    <None Include="Service References\TechSupportSecure1\SchProject.TechSupportSecure1.LoginResult.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\TechSupportService\SchProject.TechSupportService.UsernameValidationResult.datasource">
+    <None Include="Service References\TechSupportSecure1\SchProject.TechSupportSecure1.WorkerData.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\TechSupportService\SchProject.TechSupportService.WorkerData.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
+    <None Include="Service References\TechSupportSecure1\TechSupportServiceSecure.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\TechSupportSecure1\TechSupportServiceSecure1.wsdl" />
+    <None Include="Service References\TechSupportSecure1\TechSupportServiceSecure1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\TechSupportSecure1\TechSupportServiceSecure2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\TechSupportSecure1\TechSupportServiceSecure3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\TechSupportSecure1\TechSupportServiceSecure4.xsd">
+      <SubType>Designer</SubType>
     </None>
     <None Include="Service References\TechSupportService\TechSupportService.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\TechSupportService\TechSupportService1.wsdl" />
     <None Include="Service References\TechSupportService\TechSupportService1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\TechSupportService\TechSupportService2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\TechSupportService\TechSupportService3.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\TechSupportService\TechSupportService4.xsd">
       <SubType>Designer</SubType>
     </None>
     <Resource Include="Resources\Layout\Fonts\HelveticaNeue.ttf" />
@@ -386,6 +396,7 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\Chatservice\" />
+    <WCFMetadataStorage Include="Service References\TechSupportSecure1\" />
     <WCFMetadataStorage Include="Service References\TechSupportService\" />
   </ItemGroup>
   <ItemGroup>
@@ -401,21 +412,6 @@
       <Project>{86e64cf5-55d1-4b73-bcb0-8edb66dd348f}</Project>
       <Name>TechSharedLibraries</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\TechSupportService\TechSupportService.disco" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\TechSupportService\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\TechSupportService\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\TechSupportService\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Layout\Images\management.png" />
@@ -434,6 +430,36 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\Chatservice\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\TechSupportSecure1\TechSupportServiceSecure.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\TechSupportSecure1\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\TechSupportSecure1\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\TechSupportSecure1\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\TechSupportService\TechSupportService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\TechSupportService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\TechSupportService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\TechSupportService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

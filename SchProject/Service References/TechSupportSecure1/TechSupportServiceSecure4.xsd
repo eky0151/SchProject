@@ -11,13 +11,6 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="LoginResult" nillable="true" type="tns:LoginResult" />
-  <xs:complexType name="UsernameValidationResult">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="ProfilePicture" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Valid" type="xs:boolean" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="UsernameValidationResult" nillable="true" type="tns:UsernameValidationResult" />
   <xs:complexType name="WorkerDataRegistrationData">
     <xs:complexContent mixed="false">
       <xs:extension base="tns:WorkerData">

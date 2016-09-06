@@ -5,6 +5,8 @@ using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
 using System.Threading.Tasks;
+using DbAndRepository;
+using TechSupportService.DataContract;
 
 namespace TechSupportService
 {
@@ -12,16 +14,10 @@ namespace TechSupportService
     public interface ITechSupportServiceSecure1
     {
 
-        [OperationContract(AsyncPattern = true)]
-        Task<LoginResult> LoginAsync(string username, string password);
-
         [OperationContract]
-        bool UserLogin(string username, string password);
+        LoginResult GetWorkerData();
 
-        [OperationContract]
-        UsernameValidationResult UsernameValidation(string username);
-
-        [OperationContract]
+        [OperationContract(IsOneWay = true)]
         void RegisterNewStaffMember(WorkerDataRegistrationData regData);
 
         [OperationContract]
@@ -30,14 +26,50 @@ namespace TechSupportService
         [OperationContract]
         List<WorkerData> StaffList();
 
-        [OperationContract]
+        [OperationContract(IsOneWay = true)]
         void ChangeWorkerStatus(string username, Status status);
 
-        [OperationContract]
-        void SendBugreport(string message, string sender, string file);
+        [OperationContract(IsOneWay = true)]
+        void SendBugreport(string message, List<string> file);
+
+        [OperationContract(IsOneWay = true)]
+        void ChangeWorkerPassWD(string username, string newPassWD);
+
+        [OperationContract(IsOneWay = true)]
+        void ChangePassWD(string passnewPassWD);
 
         [OperationContract]
-        void ChangeWorkerPassWD(string uuid, string username, string newPassWD);
+        WorkerData GetWorker(string username);
+
+        [OperationContract]
+        List<TechnicianData> TechnicianList();
+
+        [OperationContract]
+        List<TechnicianData> GetAvailableTechnician();
+
+        [OperationContract(IsOneWay = true)]
+        void AddNewSolvedQuestion(SolvedQuestion solved);
+
+        [OperationContract]
+        List<SolvedQuestion> SolvedQuestionList(uint Page);
+
+        [OperationContract]
+        List<TechWork> GetTechWorks();
+
+        [OperationContract]
+        List<TechWork> NewTechWorks();
+
+        [OperationContract(IsOneWay = true)]
+        void ChangeTechnicianStatus(TechnicianStatus status);
+
+        [OperationContract(IsOneWay = true)]
+        void RegisterTechWork(TechWork work);
+
+        [OperationContract]
+        List<CustomerData> LastCustomers();
+
+        [OperationContract]
+        CustomerData GetCustomer(string username);
 
 
 
