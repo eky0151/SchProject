@@ -9,476 +9,11 @@
 //------------------------------------------------------------------------------
 
 namespace SchProject.TechSupportService {
-    using System.Runtime.Serialization;
-    using System;
     
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="LoginResult", Namespace="http://schemas.datacontract.org/2004/07/TechSupportService")]
-    [System.SerializableAttribute()]
-    public partial class LoginResult : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string FullNameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private SchProject.TechSupportService.Role RoleField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Security.SecureString UUIDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool ValidField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string FullName {
-            get {
-                return this.FullNameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.FullNameField, value) != true)) {
-                    this.FullNameField = value;
-                    this.RaisePropertyChanged("FullName");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public SchProject.TechSupportService.Role Role {
-            get {
-                return this.RoleField;
-            }
-            set {
-                if ((this.RoleField.Equals(value) != true)) {
-                    this.RoleField = value;
-                    this.RaisePropertyChanged("Role");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Security.SecureString UUID {
-            get {
-                return this.UUIDField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.UUIDField, value) != true)) {
-                    this.UUIDField = value;
-                    this.RaisePropertyChanged("UUID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool Valid {
-            get {
-                return this.ValidField;
-            }
-            set {
-                if ((this.ValidField.Equals(value) != true)) {
-                    this.ValidField = value;
-                    this.RaisePropertyChanged("Valid");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Role", Namespace="http://schemas.datacontract.org/2004/07/TechSupportService.DataContract")]
-    public enum Role : int {
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        HelpDesk = 0,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Admin = 1,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Technician = 2,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Boss = 3,
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="UsernameValidationResult", Namespace="http://schemas.datacontract.org/2004/07/TechSupportService")]
-    [System.SerializableAttribute()]
-    public partial class UsernameValidationResult : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string ProfilePictureField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool ValidField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string ProfilePicture {
-            get {
-                return this.ProfilePictureField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ProfilePictureField, value) != true)) {
-                    this.ProfilePictureField = value;
-                    this.RaisePropertyChanged("ProfilePicture");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool Valid {
-            get {
-                return this.ValidField;
-            }
-            set {
-                if ((this.ValidField.Equals(value) != true)) {
-                    this.ValidField = value;
-                    this.RaisePropertyChanged("Valid");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="WorkerData", Namespace="http://schemas.datacontract.org/2004/07/TechSupportService")]
-    [System.SerializableAttribute()]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(SchProject.TechSupportService.WorkerDataRegistrationData))]
-    public partial class WorkerData : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string AddressField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private SchProject.TechSupportService.Bank BankField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string BankAccountField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string EmailField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string FullNameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string PhoneField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string ProfilePictureField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private SchProject.TechSupportService.Role RoleField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private SchProject.TechSupportService.Status StatusField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string UsernameField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Address {
-            get {
-                return this.AddressField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.AddressField, value) != true)) {
-                    this.AddressField = value;
-                    this.RaisePropertyChanged("Address");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public SchProject.TechSupportService.Bank Bank {
-            get {
-                return this.BankField;
-            }
-            set {
-                if ((this.BankField.Equals(value) != true)) {
-                    this.BankField = value;
-                    this.RaisePropertyChanged("Bank");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string BankAccount {
-            get {
-                return this.BankAccountField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.BankAccountField, value) != true)) {
-                    this.BankAccountField = value;
-                    this.RaisePropertyChanged("BankAccount");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Email {
-            get {
-                return this.EmailField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.EmailField, value) != true)) {
-                    this.EmailField = value;
-                    this.RaisePropertyChanged("Email");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string FullName {
-            get {
-                return this.FullNameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.FullNameField, value) != true)) {
-                    this.FullNameField = value;
-                    this.RaisePropertyChanged("FullName");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Phone {
-            get {
-                return this.PhoneField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.PhoneField, value) != true)) {
-                    this.PhoneField = value;
-                    this.RaisePropertyChanged("Phone");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string ProfilePicture {
-            get {
-                return this.ProfilePictureField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ProfilePictureField, value) != true)) {
-                    this.ProfilePictureField = value;
-                    this.RaisePropertyChanged("ProfilePicture");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public SchProject.TechSupportService.Role Role {
-            get {
-                return this.RoleField;
-            }
-            set {
-                if ((this.RoleField.Equals(value) != true)) {
-                    this.RoleField = value;
-                    this.RaisePropertyChanged("Role");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public SchProject.TechSupportService.Status Status {
-            get {
-                return this.StatusField;
-            }
-            set {
-                if ((this.StatusField.Equals(value) != true)) {
-                    this.StatusField = value;
-                    this.RaisePropertyChanged("Status");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Username {
-            get {
-                return this.UsernameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.UsernameField, value) != true)) {
-                    this.UsernameField = value;
-                    this.RaisePropertyChanged("Username");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="WorkerDataRegistrationData", Namespace="http://schemas.datacontract.org/2004/07/TechSupportService")]
-    [System.SerializableAttribute()]
-    public partial class WorkerDataRegistrationData : SchProject.TechSupportService.WorkerData {
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string PassWDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool TechnicianField;
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string PassWD {
-            get {
-                return this.PassWDField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.PassWDField, value) != true)) {
-                    this.PassWDField = value;
-                    this.RaisePropertyChanged("PassWD");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool Technician {
-            get {
-                return this.TechnicianField;
-            }
-            set {
-                if ((this.TechnicianField.Equals(value) != true)) {
-                    this.TechnicianField = value;
-                    this.RaisePropertyChanged("Technician");
-                }
-            }
-        }
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Bank", Namespace="http://schemas.datacontract.org/2004/07/TechSupportService")]
-    public enum Bank : int {
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        MagyarNemzetiBank = 0,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Erste = 1,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        OrszágosTakarékPénztár = 2,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        OTP = 3,
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Status", Namespace="http://schemas.datacontract.org/2004/07/TechSupportService")]
-    public enum Status : int {
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Away = 0,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Working = 1,
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="CustomerLoginData", Namespace="http://schemas.datacontract.org/2004/07/TechSupportService")]
-    [System.SerializableAttribute()]
-    public partial class CustomerLoginData : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="TechSupportService.ITechSupportService1")]
     public interface ITechSupportService1 {
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportService1/Login", ReplyAction="http://tempuri.org/ITechSupportService1/LoginResponse")]
-        SchProject.TechSupportService.LoginResult Login(string username, string password);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportService1/Login", ReplyAction="http://tempuri.org/ITechSupportService1/LoginResponse")]
-        System.Threading.Tasks.Task<SchProject.TechSupportService.LoginResult> LoginAsync(string username, string password);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportService1/UserLogin", ReplyAction="http://tempuri.org/ITechSupportService1/UserLoginResponse")]
         bool UserLogin(string username, string password);
@@ -486,53 +21,23 @@ namespace SchProject.TechSupportService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportService1/UserLogin", ReplyAction="http://tempuri.org/ITechSupportService1/UserLoginResponse")]
         System.Threading.Tasks.Task<bool> UserLoginAsync(string username, string password);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportService1/RegisterNewUser", ReplyAction="http://tempuri.org/ITechSupportService1/RegisterNewUserResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportService1/GetProfilePicture", ReplyAction="http://tempuri.org/ITechSupportService1/GetProfilePictureResponse")]
+        string GetProfilePicture(string username);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportService1/GetProfilePicture", ReplyAction="http://tempuri.org/ITechSupportService1/GetProfilePictureResponse")]
+        System.Threading.Tasks.Task<string> GetProfilePictureAsync(string username);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportService1/GetUserProfilePicture", ReplyAction="http://tempuri.org/ITechSupportService1/GetUserProfilePictureResponse")]
+        string GetUserProfilePicture(string username);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportService1/GetUserProfilePicture", ReplyAction="http://tempuri.org/ITechSupportService1/GetUserProfilePictureResponse")]
+        System.Threading.Tasks.Task<string> GetUserProfilePictureAsync(string username);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ITechSupportService1/RegisterNewUser")]
         void RegisterNewUser(string fullName, string email, string userName, string password);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportService1/RegisterNewUser", ReplyAction="http://tempuri.org/ITechSupportService1/RegisterNewUserResponse")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ITechSupportService1/RegisterNewUser")]
         System.Threading.Tasks.Task RegisterNewUserAsync(string fullName, string email, string userName, string password);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportService1/UsernameValidation", ReplyAction="http://tempuri.org/ITechSupportService1/UsernameValidationResponse")]
-        SchProject.TechSupportService.UsernameValidationResult UsernameValidation(string username);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportService1/UsernameValidation", ReplyAction="http://tempuri.org/ITechSupportService1/UsernameValidationResponse")]
-        System.Threading.Tasks.Task<SchProject.TechSupportService.UsernameValidationResult> UsernameValidationAsync(string username);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportService1/RegisterNewStaffMember", ReplyAction="http://tempuri.org/ITechSupportService1/RegisterNewStaffMemberResponse")]
-        void RegisterNewStaffMember(SchProject.TechSupportService.WorkerDataRegistrationData regData);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportService1/RegisterNewStaffMember", ReplyAction="http://tempuri.org/ITechSupportService1/RegisterNewStaffMemberResponse")]
-        System.Threading.Tasks.Task RegisterNewStaffMemberAsync(SchProject.TechSupportService.WorkerDataRegistrationData regData);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportService1/LastCustomerList", ReplyAction="http://tempuri.org/ITechSupportService1/LastCustomerListResponse")]
-        SchProject.TechSupportService.CustomerLoginData[] LastCustomerList();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportService1/LastCustomerList", ReplyAction="http://tempuri.org/ITechSupportService1/LastCustomerListResponse")]
-        System.Threading.Tasks.Task<SchProject.TechSupportService.CustomerLoginData[]> LastCustomerListAsync();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportService1/StaffList", ReplyAction="http://tempuri.org/ITechSupportService1/StaffListResponse")]
-        SchProject.TechSupportService.WorkerData[] StaffList();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportService1/StaffList", ReplyAction="http://tempuri.org/ITechSupportService1/StaffListResponse")]
-        System.Threading.Tasks.Task<SchProject.TechSupportService.WorkerData[]> StaffListAsync();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportService1/ChangeWorkerStatus", ReplyAction="http://tempuri.org/ITechSupportService1/ChangeWorkerStatusResponse")]
-        void ChangeWorkerStatus(string username, SchProject.TechSupportService.Status status);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportService1/ChangeWorkerStatus", ReplyAction="http://tempuri.org/ITechSupportService1/ChangeWorkerStatusResponse")]
-        System.Threading.Tasks.Task ChangeWorkerStatusAsync(string username, SchProject.TechSupportService.Status status);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportService1/SendBugreport", ReplyAction="http://tempuri.org/ITechSupportService1/SendBugreportResponse")]
-        void SendBugreport(string message, string sender, string file);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportService1/SendBugreport", ReplyAction="http://tempuri.org/ITechSupportService1/SendBugreportResponse")]
-        System.Threading.Tasks.Task SendBugreportAsync(string message, string sender, string file);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportService1/ChangeWorkerPassWD", ReplyAction="http://tempuri.org/ITechSupportService1/ChangeWorkerPassWDResponse")]
-        void ChangeWorkerPassWD(string uuid, string username, string newPassWD);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportService1/ChangeWorkerPassWD", ReplyAction="http://tempuri.org/ITechSupportService1/ChangeWorkerPassWDResponse")]
-        System.Threading.Tasks.Task ChangeWorkerPassWDAsync(string uuid, string username, string newPassWD);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -562,14 +67,6 @@ namespace SchProject.TechSupportService {
                 base(binding, remoteAddress) {
         }
         
-        public SchProject.TechSupportService.LoginResult Login(string username, string password) {
-            return base.Channel.Login(username, password);
-        }
-        
-        public System.Threading.Tasks.Task<SchProject.TechSupportService.LoginResult> LoginAsync(string username, string password) {
-            return base.Channel.LoginAsync(username, password);
-        }
-        
         public bool UserLogin(string username, string password) {
             return base.Channel.UserLogin(username, password);
         }
@@ -578,68 +75,28 @@ namespace SchProject.TechSupportService {
             return base.Channel.UserLoginAsync(username, password);
         }
         
+        public string GetProfilePicture(string username) {
+            return base.Channel.GetProfilePicture(username);
+        }
+        
+        public System.Threading.Tasks.Task<string> GetProfilePictureAsync(string username) {
+            return base.Channel.GetProfilePictureAsync(username);
+        }
+        
+        public string GetUserProfilePicture(string username) {
+            return base.Channel.GetUserProfilePicture(username);
+        }
+        
+        public System.Threading.Tasks.Task<string> GetUserProfilePictureAsync(string username) {
+            return base.Channel.GetUserProfilePictureAsync(username);
+        }
+        
         public void RegisterNewUser(string fullName, string email, string userName, string password) {
             base.Channel.RegisterNewUser(fullName, email, userName, password);
         }
         
         public System.Threading.Tasks.Task RegisterNewUserAsync(string fullName, string email, string userName, string password) {
             return base.Channel.RegisterNewUserAsync(fullName, email, userName, password);
-        }
-        
-        public SchProject.TechSupportService.UsernameValidationResult UsernameValidation(string username) {
-            return base.Channel.UsernameValidation(username);
-        }
-        
-        public System.Threading.Tasks.Task<SchProject.TechSupportService.UsernameValidationResult> UsernameValidationAsync(string username) {
-            return base.Channel.UsernameValidationAsync(username);
-        }
-        
-        public void RegisterNewStaffMember(SchProject.TechSupportService.WorkerDataRegistrationData regData) {
-            base.Channel.RegisterNewStaffMember(regData);
-        }
-        
-        public System.Threading.Tasks.Task RegisterNewStaffMemberAsync(SchProject.TechSupportService.WorkerDataRegistrationData regData) {
-            return base.Channel.RegisterNewStaffMemberAsync(regData);
-        }
-        
-        public SchProject.TechSupportService.CustomerLoginData[] LastCustomerList() {
-            return base.Channel.LastCustomerList();
-        }
-        
-        public System.Threading.Tasks.Task<SchProject.TechSupportService.CustomerLoginData[]> LastCustomerListAsync() {
-            return base.Channel.LastCustomerListAsync();
-        }
-        
-        public SchProject.TechSupportService.WorkerData[] StaffList() {
-            return base.Channel.StaffList();
-        }
-        
-        public System.Threading.Tasks.Task<SchProject.TechSupportService.WorkerData[]> StaffListAsync() {
-            return base.Channel.StaffListAsync();
-        }
-        
-        public void ChangeWorkerStatus(string username, SchProject.TechSupportService.Status status) {
-            base.Channel.ChangeWorkerStatus(username, status);
-        }
-        
-        public System.Threading.Tasks.Task ChangeWorkerStatusAsync(string username, SchProject.TechSupportService.Status status) {
-            return base.Channel.ChangeWorkerStatusAsync(username, status);
-        }
-        
-        public void SendBugreport(string message, string sender, string file) {
-            base.Channel.SendBugreport(message, sender, file);
-        }
-        
-        public System.Threading.Tasks.Task SendBugreportAsync(string message, string sender, string file) {
-            return base.Channel.SendBugreportAsync(message, sender, file);
-        }
-        
-        public void ChangeWorkerPassWD(string uuid, string username, string newPassWD) {
-            base.Channel.ChangeWorkerPassWD(uuid, username, newPassWD);
-        }
-        
-        public System.Threading.Tasks.Task ChangeWorkerPassWDAsync(string uuid, string username, string newPassWD) {
-            return base.Channel.ChangeWorkerPassWDAsync(uuid, username, newPassWD);
         }
     }
 }

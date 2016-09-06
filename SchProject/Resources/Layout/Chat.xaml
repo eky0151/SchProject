@@ -3,27 +3,34 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:SchProject.Resources.Layout"
              mc:Ignorable="d" 
              d:DesignHeight="625" d:DesignWidth="700"
              DataContext="{Binding Source={StaticResource Locator}, Path=Chat}">
-    
-    
+
+    <!--Material Design Themes-->
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
-            <i:InvokeCommandAction Command="{Binding Path=LoginWorkerCommand}"/> <!-- inkább gomb -> connect/ unconnect-->
+            <i:InvokeCommandAction Command="{Binding Path=LoginWorkerCommand}"/>
+            <!-- inkább gomb -> connect/ unconnect-->
         </i:EventTrigger>
     </i:Interaction.Triggers>
-    
+
     <Grid>
-
-        <Button  Command="{Binding SendMessageCommand}" CommandParameter="{Binding Path=Message}" Content="Send" 
-                 HorizontalAlignment="Left" Height="30" Width="133" Margin="81,260,0,0" VerticalAlignment="Top" />
-        <TextBox HorizontalAlignment="Left" Height="48" TextWrapping="Wrap" Text="{Binding Path=Message, UpdateSourceTrigger=PropertyChanged}" 
-                 VerticalAlignment="Top" Width="280" Margin="10,207,0,0"/>
-        <ListBox ItemsSource="{Binding Path=Messages}" 
-                 HorizontalAlignment="Left" Height="182" Margin="10,20,0,0" VerticalAlignment="Top" Width="280" AllowDrop="True"/>
-
+        <TextBlock  HorizontalAlignment="Left" Height="78" Margin="84,468,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="408"/>
+       
     </Grid>
 </UserControl>

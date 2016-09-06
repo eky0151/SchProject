@@ -269,6 +269,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Resources\Layout\StyleResources\MaterialDesignThemes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Resources\Layout\StyleResources\RootMenuStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -314,29 +318,8 @@
     <None Include="Service References\Chatservice\ChatService2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\TechSupportService\SchProject.TechSupportService.CustomerLoginData.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\TechSupportService\SchProject.TechSupportService.LoginResult.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\TechSupportService\SchProject.TechSupportService.UsernameValidationResult.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\TechSupportService\SchProject.TechSupportService.WorkerData.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\TechSupportService\TechSupportService.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Service References\TechSupportService\TechSupportService1.wsdl" />
-    <None Include="Service References\TechSupportService\TechSupportService1.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Service References\TechSupportService\TechSupportService2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\TechSupportService\TechSupportService3.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\TechSupportService\TechSupportService4.xsd">
