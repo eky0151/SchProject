@@ -401,21 +401,6 @@
     <Resource Include="Resources\Layout\Images\managementSelected.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\Chatservice\ChatService.disco" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\Chatservice\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\Chatservice\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\Chatservice\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Service References\TechSupportService\TechSupportService.disco" />
   </ItemGroup>
   <ItemGroup>
@@ -426,6 +411,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\TechSupportService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\Chatservice\ChatService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\Chatservice\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\Chatservice\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\Chatservice\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

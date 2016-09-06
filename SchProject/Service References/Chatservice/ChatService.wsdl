@@ -50,11 +50,17 @@
   <wsdl:message name="IChat_RemoveWorker_OutputMessage">
     <wsdl:part name="parameters" element="tns:RemoveWorkerResponse" />
   </wsdl:message>
-  <wsdl:message name="IChat_GetQuestions_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetQuestions" />
+  <wsdl:message name="IChat_GetFirstUserQuestions_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetFirstUserQuestions" />
   </wsdl:message>
-  <wsdl:message name="IChat_GetQuestions_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetQuestionsResponse" />
+  <wsdl:message name="IChat_GetFirstUserQuestions_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetFirstUserQuestionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IChat_CheckUserOnline_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckUserOnline" />
+  </wsdl:message>
+  <wsdl:message name="IChat_CheckUserOnline_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckUserOnlineResponse" />
   </wsdl:message>
   <wsdl:message name="IChat_ReceiveMessageCallback_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:ReceiveMessageCallback" />
@@ -90,9 +96,13 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IChat/RemoveWorker" message="tns:IChat_RemoveWorker_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IChat/RemoveWorkerResponse" message="tns:IChat_RemoveWorker_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetQuestions">
-      <wsdl:input wsaw:Action="http://tempuri.org/IChat/GetQuestions" message="tns:IChat_GetQuestions_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IChat/GetQuestionsResponse" message="tns:IChat_GetQuestions_OutputMessage" />
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetFirstUserQuestions">
+      <wsdl:input wsaw:Action="http://tempuri.org/IChat/GetFirstUserQuestions" message="tns:IChat_GetFirstUserQuestions_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IChat/GetFirstUserQuestionsResponse" message="tns:IChat_GetFirstUserQuestions_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="CheckUserOnline">
+      <wsdl:input wsaw:Action="http://tempuri.org/IChat/CheckUserOnline" message="tns:IChat_CheckUserOnline_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IChat/CheckUserOnlineResponse" message="tns:IChat_CheckUserOnline_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="ReceiveMessageCallback">
       <wsdl:output wsaw:Action="http://tempuri.org/IChat/ReceiveMessageCallback" message="tns:IChat_ReceiveMessageCallback_OutputCallbackMessage" />
@@ -158,8 +168,17 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetQuestions">
-      <soap12:operation soapAction="http://tempuri.org/IChat/GetQuestions" style="document" />
+    <wsdl:operation name="GetFirstUserQuestions">
+      <soap12:operation soapAction="http://tempuri.org/IChat/GetFirstUserQuestions" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckUserOnline">
+      <soap12:operation soapAction="http://tempuri.org/IChat/CheckUserOnline" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
