@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
 using SchProject.Resources.Layout.CustomControls;
-using SchProject.TechSupportService;
+using SchProject.TechSupportSecure;
 
 namespace SchProject
 {

@@ -16,16 +16,11 @@
         {
         }
 
-        public bool Authenticate(string username, string password, out string fullName, out string role)
+        public bool Authenticate(string username, string password)
         {
-            fullName = role = string.Empty;
             l = Get(i => i.Username == username && i.Password == password).FirstOrDefault();
             if (l == null)
                 return false;
-
-            fullName = l.Worker.FullName;
-            role = l.Urole;
-
             return true;
         }
 

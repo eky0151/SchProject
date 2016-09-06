@@ -6,8 +6,8 @@
              xmlns:local="clr-namespace:SchProject.Resources.Layout"
              xmlns:controls="clr-namespace:SchProject.Resources.Layout.CustomControls"
              mc:Ignorable="d"
-             d:DesignHeight="625"
-             d:DesignWidth="790"
+             MaxWidth="790"
+             MaxHeight="625"
              DataContext="{Binding Source={StaticResource Locator},Path=Dashboard}">
     <Grid Background="White">
         <Grid.ColumnDefinitions>
