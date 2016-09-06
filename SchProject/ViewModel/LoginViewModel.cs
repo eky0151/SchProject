@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.ServiceModel;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -13,8 +7,7 @@ using System.Windows.Media.Imaging;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using GalaSoft.MvvmLight.Messaging;
-using SchProject.Resources.Layout;
-using SchProject.TechSupportSecure;
+using SchProject.TechSupportService;
 
 namespace SchProject.ViewModel
 {
@@ -62,7 +55,7 @@ namespace SchProject.ViewModel
 
             var task = Task.Factory.StartNew(() =>
             {
-                using (TechSupportServiceSecure1Client client = new TechSupportServiceSecure1Client())
+                using (TechSupportService1Client client = new TechSupportService1Client())
                 {
                     client.Open();
                     var res = client.Login(UserName, box.Password);
@@ -75,8 +68,11 @@ namespace SchProject.ViewModel
             {
                 _navigator.Login();
                 Messenger.Default.Send<LoginResult>(result);
+                Global.FullName = result.FullName;
             }
             LoginEnabled = true;
+
+            
         }
     }
 }

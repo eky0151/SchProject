@@ -1,5 +1,6 @@
 ﻿namespace AzureChatService
 {
+    using System.Collections.Generic;
     using System.ServiceModel;
 
     [ServiceContract(SessionMode = SessionMode.Required, CallbackContract = typeof(IChatCallback))]
@@ -25,5 +26,9 @@
 
         [OperationContract]
         void RemoveWorker(string name);
+
+        [OperationContract]
+        Dictionary<string, List<string>> GetFirstUserQuestions();
+
     }
 }

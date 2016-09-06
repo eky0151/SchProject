@@ -9,12 +9,11 @@
     using System.Windows.Controls;
     using System.Windows.Input;
     using System.Windows.Media.Imaging;
+    using System.ServiceModel;
+    using System.Collections.Generic;
 
-    public class ChatViewModel : ViewModelBase, Chatservice.IChatCallback
+    public class ChatViewModel : ViewModelBase
     {
-        //for the methods only
-        Chatservice.ChatClient client;
-
         private string message;
         public string Message
         {
@@ -30,11 +29,13 @@
             set { Set(ref fullName, value); }
         }
 
+        private string aspClientName;
+
         public ICommand SendMessageCommand
         {
             get
             {
-                return SendMessageCommand ?? new RelayCommand<string>(SendMessage);
+                return new RelayCommand<string>(SendMessage);
             }
         }
 
@@ -42,17 +43,40 @@
         {
             get
             {
-                return LoginWorkerCommand ?? new RelayCommand(LoginWorker);
+                return new RelayCommand(LoginWorker);
             }
         }
 
-        public ObservableCollection<object> Messages { get; private set; }
+        public ObservableCollection<object> Messages { get; private set; } = new ObservableCollection<object>();
 
+        private Chatservice.ChatClient client;
 
         public ChatViewModel()
         {
-            Messages = new ObservableCollection<object>();
-            Messenger.Default.Register(this, (SendFullNameMessage s) => fullName = s.FullName);
+            InstanceContext ctx = new InstanceContext(new ChatCallback());
+            client  = new Chatservice.ChatClient(ctx);
+
+            fullName = Global.FullName;
+
+            Messenger.Default.Register(this, (SendClientConnect s) => Messages.Add(string.Format(
+                "{0} is connected at {1}", s.Name, DateTime.Now.ToShortTimeString())));
+
+            Messenger.Default.Register(this, (SendReceiveMessage s) => Messages.Add(s.Message));
+
+            //test
+            Dictionary<string, string[]> q = client.GetQuestions();
+
+            if (q == null)
+                Messages.Add("No question");
+            else
+            {
+                string[] key = new string[1];
+                q.Keys.CopyTo(key, 0);
+                foreach (var i in q[key[0]])
+                {
+                    Messages.Add(key[0] + i);
+                }
+            }
         }
 
         //when de window loaded we connect to the chatservice
@@ -66,21 +90,35 @@
         {
             
         }
+    }
+
+
+    public class ChatCallback : Chatservice.IChatCallback
+    {
 
         public void ClientConnectCallback(string name)
         {
-            Messages.Add(string.Format("{0} is connected at {1}", name, DateTime.Now));
+            Messenger.Default.Send<SendClientConnect>(new SendClientConnect { Name = name });
         }
 
         public void ReceiveFileMessageeCallback(byte[] fileMessage, string description)
         {
-            MemoryStream ms = new MemoryStream(fileMessage);
-            //Image image = Image.FromStream(ms);
+            throw new NotImplementedException();
         }
 
         public void ReceiveMessageCallback(string message, string receiver)
         {
-            Messages.Add(message);
+            Messenger.Default.Send<SendReceiveMessage>(new SendReceiveMessage { Message = message });
         }
+    }
+
+    public class SendClientConnect
+    {
+        public string Name { get; set; }
+    }
+
+    public class SendReceiveMessage
+    {
+        public string Message { get; set; }
     }
 }
