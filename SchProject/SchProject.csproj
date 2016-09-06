@@ -149,6 +149,7 @@
     <Compile Include="Resources\Layout\Chat.xaml.cs">
       <DependentUpon>Chat.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Resources\Layout\Converters\BitmapToImageSourceConverter.cs" />
     <Compile Include="Resources\Layout\Converters\BoolToImageSourceConverter.cs" />
     <Compile Include="Resources\Layout\Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Resources\Layout\Converters\ParametersToArrayConverter.cs" />
@@ -318,11 +319,11 @@
     <None Include="Service References\Chatservice\ChatService2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\TechSupportService\TechSupportService1.wsdl" />
-    <None Include="Service References\TechSupportService\TechSupportService2.xsd">
+    <None Include="Service References\TechSupportService\TechSupportService.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\TechSupportService\TechSupportService4.xsd">
+    <None Include="Service References\TechSupportService\TechSupportService1.wsdl" />
+    <None Include="Service References\TechSupportService\TechSupportService1.xsd">
       <SubType>Designer</SubType>
     </None>
     <Resource Include="Resources\Layout\Fonts\HelveticaNeue.ttf" />
@@ -394,21 +395,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\TechSupportService\TechSupportService.disco" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\TechSupportService\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\TechSupportService\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\TechSupportService\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\Layout\Images\management.png" />
   </ItemGroup>
   <ItemGroup>
@@ -425,6 +411,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\Chatservice\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\TechSupportService\TechSupportService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\TechSupportService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\TechSupportService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\TechSupportService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

@@ -60,6 +60,11 @@
             InstanceContext ctx = new InstanceContext(new ChatCallback());
             client  = new Chatservice.ChatClient(ctx);
 
+            Init();           
+        }
+
+        private void Init()
+        {
             fullName = Global.FullName;
 
             Messenger.Default.Register(this, (SendClientConnect s) => Messages.Add(s));
@@ -67,6 +72,13 @@
             Messenger.Default.Register(this, (SendReceiveMessage s) =>
             {
                 SendReceiveMessage temp = s;
+                temp.Sender = aspClientName;
+                Messages.Add(temp);
+            });
+
+            Messenger.Default.Register(this, (SendReceiveFileMessage s) =>
+            {
+                SendReceiveFileMessage temp = s;
                 temp.Sender = aspClientName;
                 Messages.Add(temp);
             });
@@ -153,5 +165,7 @@
     {
         public Bitmap Content { get; set; }
         public string Description { get; set; }
+
+        public string Sender { get; set; }
     }
 }
