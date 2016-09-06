@@ -17,11 +17,6 @@ using SchProject.TechSupportSecure1;
 
 namespace SchProject.ViewModel
 {
-    public class SendFullNameMessage
-    {
-        public string FullName { get; set; }
-    }
-
     public class RootMenuViewModel : ViewModelBase
     {
         public string _fullName;
