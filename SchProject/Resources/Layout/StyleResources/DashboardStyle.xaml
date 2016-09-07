@@ -321,7 +321,7 @@
                                 VerticalAlignment="Center"
                                 BorderThickness="0,0,1,1"
                                 BorderBrush="#CFCFCF">
-                            <Label Content="{Binding FullName}"
+                            <Label Content="{Binding ID}"
                                    Style="{StaticResource CellLabelStyle}"
                                    Width="120" />
                         </Border>
@@ -329,7 +329,7 @@
                                 BorderThickness="0,0,1,1"
                                 Height="25"
                                 BorderBrush="#CFCFCF">
-                            <Label Content="{Binding Phone}"
+                            <Label Content="{Binding FullName}"
                                    Width="130"
                                    Style="{StaticResource CellLabelStyle}" />
                         </Border>
@@ -380,7 +380,7 @@
                                         VerticalAlignment="Center"
                                         BorderThickness="0,1,1,1"
                                         BorderBrush="#CFCFCF">
-                                    <Label Content="Név"
+                                    <Label Content="Azonosító"
                                            Style="{StaticResource CellLabelStyle}"
                                            Width="120" />
                                 </Border>
@@ -388,7 +388,7 @@
                                         BorderThickness="0,1,1,1"
                                         Height="25"
                                         BorderBrush="#CFCFCF">
-                                    <Label Content="Telefonszám"
+                                    <Label Content="Név"
                                            Width="130"
                                            Style="{StaticResource CellLabelStyle}" />
                                 </Border>

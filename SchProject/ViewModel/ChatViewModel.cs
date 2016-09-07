@@ -5,13 +5,11 @@
     using GalaSoft.MvvmLight.Messaging;
     using System;
     using System.Collections.ObjectModel;
-    using System.IO;
-    using System.Windows.Controls;
     using System.Windows.Input;
-    using System.Windows.Media.Imaging;
     using System.ServiceModel;
     using System.Collections.Generic;
     using System.Drawing;
+    using System.Windows.Forms;
 
     public class ChatViewModel : ViewModelBase
     {
@@ -33,11 +31,31 @@
         private string aspClientName;
         Dictionary<string, string[]> questionsByOneUser;
 
+        public ICommand GetCustomerCommand
+        {
+            get
+            {
+                return new RelayCommand(GetFirstMessage,
+                                       () => client.State == CommunicationState.Opened);
+            }
+        }
+
+        public ICommand SendFileMessageCommand
+        {
+            get
+            {
+                return new RelayCommand(UploadFile,
+                                       () => client.State == CommunicationState.Opened);
+            }
+        }
+
         public ICommand SendMessageCommand
         {
             get
             {
-                return new RelayCommand<string>(SendMessage);
+                return new RelayCommand(SendMessage,
+                                       () => message != string.Empty &&
+                                       client.State == CommunicationState.Opened);
             }
         }
 
@@ -45,7 +63,9 @@
         {
             get
             {
-                return new RelayCommand(LoginWorker, () => fullName != string.Empty );
+                return new RelayCommand(LoginWorker,
+                                        () => fullName != string.Empty &&
+                                        client.State == CommunicationState.Opened);
             }
         }
 
@@ -60,16 +80,44 @@
             InstanceContext ctx = new InstanceContext(new ChatCallback());
             client  = new Chatservice.ChatClient(ctx);
 
-            fullName = Global.FullName;
+            Init();           
+        }
 
+        private void Init()
+        {
+            fullName = (Global.FullName == string.Empty ? "Non authenticated user" : Global.FullName);
             Messenger.Default.Register(this, (SendClientConnect s) => Messages.Add(s));
-
             Messenger.Default.Register(this, (SendReceiveMessage s) =>
             {
                 SendReceiveMessage temp = s;
                 temp.Sender = aspClientName;
                 Messages.Add(temp);
             });
+            Messenger.Default.Register(this, (SendReceiveFileMessage s) =>
+            {
+                SendReceiveFileMessage temp = s;
+                temp.Sender = aspClientName;
+                Messages.Add(temp);
+            });
+        }
+
+        private async void UploadFile()
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            ofd.DefaultExt = "*.png";
+            ofd.Filter = "Image files (*.png;*.jpeg)|*.png;*.jpeg|All files (*.*)|*.*";
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                string filename = ofd.FileName;
+                Bitmap b = new Bitmap(filename);
+                if(b != null)
+                {
+                    ImageConverter c = new ImageConverter();
+                    await client.SendFileAsync((byte[])c.ConvertTo(b, typeof(byte[])), "Picture", aspClientName);
+                }
+               
+            }
         }
 
         //when de window loaded we connect to the chatservice
@@ -79,16 +127,25 @@
             await client.AddWorkerAsync(fullName);
         }
 
-        private void SendMessage(string message)
+        private async void SendMessage()
         {
-            
+            await client.SendMessageAsync(message, aspClientName);
+            bool flag = await client.CheckUserOnlineAsync(aspClientName);
+            if(!flag)
+            {
+                Messages.Add(new SendReceiveMessage
+                {
+                    Content = "Client left",
+                    Sender = aspClientName
+                });
+            }   
         }
 
         //get the first message from the chatservice 
         private async void GetFirstMessage()
         {
             Messages.Clear();
-            questionsByOneUser = await client.GetQuestionsAsync();
+            questionsByOneUser = await client.GetFirstUserQuestionsAsync();
             if (questionsByOneUser == null)
                 Messages.Add("No question");
             else
@@ -98,7 +155,11 @@
                 questionsByOneUser.Keys.CopyTo(key, 0);
                 foreach (var i in questionsByOneUser[key[0]])
                 {
-                    Messages.Add(aspClientName + i);
+                    Messages.Add(new SendReceiveMessage
+                    {
+                        Content = i,
+                        Sender = aspClientName
+                    });
                 }
             }
         }
@@ -153,5 +214,7 @@
     {
         public Bitmap Content { get; set; }
         public string Description { get; set; }
+
+        public string Sender { get; set; }
     }
 }

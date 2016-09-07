@@ -75,6 +75,18 @@
                 IChatCallback callback = clients[receiverName];
                 callback.ReceiveMessageCallback(message, receiverName);
             }
+
+            if(messages.ContainsKey(receiverName))
+            {
+                messages[receiverName].Add(message);
+            }
+            else
+            {
+                messages[receiverName] = new List<string>
+                {
+                    message
+                };
+            }
         }
 
         public bool IsAnyWorker()
@@ -131,6 +143,11 @@
                 "What is the music of life?",
                  "Silence, my brother"
             });
+        }
+
+        public bool CheckUserOnline(string clientName)
+        {
+            return clients.ContainsKey(clientName) ? true : false;
         }
     }
 }

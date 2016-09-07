@@ -30,5 +30,8 @@
         [OperationContract]
         Dictionary<string, List<string>> GetFirstUserQuestions();
 
+        [OperationContract]
+        bool CheckUserOnline(string clientName);
+
     }
 }

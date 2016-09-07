@@ -68,15 +68,29 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
-  <xs:element name="GetQuestions">
+  <xs:element name="GetFirstUserQuestions">
     <xs:complexType>
       <xs:sequence />
     </xs:complexType>
   </xs:element>
-  <xs:element name="GetQuestionsResponse">
+  <xs:element name="GetFirstUserQuestionsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetQuestionsResult" nillable="true" type="q1:ArrayOfKeyValueOfstringArrayOfstringty7Ep6D1" />
+        <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetFirstUserQuestionsResult" nillable="true" type="q1:ArrayOfKeyValueOfstringArrayOfstringty7Ep6D1" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckUserOnline">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="clientName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckUserOnlineResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CheckUserOnlineResult" type="xs:boolean" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

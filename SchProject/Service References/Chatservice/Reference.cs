@@ -57,11 +57,17 @@ namespace SchProject.Chatservice {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChat/RemoveWorker", ReplyAction="http://tempuri.org/IChat/RemoveWorkerResponse")]
         System.Threading.Tasks.Task RemoveWorkerAsync(string name);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChat/GetQuestions", ReplyAction="http://tempuri.org/IChat/GetQuestionsResponse")]
-        System.Collections.Generic.Dictionary<string, string[]> GetQuestions();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChat/GetFirstUserQuestions", ReplyAction="http://tempuri.org/IChat/GetFirstUserQuestionsResponse")]
+        System.Collections.Generic.Dictionary<string, string[]> GetFirstUserQuestions();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChat/GetQuestions", ReplyAction="http://tempuri.org/IChat/GetQuestionsResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<string, string[]>> GetQuestionsAsync();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChat/GetFirstUserQuestions", ReplyAction="http://tempuri.org/IChat/GetFirstUserQuestionsResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<string, string[]>> GetFirstUserQuestionsAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChat/CheckUserOnline", ReplyAction="http://tempuri.org/IChat/CheckUserOnlineResponse")]
+        bool CheckUserOnline(string clientName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChat/CheckUserOnline", ReplyAction="http://tempuri.org/IChat/CheckUserOnlineResponse")]
+        System.Threading.Tasks.Task<bool> CheckUserOnlineAsync(string clientName);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -161,12 +167,20 @@ namespace SchProject.Chatservice {
             return base.Channel.RemoveWorkerAsync(name);
         }
         
-        public System.Collections.Generic.Dictionary<string, string[]> GetQuestions() {
-            return base.Channel.GetQuestions();
+        public System.Collections.Generic.Dictionary<string, string[]> GetFirstUserQuestions() {
+            return base.Channel.GetFirstUserQuestions();
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<string, string[]>> GetQuestionsAsync() {
-            return base.Channel.GetQuestionsAsync();
+        public System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<string, string[]>> GetFirstUserQuestionsAsync() {
+            return base.Channel.GetFirstUserQuestionsAsync();
+        }
+        
+        public bool CheckUserOnline(string clientName) {
+            return base.Channel.CheckUserOnline(clientName);
+        }
+        
+        public System.Threading.Tasks.Task<bool> CheckUserOnlineAsync(string clientName) {
+            return base.Channel.CheckUserOnlineAsync(clientName);
         }
     }
 }
