@@ -1,8 +1,11 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:SchProject.Resources.Layout.Converters">
-    <local:BoolToImageSourceConverter x:Key="BoolToImageSourceConverter" />
+    <local:StatusToImageSourceConverter x:Key="BoolToImageSourceConverter" />
+    <local:TechnicianStatusToImageSourceConverter x:Key="TechnicianStatusToImageSourceConverter"/>
     <local:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+    <local:DataToVisibilityConverter x:Key="DataToVisibilityConverter"/>
+    <local:StringToLocationConverter x:Key="StringToLocationConverter"/>
     <FontFamily x:Key="Helvetia">pack://application:,,,/Resources/Layout/Fonts/HelveticaNeue</FontFamily>
     <Style TargetType="ListView"
            x:Key="AdminList">
@@ -43,11 +46,11 @@
                                                Foreground="{Binding (ListViewItem.Foreground),RelativeSource={RelativeSource TemplatedParent}}"
                                                VerticalContentAlignment="Center"
                                                FontWeight="SemiBold"
-                                               Content="{Binding Name}" />
+                                               Content="{Binding FullName}" />
                                         <Ellipse Width="18"
                                                  Height="18">
                                             <Ellipse.Fill>
-                                                <ImageBrush ImageSource="{Binding Available,Converter={StaticResource BoolToImageSourceConverter}}" />
+                                                <ImageBrush ImageSource="{Binding TechnicianStatus,Converter={StaticResource TechnicianStatusToImageSourceConverter}}" />
                                             </Ellipse.Fill>
                                         </Ellipse>
                                         <Rectangle Width="3"

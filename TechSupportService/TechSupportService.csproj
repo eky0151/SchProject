@@ -48,6 +48,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=5.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.5.1.1\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
@@ -117,6 +121,7 @@
     <Content Include="TechSupportServiceSecure.svc" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AutoMapperConfig.cs" />
     <Compile Include="DataContract\Available.cs" />
     <Compile Include="DataContract\Bank.cs" />
     <Compile Include="DataContract\CustomerData.cs" />
@@ -128,6 +133,9 @@
     <Compile Include="DataContract\WorkerData.cs" />
     <Compile Include="DataContract\WorkerDataRegistrationData.cs" />
     <Compile Include="DataContract\Status.cs" />
+    <Compile Include="Entities\LoginData.cs" />
+    <Compile Include="Entities\Technician.cs" />
+    <Compile Include="Entities\Worker.cs" />
     <Compile Include="ServiceContract\ITechSupportBotService.cs" />
     <Compile Include="ServiceContract\ITechSupportService1.cs" />
     <Compile Include="Security\AuthorizationPolicy.cs" />
