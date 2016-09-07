@@ -32,6 +32,7 @@ namespace TechSupportService
 
         public TechSupportServiceSecure1()
         {
+            AutoMapperConfig.Init();
             TechSupportDatabaseEntities db = new TechSupportDatabaseEntities();
             _authRepository = new LoginDataRepository(db);
             _workerRepository = new WorkerRepository(db);
@@ -151,9 +152,11 @@ namespace TechSupportService
 
         public List<TechnicianData> TechnicianList()
         {
-            return _authRepository.Get(x => x.Urole == Enum.GetName(typeof(Role), Role.Technician))
-                 .Select(x => (TechnicianData)x.Worker.Technician.SingleOrDefault())
+            string role = Enum.GetName(typeof(Role), Role.Technician);
+            var res= _authRepository.Get(x => x.Urole == "Technician")
+                 .Select(x => x.Worker.Technician.FirstOrDefault())
                  .ToList();
+            return res.ConvertAll(TechnicianData.ConverTechnicianData).ToList();
         }
 
         public List<TechnicianData> GetAvailableTechnician()
@@ -161,7 +164,8 @@ namespace TechSupportService
             return
                 _authRepository.Get(x => x.Urole == Enum.GetName(typeof(Role), Role.Technician))
                     .Where(x => (x.Worker.Technician.SingleOrDefault()).Available == "Available")
-                    .Select(x => (TechnicianData)x.Worker.Technician.SingleOrDefault())
+                    .Select(x => x.Worker.Technician.SingleOrDefault())
+                    .Cast<TechnicianData>()
                     .ToList();
         }
 

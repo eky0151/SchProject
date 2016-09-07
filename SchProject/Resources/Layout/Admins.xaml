@@ -23,7 +23,7 @@
                   Style="{StaticResource AdminList}"
                   BorderThickness="0,2,2,2" />
 
-        <Grid DockPanel.Dock="Right">
+        <Grid DockPanel.Dock="Right" Visibility="{Binding SelectedTechnician,Converter={StaticResource DataToVisibilityConverter}}">
 
             <Ellipse Width="136"
                      Height="136"
@@ -33,7 +33,7 @@
                      HorizontalAlignment="Left"
                      Margin="40,40,0,0">
                 <Ellipse.Fill>
-                    <ImageBrush ImageSource="Images/demoPic.jpg"
+                    <ImageBrush ImageSource="{Binding SelectedTechnician.ProfilePicture,Converter={StaticResource StringToImageSourceConverter},ConverterParameter=512}"
                                 Stretch="UniformToFill" />
                 </Ellipse.Fill>
                 <Ellipse.Effect>
@@ -50,22 +50,22 @@
                         Height="115"
                         Margin="140,75,0,0">
                 <Label Style="{StaticResource AdminTextStyle}"
-                       Content="{Binding Name}" />
+                       Content="{Binding FullName}" />
                 <Label  Style="{StaticResource AdminTextStyle}"
                         Content="{Binding Email}" />
                 <Label  Style="{StaticResource AdminTextStyle}"
-                        Content="{Binding PhoneNumber}" />
+                        Content="{Binding Phone}" />
                 <StackPanel Orientation="Horizontal">
                     <Ellipse Width="18"
                              Height="18">
                         <Ellipse.Fill>
-                            <ImageBrush ImageSource="{Binding Available,Converter={StaticResource BoolToImageSourceConverter}}" />
+                            <ImageBrush ImageSource="{Binding Status,Converter={StaticResource BoolToImageSourceConverter}}" />
                         </Ellipse.Fill>
                     </Ellipse>
                     <Label FontSize="15"
                            Foreground="#585757"
                            FontWeight="SemiBold"
-                           Content="{Binding AdditionalData}"
+                           Content="{Binding TechnicianStatus}"
                            Margin="3,0,0,0" />
                 </StackPanel>
             </StackPanel>
@@ -107,8 +107,8 @@
                    Height="260"
                    VerticalAlignment="Bottom"
                    DataContext="{Binding SelectedTechnician}"
-                   customControls:MapHelper.Center="{Binding LastLocation}">
-                <m:Pushpin Location="{Binding LastLocation}" />
+                   customControls:MapHelper.Center="{Binding Location,Converter={StaticResource StringToLocationConverter}}">
+                <m:Pushpin Location="{Binding Location,Converter={StaticResource StringToLocationConverter}}" />
             </m:Map>
         </Grid>
     </DockPanel>

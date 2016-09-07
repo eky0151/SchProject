@@ -20,7 +20,7 @@ namespace SchProject.ViewModel
 
         public AdminsViewModel()
         {
-            
+            DownloadData();
         }
         public ObservableCollection<TechnicianData> Admins
         {

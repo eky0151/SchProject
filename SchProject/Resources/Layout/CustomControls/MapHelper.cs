@@ -14,7 +14,7 @@ namespace SchProject.Resources.Layout.CustomControls
             "Center",
             typeof(Location),
             typeof(MapHelper),
-            new PropertyMetadata(new Location(0,0), new PropertyChangedCallback(CenterChanged))
+            new PropertyMetadata(new Location(0, 0), new PropertyChangedCallback(CenterChanged))
         );
 
         public static void SetCenter(DependencyObject obj, Location value)
