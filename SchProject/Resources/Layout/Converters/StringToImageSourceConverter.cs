@@ -15,6 +15,8 @@ namespace SchProject.Resources.Layout.Converters
     {
         public static ImageSource Image(string param,string value)
         {
+            if(String.IsNullOrEmpty(value))
+                return new BitmapImage(new Uri(@"pack://application:,,,/Resources/Layout/Images/user.png"));
             switch (param)
             {
                 case "original":

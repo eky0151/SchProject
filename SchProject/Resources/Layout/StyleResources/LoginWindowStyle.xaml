@@ -1,6 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="clr-namespace:SchProject.Resources.Layout"
+                    xmlns:local="clr-namespace:SchProject.Resources.Layout.CustomControls"
                     xmlns:converters="clr-namespace:SchProject.Resources.Layout.Converters">
     <converters:EmailToColorConverter x:Key="EmailToColorConverter" />
     <converters:ParametersToArrayConverter x:Key="ParametersToArrayConverter" />
@@ -40,8 +40,6 @@
                 Value="Center" />
         <Setter Property="HorizontalContentAlignment"
                 Value="Center" />
-        <Setter Property="BorderBrush"
-                Value="#95989A" />
         <Setter Property="Effect">
             <Setter.Value>
                 <DropShadowEffect Direction="0"
@@ -55,6 +53,16 @@
                      Value="True">
                 <Setter Property="Border.Background"
                         Value="#E6F4FF"></Setter>
+            </Trigger>
+            <Trigger Property="local:AtachedProperties.ValidUser"
+                     Value="True">
+                <Setter Property="BorderBrush"
+                        Value="#95989A" />
+            </Trigger>
+            <Trigger Property="local:AtachedProperties.ValidUser"
+                     Value="False">
+                <Setter Property="BorderBrush"
+                        Value="Red" />
             </Trigger>
         </Style.Triggers>
     </Style>
@@ -89,7 +97,7 @@
                 <ControlTemplate>
                     <Border Background="{TemplateBinding Background}"
                             x:Name="Bd"
-                            BorderBrush="#95989A"
+                            BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
                             CornerRadius="7">
                         <ScrollViewer x:Name="PART_ContentHost" />
@@ -97,6 +105,18 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+        <Style.Triggers>
+            <Trigger Property="local:AtachedProperties.ValidUser"
+                     Value="True">
+                <Setter Property="BorderBrush"
+                        Value="#95989A" />
+            </Trigger>
+            <Trigger Property="local:AtachedProperties.ValidUser"
+                     Value="False">
+                <Setter Property="BorderBrush"
+                        Value="Red" />
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
 
@@ -116,8 +136,14 @@
                 Value="Center" />
         <Setter Property="RenderTransform">
             <Setter.Value>
-                <ScaleTransform ScaleX="1"
-                                ScaleY="1" />
+                <TransformGroup>
+                    <ScaleTransform x:Name="ScaleTransform"
+                                    ScaleX="1"
+                                    ScaleY="1" />
+
+                    <TranslateTransform  Y="0"
+                                         X="0" />
+                </TransformGroup>
             </Setter.Value>
         </Setter>
         <Setter Property="RenderTransformOrigin"
@@ -158,7 +184,7 @@
             <EventTrigger RoutedEvent="MouseEnter">
                 <EventTrigger.Actions>
                     <BeginStoryboard>
-                        <Storyboard TargetProperty="RenderTransform.ScaleX"
+                        <Storyboard TargetProperty="RenderTransform.Children[0].ScaleX"
                                     SpeedRatio="8"
                                     Name="ScaleEnterX">
                             <DoubleAnimation  To="1.09"
@@ -166,7 +192,7 @@
                         </Storyboard>
                     </BeginStoryboard>
                     <BeginStoryboard>
-                        <Storyboard TargetProperty="RenderTransform.ScaleY"
+                        <Storyboard TargetProperty="RenderTransform.Children[0].ScaleY"
                                     SpeedRatio="8"
                                     Name="ScaleEnterY">
                             <DoubleAnimation  To="1.09"
@@ -178,14 +204,14 @@
             <EventTrigger RoutedEvent="MouseLeave">
                 <EventTrigger.Actions>
                     <BeginStoryboard>
-                        <Storyboard TargetProperty="RenderTransform.ScaleX"
+                        <Storyboard TargetProperty="RenderTransform.Children[0].ScaleX"
                                     SpeedRatio="8">
                             <DoubleAnimation To="1"
                                              Duration="0:0:0:1" />
                         </Storyboard>
                     </BeginStoryboard>
                     <BeginStoryboard>
-                        <Storyboard TargetProperty="RenderTransform.ScaleY"
+                        <Storyboard TargetProperty="RenderTransform.Children[0].ScaleY"
                                     SpeedRatio="8">
                             <DoubleAnimation To="1"
                                              Duration="0:0:0:1" />
@@ -195,14 +221,14 @@
             </EventTrigger>
             <EventTrigger RoutedEvent="PreviewMouseDown">
                 <BeginStoryboard>
-                    <Storyboard TargetProperty="RenderTransform.ScaleX"
+                    <Storyboard TargetProperty="RenderTransform.Children[0].ScaleX"
                                 SpeedRatio="8">
                         <DoubleAnimation  To="1.05"
                                           Duration="0:0:0:1" />
                     </Storyboard>
                 </BeginStoryboard>
                 <BeginStoryboard>
-                    <Storyboard TargetProperty="RenderTransform.ScaleY"
+                    <Storyboard TargetProperty="RenderTransform.Children[0].ScaleY"
                                 SpeedRatio="8">
                         <DoubleAnimation  To="1.05"
                                           Duration="0:0:0:1" />
@@ -211,20 +237,41 @@
             </EventTrigger>
             <EventTrigger RoutedEvent="PreviewMouseUp">
                 <BeginStoryboard>
-                    <Storyboard TargetProperty="RenderTransform.ScaleX"
+                    <Storyboard TargetProperty="RenderTransform.Children[0].ScaleX"
                                 SpeedRatio="8">
                         <DoubleAnimation To="1.09"
                                          Duration="0:0:0:1" />
                     </Storyboard>
                 </BeginStoryboard>
                 <BeginStoryboard>
-                    <Storyboard TargetProperty="RenderTransform.ScaleY"
+                    <Storyboard TargetProperty="RenderTransform.Children[0].ScaleY"
                                 SpeedRatio="8">
                         <DoubleAnimation To="1.09"
                                          Duration="0:0:0:1" />
                     </Storyboard>
                 </BeginStoryboard>
             </EventTrigger>
+            <DataTrigger Binding="{Binding Valid}"
+                         Value="False">
+                <DataTrigger.EnterActions>
+                    <BeginStoryboard>
+                        <Storyboard TargetProperty="RenderTransform.Children[1].X">
+                            <DoubleAnimationUsingKeyFrames>
+                                <LinearDoubleKeyFrame KeyTime="0:0:0:0"
+                                                      Value="0" />
+                                <LinearDoubleKeyFrame KeyTime="0:0:0:0.08"
+                                                      Value="10" />
+                                <LinearDoubleKeyFrame KeyTime="0:0:0:0.16"
+                                                      Value="0" />
+                                <LinearDoubleKeyFrame KeyTime="0:0:0:0.24"
+                                                      Value="-10" />
+                                <LinearDoubleKeyFrame KeyTime="0:0:0:0.32"
+                                                      Value="0" />
+                            </DoubleAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </DataTrigger.EnterActions>
+            </DataTrigger>
         </Style.Triggers>
     </Style>
 
