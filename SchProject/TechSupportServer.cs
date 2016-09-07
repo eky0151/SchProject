@@ -5,7 +5,7 @@ using System.ServiceModel;
 using System.ServiceModel.Security;
 using System.Text;
 using System.Threading.Tasks;
-using SchProject.TechSupportSecure1;
+using SchProject.TechSupportSecure;
 
 namespace SchProject
 {

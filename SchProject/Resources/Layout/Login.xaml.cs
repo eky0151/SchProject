@@ -14,7 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using GalaSoft.MvvmLight.Messaging;
 using Microsoft.Practices.ServiceLocation;
-using SchProject.TechSupportSecure1;
+using SchProject.TechSupportSecure;
 using SchProject.TechSupportService;
 
 namespace SchProject.Resources.Layout

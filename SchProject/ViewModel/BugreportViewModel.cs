@@ -7,23 +7,39 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
+using Microsoft.Practices.ServiceLocation;
 using Microsoft.Win32;
+using TechSharedLibraries;
 
 namespace SchProject.ViewModel
 {
     public class BugreportViewModel : ViewModelBase
     {
-        public string Report { get; set; }
+        private string _report;
+        private bool _uploading;
         public ObservableCollection<string> AttachedFiles { get; private set; }
         public ICommand AttachFile { get; private set; }
         public ICommand SendReport { get; private set; }
         public BugreportViewModel()
         {
+            Uploading = false;
             AttachedFiles = new ObservableCollection<string>();
             AttachFile = new RelayCommand(OpenDialog);
             SendReport = new RelayCommand(Send);
         }
 
+        public bool Uploading
+        {
+            get { return _uploading; }
+            private set { Set(ref _uploading, value); }
+        }
+
+
+        public string Report
+        {
+            get { return _report; }
+            set { Set(ref _report, value); }
+        }
         private void OpenDialog()
         {
             OpenFileDialog dlg = new OpenFileDialog();
@@ -37,9 +53,17 @@ namespace SchProject.ViewModel
             }
         }
 
-        private void Send()
+        private async void Send()
         {
-            throw new NotImplementedException();
+            Uploading = true;
+            var host = ServiceLocator.Current.GetInstance<TechSupportServer>().host;
+            string[] uploadedFiles=new string[0];
+            if (AttachedFiles.Count > 0)
+                uploadedFiles = await AzureBlobUploader.UploadFilesAsync(AttachedFiles.ToList());
+            host.SendBugreport(Report, uploadedFiles);
+            Report = "";
+            AttachedFiles.Clear();
+            Uploading = false;
         }
     }
 }

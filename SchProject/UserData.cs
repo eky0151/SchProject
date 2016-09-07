@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight;
-using SchProject.TechSupportSecure1;
+using SchProject.TechSupportSecure;
 
 namespace SchProject
 {

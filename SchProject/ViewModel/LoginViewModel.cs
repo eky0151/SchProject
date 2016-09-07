@@ -10,7 +10,7 @@ using GalaSoft.MvvmLight.CommandWpf;
 using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
 using Microsoft.Practices.ServiceLocation;
-using SchProject.TechSupportSecure1;
+using SchProject.TechSupportSecure;
 
 namespace SchProject.ViewModel
 {
