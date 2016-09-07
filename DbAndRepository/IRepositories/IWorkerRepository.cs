@@ -5,6 +5,8 @@
 
     public interface IWorkerRepository : IGenericsRepository<Worker>
     {
-        
+        int GetAvailableHelpDeskCount();
+
+        Worker GetAvailableHelpDesk();
     }
 }

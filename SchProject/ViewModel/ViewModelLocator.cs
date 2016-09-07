@@ -34,26 +34,26 @@ namespace SchProject.ViewModel
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
 
+            if (ViewModelBase.IsInDesignModeStatic)
+            {
+                // Create design time view services and models
 
-            //if (ViewModelBase.IsInDesignModeStatic)
-            //{
-            //    // Create design time view services and models
-            //    SimpleIoc.Default.Register<TechSupportService.ITechSupportService1, new TechSupportService.()>();
-            //}
-            //else
-            //{
-            //    // Create run time view services and models
-            //    SimpleIoc.Default.Register<IDataService, DataService>();
-            //}
+            }
+            else
+            {
+                // Create run time view services and models
+            }
 
+            SimpleIoc.Default.Register<TechSupportServer>();
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<LoginViewModel>();
             SimpleIoc.Default.Register<UserData>();
+            SimpleIoc.Default.Register<NavigatorSingleton>();
             //SimpleIoc.Default.Register<ChatViewModel>();
 
             //wcf
             //SimpleIoc.Default.Register<Chatservice.ChatClient>();
-           // SimpleIoc.Default.Register<TechSupportService.TechSupportService1Client>();
+            // SimpleIoc.Default.Register<TechSupportService.TechSupportService1Client>();
         }
         public ManagementViewModel Management
         {

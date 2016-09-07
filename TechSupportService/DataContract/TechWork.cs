@@ -11,7 +11,7 @@ namespace TechSupportService.DataContract
     public class TechWork
     {
         [DataMember]
-        public WorkerData Technician { get; set; }
+        public TechnicianData Technician { get; set; }
         [DataMember]
         public CustomerData Customer { get; set; }
         [DataMember]
@@ -20,10 +20,12 @@ namespace TechSupportService.DataContract
         public DateTime Start { get; set; }
         [DataMember]
         public DateTime Finish { get; set; }
+        [DataMember]
+        public int Price { get; set; }
 
         public static explicit operator TechWork(TechWorks w)
         {
-            TechWork work=new TechWork() {Address = w.Customeraddress,Finish = w.Finish,Start = w.Start,Technician =(WorkerData) w.Technician.Worker.LoginData.SingleOrDefault()};
+            TechWork work=new TechWork() {Address = w.Customeraddress,Finish = w.Finish,Start = w.Start,Technician =(TechnicianData) w.Technician.Worker.Technician.SingleOrDefault()};
             return work;
         }
 

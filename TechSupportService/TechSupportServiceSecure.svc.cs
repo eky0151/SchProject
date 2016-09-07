@@ -86,7 +86,7 @@ namespace TechSupportService
             return null;
         }
 
-        public List<CustomerLoginData> LastCustomerList()
+        public List<CustomerData> LastCustomerList()
         {
             throw new NotImplementedException();
         }
@@ -167,7 +167,7 @@ namespace TechSupportService
 
         public void AddNewSolvedQuestion(SolvedQuestion solved)
         {
-            //_solvedQuestionsRepository.Insert(solved);
+            //_solvedQuestionsRepository.Insert(new DbAndRepository.SolvedQuestion() {Answer = solved.Answer,Category = solved.Category.});
         }
 
         public List<SolvedQuestion> SolvedQuestionList(uint Page)
@@ -203,8 +203,7 @@ namespace TechSupportService
 
         public void RegisterTechWork(TechWork work)
         {
-            throw new NotImplementedException();
-            //_techworksRepository.Insert(new TechWorks() {Customeraddress = work.Address,Customername = work.Customer.FullName,Finish = work.Finish,Technician = work.Technician});
+            _techworksRepository.Insert(new TechWorks() { Customeraddress = work.Address, Customername = work.Customer.FullName, Finish = work.Finish, TechID = work.Technician.TechnicianID,Price = work.Price,Start = work.Start});
         }
 
         public List<CustomerData> LastCustomers()

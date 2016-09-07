@@ -13,11 +13,11 @@ using SchProject.Resources.Layout;
 
 namespace SchProject
 {
-    class NavigatorFactory
+    internal class NavigatorSingleton
     {
-        private static Navigator _navigator;
+        private Navigator _navigator;
 
-        public static Navigator Navigator
+        public Navigator Navigator
         {
             get { return _navigator ?? (_navigator = new Navigator()); }
         }

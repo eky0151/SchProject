@@ -23,11 +23,11 @@
                      Margin="60,50,60,0"
                      VerticalAlignment="Top">
                 <Ellipse.Fill>
-                    <ImageBrush ImageSource="Images/demoPic.jpg"
+                    <ImageBrush ImageSource="{Binding User.ProfilePicture,Converter={StaticResource StringToImageSourceConverter},ConverterParameter=512}"
                                 Stretch="UniformToFill" />
                 </Ellipse.Fill>
             </Ellipse>
-            <Label Content="{Binding FullName}"
+            <Label Content="{Binding User.FullName}"
                    Margin="50,155,54,0"
                    VerticalAlignment="Top"
                    FontSize="15"
