@@ -14,7 +14,7 @@ using GalaSoft.MvvmLight.Messaging;
 using Microsoft.Practices.ServiceLocation;
 using SchProject.Resources.Layout;
 using SchProject.Resources.Layout.CustomControls;
-using SchProject.TechSupportSecure1;
+using SchProject.TechSupportSecure;
 
 namespace SchProject.ViewModel
 {

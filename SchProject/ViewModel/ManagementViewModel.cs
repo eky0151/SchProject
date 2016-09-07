@@ -11,7 +11,7 @@ using Microsoft.Win32;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Blob;
 using ImageProcessor;
-using SchProject.TechSupportSecure1;
+using SchProject.TechSupportSecure;
 using TechSharedLibraries;
 
 namespace SchProject.ViewModel
@@ -43,7 +43,7 @@ namespace SchProject.ViewModel
         {
             string uploaded = null;
             if (ProfilePicture != null)
-                uploaded = AzureBlobUploader.UploadImage(ProfilePicture);
+                uploaded = AzureBlobUploader.UploadImageAsync(ProfilePicture).Result;
             using (TechSupportServiceSecure1Client client = new TechSupportServiceSecure1Client())
             {
                 client.ClientCredentials.UserName.UserName = "Maright";

@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:SchProject.Resources.Layout"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:controls="clr-namespace:SchProject.Resources.Layout.CustomControls"
              mc:Ignorable="d"
              d:DesignHeight="600"
@@ -32,6 +33,8 @@
                          BorderThickness="0"
                          TextWrapping="Wrap"
                          FontSize="15"
+                         VerticalContentAlignment="Top"
+                         VerticalAlignment="Top"
                          AcceptsReturn="True"
                          Text="{Binding Report}" />
 
@@ -39,7 +42,8 @@
 
                 <StackPanel Orientation="Horizontal">
 
-                    <ScrollViewer VerticalScrollBarVisibility="Hidden" CanContentScroll="True">
+                    <ScrollViewer VerticalScrollBarVisibility="Hidden"
+                                  CanContentScroll="True">
                         <ItemsControl ItemsSource="{Binding AttachedFiles}"
                                       Height="33"
                                       Width="653" />
@@ -67,11 +71,26 @@
             </Border.Effect>
 
         </Border>
-        <controls:RoundedButton Content="Send Bugreport"
-                                CornerRadius="5"
-                                Background="#17BAD0"
-                                Foreground="White"
-                                Margin="30"
-                                Style="{StaticResource RoundedButton}" Width="100" Height="30" />
+        <Grid Width="720">
+            <StackPanel HorizontalAlignment="Center"
+                        Orientation="Horizontal"
+                        Width="Auto">
+                <controls:RoundedButton Content="Send Bugreport"
+                                        CornerRadius="5"
+                                        Background="#17BAD0"
+                                        Foreground="White"
+                                        Margin="30"
+                                        Command="{Binding SendReport}"
+                                        Style="{StaticResource RoundedButton}"
+                                        Width="100"
+                                        Height="30" />
+                <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}"
+                             Value="40"
+                             Visibility="{Binding Uploading,Converter={StaticResource BoolToVisibilityConverter}}"
+                             IsIndeterminate="True"
+                             VerticalAlignment="Center"
+                             Margin="12 12 12 12" />
+            </StackPanel>
+        </Grid>
     </StackPanel>
 </UserControl>

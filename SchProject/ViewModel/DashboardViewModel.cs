@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Media;
 using System.Windows.Threading;
 using GalaSoft.MvvmLight;
-using SchProject.TechSupportSecure1;
+using SchProject.TechSupportSecure;
 
 namespace SchProject.Resources.Layout.StyleResources
 {
