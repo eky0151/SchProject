@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
@@ -19,8 +20,7 @@ namespace SchProject.ViewModel
 {
     public class RootMenuViewModel : ViewModelBase
     {
-        public string _fullName;
-        private Navigator _rootNavigator;
+        public UserData User { get; private set; }
         private List<MenuButtonData> _menuButtons;
         public UserControl CurrentView { get; private set; }
         public ICommand Navigation { get; private set; }
@@ -33,31 +33,20 @@ namespace SchProject.ViewModel
             CurrentView = Views["Dashboard"];
             Navigation = new RelayCommand<object>(param => Navigate(param));
             Logout = new RelayCommand(NavLogout);
-            _rootNavigator = NavigatorFactory.Navigator;
-            LoginSet(ServiceLocator.Current.GetInstance<UserData>());
+            User = ServiceLocator.Current.GetInstance<UserData>();
+            MenuButtons = MenuButtonFactory.Create(User.Role);
         }
+
         public List<MenuButtonData> MenuButtons
         {
             get { return _menuButtons; }
             private set { Set(ref _menuButtons, value); }
         }
 
-
-        public string FullName
-        {
-            get { return _fullName; }
-            set { Set(ref _fullName, value); }
-        }
-        private void LoginSet(UserData res)
-        {
-            FullName = res.FullName;
-            MenuButtons = MenuButtonFactory.Create(res.Role);
-        }
-
         private void NavLogout()
         {
             Views.Clear();
-            _rootNavigator.Logout();
+            ServiceLocator.Current.GetInstance<NavigatorSingleton>().Navigator.Logout();
         }
         private void Navigate(object o)
         {

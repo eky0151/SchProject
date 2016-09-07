@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using GalaSoft.MvvmLight.Messaging;
+using Microsoft.Practices.ServiceLocation;
 using SchProject.TechSupportSecure1;
 using SchProject.TechSupportService;
 
@@ -28,28 +29,27 @@ namespace SchProject.Resources.Layout
             InitializeComponent();
         }
 
-        private void UserNameTextBox_LostFocus(object sender, RoutedEventArgs e)
+        private async void UserNameTextBox_LostFocus(object sender, RoutedEventArgs e)
         {
             string username = ((TextBox)sender).Text;
-            ValidateUsername(username);
+            await Task.Factory.StartNew(()=> { ValidateUsername(username); });
 
         }
 
-        private async void ValidateUsername(string username)
+        private void ValidateUsername(string username)
         {
-            var task = Task.Factory.StartNew( () =>
-           {
-               using (TechSupportService1Client host = new TechSupportService1Client())
-               {
-                   host.Open();
-                   var res = host.GetProfilePicture(username);
-                   if (!String.IsNullOrEmpty(res))
-                   {
-                       Dispatcher.Invoke(() => { Messenger.Default.Send<string>(res); });
 
-                   }
-               }
-           });
+            using (TechSupportService1Client host = new TechSupportService1Client())
+            {
+                host.Open();
+                var res = host.GetProfilePicture(username);
+                if (!String.IsNullOrEmpty(res))
+                {
+                    Dispatcher.Invoke(() => { ServiceLocator.Current.GetInstance<UserData>().ProfilePicture = res; });
+
+                }
+            }
+
 
         }
     }

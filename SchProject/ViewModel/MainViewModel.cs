@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Messaging;
+using Microsoft.Practices.ServiceLocation;
 
 namespace SchProject.ViewModel
 {
@@ -15,8 +16,7 @@ namespace SchProject.ViewModel
 
         public MainViewModel()
         {
-            Navigator = NavigatorFactory.Navigator;
-            Messenger.Default.Send<Navigator>(Navigator);
+            Navigator = ServiceLocator.Current.GetInstance<NavigatorSingleton>().Navigator;
         }
     }
 }

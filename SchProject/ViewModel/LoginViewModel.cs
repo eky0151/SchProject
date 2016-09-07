@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ServiceModel;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -15,29 +16,25 @@ namespace SchProject.ViewModel
 {
     public class LoginViewModel : ViewModelBase
     {
-        private Navigator _navigator;
-        private ImageSource _profilePicture;
+        
         public ICommand LoginCommand { get; private set; }
+        public UserData User { get; private set; }
         public string UserName { get; set; }
         private bool _loginEnabled;
+        private bool _valid;
 
         public LoginViewModel()
         {
             LoginEnabled = true;
+            _valid = true;
+            User = ServiceLocator.Current.GetInstance<UserData>();
             LoginCommand = new RelayCommand<PasswordBox>(Login);
-            Messenger.Default.Register<Navigator>(this, SetNavigator);
-            Messenger.Default.Register<string>(this,SetProfilePicture);
         }
 
-        private void SetProfilePicture(string res)
+        public bool Valid
         {
-           this.ProfilePicture=new BitmapImage(new Uri("https://techsupportfiles.blob.core.windows.net/images/original/"+res, UriKind.RelativeOrAbsolute));
-        }
-
-        public ImageSource ProfilePicture
-        {
-            get { return _profilePicture; }
-            set { Set(ref _profilePicture, value); }
+            get { return _valid; }
+            set { Set(ref _valid, value); }
         }
 
         public bool LoginEnabled
@@ -46,23 +43,22 @@ namespace SchProject.ViewModel
             set { Set(ref _loginEnabled, value); }
         }
 
-        private void SetNavigator(Navigator e)
+        //void is very bad, it should be Task
+        private async void Login(PasswordBox box)
         {
-            _navigator = e;
-            Messenger.Default.Unregister<Navigator>(this, SetNavigator);
-        }
-        private void Login(PasswordBox box)
-        {
-            LoginResult res;
-            using (TechSupportServiceSecure1Client client=new TechSupportServiceSecure1Client())
+            LoginEnabled = false;
+            var server = ServiceLocator.Current.GetInstance<TechSupportServer>();
+            bool res = await server.Login(this.UserName, box.Password);
+            if (res)
             {
-                client.ClientCredentials.UserName.UserName = "Flynn";
-                client.ClientCredentials.UserName.Password = "sam";
-                client.Open();
-                res = client.GetWorkerData();
-                ServiceLocator.Current.GetInstance<UserData>().SetData(res);
-                _navigator.Login();
+                ServiceLocator.Current.GetInstance<UserData>().SetData(server.host.GetWorkerData());
+                ServiceLocator.Current.GetInstance<NavigatorSingleton>().Navigator.Login();
             }
+            else
+            {
+                Valid = false;
+            }
+            LoginEnabled = true;
         }
     }
 }

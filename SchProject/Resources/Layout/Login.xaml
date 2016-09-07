@@ -17,7 +17,7 @@
                  Height="200"
                  Width="200">
             <Ellipse.Fill>
-                <ImageBrush ImageSource="{Binding ProfilePicture}"
+                <ImageBrush ImageSource="{Binding User.ProfilePicture,Converter={StaticResource StringToImageSourceConverter},ConverterParameter=original}"
                             Stretch="UniformToFill" />
             </Ellipse.Fill>
         </Ellipse>

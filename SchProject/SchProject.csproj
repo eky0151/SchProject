@@ -80,7 +80,7 @@
       <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
       <Private>True</Private>
     </Reference>
-	 <Reference Include="MaterialDesignColors, Version=1.1.2.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="MaterialDesignColors, Version=1.1.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialDesignColors.1.1.2\lib\net45\MaterialDesignColors.dll</HintPath>
       <Private>True</Private>
     </Reference>
@@ -153,6 +153,7 @@
     <Compile Include="Resources\Layout\Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Resources\Layout\Converters\ParametersToArrayConverter.cs" />
     <Compile Include="Resources\Layout\Converters\StaffStatusToBrushConverter.cs" />
+    <Compile Include="Resources\Layout\Converters\StringToImageSourceConverter.cs" />
     <Compile Include="Resources\Layout\Converters\TicketStatusToBrushConverter.cs" />
     <Compile Include="Resources\Layout\CustomControls\MapHelper.cs" />
     <Compile Include="Resources\Layout\CustomControls\MenuButton.cs" />
@@ -199,6 +200,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="TechSupportServer.cs" />
     <Compile Include="UserData.cs" />
     <Compile Include="ViewModel\ChatViewModel.cs" />
     <Compile Include="ViewModel\DashboardViewModel.cs" />
