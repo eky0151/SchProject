@@ -2,6 +2,9 @@
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Linq;
+using System.ServiceModel.Security;
+using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
 using GalaSoft.MvvmLight;
@@ -11,6 +14,7 @@ using Microsoft.Win32;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Blob;
 using ImageProcessor;
+using Microsoft.Practices.ServiceLocation;
 using SchProject.TechSupportSecure;
 using TechSharedLibraries;
 
@@ -20,11 +24,16 @@ namespace SchProject.ViewModel
     {
         private string _profilePicture;
         public string FullName { get; set; }
-        public string Username { get; set; } 
-        public string Email { get; set; } 
+        public string Username { get; set; }
+        public string Email { get; set; }
         public string Phone { get; set; }
         public string Address { get; set; }
-        public string BankAccount { get; set; } 
+        public string BankAccount { get; set; }
+        public bool Technician { get; set; }
+        public string[] Banks { get; } = Enum.GetNames(typeof(Bank));
+        public string[] Roles { get; } = Enum.GetNames(typeof(Role));
+        public string SelectedRole { get; set; }
+        public string SelectedBank { get; set; }
         public ICommand BrowseCommand { get; private set; }
         public ICommand SaveCommand { get; private set; }
 
@@ -32,26 +41,50 @@ namespace SchProject.ViewModel
         {
             BrowseCommand = new RelayCommand(Browse);
             SaveCommand = new RelayCommand<PasswordBox>(Save);
+            SelectedBank = Banks.FirstOrDefault();
+            SelectedRole = Roles.FirstOrDefault();
         }
+
         public string ProfilePicture
         {
             get { return _profilePicture; }
             set { Set(ref _profilePicture, value); }
         }
 
-        private void Save(PasswordBox obj)
+        private async void Save(PasswordBox obj)
         {
-            string uploaded = null;
-            if (ProfilePicture != null)
-                uploaded = AzureBlobUploader.UploadImageAsync(ProfilePicture).Result;
-            using (TechSupportServiceSecure1Client client = new TechSupportServiceSecure1Client())
+            //busyindicator
+            await Task.Factory.StartNew(() =>
             {
-                client.ClientCredentials.UserName.UserName = "Maright";
-                client.ClientCredentials.UserName.Password = "tetris";
-                client.Open();
-                WorkerDataRegistrationData data = new WorkerDataRegistrationData() { Address = Address, Bank = Bank.Erste, BankAccount = BankAccount, Email = Email, FullName = FullName, PassWD = obj.Password, Phone = Phone, ProfilePicture = uploaded, Username = Username, Role = Role.HelpDesk, Status = Status.Away };
-                client.RegisterNewStaffMember(data);
-            }
+                string file = "";
+                if (ProfilePicture != null)
+                    file = AzureBlobUploader.UploadImageAsync(ProfilePicture).Result;
+                WorkerDataRegistrationData regdata = new WorkerDataRegistrationData()
+                {
+                    Address = Address,
+                    Bank = (Bank)Enum.Parse(typeof(Bank), SelectedBank),
+                    BankAccount = BankAccount,
+                    Email = Email,
+                    FullName = FullName,
+                    PassWD = obj.Password,
+                    Phone = Phone,
+                    ProfilePicture = file,
+                    Username = Username,
+                    Role = (Role)Enum.Parse(typeof(Role), SelectedRole),
+                    Technician = Technician,
+                    Status = Status.Away
+                };
+                try
+                {
+                    ServiceLocator.Current.GetInstance<TechSupportServer>().host.RegisterNewStaffMember(regdata);
+                }
+                catch (MessageSecurityException e)
+                {
+
+                    //log
+                }
+            });
+            //busyindicator
         }
 
         private void Browse()

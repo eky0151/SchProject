@@ -11,7 +11,7 @@
     <Grid Background="White"
           DataContext="{Binding Management, Source={StaticResource Locator}}">
         <Border Width="400"
-                Height="450"
+                Height="458"
                 CornerRadius="8"
                 Background="White"
                 VerticalAlignment="Center"
@@ -30,12 +30,14 @@
                        Height="28"
                        DockPanel.Dock="Top"
                        HorizontalContentAlignment="Center" />
-                <Button DockPanel.Dock="Bottom"
-                        Content="Mentés"
-                        Style="{StaticResource TabButton}"
-                        Margin="0,0,0,20"
-                        Command="{Binding SaveCommand}" 
-                        CommandParameter="{Binding ElementName=Secret}"/>
+                <StackPanel Orientation="Horizontal"
+                            DockPanel.Dock="Bottom" >
+                    <Button Content="Mentés"
+                            Style="{StaticResource TabButton}"
+                            Margin="150,0,0,20"
+                            Command="{Binding SaveCommand}"
+                            CommandParameter="{Binding ElementName=Secret}" />
+                </StackPanel>
                 <StackPanel DockPanel.Dock="Left"
                             Width="120"
                             Margin="10,10,0,0">
@@ -79,6 +81,10 @@
                            FontSize="15"
                            Margin="10,5,0,0"
                            Height="28" />
+                    <Label Content="Rendszergazda"
+                           FontSize="15"
+                           Margin="10,5,0,0"
+                           Height="28" />
                 </StackPanel>
                 <StackPanel DockPanel.Dock="Right"
                             HorizontalAlignment="Center"
@@ -95,7 +101,10 @@
                              Height="28" />
                     <ComboBox Width="229"
                               Margin="0,5,0,0"
-                              Height="28" />
+                              Height="28"
+                              HorizontalContentAlignment="Center"
+                              ItemsSource="{Binding Banks}"
+                              SelectedItem="{Binding SelectedBank}" />
                     <TextBox Style="{StaticResource RoundedText}"
                              Text="{Binding BankAccount}"
                              Width="229"
@@ -146,7 +155,10 @@
                              Height="28" />
                     <ComboBox Width="229"
                               Margin="0,5,0,0"
-                              Height="28" />
+                              Height="28"
+                              HorizontalContentAlignment="Center"
+                              ItemsSource="{Binding Roles}"
+                              SelectedItem="{Binding SelectedRole}" />
                     <TextBox Style="{StaticResource RoundedText}"
                              Text="{Binding Username}"
                              Width="229"
@@ -156,14 +168,15 @@
                                  x:Name="Secret"
                                  Width="229"
                                  Margin="0,5,0,0"
+                                 HorizontalAlignment="Center"
                                  Height="28" />
+                    <CheckBox Margin="0,15,0,0" IsChecked="{Binding Technician}"/>
                 </StackPanel>
             </DockPanel>
         </Border>
-        <Label
-                       Content="Valami"
-                       HorizontalAlignment="Left"
-                       Margin="1405,290,0,0"
-                       VerticalAlignment="Top" />
+        <Label Content="Valami"
+               HorizontalAlignment="Left"
+               Margin="1405,290,0,0"
+               VerticalAlignment="Top" />
     </Grid>
 </UserControl>
