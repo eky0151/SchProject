@@ -11,7 +11,7 @@ using Microsoft.Win32;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Blob;
 using ImageProcessor;
-using SchProject.TechSupportSecure;
+using SchProject.TechSupportSecure1;
 using TechSharedLibraries;
 
 namespace SchProject.ViewModel
@@ -46,6 +46,8 @@ namespace SchProject.ViewModel
                 uploaded = AzureBlobUploader.UploadImage(ProfilePicture);
             using (TechSupportServiceSecure1Client client = new TechSupportServiceSecure1Client())
             {
+                client.ClientCredentials.UserName.UserName = "Maright";
+                client.ClientCredentials.UserName.Password = "tetris";
                 client.Open();
                 WorkerDataRegistrationData data = new WorkerDataRegistrationData() { Address = Address, Bank = Bank.Erste, BankAccount = BankAccount, Email = Email, FullName = FullName, PassWD = obj.Password, Phone = Phone, ProfilePicture = uploaded, Username = Username, Role = Role.HelpDesk, Status = Status.Away };
                 client.RegisterNewStaffMember(data);

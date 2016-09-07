@@ -118,9 +118,13 @@
   <ItemGroup>
     <Compile Include="DataContract\Available.cs" />
     <Compile Include="DataContract\Bank.cs" />
+    <Compile Include="DataContract\CustomerData.cs" />
     <Compile Include="DataContract\CustomerLoginData.cs" />
     <Compile Include="DataContract\LoginResult.cs" />
     <Compile Include="DataContract\Role.cs" />
+    <Compile Include="DataContract\TechnicianData.cs" />
+    <Compile Include="DataContract\TechnicianStatus.cs" />
+    <Compile Include="DataContract\TechWork.cs" />
     <Compile Include="DataContract\WorkerData.cs" />
     <Compile Include="DataContract\WorkerDataRegistrationData.cs" />
     <Compile Include="DataContract\Status.cs" />
@@ -128,6 +132,7 @@
     <Compile Include="Security\AuthorizationPolicy.cs" />
     <Compile Include="Security\DbValidator.cs" />
     <Compile Include="Security\SupportPrincipal.cs" />
+    <Compile Include="SolvedQuestion.cs" />
     <Compile Include="TechSupportService.svc.cs">
       <DependentUpon>TechSupportService.svc</DependentUpon>
     </Compile>

@@ -5,19 +5,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
+using System.Windows.Threading;
 using GalaSoft.MvvmLight;
+using SchProject.TechSupportSecure1;
 
 namespace SchProject.Resources.Layout.StyleResources
 {
     public enum TicketStatus
     {
-        New, Solved, InProgress
+        New,
+        Solved,
+        InProgress
     }
 
     public enum StaffStatus
     {
-        Away, Available, Busy
+        Away,
+        Available,
+        Busy
     }
+
     public class TicketTemporary
     {
         public string ID { get; set; }
@@ -28,22 +35,6 @@ namespace SchProject.Resources.Layout.StyleResources
         {
             ID = id;
             Question = question;
-            Status = status;
-        }
-    }
-
-    public class StaffStatusTemporary
-    {
-        public string ID { get; set; }
-        public string FullName { get; set; }
-        public string Role { get; set; }
-        public StaffStatus Status { get; set; }
-
-        public StaffStatusTemporary(string id, string fullName, string role, StaffStatus status)
-        {
-            ID = id;
-            FullName = fullName;
-            Role = role;
             Status = status;
         }
     }
@@ -59,20 +50,46 @@ namespace SchProject.Resources.Layout.StyleResources
             ProfilePicture = profilePicture;
         }
     }
+
     public class DashboardViewModel : ViewModelBase
     {
+        private ObservableCollection<WorkerData> _lastStaff;
         public int NewTickets { get; private set; } = 149;
         public int SolvedTickets { get; private set; } = 50;
         public int OpenedTickets { get; private set; } = 11;
         public ObservableCollection<ClientTemporary> LastClients { get; private set; }
-        public ObservableCollection<StaffStatusTemporary> LastStaff { get; private set; }
+
+        public ObservableCollection<WorkerData> LastStaff
+        {
+            get { return _lastStaff; }
+            private set { Set(ref _lastStaff, value); }
+        }
+
         public ObservableCollection<TicketTemporary> LastTickets { get; private set; }
 
         public DashboardViewModel()
         {
             LastClients = new ObservableCollection<ClientTemporary>();
-            LastStaff = new ObservableCollection<StaffStatusTemporary>() { new StaffStatusTemporary("#123123123", "MIAmdsdo MIos", "lop", StaffStatus.Busy) };
-            LastTickets = new ObservableCollection<TicketTemporary>() { new TicketTemporary("#324342", "Msmaksasmomofm isodmfoskdfmkfdoms", "New"), new TicketTemporary("#324342", "Msmaksasmomofm isodmfoskdfmkfdoms", "New"), new TicketTemporary("#324342", "Msmaksasmomofm isodmfoskdfmkfdoms", "New") };
+
+            LastTickets = new ObservableCollection<TicketTemporary>()
+            {
+                new TicketTemporary("#324342", "Msmaksasmomofm isodmfoskdfmkfdoms", "New"),
+                new TicketTemporary("#324342", "Msmaksasmomofm isodmfoskdfmkfdoms", "New"),
+                new TicketTemporary("#324342", "Msmaksasmomofm isodmfoskdfmkfdoms", "New")
+            };
+            SetData();
+        }
+
+        private async Task SetData()
+        {
+            using (TechSupportServiceSecure1Client host = new TechSupportServiceSecure1Client())
+            {
+                host.ClientCredentials.UserName.UserName = "Flynn";
+                host.ClientCredentials.UserName.Password = "sam";
+                host.Open();
+                var lop = await host.StaffListAsync();
+                Dispatcher.CurrentDispatcher.Invoke(()=> { LastStaff = new ObservableCollection<WorkerData>(lop); });
+            }
         }
     }
 }

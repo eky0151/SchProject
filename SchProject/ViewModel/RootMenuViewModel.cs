@@ -10,9 +10,10 @@ using System.Windows.Media.Imaging;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using GalaSoft.MvvmLight.Messaging;
+using Microsoft.Practices.ServiceLocation;
 using SchProject.Resources.Layout;
 using SchProject.Resources.Layout.CustomControls;
-using SchProject.TechSupportSecure;
+using SchProject.TechSupportSecure1;
 
 namespace SchProject.ViewModel
 {
@@ -33,11 +34,7 @@ namespace SchProject.ViewModel
             Navigation = new RelayCommand<object>(param => Navigate(param));
             Logout = new RelayCommand(NavLogout);
             _rootNavigator = NavigatorFactory.Navigator;
-            Messenger.Default.Register<LoginResult>(this, LoginSet);
-            //for the chatservice connect method we'll need a name, so we send the name, and we register for
-            //this message in the ChatViewModel"
-            Messenger.Default.Send(new SendFullNameMessage { FullName = FullName });
-
+            LoginSet(ServiceLocator.Current.GetInstance<UserData>());
         }
         public List<MenuButtonData> MenuButtons
         {
@@ -51,7 +48,7 @@ namespace SchProject.ViewModel
             get { return _fullName; }
             set { Set(ref _fullName, value); }
         }
-        private void LoginSet(LoginResult res)
+        private void LoginSet(UserData res)
         {
             FullName = res.FullName;
             MenuButtons = MenuButtonFactory.Create(res.Role);

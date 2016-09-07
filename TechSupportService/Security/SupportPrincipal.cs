@@ -18,6 +18,7 @@ namespace TechSupportService.Security
 
         public SupportPrincipal(IIdentity identity)
         {
+            _roles=new string[4];
             _identity = identity;
             _repo = new LoginDataRepository(new TechSupportDatabaseEntities());
         }
