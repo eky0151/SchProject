@@ -28,10 +28,9 @@ namespace DbAndRepository.Repostirories
             
         }
 
-        public int GetAvailableHelpDesk()
+        public Worker GetAvailableHelpDesk()
         {
-            return 
-                Get(x => x.LoginData.SingleOrDefault().Urole == "HelpDesk").Count(x => x.Status == "Available");
+            return Get(x => x.LoginData.SingleOrDefault().Urole == "HelpDesk").FirstOrDefault();
         }
 
         public override Worker GetById(int id)
@@ -45,5 +44,12 @@ namespace DbAndRepository.Repostirories
             database.Entry<Worker>(entityToModify).State = EntityState.Modified;
             database.SaveChanges();
         }
+
+        public int GetAvailableHelpDeskCount()
+        {
+            return
+                Get(x => x.LoginData.SingleOrDefault().Urole == "HelpDesk").Count(x => x.Status == "Available");
+        }
+
     }
 }
