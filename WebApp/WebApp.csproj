@@ -150,10 +150,30 @@
     <Content Include="scripts\jquery.signalR-2.1.0.js" />
     <Content Include="scripts\jquery.signalR-2.1.0.min.js" />
     <Content Include="scripts\modernizr-2.6.2.js" />
+    <None Include="Service References\ChatService\ChatService.wsdl" />
+    <None Include="Service References\ChatService\ChatService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ChatService\ChatService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ChatService\ChatService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ChatService\ChatService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\TechSupportServiceReference\TechSupportService.disco" />
     <None Include="Service References\TechSupportServiceReference\configuration91.svcinfo" />
     <None Include="Service References\TechSupportServiceReference\configuration.svcinfo" />
     <None Include="Service References\TechSupportServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\ChatService\ChatService.disco" />
+    <None Include="Service References\ChatService\configuration91.svcinfo" />
+    <None Include="Service References\ChatService\configuration.svcinfo" />
+    <None Include="Service References\ChatService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -169,15 +189,22 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Global\Datas.cs" />
     <Compile Include="Models\HomeModel.cs" />
     <Compile Include="Models\RegisterModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\ChatService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Service References\TechSupportServiceReference\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Wcf\Chat.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -207,6 +234,7 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <WCFMetadataStorage Include="Service References\ChatService\" />
     <WCFMetadataStorage Include="Service References\TechSupportServiceReference\" />
   </ItemGroup>
   <PropertyGroup>
