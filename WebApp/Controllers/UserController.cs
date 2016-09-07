@@ -36,5 +36,13 @@ namespace WebApp.Controllers
             }
         }
 
+        [HttpPost]
+        public ActionResult Send(string name, string message)
+        {
+            UserModel.ChatText += String.Format("{0} {1}: {2}", Environment.NewLine, name, message);
+
+            return View("~/Views/User/Login.cshtml");
+        }
+
     }
 }

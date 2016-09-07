@@ -9,7 +9,7 @@ namespace WebApp.Wcf
     {
         public void ClientConnectCallback(string name)
         {
-            Models.UserModel.ChatText += String.Format("\n {0} is connected", name);
+            Models.UserModel.ChatText += String.Format("{0}{1} is connected",Environment. NewLine, name);
         }
 
         public void ReceiveFileMessageeCallback(byte[] fileMessage, string description, string sender)
