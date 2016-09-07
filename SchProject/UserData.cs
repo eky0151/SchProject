@@ -18,12 +18,16 @@ namespace SchProject
         {
             FullName = login.FullName;
             Role = login.Role;
+
+            ViewModel.Global.FullName = login.FullName;
         }
         public string FullName
         {
             get { return _fullName; }
             private set { Set(ref _fullName, value); }
         }
+
+       
         public string ProfilePicture
         {
             get { return _profilePicture; }

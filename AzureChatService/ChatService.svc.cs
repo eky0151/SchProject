@@ -2,9 +2,18 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Runtime.Serialization;
     using System.ServiceModel;
 
+    [DataContract]
+    public enum ClientType
+    {
+        [EnumMember] Worker,
+        [EnumMember] Client
+    }
+
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single, ConcurrencyMode = ConcurrencyMode.Multiple)]
+    [ServiceKnownType(typeof(ClientType))]
     public class ChatService : IChat
     {
         //string name, IChatCallback for Clients
