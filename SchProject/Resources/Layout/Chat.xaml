@@ -27,7 +27,7 @@
     </i:Interaction.Triggers>
 
     <Grid>
-        <Button Content="Send" Background="Transparent" Foreground="Black" HorizontalAlignment="Left" Height="31" Margin="25,484,0,0" VerticalAlignment="Top" Width="129" RenderTransformOrigin="0.853,0.419"/>
+        <Button Content="Send" Command="{Binding Path=SendMessageCommand}" Background="Transparent" Foreground="Black" HorizontalAlignment="Left" Height="31" Margin="25,484,0,0" VerticalAlignment="Top" Width="129" RenderTransformOrigin="0.853,0.419"/>
         <ScrollViewer HorizontalAlignment="Left" Height="384" Margin="25,25,0,0" VerticalAlignment="Top" Width="443">
             <ItemsControl ItemsSource="{Binding Path=Messages}" SnapsToDevicePixels="True" Width="443" >
                 <ItemsControl.Resources>
@@ -45,11 +45,11 @@
                                 </StackPanel>
                             </Grid>
                         </Border>
-                        <DataTemplate.Triggers>
+                        <!--<DataTemplate.Triggers>
                             <DataTrigger Binding="{Binding IsSelected}" Value="True">
                                 <Setter TargetName="Border" Property="Background" Value="{DynamicResource MaterialDesignSelection}" />
                             </DataTrigger>
-                        </DataTemplate.Triggers>
+                        </DataTemplate.Triggers>-->
                     </DataTemplate>
                     <!--For Message Received -->
                     <DataTemplate DataType="{x:Type class:SendReceiveMessage}">
@@ -65,11 +65,11 @@
                                 </StackPanel>
                             </Grid>
                         </Border>
-                        <DataTemplate.Triggers>
+                        <!--<DataTemplate.Triggers>
                             <DataTrigger Binding="{Binding IsSelected}" Value="True">
                                 <Setter TargetName="Border" Property="Background" Value="{DynamicResource MaterialDesignSelection}" />
                             </DataTrigger>
-                        </DataTemplate.Triggers>
+                        </DataTemplate.Triggers>-->
                     </DataTemplate>
                     <!-- Message Received -->
                     <DataTemplate DataType="{x:Type class:SendReceiveFileMessage}">
@@ -86,16 +86,17 @@
                                 </StackPanel>
                             </Grid>
                         </Border>
-                        <DataTemplate.Triggers>
+                        <!--<DataTemplate.Triggers>
                             <DataTrigger Binding="{Binding IsSelected}" Value="True">
                                 <Setter TargetName="Border" Property="Background" Value="{DynamicResource MaterialDesignSelection}" />
                             </DataTrigger>
-                        </DataTemplate.Triggers>
+                        </DataTemplate.Triggers>-->
                     </DataTemplate>
                 </ItemsControl.Resources>
             </ItemsControl>
         </ScrollViewer>
         <TextBox HorizontalAlignment="Left" Height="45" Margin="25,426,0,0" TextWrapping="Wrap" Text="{Binding Path=Message, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="443"/>
         <Button IsEnabled="True" Content="Upload file" Command="{Binding Path=SendFileMessageCommand}" Background="Transparent" Foreground="Black" HorizontalAlignment="Left" Height="31" Margin="339,484,0,0" VerticalAlignment="Top" Width="129"/>
+        <Button Command="{Binding Path=GetCustomerCommand}" Content="Get question" Background="Transparent" Foreground="Black" HorizontalAlignment="Left" Height="31" Margin="178,484,0,0" VerticalAlignment="Top" Width="129" RenderTransformOrigin="0.853,0.419"/>
     </Grid>
 </UserControl>

@@ -10,8 +10,6 @@
     using System.Collections.Generic;
     using System.Drawing;
     using System.Windows.Forms;
-    using System.Threading;
-    using System.Threading.Tasks;
 
     public class ChatViewModel : ViewModelBase
     {
@@ -30,15 +28,14 @@
             set { Set(ref fullName, value); }
         }
 
-        private string aspClientName;
+        private string aspClientName = string.Empty;
         Dictionary<string, string[]> questionsByOneUser;
 
         public ICommand GetCustomerCommand
         {
             get
             {
-                return new RelayCommand(GetFirstMessage
-                                       );
+                return new RelayCommand(GetFirstMessage);
             }
         }
 
@@ -46,8 +43,7 @@
         {
             get
             {
-                return new RelayCommand(UploadFile
-                                      );
+                return new RelayCommand(UploadFile);
             }
         }
 
@@ -82,7 +78,7 @@
             //remove to ServiceLocator
             InstanceContext ctx = new InstanceContext(new ChatCallback());
             client  = new Chatservice.ChatClient(ctx);
-            fullName = (Global.FullName == string.Empty ? "Non authenticated user" : Global.FullName);
+            fullName = Global.FullName;
             Init();           
         }
 
@@ -116,7 +112,15 @@
                 if(b != null)
                 {
                     ImageConverter c = new ImageConverter();
-                    await client.SendFileAsync((byte[])c.ConvertTo(b, typeof(byte[])), "Picture", aspClientName);
+                    try
+                    {
+                        await client.SendFileAsync((byte[])c.ConvertTo(b, typeof(byte[])),fullName, "Picture", aspClientName, Chatservice.ClientType.Worker);
+                        //cant send to large files : (
+                    }
+                    catch(Exception)
+                    { }
+
+
                 }
                
             }
@@ -127,24 +131,25 @@
         {
             await client.ConnectAsync(fullName);
             await client.AddWorkerAsync(fullName);
-            GetFirstMessage();
         }
 
         private async void SendMessage()
         {
-            await client.SendMessageAsync(message, aspClientName);
+            await client.SendMessageAsync(message,fullName, aspClientName, Chatservice.ClientType.Worker);
             bool flag = await client.CheckUserOnlineAsync(aspClientName);
-            if(!flag)
+            Messages.Add(new SendReceiveMessage
+            {
+                Content = message,
+                Sender = FullName
+            });
+            if (!flag)
             {
                 Messages.Add(new SendReceiveMessage
                 {
                     Content = "Client left",
                     Sender = aspClientName
                 });
-
-                //Thread.Sleep(500);
-                //GetFirstMessage();
-            }   
+            }
         }
 
         //get the first message from the chatservice 
@@ -157,8 +162,8 @@
             else
             {
                 string[] key = new string[1];
-                aspClientName = key[0];
                 questionsByOneUser.Keys.CopyTo(key, 0);
+                aspClientName = key[0];
                 foreach (var i in questionsByOneUser[key[0]])
                 {
                     Messages.Add(new SendReceiveMessage
@@ -182,7 +187,7 @@
             });
         }
 
-        public void ReceiveFileMessageeCallback(byte[] fileMessage, string description)
+        public void ReceiveFileMessageeCallback(byte[] fileMessage, string description, string sender)
         {
             ImageConverter converter = new ImageConverter();
             Messenger.Default.Send<SendReceiveFileMessage>(new SendReceiveFileMessage
@@ -192,7 +197,7 @@
             });
         }
 
-        public void ReceiveMessageCallback(string message, string receiver)
+        public void ReceiveMessageCallback(string message, string sender)
         {
             Messenger.Default.Send<SendReceiveMessage>(new SendReceiveMessage
             {
@@ -219,7 +224,6 @@
     {
         public Bitmap Content { get; set; }
         public string Description { get; set; }
-
         public string Sender { get; set; }
     }
 }

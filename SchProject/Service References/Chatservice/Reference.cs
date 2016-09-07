@@ -9,7 +9,19 @@
 //------------------------------------------------------------------------------
 
 namespace SchProject.Chatservice {
+    using System.Runtime.Serialization;
     
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ClientType", Namespace="http://schemas.datacontract.org/2004/07/AzureChatService")]
+    public enum ClientType : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Worker = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Client = 1,
+    }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="Chatservice.IChat", CallbackContract=typeof(SchProject.Chatservice.IChatCallback), SessionMode=System.ServiceModel.SessionMode.Required)]
@@ -28,16 +40,16 @@ namespace SchProject.Chatservice {
         System.Threading.Tasks.Task DisconnectAsync(string client);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChat/SendFile")]
-        void SendFile(byte[] content, string description, string receiverName);
+        void SendFile(byte[] content, string sender, string description, string receiverName, SchProject.Chatservice.ClientType clientType);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChat/SendFile")]
-        System.Threading.Tasks.Task SendFileAsync(byte[] content, string description, string receiverName);
+        System.Threading.Tasks.Task SendFileAsync(byte[] content, string sender, string description, string receiverName, SchProject.Chatservice.ClientType clientType);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChat/SendMessage")]
-        void SendMessage(string message, string receiverName);
+        void SendMessage(string message, string sender, string receiverName, SchProject.Chatservice.ClientType clientType);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChat/SendMessage")]
-        System.Threading.Tasks.Task SendMessageAsync(string message, string receiverName);
+        System.Threading.Tasks.Task SendMessageAsync(string message, string sender, string receiverName, SchProject.Chatservice.ClientType clientType);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChat/IsAnyWorker", ReplyAction="http://tempuri.org/IChat/IsAnyWorkerResponse")]
         bool IsAnyWorker();
@@ -74,10 +86,10 @@ namespace SchProject.Chatservice {
     public interface IChatCallback {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChat/ReceiveMessageCallback")]
-        void ReceiveMessageCallback(string message, string receiver);
+        void ReceiveMessageCallback(string message, string sender);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChat/ReceiveFileMessageeCallback")]
-        void ReceiveFileMessageeCallback(byte[] fileMessage, string description);
+        void ReceiveFileMessageeCallback(byte[] fileMessage, string description, string sender);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChat/ClientConnectCallback")]
         void ClientConnectCallback(string name);
@@ -127,20 +139,20 @@ namespace SchProject.Chatservice {
             return base.Channel.DisconnectAsync(client);
         }
         
-        public void SendFile(byte[] content, string description, string receiverName) {
-            base.Channel.SendFile(content, description, receiverName);
+        public void SendFile(byte[] content, string sender, string description, string receiverName, SchProject.Chatservice.ClientType clientType) {
+            base.Channel.SendFile(content, sender, description, receiverName, clientType);
         }
         
-        public System.Threading.Tasks.Task SendFileAsync(byte[] content, string description, string receiverName) {
-            return base.Channel.SendFileAsync(content, description, receiverName);
+        public System.Threading.Tasks.Task SendFileAsync(byte[] content, string sender, string description, string receiverName, SchProject.Chatservice.ClientType clientType) {
+            return base.Channel.SendFileAsync(content, sender, description, receiverName, clientType);
         }
         
-        public void SendMessage(string message, string receiverName) {
-            base.Channel.SendMessage(message, receiverName);
+        public void SendMessage(string message, string sender, string receiverName, SchProject.Chatservice.ClientType clientType) {
+            base.Channel.SendMessage(message, sender, receiverName, clientType);
         }
         
-        public System.Threading.Tasks.Task SendMessageAsync(string message, string receiverName) {
-            return base.Channel.SendMessageAsync(message, receiverName);
+        public System.Threading.Tasks.Task SendMessageAsync(string message, string sender, string receiverName, SchProject.Chatservice.ClientType clientType) {
+            return base.Channel.SendMessageAsync(message, sender, receiverName, clientType);
         }
         
         public bool IsAnyWorker() {
