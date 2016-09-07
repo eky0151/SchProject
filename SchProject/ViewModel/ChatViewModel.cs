@@ -43,8 +43,7 @@
         {
             get
             {
-                return new RelayCommand(UploadFile
-                                      );
+                return new RelayCommand(UploadFile);
             }
         }
 
@@ -113,8 +112,15 @@
                 if(b != null)
                 {
                     ImageConverter c = new ImageConverter();
-                    await client.SendFileAsync((byte[])c.ConvertTo(b, typeof(byte[])), "Picture", aspClientName);
-                    //cant send to large files : (
+                    try
+                    {
+                        await client.SendFileAsync((byte[])c.ConvertTo(b, typeof(byte[])),fullName, "Picture", aspClientName, Chatservice.ClientType.Worker);
+                        //cant send to large files : (
+                    }
+                    catch(Exception)
+                    { }
+
+
                 }
                
             }
@@ -129,7 +135,7 @@
 
         private async void SendMessage()
         {
-            await client.SendMessageAsync(message, aspClientName);
+            await client.SendMessageAsync(message,fullName, aspClientName, Chatservice.ClientType.Worker);
             bool flag = await client.CheckUserOnlineAsync(aspClientName);
             Messages.Add(new SendReceiveMessage
             {
@@ -181,7 +187,7 @@
             });
         }
 
-        public void ReceiveFileMessageeCallback(byte[] fileMessage, string description)
+        public void ReceiveFileMessageeCallback(byte[] fileMessage, string description, string sender)
         {
             ImageConverter converter = new ImageConverter();
             Messenger.Default.Send<SendReceiveFileMessage>(new SendReceiveFileMessage
@@ -191,7 +197,7 @@
             });
         }
 
-        public void ReceiveMessageCallback(string message, string receiver)
+        public void ReceiveMessageCallback(string message, string sender)
         {
             Messenger.Default.Send<SendReceiveMessage>(new SendReceiveMessage
             {

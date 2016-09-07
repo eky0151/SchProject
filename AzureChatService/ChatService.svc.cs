@@ -22,6 +22,9 @@
         //if the workers list is empty, the asp client add their messages here
         private Dictionary<string, List<string>> messages = new Dictionary<string, List<string>>();
 
+        //if the workers list is empty, the asp client add their messages here
+        private Dictionary<string, List<string>> workerMessages = new Dictionary<string, List<string>>();
+
         //if the workers list is empty, the asp client add their files here
         private Dictionary<string, List<byte[]>> files = new Dictionary<string, List<byte[]>>();
 
@@ -68,36 +71,81 @@
             }
         }
 
-        public void SendFile(byte[] content, string description, string receiverName)
+        public void SendFile(byte[] content, string sender, string description, string receiverName, ClientType clientType)
         {
-            if (clients.ContainsKey(receiverName))
+            switch (clientType)
             {
-                IChatCallback callback = clients[receiverName];
-                callback.ReceiveFileMessageeCallback(content, "File");
+                case ClientType.Worker:
+                    {
+                        if(clients.ContainsKey(receiverName)) //aps user is online
+                        {
+                            IChatCallback callback = clients[receiverName];
+                            callback.ReceiveFileMessageeCallback(content, description, sender);
+                        }
+                        else
+                        {
+
+                        }
+                    }
+                    break;
+                case ClientType.Client:
+                    {
+                        if (clients.ContainsKey(receiverName)) //wpf user is online
+                        {
+                            IChatCallback callback = clients[receiverName];
+                            callback.ReceiveFileMessageeCallback(content, description, sender);
+                        }
+                        else
+                        {
+
+                        }
+                    }
+                    break;
+                default:
+                    break;
             }
+           
         }
 
-        public void SendMessage(string message, string receiverName)
+        public void SendMessage(string message, string sender, string receiverName, ClientType clientType)
         {
-            if (clients.ContainsKey(receiverName))
+            switch (clientType)
             {
-                IChatCallback callback = clients[receiverName];
-                callback.ReceiveMessageCallback(message, receiverName);
+                case ClientType.Worker:
+                    {
+                        if (clients.ContainsKey(receiverName))
+                        {
+                            IChatCallback callback = clients[receiverName];
+                            callback.ReceiveMessageCallback(message, sender);
+                        }
+
+                        if (messages.ContainsKey(receiverName))
+                        {
+                            messages[receiverName].Add(message);
+                        }
+                        else
+                        {
+                            messages[receiverName] = new List<string>
+                            {
+                                 message
+                            };
+                        }
+                    }
+                    break;
+                case ClientType.Client:
+                    {
+
+                    }
+                    break;
+                default:
+                    break;
             }
 
-            if(messages.ContainsKey(receiverName))
-            {
-                messages[receiverName].Add(message);
-            }
-            else
-            {
-                messages[receiverName] = new List<string>
-                {
-                    message
-                };
-            }
+            
         }
 
+
+        #region OnlyWPFCLient
         public bool IsAnyWorker()
         {
             return workers.Count == 0 ? false : true;
@@ -158,5 +206,7 @@
         {
             return clients.ContainsKey(clientName) ? true : false;
         }
+
+        #endregion
     }
 }
