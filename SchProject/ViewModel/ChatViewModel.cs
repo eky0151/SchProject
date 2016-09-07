@@ -10,6 +10,8 @@
     using System.Collections.Generic;
     using System.Drawing;
     using System.Windows.Forms;
+    using System.Threading;
+    using System.Threading.Tasks;
 
     public class ChatViewModel : ViewModelBase
     {
@@ -35,8 +37,8 @@
         {
             get
             {
-                return new RelayCommand(GetFirstMessage,
-                                       () => client.State == CommunicationState.Opened);
+                return new RelayCommand(GetFirstMessage
+                                       );
             }
         }
 
@@ -44,8 +46,8 @@
         {
             get
             {
-                return new RelayCommand(UploadFile,
-                                       () => client.State == CommunicationState.Opened);
+                return new RelayCommand(UploadFile
+                                      );
             }
         }
 
@@ -54,18 +56,19 @@
             get
             {
                 return new RelayCommand(SendMessage,
-                                       () => message != string.Empty &&
-                                       client.State == CommunicationState.Opened);
+                                       () => message != string.Empty );
             }
         }
+
+        //&&
+        //client.State == CommunicationState.Opened
 
         public ICommand LoginWorkerCommand
         {
             get
             {
                 return new RelayCommand(LoginWorker,
-                                        () => fullName != string.Empty &&
-                                        client.State == CommunicationState.Opened);
+                                        () => fullName != string.Empty );
             }
         }
 
@@ -79,13 +82,12 @@
             //remove to ServiceLocator
             InstanceContext ctx = new InstanceContext(new ChatCallback());
             client  = new Chatservice.ChatClient(ctx);
-
+            fullName = (Global.FullName == string.Empty ? "Non authenticated user" : Global.FullName);
             Init();           
         }
 
         private void Init()
         {
-            fullName = (Global.FullName == string.Empty ? "Non authenticated user" : Global.FullName);
             Messenger.Default.Register(this, (SendClientConnect s) => Messages.Add(s));
             Messenger.Default.Register(this, (SendReceiveMessage s) =>
             {
@@ -125,6 +127,7 @@
         {
             await client.ConnectAsync(fullName);
             await client.AddWorkerAsync(fullName);
+            GetFirstMessage();
         }
 
         private async void SendMessage()
@@ -138,6 +141,9 @@
                     Content = "Client left",
                     Sender = aspClientName
                 });
+
+                //Thread.Sleep(500);
+                //GetFirstMessage();
             }   
         }
 
@@ -164,7 +170,6 @@
             }
         }
     }
-
 
     public class ChatCallback : Chatservice.IChatCallback
     {
