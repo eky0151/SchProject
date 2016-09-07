@@ -1,4 +1,6 @@
-﻿namespace DbAndRepository.Repostirories
+﻿using System;
+
+namespace DbAndRepository.Repostirories
 {
     using System.Data.Entity;
     using GenericsEFRepository;
@@ -21,6 +23,16 @@
             database.SaveChanges();
         }
 
+        public void RegisterNewWorker(string username,string passwd,string address, string email,string fullName,string phone,string profilePicture,string status, string bankName,string bankAccount,bool technician)
+        {
+            
+        }
+
+        public int GetAvailableHelpDesk()
+        {
+            return 
+                Get(x => x.LoginData.SingleOrDefault().Urole == "HelpDesk").Count(x => x.Status == "Available");
+        }
 
         public override Worker GetById(int id)
         {

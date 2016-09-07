@@ -10,5 +10,6 @@ namespace DbAndRepository.IRepositories
     public interface ITechWorksRepository : IGenericsRepository<TechWorks>
     {
         List<TechWorks> GetByTechnician(int id);
+        void RegisterNewWork(TechWorks w);
     }
 }

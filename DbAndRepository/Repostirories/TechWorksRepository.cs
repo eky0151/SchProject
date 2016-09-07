@@ -30,6 +30,11 @@ namespace DbAndRepository.Repostirories
             return Get(i => i.TechID == id).ToList();
         }
 
+        public void RegisterNewWork(TechWorks w)
+        {
+            Insert(w);
+        }
+
         public override void Update(TechWorks entityToModify)
         {
             throw new NotImplementedException();

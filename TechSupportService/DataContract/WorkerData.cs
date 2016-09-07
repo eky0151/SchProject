@@ -10,6 +10,8 @@ namespace TechSupportService
     public class WorkerData
     {
         [DataMember]
+        public int ID { get; private set; }
+        [DataMember]
         public string FullName { get; private set; }
         [DataMember]
         public string Username { get; private set; }
@@ -28,11 +30,13 @@ namespace TechSupportService
 
         public static explicit operator WorkerData(LoginData w)
         {
-            WorkerData data = new WorkerData(w.Worker.FullName, w.Username, w.Worker.Email, w.Worker.Phone, w.Worker.Address, w.Worker.ProfilePicture, (Status)Enum.Parse(typeof(Status), w.Worker.Status), (Role)Enum.Parse(typeof(Role), w.Urole));
+            WorkerData data = new WorkerData(w.Worker.FullName, w.Username, w.Worker.Email, w.Worker.Phone, w.Worker.Address, w.Worker.ProfilePicture, (Status)Enum.Parse(typeof(Status), w.Worker.Status), (Role)Enum.Parse(typeof(Role), w.Urole),w.WorkerID);
             return data;
         }
-        public WorkerData(string fullName, string username, string email, string phone, string address, string profilePicture, Status status, Role role)
+
+        public WorkerData( string fullName, string username, string email, string phone, string address, string profilePicture, Status status, Role role,int id=0)
         {
+            ID = id;
             FullName = fullName;
             Username = username;
             Email = email;

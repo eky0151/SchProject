@@ -10,5 +10,7 @@ namespace DbAndRepository.IRepositories
     public interface ITechnicianRepository : IGenericsRepository<Technician>
     {
         List<TechWorks> GetWorksByTechnician(int id);
+        int GetAvailableTechnicianCount();
+        Technician GetAvailableTechnician();
     }
 }

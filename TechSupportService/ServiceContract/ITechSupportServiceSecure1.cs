@@ -21,7 +21,7 @@ namespace TechSupportService
         void RegisterNewStaffMember(WorkerDataRegistrationData regData);
 
         [OperationContract]
-        List<CustomerLoginData> LastCustomerList();
+        List<CustomerData> LastCustomerList();
 
         [OperationContract]
         List<WorkerData> StaffList();
