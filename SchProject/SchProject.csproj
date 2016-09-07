@@ -155,6 +155,7 @@
     <Compile Include="Resources\Layout\Converters\StaffStatusToBrushConverter.cs" />
     <Compile Include="Resources\Layout\Converters\StringToImageSourceConverter.cs" />
     <Compile Include="Resources\Layout\Converters\TicketStatusToBrushConverter.cs" />
+    <Compile Include="Resources\Layout\CustomControls\AtachedProperties.cs" />
     <Compile Include="Resources\Layout\CustomControls\MapHelper.cs" />
     <Compile Include="Resources\Layout\CustomControls\MenuButton.cs" />
     <Compile Include="Resources\Layout\CustomControls\RoundedButton.cs" />
@@ -473,6 +474,9 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Layout\Images\user.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
