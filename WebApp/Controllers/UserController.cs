@@ -22,16 +22,26 @@ namespace WebApp.Controllers
         public ActionResult Login(string username, string password)
         {
             using (TechSupportService1Client client = new TechSupportService1Client())
-            {
+            {               
                 if (client.UserLogin(username, password))
                 {
-                    return View(new HomeModel(username, password));
+                    Global.Datas.chatClient.Connect(username);
+                    
+                    return View(new UserModel(username));
                 }
                 else
                 {
-                    return View(new HomeModel("incorrect username", "incorrect password"));
+                    return View("~/Views/Home/index.cshtml"); //TODO: incorrect username or password
                 }
             }
+        }
+
+        [HttpPost]
+        public ActionResult Send(string name, string message)
+        {
+            UserModel.ChatText += String.Format("{0} {1}: {2}", Environment.NewLine, name, message);
+
+            return View("~/Views/User/Login.cshtml");
         }
 
     }

@@ -12,6 +12,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbAndRepository", "DbAndRepository\DbAndRepository.csproj", "{72BD122C-9E79-481B-A377-86C192F10505}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp", "WebApp\WebApp.csproj", "{A2CCB9BE-01B5-4669-A33F-4906BFAA0EB2}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C4F912C6-C838-4BB1-BD46-3B1B5197E256} = {C4F912C6-C838-4BB1-BD46-3B1B5197E256}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseAndRepositoryTests", "DatabaseAndRepositoryTests\DatabaseAndRepositoryTests.csproj", "{EA227977-6DDF-4A45-BFC8-29528D23C78C}"
 EndProject
