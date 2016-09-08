@@ -66,6 +66,9 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -80,6 +83,11 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Service References\SecureService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="WorkerRepositoryTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -92,14 +100,61 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+    <None Include="Service References\SecureService\DatabaseAndRepositoryTests.SecureService.CustomerData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SecureService\DatabaseAndRepositoryTests.SecureService.LoginResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SecureService\DatabaseAndRepositoryTests.SecureService.SolvedQuestion.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SecureService\DatabaseAndRepositoryTests.SecureService.TechnicianData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SecureService\DatabaseAndRepositoryTests.SecureService.TechWork.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SecureService\DatabaseAndRepositoryTests.SecureService.WorkerData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SecureService\TechSupportServiceSecure.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SecureService\TechSupportServiceSecure1.wsdl" />
+    <None Include="Service References\SecureService\TechSupportServiceSecure1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SecureService\TechSupportServiceSecure2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SecureService\TechSupportServiceSecure3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SecureService\TechSupportServiceSecure4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SecureService\TechSupportServiceSecure5.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\jquery-1.6.4-vsdoc.js" />
     <Content Include="Scripts\jquery-1.6.4.js" />
     <Content Include="Scripts\jquery-1.6.4.min.js" />
+    <None Include="Service References\SecureService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\SecureService\configuration.svcinfo" />
+    <None Include="Service References\SecureService\configuration91.svcinfo" />
+    <None Include="Service References\SecureService\TechSupportServiceSecure.disco" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\SecureService\" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

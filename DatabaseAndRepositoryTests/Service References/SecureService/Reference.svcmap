@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="7bf3daa0-5c4f-47b9-8d89-3819097491b3" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://techsupportservice.azurewebsites.net/techsupportservicesecure.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="TechSupportServiceSecure.xsd" MetadataType="Schema" ID="4586132d-696b-4823-8782-49c8eb7a6c78" SourceId="1" SourceUrl="http://techsupportservice.azurewebsites.net/TechSupportServiceSecure.svc?xsd=xsd1" />
+    <MetadataFile FileName="TechSupportServiceSecure1.xsd" MetadataType="Schema" ID="5207908f-db8a-49ca-a3eb-eda388810ea0" SourceId="1" SourceUrl="http://techsupportservice.azurewebsites.net/TechSupportServiceSecure.svc?xsd=xsd0" />
+    <MetadataFile FileName="TechSupportServiceSecure1.wsdl" MetadataType="Wsdl" ID="6e49bf60-a68d-4cb7-8b91-9e25782d3d28" SourceId="1" SourceUrl="http://techsupportservice.azurewebsites.net/TechSupportServiceSecure.svc?wsdl" />
+    <MetadataFile FileName="TechSupportServiceSecure.disco" MetadataType="Disco" ID="47c4a4ee-2625-4f36-ae91-e73f8129fffd" SourceId="1" SourceUrl="http://techsupportservice.azurewebsites.net/TechSupportServiceSecure.svc?disco" />
+    <MetadataFile FileName="TechSupportServiceSecure2.xsd" MetadataType="Schema" ID="c46ff7ba-60a9-4b92-af39-2d6567e56166" SourceId="1" SourceUrl="http://techsupportservice.azurewebsites.net/TechSupportServiceSecure.svc?xsd=xsd5" />
+    <MetadataFile FileName="TechSupportServiceSecure3.xsd" MetadataType="Schema" ID="e2645f6e-7d9c-46d1-82d8-5e2f2f0ca117" SourceId="1" SourceUrl="http://techsupportservice.azurewebsites.net/TechSupportServiceSecure.svc?xsd=xsd4" />
+    <MetadataFile FileName="TechSupportServiceSecure4.xsd" MetadataType="Schema" ID="164848ef-c2c1-4382-9e4c-9bd74b63aa4b" SourceId="1" SourceUrl="http://techsupportservice.azurewebsites.net/TechSupportServiceSecure.svc?xsd=xsd3" />
+    <MetadataFile FileName="TechSupportServiceSecure5.xsd" MetadataType="Schema" ID="fed538bb-0a1c-4e03-936c-3565862ad493" SourceId="1" SourceUrl="http://techsupportservice.azurewebsites.net/TechSupportServiceSecure.svc?xsd=xsd2" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

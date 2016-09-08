@@ -174,7 +174,7 @@ namespace TechSupportService
 
         public void AddNewSolvedQuestion(SolvedQuestion solved)
         {
-            _solvedQuestionsRepository.Insert(new DbAndRepository.SolvedQuestion() {Answer = solved.Answer,Category = solved.Category.});
+            _solvedQuestionsRepository.Insert(new DbAndRepository.SolvedQuestion() {Answer = solved.Answer,Category = solved.Category[0]});
         }
 
         public List<SolvedQuestion> SolvedQuestionList(uint Page)
@@ -213,7 +213,18 @@ namespace TechSupportService
 
         public CustomerData LastCustomer()
         {
-            return  (CustomerData)_regUserRepository.GetAll().LastOrDefault();
+            var z = _regUserRepository.GetAll().ToList();
+            var u = z[z.Count - 1];
+            return new CustomerData
+            {
+                 Email = u.Email,
+                 FullName = u.Fullname,
+                 ID = u.ID,
+                 Phone = u.Phonenumber,
+                 Picture = u.Picture,
+                 Points = u.Points,
+                 RegTime = u.Regtime
+            };
         }
 
         public CustomerData GetCustomer(string username)
