@@ -7,7 +7,7 @@
              xmlns:local="clr-namespace:SchProject.Resources.Layout"
              xmlns:class="clr-namespace:SchProject.ViewModel"
              mc:Ignorable="d" 
-             d:DesignHeight="525" d:DesignWidth="500"
+             d:DesignHeight="625" d:DesignWidth="1000"
              DataContext="{Binding Source={StaticResource Locator}, Path=Chat}">
 
     <!--Material Design Themes-->
@@ -30,6 +30,7 @@
         <Button Content="Send" Command="{Binding Path=SendMessageCommand}" Background="Transparent" Foreground="Black" HorizontalAlignment="Left" Height="31" Margin="25,484,0,0" VerticalAlignment="Top" Width="129" RenderTransformOrigin="0.853,0.419"/>
         <ScrollViewer HorizontalAlignment="Left" Height="384" Margin="25,25,0,0" VerticalAlignment="Top" Width="443">
             <ItemsControl ItemsSource="{Binding Path=Messages}" SnapsToDevicePixels="True" Width="443" >
+               
                 <ItemsControl.Resources>
                     <!--For Client Connect -->
                     <DataTemplate DataType="{x:Type class:SendClientConnect}">

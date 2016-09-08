@@ -15,21 +15,26 @@
         public override void Delete(int id)
         {
             throw new System.NotImplementedException();
+            //do not delete
         }
 
         public override LoginLogs GetById(int id)
         {
-            throw new System.NotImplementedException();
+            return database.Set<LoginLogs>().FirstOrDefault(x => x.ID == id);
         }
 
         public List<LoginLogs> GetByWorker(Worker worker)
         {
-            throw new System.NotImplementedException();
+            return (from i in database.Set<LoginLogs>()
+                   let name = worker.LoginData.FirstOrDefault().Username
+                   where i.LoginName == name
+                   select i).ToList();
         }
 
         public override void Update(LoginLogs entityToModify)
         {
             throw new System.NotImplementedException();
+            //do not update
         }
     }
 }

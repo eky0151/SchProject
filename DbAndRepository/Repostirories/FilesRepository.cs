@@ -7,13 +7,15 @@
 
     public class FilesRepository : GenericsRepository<Files>, IFileRepository
     {
+        private Files files;
+
         public FilesRepository(DbContext newDb) : base(newDb)
         {
         }
 
         public override void Delete(int id)
         {
-            throw new NotImplementedException();
+            files = GetById(id);
         }
 
         public override Files GetById(int id)

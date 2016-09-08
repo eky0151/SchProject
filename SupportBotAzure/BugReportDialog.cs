@@ -109,3 +109,4 @@ namespace SupportBot
             return kereso;
         }
     }
+}

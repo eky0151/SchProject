@@ -331,6 +331,9 @@
     <None Include="Service References\Chatservice\ChatService2.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\Chatservice\ChatService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\TechSupportSecure\SchProject.TechSupportSecure.CustomerData.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>

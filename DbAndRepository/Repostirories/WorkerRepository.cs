@@ -1,11 +1,11 @@
-﻿using System;
-
-namespace DbAndRepository.Repostirories
+﻿namespace DbAndRepository.Repostirories
 {
     using System.Data.Entity;
     using GenericsEFRepository;
     using IRepositories;
     using System.Linq;
+    using System.Collections.Generic;
+    using System;
 
     public class WorkerRepository : GenericsRepository<Worker>, IWorkerRepository
     {
@@ -23,11 +23,47 @@ namespace DbAndRepository.Repostirories
             database.SaveChanges();
         }
 
-        public void RegisterNewWorker(string username,string passwd,string address, string email,string fullName,string phone,string profilePicture,string status, string bankName,string bankAccount,bool technician)
+        public void RegisterNewWorker(string username, string urole,string passwd,string Workerstatus,string available,string address, string email,string fullName,string phone,string profilePicture, string bankName,string bankAccount,bool technician)
         {
-            
+            Bank b = new Bank
+            {
+                Name = bankName,
+                Account = bankAccount
+            };
+
+            Technician t = null;
+            if(technician == true)
+            {
+                t = new Technician
+                {
+                    Available = available           
+                };
+            }
+
+            LoginData l = new LoginData
+            {
+                Username = username,
+                Password = passwd,
+                Urole = urole
+            };
+
+            Worker w = new Worker
+            {
+                FullName = fullName,
+                Phone = phone,
+                ProfilePicture = profilePicture,
+                Email = email,
+                Address = address,
+                Bank = b,
+                LoginData = new HashSet<LoginData> { l },
+                Technician = new HashSet<Technician> { t },
+                Status = Workerstatus
+            };
+
+            base.Insert(w);
         }
 
+       
         public Worker GetAvailableHelpDesk()
         {
             return Get(x => x.LoginData.SingleOrDefault().Urole == "HelpDesk").FirstOrDefault();
@@ -51,5 +87,6 @@ namespace DbAndRepository.Repostirories
                 Get(x => x.LoginData.SingleOrDefault().Urole == "HelpDesk").Count(x => x.Status == "Available");
         }
 
+       
     }
 }

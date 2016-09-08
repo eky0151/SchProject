@@ -112,15 +112,12 @@
                 if(b != null)
                 {
                     ImageConverter c = new ImageConverter();
+                    
                     try
                     {
-                        await client.SendFileAsync((byte[])c.ConvertTo(b, typeof(byte[])),fullName, "Picture", aspClientName, Chatservice.ClientType.Worker);
-                        //cant send to large files : (
+                        await client.SendFileAsync((byte[])c.ConvertTo(b, typeof(byte[])), fullName, "Picture", aspClientName, Chatservice.ClientType.Worker);
                     }
-                    catch(Exception)
-                    { }
-
-
+                    catch(Exception) { }
                 }
                
             }

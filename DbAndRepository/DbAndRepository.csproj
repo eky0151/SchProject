@@ -122,6 +122,7 @@
     <Compile Include="GenericsEFRepository\IGenericsRepository.cs" />
     <Compile Include="IRepositories\IBankRepository.cs" />
     <Compile Include="IRepositories\IBugreportRepository.cs" />
+    <Compile Include="IRepositories\IClientLogsRepository.cs" />
     <Compile Include="IRepositories\IFileRepository.cs" />
     <Compile Include="IRepositories\ILoginDataRepository.cs" />
     <Compile Include="IRepositories\ILoginLogsRepository.cs" />
@@ -142,6 +143,7 @@
     </Compile>
     <Compile Include="Repostirories\BankRepository.cs" />
     <Compile Include="Repostirories\BugreportRepository.cs" />
+    <Compile Include="Repostirories\ClientLogsRepository.cs" />
     <Compile Include="Repostirories\FilesRepository.cs" />
     <Compile Include="Repostirories\LoginDataRepository.cs" />
     <Compile Include="Repostirories\LoginLogsRepository.cs" />

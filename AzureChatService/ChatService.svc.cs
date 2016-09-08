@@ -5,6 +5,13 @@
     using System.Runtime.Serialization;
     using System.ServiceModel;
 
+    public class Connection 
+    {
+        public string Sender { get; set; }
+        public string Receiver { get; set; }
+
+    }
+
     [DataContract]
     public enum ClientType
     {
@@ -22,11 +29,13 @@
         //if the workers list is empty, the asp client add their messages here
         private Dictionary<string, List<string>> messages = new Dictionary<string, List<string>>();
 
-        //if the workers list is empty, the asp client add their messages here
-        private Dictionary<string, List<string>> workerMessages = new Dictionary<string, List<string>>();
-
         //if the workers list is empty, the asp client add their files here
         private Dictionary<string, List<byte[]>> files = new Dictionary<string, List<byte[]>>();
+
+        //if the asp client is offline the wpf worker add their message here
+        private Dictionary<string[], List<string>> forAspUsersMessages = new Dictionary<string[], List<string>>();
+
+        private Dictionary<string[], List<byte[]>> forAspUsersFiles = new Dictionary<string[], List<byte[]>>();
 
         private static object syncObj = new object();
 
@@ -82,9 +91,20 @@
                             IChatCallback callback = clients[receiverName];
                             callback.ReceiveFileMessageeCallback(content, description, sender);
                         }
-                        else
+                        else //asp user is offline
                         {
-
+                            string[] a = new string[] { sender, receiverName };
+                            if (forAspUsersMessages.ContainsKey(a))
+                            {
+                                forAspUsersFiles[a].Add(content);
+                            }
+                            else
+                            {
+                                forAspUsersFiles[a] = new List<byte[]>
+                                {
+                                    content
+                                };
+                            }
                         }
                     }
                     break;
@@ -95,10 +115,12 @@
                             IChatCallback callback = clients[receiverName];
                             callback.ReceiveFileMessageeCallback(content, description, sender);
                         }
-                        else
+                        else //wpf user is offline
                         {
-
+                            
                         }
+
+                       
                     }
                     break;
                 default:
@@ -119,6 +141,16 @@
                             callback.ReceiveMessageCallback(message, sender);
                         }
 
+                    }
+                    break;
+                case ClientType.Client:
+                    {
+                        if (clients.ContainsKey(receiverName))
+                        {
+                            IChatCallback callback = clients[receiverName];
+                            callback.ReceiveMessageCallback(message, sender);
+                        }
+
                         if (messages.ContainsKey(receiverName))
                         {
                             messages[receiverName].Add(message);
@@ -132,16 +164,9 @@
                         }
                     }
                     break;
-                case ClientType.Client:
-                    {
-
-                    }
-                    break;
                 default:
                     break;
             }
-
-            
         }
 
 
@@ -178,7 +203,7 @@
                 userQuestons[keys[0]].Add(i);
             }
 
-            lock(syncObj)
+            lock (syncObj)
             {
                 messages.Remove(keys[0]);
             }
