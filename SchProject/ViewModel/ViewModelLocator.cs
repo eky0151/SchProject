@@ -100,6 +100,14 @@ namespace SchProject.ViewModel
             }
         }
 
+        public DemonstrationViewModel Demonstration
+        {
+            get
+            {
+                return new DemonstrationViewModel();
+            }
+        }
+
 
 
         public static void Cleanup()

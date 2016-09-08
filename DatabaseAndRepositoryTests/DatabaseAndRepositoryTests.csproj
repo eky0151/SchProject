@@ -83,6 +83,11 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Service References\SupportService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="WorkerRepositoryTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -95,14 +100,61 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+    <None Include="Service References\SupportService\DatabaseAndRepositoryTests.SupportService.CustomerData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SupportService\DatabaseAndRepositoryTests.SupportService.LoginResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SupportService\DatabaseAndRepositoryTests.SupportService.SolvedQuestion.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SupportService\DatabaseAndRepositoryTests.SupportService.TechnicianData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SupportService\DatabaseAndRepositoryTests.SupportService.TechWork.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SupportService\DatabaseAndRepositoryTests.SupportService.WorkerData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SupportService\TechSupportServiceSecure.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SupportService\TechSupportServiceSecure1.wsdl" />
+    <None Include="Service References\SupportService\TechSupportServiceSecure1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SupportService\TechSupportServiceSecure2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SupportService\TechSupportServiceSecure3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SupportService\TechSupportServiceSecure4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SupportService\TechSupportServiceSecure5.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\jquery-1.6.4-vsdoc.js" />
     <Content Include="Scripts\jquery-1.6.4.js" />
     <Content Include="Scripts\jquery-1.6.4.min.js" />
+    <None Include="Service References\SupportService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\SupportService\configuration.svcinfo" />
+    <None Include="Service References\SupportService\configuration91.svcinfo" />
+    <None Include="Service References\SupportService\TechSupportServiceSecure.disco" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\SupportService\" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

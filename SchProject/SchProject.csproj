@@ -126,6 +126,11 @@
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
     <Reference Include="Telerik.Windows.Controls, Version=2016.1.217.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.Windows.Controls.Chart, Version=2016.1.217.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.Windows.Controls.Diagrams, Version=2016.1.217.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.Windows.Controls.Navigation, Version=2016.1.217.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.Windows.Data, Version=2016.1.217.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.Windows.Diagrams.Core, Version=2016.1.217.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
     <Reference Include="UIAutomationProvider" />
     <Reference Include="UIAutomationTypes" />
     <Reference Include="WindowsBase" />
@@ -171,6 +176,9 @@
     </Compile>
     <Compile Include="Resources\Layout\Converters\EmailToColorConverter.cs" />
     <Compile Include="Resources\Layout\Converters\NumberToBrushConverter.cs" />
+    <Compile Include="Resources\Layout\Demonstration.xaml.cs">
+      <DependentUpon>Demonstration.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Resources\Layout\Management.xaml.cs">
       <DependentUpon>Management.xaml</DependentUpon>
     </Compile>
@@ -213,6 +221,7 @@
     <Compile Include="ViewModel\DashboardViewModel.cs" />
     <Compile Include="ViewModel\AdminsViewModel.cs" />
     <Compile Include="ViewModel\BugreportViewModel.cs" />
+    <Compile Include="ViewModel\DemonstrationViewModel.cs" />
     <Compile Include="ViewModel\Global.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
@@ -237,6 +246,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\Layout\Dashboard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Layout\Demonstration.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

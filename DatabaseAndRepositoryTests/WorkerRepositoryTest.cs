@@ -16,6 +16,8 @@ namespace DatabaseAndRepositoryTests
         private ITechnicianRepository technicianRepo;
         private TechSupportDatabaseEntities db =  new TechSupportDatabaseEntities();
         private List<Worker> workerList;
+        private SupportService.TechSupportServiceSecure1Client host = new
+            SupportService.TechSupportServiceSecure1Client();
 
         #region Initialize and Cleanup
         [TestInitialize]
@@ -25,6 +27,9 @@ namespace DatabaseAndRepositoryTests
             techWorksRepo = new TechWorksRepository(db);
             technicianRepo = new TechninicanRepository(db);
             workerList = new List<Worker>(workerRepo.GetAll());
+            host.ClientCredentials.UserName.UserName = "Flynn";
+            host.ClientCredentials.UserName.Password = "sam";
+            host.Open();
         }
 
         [TestCleanup]
@@ -33,7 +38,7 @@ namespace DatabaseAndRepositoryTests
             db.Dispose();
             workerRepo.Dispose();
             workerList = null;
-            client.Close();
+            host.Close();
         }
         #endregion
 
@@ -95,6 +100,20 @@ namespace DatabaseAndRepositoryTests
             Assert.AreEqual(name, technicianRepo.GetByName(name).Worker.FullName);
         }
 
-      
+        [TestMethod]
+        public void GetCustomer()
+        {
+            SupportService.CustomerData d = host.LastCustomer();
+            SupportService.CustomerData j = host.GetCustomer(d.UserName);
+            Assert.AreNotEqual(null, j);
+        }
+
+
+        [TestMethod]
+        public void GetCustomerByName()
+        {
+            SupportService.CustomerData d = host.GetCustomer("Bencee");
+            Assert.AreNotEqual(null, d);
+        }
     }
 }

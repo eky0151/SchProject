@@ -214,22 +214,36 @@ namespace TechSupportService
         public CustomerData LastCustomer()
         {
             var z = _regUserRepository.GetAll().ToList();
-            var u = z[z.Count - 1];
-            return new CustomerData
-            {
-                 Email = u.Email,
-                 FullName = u.Fullname,
-                 ID = u.ID,
-                 Phone = u.Phonenumber,
-                 Picture = u.Picture,
-                 Points = u.Points,
-                 RegTime = u.Regtime
-            };
+            RegUser u = z[z.Count - 1];
+            return ReturnCustomer(u);
         }
 
         public CustomerData GetCustomer(string username)
         {
-            return (CustomerData)_regUserRepository.Get(x => x.Username == username).SingleOrDefault();
+            RegUser z = _regUserRepository.Get(i => i.Username == username).FirstOrDefault();
+            //return (CustomerData)_regUserRepository.Get(x => x.Username == username).SingleOrDefault();
+            return ReturnCustomer(z);
         }
+
+
+        #region Private_Methods
+
+        private CustomerData ReturnCustomer(RegUser u)
+        {
+            return new CustomerData
+            {
+                Email = u.Email,
+                FullName = u.Fullname,
+                ID = u.ID,
+                Phone = u.Phonenumber,
+                Picture = u.Picture,
+                Points = u.Points,
+                RegTime = u.Regtime,
+                UserName = u.Username
+            };
+        }
+
+        #endregion
+
     }
 }

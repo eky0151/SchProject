@@ -24,10 +24,12 @@ namespace TechSupportService.DataContract
         public string Phone { get; set; }
         [DataMember]
         public DateTime RegTime { get; set; }
+        [DataMember]
+        public string UserName { get; set; }
 
         public static explicit operator CustomerData(RegUser r)
         {
-            CustomerData data = new CustomerData() { Email = r.Email, FullName = r.Fullname, Picture = r.Picture, Points = r.Points, RegTime = r.Regtime, ID = r.ID };
+            CustomerData data = new CustomerData() { Email = r.Email, FullName = r.Fullname, Picture = r.Picture, Points = r.Points, RegTime = r.Regtime, ID = r.ID , UserName = r.Username, Phone = r.Phonenumber};
             return data;
         }
 
