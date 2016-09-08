@@ -89,7 +89,10 @@ namespace TechSupportService
 
         public List<CustomerData> LastCustomerList()
         {
-            throw new NotImplementedException();
+            return  new List<CustomerData>(_regUserRepository.
+                                              GetAll().
+                                              OrderByDescending(i => i.Regtime).
+                                              Select(i => (CustomerData)i));
         }
 
         public List<WorkerData> StaffList()
@@ -187,9 +190,7 @@ namespace TechSupportService
 
         public List<TechWork> NewTechWorks()
         {
-            //TODO waiting database change
-            //return _techworksRepository.Get(x=>x.s)
-            throw new NotImplementedException();
+            return new List<TechWork>(_techworksRepository.GetAll().OrderBy(i => i.Finish).Select(i => (TechWork)i));
         }
 
         [PrincipalPermission(SecurityAction.Demand, Role = "Technician")]
@@ -210,10 +211,9 @@ namespace TechSupportService
             _techworksRepository.Insert(new TechWorks() { Customeraddress = work.Address, Customername = work.Customer.FullName, Finish = work.Finish, TechID = work.Technician.TechnicianID,Price = work.Price,Start = work.Start});
         }
 
-        public List<CustomerData> LastCustomers()
+        public CustomerData LastCustomer()
         {
-            //TODO waiting for database change
-            throw new NotImplementedException();
+            return  (CustomerData)_regUserRepository.GetAll().LastOrDefault();
         }
 
         public CustomerData GetCustomer(string username)

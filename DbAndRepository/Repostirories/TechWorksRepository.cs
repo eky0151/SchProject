@@ -32,7 +32,7 @@ namespace DbAndRepository.Repostirories
 
         public void RegisterNewWork(TechWorks w)
         {
-            Insert(w);
+            base.Insert(w);
         }
 
         public override void Update(TechWorks entityToModify)

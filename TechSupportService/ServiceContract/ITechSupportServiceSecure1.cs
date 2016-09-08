@@ -66,7 +66,7 @@ namespace TechSupportService
         void RegisterTechWork(TechWork work);
 
         [OperationContract]
-        List<CustomerData> LastCustomers();
+        CustomerData LastCustomer();
 
         [OperationContract]
         CustomerData GetCustomer(string username);

@@ -11,6 +11,8 @@ namespace DatabaseAndRepositoryTests
     public sealed class WorkerRepositoryTest
     {
         private IWorkerRepository workerRepo;
+        private ITechWorksRepository techWorksRepo;
+        private ITechnicianRepository technicianRepo;
         private TechSupportDatabaseEntities db =  new TechSupportDatabaseEntities();
         private List<Worker> workerList;
 
@@ -19,6 +21,8 @@ namespace DatabaseAndRepositoryTests
         public void InitializeTest()
         {
             workerRepo = new WorkerRepository(db);
+            techWorksRepo = new TechWorksRepository(db);
+            technicianRepo = new TechninicanRepository(db);
             workerList = new List<Worker>(workerRepo.GetAll());
         }
 
@@ -57,10 +61,29 @@ namespace DatabaseAndRepositoryTests
         {
             IWorkerRepository wp = new WorkerRepository(db);
             Worker w = wp.GetById(5);
+            Assert.AreEqual("Propa Propa2", w.FullName);
+        }
 
+        [TestMethod]
+        public void InsertTEchWorks()
+        {
+            List<Technician> techs = new List<Technician>(technicianRepo.GetAll());
+
+            techWorksRepo.Insert(new TechWorks
+            {
+                Technician = techs[0],
+                Customeraddress = "1019, Bütyke Úrimalom utca 30",
+                Customername = "Molnár András",
+                Finish = DateTime.Now,
+                Start = DateTime.Now.AddHours(-3),
+                Price = 12400
+            });
+
+            List<TechWorks> works = new List<TechWorks>(techWorksRepo.GetAll());
+
+            Assert.AreEqual("Molnár András", works[works.Count - 1].Customername);
             
 
-            Console.WriteLine();
         }
 
      
