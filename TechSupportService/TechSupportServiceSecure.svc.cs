@@ -174,7 +174,7 @@ namespace TechSupportService
 
         public void AddNewSolvedQuestion(SolvedQuestion solved)
         {
-            //_solvedQuestionsRepository.Insert(new DbAndRepository.SolvedQuestion() {Answer = solved.Answer,Category = solved.Category.});
+            _solvedQuestionsRepository.Insert(new DbAndRepository.SolvedQuestion() {Answer = solved.Answer,Category = solved.Category.});
         }
 
         public List<SolvedQuestion> SolvedQuestionList(uint Page)

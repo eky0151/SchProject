@@ -12,5 +12,7 @@ namespace DbAndRepository.IRepositories
         List<TechWorks> GetWorksByTechnician(int id);
         int GetAvailableTechnicianCount();
         Technician GetAvailableTechnician();
+        Technician GetByName(string name);
+
     }
 }

@@ -31,6 +31,7 @@ namespace DbAndRepository.Repostirories
         public override void Update(SolvedQuestion entityToModify)
         {
             throw new NotImplementedException();
+            //do not mod
         }
     }
 }

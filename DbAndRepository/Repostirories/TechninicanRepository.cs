@@ -52,5 +52,10 @@ namespace DbAndRepository.Repostirories
                    Get(x => x.ID == rnd.Next(GetAll().Count())).FirstOrDefault();
             return res;
         }
+
+        public Technician GetByName(string name)
+        {
+            return Get(i => i.Worker.FullName == name).FirstOrDefault();
+        }
     }
 }

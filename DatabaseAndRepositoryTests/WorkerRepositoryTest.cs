@@ -4,6 +4,7 @@ using DbAndRepository;
 using DbAndRepository.IRepositories;
 using System.Collections.Generic;
 using System;
+using System.Linq;
 
 namespace DatabaseAndRepositoryTests
 {
@@ -82,11 +83,16 @@ namespace DatabaseAndRepositoryTests
             List<TechWorks> works = new List<TechWorks>(techWorksRepo.GetAll());
 
             Assert.AreEqual("Molnár András", works[works.Count - 1].Customername);
-            
-
         }
 
-     
+        [TestMethod]
+        public void GetTEchnicianByName()
+        {
+            List<Technician> techs = technicianRepo.GetAll().ToList();
+            string name = techs[0].Worker.FullName;
+
+            Assert.AreEqual(name, technicianRepo.GetByName(name).Worker.FullName);
+        }
 
 
     }
