@@ -55,14 +55,5 @@ namespace TechSupportService
             });
         }
 
-        public List<int> GetLastSevedDaysSolves(out List<DateTime> dates)
-        {
-            dates = new List<DateTime>();
-            List<DateTime> times;
-            List<int> z =_solvedQuestions.GetLastSevenDaysSolvedQuestions(out times);
-            dates = times;
-            return z;
-
-        }
     }
 }

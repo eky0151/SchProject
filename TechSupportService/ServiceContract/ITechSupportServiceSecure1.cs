@@ -71,7 +71,7 @@ namespace TechSupportService
         [OperationContract]
         CustomerData GetCustomer(string username);
 
-
-
+        [OperationContract]
+        List<int> GetLastSevedDaysSolves(out List<DateTime> dates);
     }
 }
