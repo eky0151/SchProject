@@ -1,0 +1,131 @@
+﻿<Page x:Class="SolvedQuestionInit.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:SolvedQuestionInit"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:vm="using:SolvedQuestionInit"
+      xmlns:viewModels="using:SolvedQuestionInit.ViewModels"
+      mc:Ignorable="d"
+      Width="480"
+      Height="730">
+    <Page.DataContext>
+        <viewModels:MainPageViewModel />
+    </Page.DataContext>
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*" />
+            <RowDefinition Height="5*" />
+            <RowDefinition Height="5*" />
+            <RowDefinition Height="15*" />
+            <RowDefinition Height="10*" />
+            <RowDefinition Height="6*" />
+            <RowDefinition Height="15*" />
+            <RowDefinition Height="4*" />
+            <RowDefinition Height="3*" />
+        </Grid.RowDefinitions>
+        <TextBlock HorizontalAlignment="Left"
+                   Grid.Row="1"
+                   TextWrapping="Wrap"
+                   Margin="30,0,0,0"
+                   Text="Sender"
+                   VerticalAlignment="Center" />
+        <ComboBox Grid.Row="1"
+                  HorizontalAlignment="Right"
+                  VerticalAlignment="Center"
+                  Margin="0,0,30,0"
+                  Height="40"
+                  Width="250"
+                  ItemsSource="{Binding Customers}">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <ItemsPresenter DataContext="{Binding FullName}"/>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+            </ComboBox>
+        <TextBlock HorizontalAlignment="Left"
+                   Grid.Row="2"
+                   TextWrapping="Wrap"
+                   Margin="30,0,0,0"
+                   Text="Solver"
+                   VerticalAlignment="Center" />
+        <ComboBox Grid.Row="2"
+                  HorizontalAlignment="Right"
+                  VerticalAlignment="Center"
+                  Margin="0,0,30,0"
+                  Height="40"
+                  Width="250" />
+        <TextBlock HorizontalAlignment="Left"
+                   Grid.Row="3"
+                   TextWrapping="Wrap"
+                   Margin="30,20,0,0"
+                   Text="Question"
+                   VerticalAlignment="Top" />
+        <TextBox Grid.Row="3"
+                 VerticalAlignment="Center"
+                 Width="340"
+                 Margin="0,0,30,0"
+                 HorizontalAlignment="Right"
+                 Height="140" />
+        <TextBlock HorizontalAlignment="Left"
+                   Grid.Row="4"
+                   TextWrapping="Wrap"
+                   Margin="30,20,0,0"
+                   Text="Topic"
+                   VerticalAlignment="Top" />
+        <ComboBox Grid.Row="4"
+                  HorizontalAlignment="Right"
+                  VerticalAlignment="Top"
+                  Margin="0,10,30,0"
+                  Height="30"
+                  Width="250" />
+        <TextBlock HorizontalAlignment="Left"
+                   Grid.Row="4"
+                   TextWrapping="Wrap"
+                   Margin="30,0,0,20"
+                   Text="New topic"
+                   VerticalAlignment="Bottom" />
+        <TextBox  Grid.Row="4"
+                  Width="215"
+                  Margin="0,0,135,14.667"
+                  VerticalAlignment="Bottom"
+                  HorizontalAlignment="Right"
+                  Height="30" />
+        <Button Grid.Row="4"
+                Content="Add"
+                Width="80"
+                Margin="0,0,30,15"
+                VerticalAlignment="Bottom"
+                HorizontalAlignment="Right" />
+        <TextBlock HorizontalAlignment="Left"
+                   Grid.Row="5"
+                   TextWrapping="Wrap"
+                   Margin="30,0,0,0"
+                   Text="Key Phrases"
+                   VerticalAlignment="Center" />
+        <TextBox  Grid.Row="5"
+                  Width="320"
+                  Margin="0,0,30,0"
+                  VerticalAlignment="Center"
+                  HorizontalAlignment="Right"
+                  Height="30" />
+        <TextBlock HorizontalAlignment="Left"
+                   Grid.Row="6"
+                   TextWrapping="Wrap"
+                   Margin="30,20,0,0"
+                   Text="Answer"
+                   VerticalAlignment="Top" />
+        <TextBox Grid.Row="6"
+                 VerticalAlignment="Center"
+                 Width="340"
+                 Margin="0,0,30,0"
+                 HorizontalAlignment="Right"
+                 Height="140" />
+        <Button Grid.Row="7"
+                Content="Send"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Width="100"></Button>
+    </Grid>
+
+</Page>
