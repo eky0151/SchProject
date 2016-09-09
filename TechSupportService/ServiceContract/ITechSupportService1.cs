@@ -21,5 +21,6 @@ namespace TechSupportService
 
         [OperationContract(IsOneWay = true)]
         void RegisterNewUser(string fullName, string email, string userName, string password);
+
     }
 }

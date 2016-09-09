@@ -244,5 +244,18 @@ namespace TechSupportService
 
         #endregion
 
+
+        public List<int> GetLastSevedDaysSolves(out List<DateTime> dates)
+        {
+            dates = new List<DateTime>();
+            List<DateTime> times;
+            List<int> z = _solvedQuestionsRepository.GetLastSevenDaysSolvedQuestions(out times);
+            dates = times;
+            return z;
+
+        }
+
+
+
     }
 }

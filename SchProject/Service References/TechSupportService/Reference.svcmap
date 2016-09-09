@@ -22,6 +22,7 @@
     <MetadataSource Address="https://techsupportservice.azurewebsites.net/techsupportservice.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
+    <MetadataFile FileName="TechSupportService2.xsd" MetadataType="Schema" ID="85ef335a-fbd7-4ab7-b744-3ea4a442c888" SourceId="1" SourceUrl="http://techsupportservice.azurewebsites.net/TechSupportService.svc?xsd=xsd2" />
     <MetadataFile FileName="TechSupportService1.wsdl" MetadataType="Wsdl" ID="7900d74b-b236-4bc0-9a7c-27a7343b58a1" SourceId="1" SourceUrl="http://techsupportservice.azurewebsites.net/TechSupportService.svc?wsdl" />
     <MetadataFile FileName="TechSupportService.disco" MetadataType="Disco" ID="f3904c15-eb2b-4a6f-ba6f-53beefa488eb" SourceId="1" SourceUrl="http://techsupportservice.azurewebsites.net/TechSupportService.svc?disco" />
     <MetadataFile FileName="TechSupportService.xsd" MetadataType="Schema" ID="b14c83d8-238a-4c6b-af50-4745ff62e7a8" SourceId="1" SourceUrl="http://techsupportservice.azurewebsites.net/TechSupportService.svc?xsd=xsd1" />
