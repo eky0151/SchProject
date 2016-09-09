@@ -10,6 +10,12 @@ namespace TechSupportService
     public class SolvedQuestion
     {
         [DataMember]
+        public int WorkerID { get; set; }
+
+        [DataMember]
+        public int CustomerID { get; set; }
+
+        [DataMember]
         public string WorkerName { get; set; }
 
         [DataMember]
@@ -19,10 +25,10 @@ namespace TechSupportService
         public string Answer { get; set; }
 
         [DataMember]
-        public string[] Topic { get; set; }
+        public string Topic { get; set; }
 
         [DataMember]
-        public string[] Category { get; set; }
+        public string Category { get; set; }
 
         [DataMember]
         public string[] KeyWords { get; set; }
@@ -33,10 +39,20 @@ namespace TechSupportService
         [DataMember]
         public DateTime TimeAnswered { get; set; }
 
-        public static explicit operator SolvedQuestion(DbAndRepository.SolvedQuestion q)
+        public static DbAndRepository.SolvedQuestion SolvedQuestionToDB(SolvedQuestion q)
         {
-            SolvedQuestion question = new SolvedQuestion() { Answer = q.Answer, Question = q.Question, TimeAsked = q.Timeasked, TimeAnswered = q.Timeanswered, Category = q.Category.Split('$'), KeyWords = q.KeyWords.Split('$'), Topic = q.Topic.Split('$'), WorkerName = q.Worker.FullName };
-            return question;
+            return new DbAndRepository.SolvedQuestion()
+            {
+                Answer = q.Answer,
+                Category = q.Category,
+                KeyWords = string.Join(",",q.KeyWords),
+                Question = q.Question,
+                UserID = q.CustomerID,
+                WorkerID = q.WorkerID,
+                Timeanswered = q.TimeAnswered,
+                Timeasked = q.TimeAsked,
+                Topic = q.Topic
+            };
         }
 
     }

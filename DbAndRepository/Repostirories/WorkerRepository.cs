@@ -63,6 +63,10 @@
             base.Insert(w);
         }
 
+        public List<Worker> GetHelpDeskList()
+        {
+            return Get(x => x.LoginData.FirstOrDefault().Urole == "HelpDesk").ToList();
+        }
        
         public Worker GetAvailableHelpDesk()
         {
