@@ -98,9 +98,9 @@ namespace SolvedQuestionInit.ViewModels
             get { return _luisIntents; }
             set { Set(ref _luisIntents, value); }
         }
-        private void Send()
+        private async void Send()
         {
-            Task.Factory.StartNew(() =>
+            await Task.Factory.StartNew(() =>
             {
                 var keyWords = new ObservableCollection<string>();
                 foreach (var item in _keyPhrases.Split(','))
@@ -119,7 +119,10 @@ namespace SolvedQuestionInit.ViewModels
                     Topic = SelectedTopic.Name,
                     WorkerID = SelectedWorker.ID
                 });
+               
             });
+            await LUIS.UploadNewLabel(Question, SelectedTopic.Name);
+            await LUIS.TrainModel();
             Answer = "";
             Question = "";
             NewTopic = "";
@@ -132,7 +135,7 @@ namespace SolvedQuestionInit.ViewModels
             await LUIS.UploadNewIntent(_newTopic);
             await LUIS.UploadNewLabel(Question.Replace("\"", ""), NewTopic);
             await LUIS.TrainModel();
-            SetData();
+            SetTopic();
         }
         private async Task Init()
         {
@@ -144,29 +147,29 @@ namespace SolvedQuestionInit.ViewModels
             SelectedWorker = Workers.FirstOrDefault();
         }
 
-        private async void  SetData()
+        private async void SetData()
         {
-            var dispatcher = Windows.UI.Core.CoreWindow.GetForCurrentThread().Dispatcher;
-            await dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            if (!String.IsNullOrEmpty(Question))
             {
-                if (!String.IsNullOrEmpty(Question))
+                var dispatcher = Windows.UI.Core.CoreWindow.GetForCurrentThread().Dispatcher;
+                await dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                 {
                     SetTopic();
-                    KeyPhrases = GetTextAnalitycsData(Question).Result;
-                }
-            });
+                    SetTextAnalitycsData();
+                });
+            }
 
         }
 
-        private void SetTopic()
+        private async void SetTopic()
         {
-            LuisIntents = Task.Factory.StartNew(() => LUIS.ParseUserInput(Question).Result).Result;
+            LuisIntents = await LUIS.ParseUserInput(Question);
         }
 
-        private async Task<string> GetTextAnalitycsData(string userdata)
+        private async void SetTextAnalitycsData()
         {
-            var root = await TextAnalitycs.MakeRequests(userdata);
-            return string.Join(",", root.keyPhrases);
+            var root = await TextAnalitycs.MakeRequests(Question);
+            KeyPhrases = string.Join(",", root.keyPhrases);
         }
 
 

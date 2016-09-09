@@ -23,7 +23,7 @@ namespace SupportBot.TextAnalitycs_Classes
                 client.BaseAddress = new Uri(BaseUrl);
                 client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", AccountKey);
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                byte[] byteData = Encoding.UTF8.GetBytes(CreateJson(input));
+                byte[] byteData = Encoding.UTF8.GetBytes(CreateJson(input.Replace("\"", "").Replace("'", "")));
                 var uri = "text/analytics/v2.0/keyPhrases";
                 var response = await CallEndpoint(client, uri, byteData);
                 var vissza = JsonConvert.DeserializeObject<RootObject>(response);
