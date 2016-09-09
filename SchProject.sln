@@ -26,9 +26,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureChatService", "AzureCh
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechSharedLibraries", "TechSharedLibraries\TechSharedLibraries.csproj", "{86E64CF5-55D1-4B73-BCB0-8EDB66DD348F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFClient", "WPFClient\WPFClient.csproj", "{40C56846-04AF-457A-A68F-EBCABD765E70}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFClientTest", "WPFClientTest\WPFClientTest.csproj", "{40C56846-04AF-457A-A68F-EBCABD765E70}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFServer", "WPFServer\WPFServer.csproj", "{29A0847C-A71D-4C3B-932F-9B472C0908C4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFServerTest", "WPFServerTest\WPFServerTest.csproj", "{29A0847C-A71D-4C3B-932F-9B472C0908C4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
