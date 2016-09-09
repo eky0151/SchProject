@@ -53,6 +53,7 @@ namespace SchProject.ViewModel
 
         private int[] Counts;
         private DateTime[] Dates;
+        private List<KeyValuePair<string, int>> pie;
 
         public  DemonstrationViewModel()
         {

@@ -32,7 +32,7 @@ namespace DbAndRepository.Repostirories
 
      
 
-        public List<int> GetLastSevenDaysSolvedQuestions(out List<DateTime> d)
+        public List<int> GetLastSevenDaysSolvedQuestions(out List<DateTime> d, out List<KeyValuePair<string, int>> byName)
         {
             var dateCriteria = DateTime.Now.Date.AddDays(-7);
             var all = GetAll();
@@ -53,6 +53,13 @@ namespace DbAndRepository.Repostirories
                              Count = g.Count(),
                              Name = g.Key
                          };
+
+            byName = new List<KeyValuePair<string, int>>();
+
+            foreach (var p in query2)
+            {
+                byName.Add(new KeyValuePair<string, int>(p.Name, p.Count));
+            }
 
 
             d = new List<DateTime>();

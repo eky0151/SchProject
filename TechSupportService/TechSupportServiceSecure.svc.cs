@@ -246,12 +246,15 @@ namespace TechSupportService
         #endregion
 
 
-        public List<int> GetLastSevedDaysSolves(out List<DateTime> dates)
+        public List<int> GetLastSevedDaysSolves(out List<DateTime> dates, out List<KeyValuePair<string, int>> byName)
         {
+            byName = new List<KeyValuePair<string, int>>();
+            List<KeyValuePair<string, int>> temp;
             dates = new List<DateTime>();
-            List<DateTime> times;
-            List<int> z = _solvedQuestionsRepository.GetLastSevenDaysSolvedQuestions(out times);
-            dates = times;
+            List<DateTime> temp1;
+            List<int> z = _solvedQuestionsRepository.GetLastSevenDaysSolvedQuestions(out temp1, out temp);
+            byName = temp;
+            dates = temp1;
             return z;
 
         }
