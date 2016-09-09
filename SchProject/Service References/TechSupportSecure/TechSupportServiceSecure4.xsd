@@ -25,6 +25,7 @@
       <xs:element minOccurs="0" name="Picture" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Points" type="xs:int" />
       <xs:element minOccurs="0" name="RegTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="UserName" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="CustomerData" nillable="true" type="tns:CustomerData" />

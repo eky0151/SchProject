@@ -30,10 +30,13 @@ namespace DbAndRepository.Repostirories
             return Get(i => i.WorkerID == id).ToList();
         }
 
+     
+
         public List<int> GetLastSevenDaysSolvedQuestions(out List<DateTime> d)
         {
             var dateCriteria = DateTime.Now.Date.AddDays(-7);
-            var QueryDeatils = from i in GetAll()
+            var all = GetAll();
+            var QueryDeatils = from i in all
                                where i.Timeanswered >= dateCriteria
                                group i by TruncateTime(i.Timeanswered) into g
                                select new
@@ -41,6 +44,15 @@ namespace DbAndRepository.Repostirories
                                    Count = g.Count(),
                                    Time = (DateTime)g.Key
                                };
+
+            var query2 = from i in all
+                         where i.Timeanswered >= dateCriteria
+                         group i by i.Worker.FullName into g
+                         select new
+                         {
+                             Count = g.Count(),
+                             Name = g.Key
+                         };
 
 
             d = new List<DateTime>();

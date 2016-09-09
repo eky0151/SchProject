@@ -2,7 +2,7 @@
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="http://techsupportservice.azurewebsites.net/TechSupportServiceSecure.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/TechSupportService" />
   <xs:import schemaLocation="http://techsupportservice.azurewebsites.net/TechSupportServiceSecure.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/TechSupportService.DataContract" />
-  <xs:import schemaLocation="http://techsupportservice.azurewebsites.net/TechSupportServiceSecure.svc?xsd=xsd5" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:import schemaLocation="http://techsupportservice.azurewebsites.net/TechSupportServiceSecure.svc?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
   <xs:element name="GetWorkerData">
     <xs:complexType>
       <xs:sequence />
@@ -174,15 +174,15 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="LastCustomers">
+  <xs:element name="LastCustomer">
     <xs:complexType>
       <xs:sequence />
     </xs:complexType>
   </xs:element>
-  <xs:element name="LastCustomersResponse">
+  <xs:element name="LastCustomerResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/TechSupportService.DataContract" minOccurs="0" name="LastCustomersResult" nillable="true" type="q16:ArrayOfCustomerData" />
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/TechSupportService.DataContract" minOccurs="0" name="LastCustomerResult" nillable="true" type="q16:CustomerData" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -197,6 +197,19 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/TechSupportService.DataContract" minOccurs="0" name="GetCustomerResult" nillable="true" type="q17:CustomerData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetLastSevedDaysSolves">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetLastSevedDaysSolvesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q18="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetLastSevedDaysSolvesResult" nillable="true" type="q18:ArrayOfint" />
+        <xs:element xmlns:q19="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="dates" nillable="true" type="q19:ArrayOfdateTime" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

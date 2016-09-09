@@ -5,10 +5,14 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
              xmlns:local="clr-namespace:SchProject.Resources.Layout"
+             xmlns:chartingToolkit="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"
+             xmlns:chart="clr-namespace:Sytem.Windows.Controls.Datavisualization.Charting"
              mc:Ignorable="d" 
              d:DesignHeight="625" d:DesignWidth="1000"
              DataContext="{Binding Source={StaticResource Locator}, Path=Demonstration}">
     <Grid>
+        
+        
 
         <telerik:ChartDataSource x:Name="dataSource"
                                  ItemsSource="{Binding Path=Data}"
@@ -25,8 +29,11 @@
         <TabControl HorizontalAlignment="Left" Height="548" Margin="10,67,0,0" VerticalAlignment="Top" Width="980">
             <TabItem Header="Solved questions last week by">
                 <Grid Background="White">
-                    
-                    <telerik:RadCartesianChart>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <telerik:RadCartesianChart Grid.Column="0">
                         <telerik:RadCartesianChart.HorizontalAxis>
                             <telerik:DateTimeCategoricalAxis LabelFormat="dd/MMM" DateTimeComponent="Ticks"/>
                         </telerik:RadCartesianChart.HorizontalAxis>
@@ -39,6 +46,8 @@
                                            ItemsSource="{Binding ElementName=dataSource}">
                         </telerik:BarSeries>
                     </telerik:RadCartesianChart>
+
+                    
                     
                 </Grid>
             </TabItem>
