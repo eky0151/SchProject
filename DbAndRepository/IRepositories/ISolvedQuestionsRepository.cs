@@ -11,6 +11,6 @@ namespace DbAndRepository.IRepositories
     {
         List<SolvedQuestion> GetByWorker(int id);
 
-        List<int> GetLastSevenDaysSolvedQuestions(out List<DateTime> d);
+        List<int> GetLastSevenDaysSolvedQuestions(out List<DateTime> d, out List<KeyValuePair<string, int>> byName);
     }
 }

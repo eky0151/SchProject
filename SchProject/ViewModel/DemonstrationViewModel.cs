@@ -14,6 +14,7 @@ using System.Windows.Forms;
 using System.Windows;
 using Telerik.Windows.Data;
 using System.ComponentModel;
+using Microsoft.Practices.ServiceLocation;
 
 namespace SchProject.ViewModel
 {
@@ -53,26 +54,22 @@ namespace SchProject.ViewModel
         private int[] Counts;
         private DateTime[] Dates;
 
+        private KeyValuePair<string, int>[] pie;
+        public KeyValuePair<string, int>[] Pie
+        {
+            get { return pie; }
+        }
+        
+
         public  DemonstrationViewModel()
         {
             GetQuestions();
             
-            //var z  = new ObservableCollection<SolvedQuestionsByDay>
-            //{
-            //    new SolvedQuestionsByDay { Count = 10, Time = DateTime.Now.AddDays(-1) },
-            //    new SolvedQuestionsByDay { Count = 20, Time = DateTime.Now.AddDays(-2) },
-            //    new SolvedQuestionsByDay { Count = 30, Time = DateTime.Now.AddDays(-3) },
-            //};
-
-            //Data = z;
         }
 
-        private void GetQuestions()
+        private  void GetQuestions()
         {
-            using (TechSupportService.TechSupportService1Client c = new TechSupportService.TechSupportService1Client())
-            {
-                Counts = c.GetLastSevedDaysSolves(out Dates);
-            }
+            Counts = ServiceLocator.Current.GetInstance<TechSupportServer>().host.GetLastSevedDaysSolves(out Dates, out pie);
 
             for (int i = 0; i < Counts.Length; i++)
             {

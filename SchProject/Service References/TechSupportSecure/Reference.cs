@@ -29,9 +29,6 @@ namespace SchProject.TechSupportSecure {
         private SchProject.TechSupportSecure.Role RoleField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Security.SecureString UUIDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private bool ValidField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
@@ -66,19 +63,6 @@ namespace SchProject.TechSupportSecure {
                 if ((this.RoleField.Equals(value) != true)) {
                     this.RoleField = value;
                     this.RaisePropertyChanged("Role");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Security.SecureString UUID {
-            get {
-                return this.UUIDField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.UUIDField, value) != true)) {
-                    this.UUIDField = value;
-                    this.RaisePropertyChanged("UUID");
                 }
             }
         }
@@ -499,6 +483,9 @@ namespace SchProject.TechSupportSecure {
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.DateTime RegTimeField;
         
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string UserNameField;
+        
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
@@ -600,6 +587,19 @@ namespace SchProject.TechSupportSecure {
             }
         }
         
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string UserName {
+            get {
+                return this.UserNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UserNameField, value) != true)) {
+                    this.UserNameField = value;
+                    this.RaisePropertyChanged("UserName");
+                }
+            }
+        }
+        
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         
         protected void RaisePropertyChanged(string propertyName) {
@@ -623,7 +623,10 @@ namespace SchProject.TechSupportSecure {
         private string AnswerField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string[] CategoryField;
+        private string CategoryField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int CustomerIDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string[] KeyWordsField;
@@ -638,7 +641,10 @@ namespace SchProject.TechSupportSecure {
         private System.DateTime TimeAskedField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string[] TopicField;
+        private string TopicField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int WorkerIDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string WorkerNameField;
@@ -667,7 +673,7 @@ namespace SchProject.TechSupportSecure {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string[] Category {
+        public string Category {
             get {
                 return this.CategoryField;
             }
@@ -675,6 +681,19 @@ namespace SchProject.TechSupportSecure {
                 if ((object.ReferenceEquals(this.CategoryField, value) != true)) {
                     this.CategoryField = value;
                     this.RaisePropertyChanged("Category");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int CustomerID {
+            get {
+                return this.CustomerIDField;
+            }
+            set {
+                if ((this.CustomerIDField.Equals(value) != true)) {
+                    this.CustomerIDField = value;
+                    this.RaisePropertyChanged("CustomerID");
                 }
             }
         }
@@ -732,7 +751,7 @@ namespace SchProject.TechSupportSecure {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string[] Topic {
+        public string Topic {
             get {
                 return this.TopicField;
             }
@@ -740,6 +759,19 @@ namespace SchProject.TechSupportSecure {
                 if ((object.ReferenceEquals(this.TopicField, value) != true)) {
                     this.TopicField = value;
                     this.RaisePropertyChanged("Topic");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int WorkerID {
+            get {
+                return this.WorkerIDField;
+            }
+            set {
+                if ((this.WorkerIDField.Equals(value) != true)) {
+                    this.WorkerIDField = value;
+                    this.RaisePropertyChanged("WorkerID");
                 }
             }
         }
@@ -998,17 +1030,57 @@ namespace SchProject.TechSupportSecure {
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ITechSupportServiceSecure1/RegisterTechWork")]
         System.Threading.Tasks.Task RegisterTechWorkAsync(SchProject.TechSupportSecure.TechWork work);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportServiceSecure1/LastCustomers", ReplyAction="http://tempuri.org/ITechSupportServiceSecure1/LastCustomersResponse")]
-        SchProject.TechSupportSecure.CustomerData[] LastCustomers();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportServiceSecure1/LastCustomer", ReplyAction="http://tempuri.org/ITechSupportServiceSecure1/LastCustomerResponse")]
+        SchProject.TechSupportSecure.CustomerData LastCustomer();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportServiceSecure1/LastCustomers", ReplyAction="http://tempuri.org/ITechSupportServiceSecure1/LastCustomersResponse")]
-        System.Threading.Tasks.Task<SchProject.TechSupportSecure.CustomerData[]> LastCustomersAsync();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportServiceSecure1/LastCustomer", ReplyAction="http://tempuri.org/ITechSupportServiceSecure1/LastCustomerResponse")]
+        System.Threading.Tasks.Task<SchProject.TechSupportSecure.CustomerData> LastCustomerAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportServiceSecure1/GetCustomer", ReplyAction="http://tempuri.org/ITechSupportServiceSecure1/GetCustomerResponse")]
         SchProject.TechSupportSecure.CustomerData GetCustomer(string username);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportServiceSecure1/GetCustomer", ReplyAction="http://tempuri.org/ITechSupportServiceSecure1/GetCustomerResponse")]
         System.Threading.Tasks.Task<SchProject.TechSupportSecure.CustomerData> GetCustomerAsync(string username);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportServiceSecure1/GetLastSevedDaysSolves", ReplyAction="http://tempuri.org/ITechSupportServiceSecure1/GetLastSevedDaysSolvesResponse")]
+        SchProject.TechSupportSecure.GetLastSevedDaysSolvesResponse GetLastSevedDaysSolves(SchProject.TechSupportSecure.GetLastSevedDaysSolvesRequest request);
+        
+        // CODEGEN: Generating message contract since the operation has multiple return values.
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportServiceSecure1/GetLastSevedDaysSolves", ReplyAction="http://tempuri.org/ITechSupportServiceSecure1/GetLastSevedDaysSolvesResponse")]
+        System.Threading.Tasks.Task<SchProject.TechSupportSecure.GetLastSevedDaysSolvesResponse> GetLastSevedDaysSolvesAsync(SchProject.TechSupportSecure.GetLastSevedDaysSolvesRequest request);
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="GetLastSevedDaysSolves", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class GetLastSevedDaysSolvesRequest {
+        
+        public GetLastSevedDaysSolvesRequest() {
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="GetLastSevedDaysSolvesResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class GetLastSevedDaysSolvesResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public int[] GetLastSevedDaysSolvesResult;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
+        public System.DateTime[] dates;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=2)]
+        public System.Collections.Generic.KeyValuePair<string, int>[] byName;
+        
+        public GetLastSevedDaysSolvesResponse() {
+        }
+        
+        public GetLastSevedDaysSolvesResponse(int[] GetLastSevedDaysSolvesResult, System.DateTime[] dates, System.Collections.Generic.KeyValuePair<string, int>[] byName) {
+            this.GetLastSevedDaysSolvesResult = GetLastSevedDaysSolvesResult;
+            this.dates = dates;
+            this.byName = byName;
+        }
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1174,12 +1246,12 @@ namespace SchProject.TechSupportSecure {
             return base.Channel.RegisterTechWorkAsync(work);
         }
         
-        public SchProject.TechSupportSecure.CustomerData[] LastCustomers() {
-            return base.Channel.LastCustomers();
+        public SchProject.TechSupportSecure.CustomerData LastCustomer() {
+            return base.Channel.LastCustomer();
         }
         
-        public System.Threading.Tasks.Task<SchProject.TechSupportSecure.CustomerData[]> LastCustomersAsync() {
-            return base.Channel.LastCustomersAsync();
+        public System.Threading.Tasks.Task<SchProject.TechSupportSecure.CustomerData> LastCustomerAsync() {
+            return base.Channel.LastCustomerAsync();
         }
         
         public SchProject.TechSupportSecure.CustomerData GetCustomer(string username) {
@@ -1188,6 +1260,23 @@ namespace SchProject.TechSupportSecure {
         
         public System.Threading.Tasks.Task<SchProject.TechSupportSecure.CustomerData> GetCustomerAsync(string username) {
             return base.Channel.GetCustomerAsync(username);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        SchProject.TechSupportSecure.GetLastSevedDaysSolvesResponse SchProject.TechSupportSecure.ITechSupportServiceSecure1.GetLastSevedDaysSolves(SchProject.TechSupportSecure.GetLastSevedDaysSolvesRequest request) {
+            return base.Channel.GetLastSevedDaysSolves(request);
+        }
+        
+        public int[] GetLastSevedDaysSolves(out System.DateTime[] dates, out System.Collections.Generic.KeyValuePair<string, int>[] byName) {
+            SchProject.TechSupportSecure.GetLastSevedDaysSolvesRequest inValue = new SchProject.TechSupportSecure.GetLastSevedDaysSolvesRequest();
+            SchProject.TechSupportSecure.GetLastSevedDaysSolvesResponse retVal = ((SchProject.TechSupportSecure.ITechSupportServiceSecure1)(this)).GetLastSevedDaysSolves(inValue);
+            dates = retVal.dates;
+            byName = retVal.byName;
+            return retVal.GetLastSevedDaysSolvesResult;
+        }
+        
+        public System.Threading.Tasks.Task<SchProject.TechSupportSecure.GetLastSevedDaysSolvesResponse> GetLastSevedDaysSolvesAsync(SchProject.TechSupportSecure.GetLastSevedDaysSolvesRequest request) {
+            return base.Channel.GetLastSevedDaysSolvesAsync(request);
         }
     }
 }
