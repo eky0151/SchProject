@@ -63,16 +63,16 @@ namespace SchProject.ViewModel
 
         private  void GetQuestions()
         {
-            Counts = ServiceLocator.Current.GetInstance<TechSupportServer>().host.GetLastSevedDaysSolves(out Dates);
+            //Counts = ServiceLocator.Current.GetInstance<TechSupportServer>().host.GetLastSevedDaysSolves(out Dates);
 
-            for (int i = 0; i < Counts.Length; i++)
-            {
-                Data.Add(new SolvedQuestionsByDay
-                {
-                    Time = Dates[i],
-                    Count = Counts[i]
-                });
-            }
+            //for (int i = 0; i < Counts.Length; i++)
+            //{
+            //    Data.Add(new SolvedQuestionsByDay
+            //    {
+            //        Time = Dates[i],
+            //        Count = Counts[i]
+            //    });
+            //}
 
 
         }

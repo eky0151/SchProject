@@ -120,12 +120,12 @@ namespace DatabaseAndRepositoryTests
         [TestMethod]
         public void GetLastSevenDaySolvedQuestions()
         {
-            ISolvedQuestionsRepository i = new SolvedQuestionsRepository(db);
+            //ISolvedQuestionsRepository i = new SolvedQuestionsRepository(db);
 
-            List<int> c = new List<int>();
-            List<DateTime> t = new List<DateTime>();
+            //List<int> c = new List<int>();
+            //List<DateTime> t = new List<DateTime>();
 
-            c = i.GetLastSevenDaysSolvedQuestions(out t);
+            //c = i.GetLastSevenDaysSolvedQuestions(out t);
 
 
             Console.WriteLine();
