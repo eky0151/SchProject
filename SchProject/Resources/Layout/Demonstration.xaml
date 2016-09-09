@@ -9,28 +9,37 @@
              d:DesignHeight="625" d:DesignWidth="1000"
              DataContext="{Binding Source={StaticResource Locator}, Path=Demonstration}">
     <Grid>
-        <telerik:Tile 
-               FontFamily="Times New Roman" 
+
+        <telerik:ChartDataSource x:Name="dataSource"
+                                 ItemsSource="{Binding Path=Data}"
+                                 SamplingUnit="Day" 
+                                />
+
+        <Label FontFamily="Times New Roman" 
                Content="Demontration"
                FontSize="20"
-               HorizontalAlignment="Center" Height="52" Margin="422,10,449,0" VerticalAlignment="Top" Width="129"
-               Background="Transparent"/>
-        <TabControl HorizontalAlignment="Left" Height="548" Margin="10,67,0,0" VerticalAlignment="Top" Width="980">
-            <TabItem Header="Technician works">
-                <Grid Background="White">
-                    <telerik:RadChart Margin="0,0,0,64">
-                        <telerik:RadChart.DefaultView>
-                            <telerik:ChartDefaultView>
-                                
-                                <telerik:ChartDefaultView.ChartTitle>
-                                    <telerik:ChartTitle Content="{Binding ChartTitle}" HorizontalAlignment="Center" HorizontalContentAlignment="Center"/>
-                                </telerik:ChartDefaultView.ChartTitle>
+               HorizontalAlignment="Center" Height="52" Margin="10,10,10,0" VerticalAlignment="Top" Width="980"
+               Background="Transparent"
+               HorizontalContentAlignment="Center"/>
 
-                                
-                                
-                            </telerik:ChartDefaultView>
-                        </telerik:RadChart.DefaultView>
-                    </telerik:RadChart>
+        <TabControl HorizontalAlignment="Left" Height="548" Margin="10,67,0,0" VerticalAlignment="Top" Width="980">
+            <TabItem Header="Solved questions last week by">
+                <Grid Background="White">
+                    
+                    <telerik:RadCartesianChart>
+                        <telerik:RadCartesianChart.HorizontalAxis>
+                            <telerik:DateTimeCategoricalAxis LabelFormat="dd/MMM" DateTimeComponent="Ticks"/>
+                        </telerik:RadCartesianChart.HorizontalAxis>
+                        <telerik:RadCartesianChart.VerticalAxis>
+                            <telerik:LinearAxis/>
+                        </telerik:RadCartesianChart.VerticalAxis>
+                        <telerik:BarSeries ShowLabels="True"
+                                           CategoryBinding="Time"
+                                           ValueBinding="Count"
+                                           ItemsSource="{Binding ElementName=dataSource}">
+                        </telerik:BarSeries>
+                    </telerik:RadCartesianChart>
+                    
                 </Grid>
             </TabItem>
             <TabItem Header="TabItem">

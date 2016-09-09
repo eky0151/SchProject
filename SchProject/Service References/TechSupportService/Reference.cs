@@ -38,6 +38,42 @@ namespace SchProject.TechSupportService {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ITechSupportService1/RegisterNewUser")]
         System.Threading.Tasks.Task RegisterNewUserAsync(string fullName, string email, string userName, string password);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportService1/GetLastSevedDaysSolves", ReplyAction="http://tempuri.org/ITechSupportService1/GetLastSevedDaysSolvesResponse")]
+        SchProject.TechSupportService.GetLastSevedDaysSolvesResponse GetLastSevedDaysSolves(SchProject.TechSupportService.GetLastSevedDaysSolvesRequest request);
+        
+        // CODEGEN: Generating message contract since the operation has multiple return values.
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportService1/GetLastSevedDaysSolves", ReplyAction="http://tempuri.org/ITechSupportService1/GetLastSevedDaysSolvesResponse")]
+        System.Threading.Tasks.Task<SchProject.TechSupportService.GetLastSevedDaysSolvesResponse> GetLastSevedDaysSolvesAsync(SchProject.TechSupportService.GetLastSevedDaysSolvesRequest request);
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="GetLastSevedDaysSolves", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class GetLastSevedDaysSolvesRequest {
+        
+        public GetLastSevedDaysSolvesRequest() {
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="GetLastSevedDaysSolvesResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class GetLastSevedDaysSolvesResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public int[] GetLastSevedDaysSolvesResult;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
+        public System.DateTime[] dates;
+        
+        public GetLastSevedDaysSolvesResponse() {
+        }
+        
+        public GetLastSevedDaysSolvesResponse(int[] GetLastSevedDaysSolvesResult, System.DateTime[] dates) {
+            this.GetLastSevedDaysSolvesResult = GetLastSevedDaysSolvesResult;
+            this.dates = dates;
+        }
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -97,6 +133,22 @@ namespace SchProject.TechSupportService {
         
         public System.Threading.Tasks.Task RegisterNewUserAsync(string fullName, string email, string userName, string password) {
             return base.Channel.RegisterNewUserAsync(fullName, email, userName, password);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        SchProject.TechSupportService.GetLastSevedDaysSolvesResponse SchProject.TechSupportService.ITechSupportService1.GetLastSevedDaysSolves(SchProject.TechSupportService.GetLastSevedDaysSolvesRequest request) {
+            return base.Channel.GetLastSevedDaysSolves(request);
+        }
+        
+        public int[] GetLastSevedDaysSolves(out System.DateTime[] dates) {
+            SchProject.TechSupportService.GetLastSevedDaysSolvesRequest inValue = new SchProject.TechSupportService.GetLastSevedDaysSolvesRequest();
+            SchProject.TechSupportService.GetLastSevedDaysSolvesResponse retVal = ((SchProject.TechSupportService.ITechSupportService1)(this)).GetLastSevedDaysSolves(inValue);
+            dates = retVal.dates;
+            return retVal.GetLastSevedDaysSolvesResult;
+        }
+        
+        public System.Threading.Tasks.Task<SchProject.TechSupportService.GetLastSevedDaysSolvesResponse> GetLastSevedDaysSolvesAsync(SchProject.TechSupportService.GetLastSevedDaysSolvesRequest request) {
+            return base.Channel.GetLastSevedDaysSolvesAsync(request);
         }
     }
 }

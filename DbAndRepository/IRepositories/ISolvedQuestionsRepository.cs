@@ -10,5 +10,7 @@ namespace DbAndRepository.IRepositories
     public interface ISolvedQuestionsRepository : IGenericsRepository<SolvedQuestion>
     {
         List<SolvedQuestion> GetByWorker(int id);
+
+        List<int> GetLastSevenDaysSolvedQuestions(out List<DateTime> d);
     }
 }

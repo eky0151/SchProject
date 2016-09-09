@@ -115,5 +115,22 @@ namespace DatabaseAndRepositoryTests
             SupportService.CustomerData d = host.GetCustomer("Bencee");
             Assert.AreNotEqual(null, d);
         }
+
+
+        [TestMethod]
+        public void GetLastSevenDaySolvedQuestions()
+        {
+            ISolvedQuestionsRepository i = new SolvedQuestionsRepository(db);
+
+            List<int> c = new List<int>();
+            List<DateTime> t = new List<DateTime>();
+
+            c = i.GetLastSevenDaysSolvedQuestions(out t);
+
+
+            Console.WriteLine();
+
+            
+        }
     }
 }

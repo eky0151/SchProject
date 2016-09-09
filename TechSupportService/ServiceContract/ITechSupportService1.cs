@@ -21,5 +21,8 @@ namespace TechSupportService
 
         [OperationContract(IsOneWay = true)]
         void RegisterNewUser(string fullName, string email, string userName, string password);
+
+        [OperationContract]
+        List<int> GetLastSevedDaysSolves(out List<DateTime> dates);
     }
 }

@@ -11,33 +11,80 @@ using System.ServiceModel;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Windows;
+using Telerik.Windows.Data;
+using System.ComponentModel;
 
 namespace SchProject.ViewModel
 {
-    public class TechAndWorksData : ObservableObject
+    public class SolvedQuestionsByDay : ObservableObject
     {
-        private string techName;
-        public string TechName
+        private DateTime  time;
+        public DateTime Time
         {
-            get { return techName; }
-            set { Set(ref techName, value); }
+            get { return time; }
+            set { Set(ref time, value); }
         }
 
-        private int works;
-
-        public int Works
+        private int count;
+        public int Count
         {
-            get { return works; }
-            set { Set(ref works, value); }
+            get { return count; }
+            set { Set(ref count, value); }
         }
     }
 
-    public class DemonstrationViewModel : ViewModelBase
+    public class DemonstrationViewModel : DependencyObject, INotifyPropertyChanged
     {
-        public ObservableCollection<TechAndWorksData> data { get; private set; } =
-            new ObservableCollection<TechAndWorksData>();
+        //public RadObservableCollection<SolvedQuestionsByDay> Data
+        //{
+        //    get { return (RadObservableCollection<SolvedQuestionsByDay>)GetValue(DataProperty); }
+        //    set { SetValue(DataProperty, value); }
+        //}
+
+        //public static readonly DependencyProperty DataProperty =
+        //    DependencyProperty.Register("Data", typeof(RadObservableCollection<SolvedQuestionsByDay>), typeof(DemonstrationViewModel));
+
+        public ObservableCollection<SolvedQuestionsByDay> Data { get; private set; } = new ObservableCollection<SolvedQuestionsByDay>();
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
 
+        private int[] Counts;
+        private DateTime[] Dates;
+
+        public  DemonstrationViewModel()
+        {
+            GetQuestions();
+            
+            //var z  = new ObservableCollection<SolvedQuestionsByDay>
+            //{
+            //    new SolvedQuestionsByDay { Count = 10, Time = DateTime.Now.AddDays(-1) },
+            //    new SolvedQuestionsByDay { Count = 20, Time = DateTime.Now.AddDays(-2) },
+            //    new SolvedQuestionsByDay { Count = 30, Time = DateTime.Now.AddDays(-3) },
+            //};
+
+            //Data = z;
+        }
+
+        private void GetQuestions()
+        {
+            using (TechSupportService.TechSupportService1Client c = new TechSupportService.TechSupportService1Client())
+            {
+                Counts = c.GetLastSevedDaysSolves(out Dates);
+            }
+
+            for (int i = 0; i < Counts.Length; i++)
+            {
+                Data.Add(new SolvedQuestionsByDay
+                {
+                    Time = Dates[i],
+                    Count = Counts[i]
+                });
+            }
+
+
+        }
 
 
 
