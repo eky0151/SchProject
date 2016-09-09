@@ -95,6 +95,10 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="LUIS_Classes\LUIS.cs" />
+    <Compile Include="LUIS_Classes\RootObject.cs" />
+    <Compile Include="LUIS_Classes\UploadIntent.cs" />
+    <Compile Include="LUIS_Classes\UploadLabel.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -104,6 +108,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="TextAnalitycs_Classes\KeyPhrases.cs" />
+    <Compile Include="TextAnalitycs_Classes\RootObject.cs" />
+    <Compile Include="TextAnalitycs_Classes\TextAnalitycs.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

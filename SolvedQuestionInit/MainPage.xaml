@@ -8,21 +8,21 @@
       xmlns:viewModels="using:SolvedQuestionInit.ViewModels"
       mc:Ignorable="d"
       Width="480"
-      Height="730">
+      Height="650">
     <Page.DataContext>
         <viewModels:MainPageViewModel />
     </Page.DataContext>
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="3*" />
+            <RowDefinition Height="2*" />
             <RowDefinition Height="5*" />
             <RowDefinition Height="5*" />
             <RowDefinition Height="15*" />
             <RowDefinition Height="10*" />
-            <RowDefinition Height="6*" />
+            <RowDefinition Height="5*" />
             <RowDefinition Height="15*" />
             <RowDefinition Height="4*" />
-            <RowDefinition Height="3*" />
+            <RowDefinition Height="2*" />
         </Grid.RowDefinitions>
         <TextBlock HorizontalAlignment="Left"
                    Grid.Row="1"
@@ -36,13 +36,14 @@
                   Margin="0,0,30,0"
                   Height="40"
                   Width="250"
+                  SelectedItem="{Binding SelectedCustomer}"
                   ItemsSource="{Binding Customers}">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
-                    <ItemsPresenter DataContext="{Binding FullName}"/>
+                    <TextBlock Text="{Binding FullName}" />
                 </DataTemplate>
             </ComboBox.ItemTemplate>
-            </ComboBox>
+        </ComboBox>
         <TextBlock HorizontalAlignment="Left"
                    Grid.Row="2"
                    TextWrapping="Wrap"
@@ -54,7 +55,15 @@
                   VerticalAlignment="Center"
                   Margin="0,0,30,0"
                   Height="40"
-                  Width="250" />
+                  Width="250"
+                  ItemsSource="{Binding Workers}"
+                  SelectedItem="{Binding SelectedWorker}">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding FullName}" />
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
         <TextBlock HorizontalAlignment="Left"
                    Grid.Row="3"
                    TextWrapping="Wrap"
@@ -65,6 +74,8 @@
                  VerticalAlignment="Center"
                  Width="340"
                  Margin="0,0,30,0"
+                 TextWrapping="Wrap"
+                 Text="{Binding Question,UpdateSourceTrigger=Default,Mode=TwoWay}"
                  HorizontalAlignment="Right"
                  Height="140" />
         <TextBlock HorizontalAlignment="Left"
@@ -78,7 +89,9 @@
                   VerticalAlignment="Top"
                   Margin="0,10,30,0"
                   Height="30"
-                  Width="250" />
+                  Width="250"
+                  ItemsSource="{Binding LuisIntents}"
+                  SelectedItem="{Binding SelectedTopic,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" />
         <TextBlock HorizontalAlignment="Left"
                    Grid.Row="4"
                    TextWrapping="Wrap"
@@ -88,6 +101,7 @@
         <TextBox  Grid.Row="4"
                   Width="215"
                   Margin="0,0,135,14.667"
+                  Text="{Binding NewTopic,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
                   VerticalAlignment="Bottom"
                   HorizontalAlignment="Right"
                   Height="30" />
@@ -95,6 +109,7 @@
                 Content="Add"
                 Width="80"
                 Margin="0,0,30,15"
+                Command="{Binding AddNewTopic}"
                 VerticalAlignment="Bottom"
                 HorizontalAlignment="Right" />
         <TextBlock HorizontalAlignment="Left"
@@ -106,6 +121,7 @@
         <TextBox  Grid.Row="5"
                   Width="320"
                   Margin="0,0,30,0"
+                  Text="{Binding KeyPhrases}"
                   VerticalAlignment="Center"
                   HorizontalAlignment="Right"
                   Height="30" />
@@ -118,6 +134,8 @@
         <TextBox Grid.Row="6"
                  VerticalAlignment="Center"
                  Width="340"
+                 TextWrapping="Wrap"
+                 Text="{Binding Answer,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
                  Margin="0,0,30,0"
                  HorizontalAlignment="Right"
                  Height="140" />
@@ -125,7 +143,6 @@
                 Content="Send"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
-                Width="100"></Button>
+                Width="100" Command="{Binding SendSolved}"/>
     </Grid>
-
 </Page>

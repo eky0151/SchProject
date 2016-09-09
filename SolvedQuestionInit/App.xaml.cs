@@ -40,9 +40,9 @@ namespace SolvedQuestionInit
         /// <param name="e">Details about the launch request and process.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
-            ApplicationView.PreferredLaunchViewSize = new Size(480, 730);
-            ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
 #if DEBUG
+            ApplicationView.GetForCurrentView().TryResizeView(new Size(480,810));
+
             if (System.Diagnostics.Debugger.IsAttached)
             {
                 this.DebugSettings.EnableFrameRateCounter = true;
@@ -79,6 +79,7 @@ namespace SolvedQuestionInit
                 }
                 // Ensure the current window is active
                 Window.Current.Activate();
+
             }
         }
 
