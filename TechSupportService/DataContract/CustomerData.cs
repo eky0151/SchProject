@@ -27,6 +27,12 @@ namespace TechSupportService.DataContract
         [DataMember]
         public string UserName { get; set; }
 
+        public static CustomerData CustomerToCustomerData(RegUser r)
+        {
+            CustomerData data = new CustomerData() { Email = r.Email, FullName = r.Fullname, Picture = r.Picture, Points = r.Points, RegTime = r.Regtime, ID = r.ID, UserName = r.Username, Phone = r.Phonenumber };
+            return data;
+        }
+
         public static explicit operator CustomerData(RegUser r)
         {
             CustomerData data = new CustomerData() { Email = r.Email, FullName = r.Fullname, Picture = r.Picture, Points = r.Points, RegTime = r.Regtime, ID = r.ID , UserName = r.Username, Phone = r.Phonenumber};

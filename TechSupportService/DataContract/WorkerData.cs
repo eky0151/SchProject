@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Linq;
 using System.Runtime.Serialization;
 using DbAndRepository;
 using TechSupportService.DataContract;
@@ -28,6 +29,11 @@ namespace TechSupportService
         [DataMember]
         public Role Role { get; private set; }
 
+        public static WorkerData WorkerToWorkerData(Worker worker)
+        {
+            WorkerData data=new WorkerData(worker.FullName,worker.LoginData.FirstOrDefault().Username,worker.Email,worker.Phone,worker.Address,worker.LoginData.FirstOrDefault().Urole, (Status)Enum.Parse(typeof(Status), worker.Status), (Role)Enum.Parse(typeof(Role), worker.LoginData.FirstOrDefault().Urole), worker.ID);
+            return data;
+        }
         public static explicit operator WorkerData(LoginData w)
         {
             WorkerData data = new WorkerData(w.Worker.FullName, w.Username, w.Worker.Email, w.Worker.Phone, w.Worker.Address, w.Worker.ProfilePicture, (Status)Enum.Parse(typeof(Status), w.Worker.Status), (Role)Enum.Parse(typeof(Role), w.Urole),w.WorkerID);

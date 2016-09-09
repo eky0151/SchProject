@@ -174,13 +174,12 @@ namespace TechSupportService
 
         public void AddNewSolvedQuestion(SolvedQuestion solved)
         {
-            _solvedQuestionsRepository.Insert(new DbAndRepository.SolvedQuestion() {Answer = solved.Answer,Category = solved.Category[0]});
+            _solvedQuestionsRepository.Insert(new DbAndRepository.SolvedQuestion() {Answer = solved.Answer,Category = solved.Category});
         }
 
         public List<SolvedQuestion> SolvedQuestionList(uint Page)
         {
-
-            return _solvedQuestionsRepository.GetAll().Take((int)Page * 20).Select(x => (SolvedQuestion)x).ToList();
+            throw new NotImplementedException();
         }
 
         public List<TechWork> GetTechWorks()
