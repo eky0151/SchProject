@@ -1070,12 +1070,16 @@ namespace SchProject.TechSupportSecure {
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
         public System.DateTime[] dates;
         
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=2)]
+        public System.Collections.Generic.KeyValuePair<string, int>[] byName;
+        
         public GetLastSevedDaysSolvesResponse() {
         }
         
-        public GetLastSevedDaysSolvesResponse(int[] GetLastSevedDaysSolvesResult, System.DateTime[] dates) {
+        public GetLastSevedDaysSolvesResponse(int[] GetLastSevedDaysSolvesResult, System.DateTime[] dates, System.Collections.Generic.KeyValuePair<string, int>[] byName) {
             this.GetLastSevedDaysSolvesResult = GetLastSevedDaysSolvesResult;
             this.dates = dates;
+            this.byName = byName;
         }
     }
     
@@ -1263,10 +1267,11 @@ namespace SchProject.TechSupportSecure {
             return base.Channel.GetLastSevedDaysSolves(request);
         }
         
-        public int[] GetLastSevedDaysSolves(out System.DateTime[] dates) {
+        public int[] GetLastSevedDaysSolves(out System.DateTime[] dates, out System.Collections.Generic.KeyValuePair<string, int>[] byName) {
             SchProject.TechSupportSecure.GetLastSevedDaysSolvesRequest inValue = new SchProject.TechSupportSecure.GetLastSevedDaysSolvesRequest();
             SchProject.TechSupportSecure.GetLastSevedDaysSolvesResponse retVal = ((SchProject.TechSupportSecure.ITechSupportServiceSecure1)(this)).GetLastSevedDaysSolves(inValue);
             dates = retVal.dates;
+            byName = retVal.byName;
             return retVal.GetLastSevedDaysSolvesResult;
         }
         

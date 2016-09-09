@@ -46,7 +46,7 @@
                         </telerik:BarSeries>
                     </telerik:RadCartesianChart>
 
-                    <chart:Chart Grid.Column="1" Title="Solved Question by workers" IsTabStop="True" ForceCursor="True">
+                    <chart:Chart Grid.Column="1" Title="Solved Question by workers" IsTabStop="True" ForceCursor="True" DataContext="{Binding Path=Pie}">
                         <chart:PieSeries DependentValuePath="Value" IndependentValuePath="Key" ItemsSource="{Binding}" IsSelectionEnabled="True"/>
                         <chart:Chart.PlotAreaStyle>
                             <Style TargetType="Grid">

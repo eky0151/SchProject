@@ -103,11 +103,12 @@
   </wsp:Policy>
   <wsdl:types>
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
-      <xsd:import schemaLocation="http://techsupportservice.azurewebsites.net/TechSupportServiceSecure.svc?xsd=xsd0" namespace="http://tempuri.org/" />
-      <xsd:import schemaLocation="http://techsupportservice.azurewebsites.net/TechSupportServiceSecure.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-      <xsd:import schemaLocation="http://techsupportservice.azurewebsites.net/TechSupportServiceSecure.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/TechSupportService" />
-      <xsd:import schemaLocation="http://techsupportservice.azurewebsites.net/TechSupportServiceSecure.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/TechSupportService.DataContract" />
-      <xsd:import schemaLocation="http://techsupportservice.azurewebsites.net/TechSupportServiceSecure.svc?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="http://techsupportserver.azurewebsites.net/TechSupportServiceSecure.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://techsupportserver.azurewebsites.net/TechSupportServiceSecure.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://techsupportserver.azurewebsites.net/TechSupportServiceSecure.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/TechSupportService" />
+      <xsd:import schemaLocation="http://techsupportserver.azurewebsites.net/TechSupportServiceSecure.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/TechSupportService.DataContract" />
+      <xsd:import schemaLocation="http://techsupportserver.azurewebsites.net/TechSupportServiceSecure.svc?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="http://techsupportserver.azurewebsites.net/TechSupportServiceSecure.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/System.Collections.Generic" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="ITechSupportServiceSecure1_GetWorkerData_InputMessage">
@@ -442,9 +443,9 @@
   </wsdl:binding>
   <wsdl:service name="TechSupportServiceSecure1">
     <wsdl:port name="WSHttpBinding_ITechSupportServiceSecure1" binding="tns:WSHttpBinding_ITechSupportServiceSecure1">
-      <soap12:address location="https://techsupportservice.azurewebsites.net/TechSupportServiceSecure.svc" />
+      <soap12:address location="https://techsupportserver.azurewebsites.net/TechSupportServiceSecure.svc" />
       <wsa10:EndpointReference>
-        <wsa10:Address>https://techsupportservice.azurewebsites.net/TechSupportServiceSecure.svc</wsa10:Address>
+        <wsa10:Address>https://techsupportserver.azurewebsites.net/TechSupportServiceSecure.svc</wsa10:Address>
       </wsa10:EndpointReference>
     </wsdl:port>
   </wsdl:service>

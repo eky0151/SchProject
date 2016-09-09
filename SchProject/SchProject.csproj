@@ -385,6 +385,9 @@
     <None Include="Service References\TechSupportSecure\TechSupportServiceSecure1.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\TechSupportSecure\TechSupportServiceSecure2.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\TechSupportSecure\TechSupportServiceSecure3.xsd">
       <SubType>Designer</SubType>
     </None>

@@ -53,7 +53,13 @@ namespace SchProject.ViewModel
 
         private int[] Counts;
         private DateTime[] Dates;
-        private List<KeyValuePair<string, int>> pie;
+
+        private KeyValuePair<string, int>[] pie;
+        public KeyValuePair<string, int>[] Pie
+        {
+            get { return pie; }
+        }
+        
 
         public  DemonstrationViewModel()
         {
@@ -63,16 +69,16 @@ namespace SchProject.ViewModel
 
         private  void GetQuestions()
         {
-            //Counts = ServiceLocator.Current.GetInstance<TechSupportServer>().host.GetLastSevedDaysSolves(out Dates);
+            Counts = ServiceLocator.Current.GetInstance<TechSupportServer>().host.GetLastSevedDaysSolves(out Dates, out pie);
 
-            //for (int i = 0; i < Counts.Length; i++)
-            //{
-            //    Data.Add(new SolvedQuestionsByDay
-            //    {
-            //        Time = Dates[i],
-            //        Count = Counts[i]
-            //    });
-            //}
+            for (int i = 0; i < Counts.Length; i++)
+            {
+                Data.Add(new SolvedQuestionsByDay
+                {
+                    Time = Dates[i],
+                    Count = Counts[i]
+                });
+            }
 
 
         }
