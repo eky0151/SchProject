@@ -135,6 +135,9 @@
   <wsdl:message name="ITechSupportServiceSecure1_ChangeWorkerStatus_InputMessage">
     <wsdl:part name="parameters" element="tns:ChangeWorkerStatus" />
   </wsdl:message>
+  <wsdl:message name="ITechSupportServiceSecure1_ChangeMyStatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:ChangeMyStatus" />
+  </wsdl:message>
   <wsdl:message name="ITechSupportServiceSecure1_SendBugreport_InputMessage">
     <wsdl:part name="parameters" element="tns:SendBugreport" />
   </wsdl:message>
@@ -225,6 +228,9 @@
     </wsdl:operation>
     <wsdl:operation name="ChangeWorkerStatus">
       <wsdl:input wsaw:Action="http://tempuri.org/ITechSupportServiceSecure1/ChangeWorkerStatus" message="tns:ITechSupportServiceSecure1_ChangeWorkerStatus_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeMyStatus">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITechSupportServiceSecure1/ChangeMyStatus" message="tns:ITechSupportServiceSecure1_ChangeMyStatus_InputMessage" />
     </wsdl:operation>
     <wsdl:operation name="SendBugreport">
       <wsdl:input wsaw:Action="http://tempuri.org/ITechSupportServiceSecure1/SendBugreport" message="tns:ITechSupportServiceSecure1_SendBugreport_InputMessage" />
@@ -319,6 +325,12 @@
     </wsdl:operation>
     <wsdl:operation name="ChangeWorkerStatus">
       <soap12:operation soapAction="http://tempuri.org/ITechSupportServiceSecure1/ChangeWorkerStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeMyStatus">
+      <soap12:operation soapAction="http://tempuri.org/ITechSupportServiceSecure1/ChangeMyStatus" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

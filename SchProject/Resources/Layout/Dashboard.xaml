@@ -75,7 +75,7 @@
         <HeaderedItemsControl Header="Személyzet státusza"
                               Foreground="#8B8B8B"
                               Background="White"
-                              ItemsSource="{Binding LastStaff}"
+                              ItemsSource="{Binding WorkerList}"
                               Style="{StaticResource StaffStatusView}"
                               Margin="10,10,5,5"
                               Grid.Row="2"

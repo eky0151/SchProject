@@ -55,11 +55,18 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="ChangeMyStatus">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/TechSupportService" minOccurs="0" name="newStatus" type="q6:Status" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="SendBugreport">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="message" nillable="true" type="xs:string" />
-        <xs:element xmlns:q6="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="file" nillable="true" type="q6:ArrayOfstring" />
+        <xs:element xmlns:q7="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="file" nillable="true" type="q7:ArrayOfstring" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -88,7 +95,7 @@
   <xs:element name="GetWorkerResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/TechSupportService" minOccurs="0" name="GetWorkerResult" nillable="true" type="q7:WorkerData" />
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/TechSupportService" minOccurs="0" name="GetWorkerResult" nillable="true" type="q8:WorkerData" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -100,7 +107,7 @@
   <xs:element name="TechnicianListResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/TechSupportService.DataContract" minOccurs="0" name="TechnicianListResult" nillable="true" type="q8:ArrayOfTechnicianData" />
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/TechSupportService.DataContract" minOccurs="0" name="TechnicianListResult" nillable="true" type="q9:ArrayOfTechnicianData" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -112,14 +119,14 @@
   <xs:element name="GetAvailableTechnicianResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/TechSupportService.DataContract" minOccurs="0" name="GetAvailableTechnicianResult" nillable="true" type="q9:ArrayOfTechnicianData" />
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/TechSupportService.DataContract" minOccurs="0" name="GetAvailableTechnicianResult" nillable="true" type="q10:ArrayOfTechnicianData" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="AddNewSolvedQuestion">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/TechSupportService" minOccurs="0" name="solved" nillable="true" type="q10:SolvedQuestion" />
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/TechSupportService" minOccurs="0" name="solved" nillable="true" type="q11:SolvedQuestion" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -133,7 +140,7 @@
   <xs:element name="SolvedQuestionListResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/TechSupportService" minOccurs="0" name="SolvedQuestionListResult" nillable="true" type="q11:ArrayOfSolvedQuestion" />
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/TechSupportService" minOccurs="0" name="SolvedQuestionListResult" nillable="true" type="q12:ArrayOfSolvedQuestion" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -145,7 +152,7 @@
   <xs:element name="GetTechWorksResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/TechSupportService.DataContract" minOccurs="0" name="GetTechWorksResult" nillable="true" type="q12:ArrayOfTechWork" />
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/TechSupportService.DataContract" minOccurs="0" name="GetTechWorksResult" nillable="true" type="q13:ArrayOfTechWork" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -157,21 +164,21 @@
   <xs:element name="NewTechWorksResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/TechSupportService.DataContract" minOccurs="0" name="NewTechWorksResult" nillable="true" type="q13:ArrayOfTechWork" />
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/TechSupportService.DataContract" minOccurs="0" name="NewTechWorksResult" nillable="true" type="q14:ArrayOfTechWork" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="ChangeTechnicianStatus">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/TechSupportService.DataContract" minOccurs="0" name="status" type="q14:TechnicianStatus" />
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/TechSupportService.DataContract" minOccurs="0" name="status" type="q15:TechnicianStatus" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="RegisterTechWork">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/TechSupportService.DataContract" minOccurs="0" name="work" nillable="true" type="q15:TechWork" />
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/TechSupportService.DataContract" minOccurs="0" name="work" nillable="true" type="q16:TechWork" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -183,7 +190,7 @@
   <xs:element name="LastCustomerResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/TechSupportService.DataContract" minOccurs="0" name="LastCustomerResult" nillable="true" type="q16:CustomerData" />
+        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/TechSupportService.DataContract" minOccurs="0" name="LastCustomerResult" nillable="true" type="q17:CustomerData" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -197,7 +204,7 @@
   <xs:element name="GetCustomerResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/TechSupportService.DataContract" minOccurs="0" name="GetCustomerResult" nillable="true" type="q17:CustomerData" />
+        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/TechSupportService.DataContract" minOccurs="0" name="GetCustomerResult" nillable="true" type="q18:CustomerData" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -209,9 +216,9 @@
   <xs:element name="GetLastSevedDaysSolvesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q18="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetLastSevedDaysSolvesResult" nillable="true" type="q18:ArrayOfint" />
-        <xs:element xmlns:q19="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="dates" nillable="true" type="q19:ArrayOfdateTime" />
-        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/System.Collections.Generic" minOccurs="0" name="byName" nillable="true" type="q20:ArrayOfKeyValuePairOfstringint" />
+        <xs:element xmlns:q19="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetLastSevedDaysSolvesResult" nillable="true" type="q19:ArrayOfint" />
+        <xs:element xmlns:q20="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="dates" nillable="true" type="q20:ArrayOfdateTime" />
+        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/System.Collections.Generic" minOccurs="0" name="byName" nillable="true" type="q21:ArrayOfKeyValuePairOfstringint" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
