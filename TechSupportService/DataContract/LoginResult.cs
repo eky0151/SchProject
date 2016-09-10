@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using System;
+using System.Runtime.Serialization;
 using System.Security;
 using TechSupportService.DataContract;
 
@@ -7,6 +8,9 @@ namespace TechSupportService
     [DataContract]
     public class LoginResult
     {
+        [DataMember]
+        public Guid Identifier { get; set; }
+
         [DataMember]
         public bool Valid { get; set; }
 

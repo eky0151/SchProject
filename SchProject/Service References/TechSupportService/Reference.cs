@@ -26,6 +26,9 @@ namespace SchProject.TechSupportService {
         private string FullNameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Guid IdentifierField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private SchProject.TechSupportService.Role RoleField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -50,6 +53,19 @@ namespace SchProject.TechSupportService {
                 if ((object.ReferenceEquals(this.FullNameField, value) != true)) {
                     this.FullNameField = value;
                     this.RaisePropertyChanged("FullName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Guid Identifier {
+            get {
+                return this.IdentifierField;
+            }
+            set {
+                if ((this.IdentifierField.Equals(value) != true)) {
+                    this.IdentifierField = value;
+                    this.RaisePropertyChanged("Identifier");
                 }
             }
         }

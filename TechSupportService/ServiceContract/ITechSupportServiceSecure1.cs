@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DbAndRepository;
 using TechSupportService.DataContract;
+using TechSupportService.ServiceContract;
 
 namespace TechSupportService
 {
@@ -15,7 +16,7 @@ namespace TechSupportService
     {
 
         [OperationContract]
-        LoginResult GetWorkerData();
+        LoginResult Login();
 
         [OperationContract(IsOneWay = true)]
         void RegisterNewStaffMember(WorkerDataRegistrationData regData);

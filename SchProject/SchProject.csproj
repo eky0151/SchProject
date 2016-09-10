@@ -163,9 +163,9 @@
     <Compile Include="Resources\Layout\Bugreport.xaml.cs">
       <DependentUpon>Bugreport.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Resources\Layout\Chat.xaml.cs">
+    <None Include="Resources\Layout\Chat.xaml.cs">
       <DependentUpon>Chat.xaml</DependentUpon>
-    </Compile>
+    </None>
     <Compile Include="Resources\Layout\Converters\StatusToImageSourceConverter.cs" />
     <Compile Include="Resources\Layout\Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Resources\Layout\Converters\DataToVisibilityConverter.cs" />
@@ -208,11 +208,6 @@
     <Compile Include="Resources\Layout\MainWindowAqua.xaml.cs">
       <DependentUpon>MainWindowAqua.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Service References\Chatservice\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
     <Compile Include="Service References\TechSupportSecure\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -225,7 +220,7 @@
     </Compile>
     <Compile Include="TechSupportServer.cs" />
     <Compile Include="UserData.cs" />
-    <Compile Include="ViewModel\ChatViewModel.cs" />
+    <None Include="ViewModel\ChatViewModel.cs" />
     <Compile Include="ViewModel\DashboardViewModel.cs" />
     <Compile Include="ViewModel\AdminsViewModel.cs" />
     <Compile Include="ViewModel\BugreportViewModel.cs" />
@@ -249,10 +244,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Resources\Layout\Chat.xaml">
+    <None Include="Resources\Layout\Chat.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
+    </None>
     <Page Include="Resources\Layout\Dashboard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -344,19 +339,6 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <None Include="Service References\Chatservice\ChatService.wsdl" />
-    <None Include="Service References\Chatservice\ChatService.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\Chatservice\ChatService1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\Chatservice\ChatService2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\Chatservice\ChatService3.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Service References\TechSupportSecure\SchProject.TechSupportSecure.CustomerData.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -473,11 +455,6 @@
     <Resource Include="Resources\Layout\Images\add.png" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Service References\Chatservice\" />
-    <WCFMetadataStorage Include="Service References\TechSupportSecure\" />
-    <WCFMetadataStorage Include="Service References\TechSupportService\" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\Layout\Images\available.png" />
     <Resource Include="Resources\Layout\Images\busy.png" />
     <Resource Include="Resources\Layout\Images\notavailable.png" />
@@ -498,37 +475,11 @@
     <Resource Include="Resources\Layout\Images\managementSelected.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\Chatservice\ChatService.disco" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\Chatservice\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\Chatservice\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\Chatservice\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\Layout\Images\user.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\TechSupportSecure\TechSupportServiceSecure.disco" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\TechSupportSecure\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\TechSupportSecure\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\TechSupportSecure\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
+    <WCFMetadataStorage Include="Service References\TechSupportSecure\" />
+    <WCFMetadataStorage Include="Service References\TechSupportService\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\TechSupportService\TechSupportService.disco" />
@@ -541,6 +492,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\TechSupportService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\TechSupportSecure\TechSupportServiceSecure.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\TechSupportSecure\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\TechSupportSecure\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\TechSupportSecure\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
