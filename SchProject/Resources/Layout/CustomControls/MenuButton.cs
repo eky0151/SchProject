@@ -70,7 +70,10 @@ namespace SchProject.Resources.Layout.CustomControls
 
         private void MenuButton_Loaded(object sender, RoutedEventArgs e)
         {
-            PictureSource = DefaultPicture;
+            if (PictureSource == null)
+            {
+                PictureSource = DefaultPicture;
+            }
         }
 
         private void MenuButton_Unchecked(object sender, RoutedEventArgs e)
