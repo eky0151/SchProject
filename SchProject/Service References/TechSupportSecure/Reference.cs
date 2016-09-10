@@ -26,6 +26,9 @@ namespace SchProject.TechSupportSecure {
         private string FullNameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Guid IdentifierField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private SchProject.TechSupportSecure.Role RoleField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -50,6 +53,19 @@ namespace SchProject.TechSupportSecure {
                 if ((object.ReferenceEquals(this.FullNameField, value) != true)) {
                     this.FullNameField = value;
                     this.RaisePropertyChanged("FullName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Guid Identifier {
+            get {
+                return this.IdentifierField;
+            }
+            set {
+                if ((this.IdentifierField.Equals(value) != true)) {
+                    this.IdentifierField = value;
+                    this.RaisePropertyChanged("Identifier");
                 }
             }
         }
@@ -928,11 +944,11 @@ namespace SchProject.TechSupportSecure {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="TechSupportSecure.ITechSupportServiceSecure1")]
     public interface ITechSupportServiceSecure1 {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportServiceSecure1/GetWorkerData", ReplyAction="http://tempuri.org/ITechSupportServiceSecure1/GetWorkerDataResponse")]
-        SchProject.TechSupportSecure.LoginResult GetWorkerData();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportServiceSecure1/Login", ReplyAction="http://tempuri.org/ITechSupportServiceSecure1/LoginResponse")]
+        SchProject.TechSupportSecure.LoginResult Login();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportServiceSecure1/GetWorkerData", ReplyAction="http://tempuri.org/ITechSupportServiceSecure1/GetWorkerDataResponse")]
-        System.Threading.Tasks.Task<SchProject.TechSupportSecure.LoginResult> GetWorkerDataAsync();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportServiceSecure1/Login", ReplyAction="http://tempuri.org/ITechSupportServiceSecure1/LoginResponse")]
+        System.Threading.Tasks.Task<SchProject.TechSupportSecure.LoginResult> LoginAsync();
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ITechSupportServiceSecure1/RegisterNewStaffMember")]
         void RegisterNewStaffMember(SchProject.TechSupportSecure.WorkerDataRegistrationData regData);
@@ -1110,12 +1126,12 @@ namespace SchProject.TechSupportSecure {
                 base(binding, remoteAddress) {
         }
         
-        public SchProject.TechSupportSecure.LoginResult GetWorkerData() {
-            return base.Channel.GetWorkerData();
+        public SchProject.TechSupportSecure.LoginResult Login() {
+            return base.Channel.Login();
         }
         
-        public System.Threading.Tasks.Task<SchProject.TechSupportSecure.LoginResult> GetWorkerDataAsync() {
-            return base.Channel.GetWorkerDataAsync();
+        public System.Threading.Tasks.Task<SchProject.TechSupportSecure.LoginResult> LoginAsync() {
+            return base.Channel.LoginAsync();
         }
         
         public void RegisterNewStaffMember(SchProject.TechSupportSecure.WorkerDataRegistrationData regData) {

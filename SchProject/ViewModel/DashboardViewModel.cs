@@ -9,6 +9,7 @@ using System.Windows.Threading;
 using GalaSoft.MvvmLight;
 using SchProject.TechSupportSecure;
 
+
 namespace SchProject.Resources.Layout.StyleResources
 {
     public enum TicketStatus

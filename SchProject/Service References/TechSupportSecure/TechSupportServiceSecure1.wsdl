@@ -111,11 +111,11 @@
       <xsd:import schemaLocation="http://techsupportserver.azurewebsites.net/TechSupportServiceSecure.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/System.Collections.Generic" />
     </xsd:schema>
   </wsdl:types>
-  <wsdl:message name="ITechSupportServiceSecure1_GetWorkerData_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetWorkerData" />
+  <wsdl:message name="ITechSupportServiceSecure1_Login_InputMessage">
+    <wsdl:part name="parameters" element="tns:Login" />
   </wsdl:message>
-  <wsdl:message name="ITechSupportServiceSecure1_GetWorkerData_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetWorkerDataResponse" />
+  <wsdl:message name="ITechSupportServiceSecure1_Login_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoginResponse" />
   </wsdl:message>
   <wsdl:message name="ITechSupportServiceSecure1_RegisterNewStaffMember_InputMessage">
     <wsdl:part name="parameters" element="tns:RegisterNewStaffMember" />
@@ -208,9 +208,9 @@
     <wsdl:part name="parameters" element="tns:GetLastSevedDaysSolvesResponse" />
   </wsdl:message>
   <wsdl:portType name="ITechSupportServiceSecure1">
-    <wsdl:operation name="GetWorkerData">
-      <wsdl:input wsaw:Action="http://tempuri.org/ITechSupportServiceSecure1/GetWorkerData" message="tns:ITechSupportServiceSecure1_GetWorkerData_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/ITechSupportServiceSecure1/GetWorkerDataResponse" message="tns:ITechSupportServiceSecure1_GetWorkerData_OutputMessage" />
+    <wsdl:operation name="Login">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITechSupportServiceSecure1/Login" message="tns:ITechSupportServiceSecure1_Login_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITechSupportServiceSecure1/LoginResponse" message="tns:ITechSupportServiceSecure1_Login_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="RegisterNewStaffMember">
       <wsdl:input wsaw:Action="http://tempuri.org/ITechSupportServiceSecure1/RegisterNewStaffMember" message="tns:ITechSupportServiceSecure1_RegisterNewStaffMember_InputMessage" />
@@ -284,8 +284,8 @@
   <wsdl:binding name="WSHttpBinding_ITechSupportServiceSecure1" type="tns:ITechSupportServiceSecure1">
     <wsp:PolicyReference URI="#WSHttpBinding_ITechSupportServiceSecure1_policy" />
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="GetWorkerData">
-      <soap12:operation soapAction="http://tempuri.org/ITechSupportServiceSecure1/GetWorkerData" style="document" />
+    <wsdl:operation name="Login">
+      <soap12:operation soapAction="http://tempuri.org/ITechSupportServiceSecure1/Login" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

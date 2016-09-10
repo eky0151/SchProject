@@ -118,7 +118,6 @@
   <ItemGroup>
     <Content Include="TechSupportBotService.svc" />
     <Content Include="TechSupportService.svc" />
-    <Content Include="TechSupportServiceCross.svc" />
     <Content Include="TechSupportServiceSecure.svc" />
   </ItemGroup>
   <ItemGroup>
@@ -137,7 +136,7 @@
     <Compile Include="Entities\LoginData.cs" />
     <Compile Include="Entities\Technician.cs" />
     <Compile Include="Entities\Worker.cs" />
-    <Compile Include="ServiceContract\ITechSupportServiceCross.cs" />
+    <Compile Include="ServiceContract\ISecureServiceCallback.cs" />
     <Compile Include="ServiceContract\ITechSupportBotService.cs" />
     <Compile Include="ServiceContract\ITechSupportService1.cs" />
     <Compile Include="Security\AuthorizationPolicy.cs" />
@@ -149,9 +148,6 @@
     </Compile>
     <Compile Include="TechSupportService.svc.cs">
       <DependentUpon>TechSupportService.svc</DependentUpon>
-    </Compile>
-    <Compile Include="TechSupportServiceCross.svc.cs">
-      <DependentUpon>TechSupportServiceCross.svc</DependentUpon>
     </Compile>
     <Compile Include="TechSupportServiceSecure.svc.cs">
       <DependentUpon>TechSupportServiceSecure.svc</DependentUpon>

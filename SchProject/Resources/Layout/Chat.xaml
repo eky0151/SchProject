@@ -46,13 +46,13 @@
                                 </StackPanel>
                             </Grid>
                         </Border>
-                        <!--<DataTemplate.Triggers>
+                        <DataTemplate.Triggers>
                             <DataTrigger Binding="{Binding IsSelected}" Value="True">
                                 <Setter TargetName="Border" Property="Background" Value="{DynamicResource MaterialDesignSelection}" />
                             </DataTrigger>
-                        </DataTemplate.Triggers>-->
+                        </DataTemplate.Triggers>
                     </DataTemplate>
-                    <!--For Message Received -->
+                    For Message Received 
                     <DataTemplate DataType="{x:Type class:SendReceiveMessage}">
                         <Border x:Name="Border" Padding="8" BorderThickness="0 0 0 1" BorderBrush="{DynamicResource MaterialDesignDivider}">
                             <Grid>
@@ -66,13 +66,13 @@
                                 </StackPanel>
                             </Grid>
                         </Border>
-                        <!--<DataTemplate.Triggers>
+                        <DataTemplate.Triggers>
                             <DataTrigger Binding="{Binding IsSelected}" Value="True">
                                 <Setter TargetName="Border" Property="Background" Value="{DynamicResource MaterialDesignSelection}" />
                             </DataTrigger>
-                        </DataTemplate.Triggers>-->
+                        </DataTemplate.Triggers>
                     </DataTemplate>
-                    <!-- Message Received -->
+                     Message Received 
                     <DataTemplate DataType="{x:Type class:SendReceiveFileMessage}">
                         <Border x:Name="Border" Padding="8" BorderThickness="0 0 0 1" BorderBrush="{DynamicResource MaterialDesignDivider}">
                             <Grid>

@@ -92,13 +92,13 @@ namespace SchProject.ViewModel
             }
         }
 
-        public ChatViewModel Chat
-        {
-            get
-            {
-                return new ChatViewModel();
-            }
-        }
+        //public ChatViewModel Chat
+        //{
+        //    get
+        //    {
+        //        return new ChatViewModel();
+        //    }
+        //}
 
         public DemonstrationViewModel Demonstration
         {
