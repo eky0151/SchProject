@@ -112,12 +112,14 @@ namespace TechSupportService
 
         public void ChangeWorkerStatus(string username, Status status)
         {
+            AzureServiceBus.SendStatusNotification(username,status);
             _authRepository.Get(x => x.Username == username).SingleOrDefault().Worker.Status =
                 Enum.GetName(typeof(Status), status);
         }
 
         public void SendBugreport(string message, List<string> file)
         {
+            AzureServiceBus.SendAppBugNotification(message);
             int? sender =
                 _authRepository.Get(x => x.Username == ServiceSecurityContext.Current.PrimaryIdentity.Name)
                     .SingleOrDefault()?.Worker.ID;
@@ -276,6 +278,7 @@ namespace TechSupportService
 
         public LoginResult Login()
         {
+            
             Guid clientId = Guid.NewGuid();
             string name = ServiceSecurityContext.Current.PrimaryIdentity.Name;
             var worker = _authRepository.Get(x => x.Username == name).SingleOrDefault()?.Worker;
@@ -283,6 +286,8 @@ namespace TechSupportService
             _workerRepository.Update(worker);
             if (worker != null)
             {
+                AzureServiceBus.SendWorkerLoginData(name);
+                AzureServiceBus.SendStatusNotification(name, Status.Working);
                 return new LoginResult()
                 {
                     Identifier = clientId,
@@ -293,6 +298,15 @@ namespace TechSupportService
             }
             return null;
         }
-        
+
+        public void ChangeMyStatus(Status newStatus)
+        {
+            string name = ServiceSecurityContext.Current.PrimaryIdentity.Name;
+            var worker = _authRepository.Get(x => x.Username == name).SingleOrDefault()?.Worker;
+            worker.Status = "Away";
+            _workerRepository.Update(worker);
+            AzureServiceBus.SendStatusNotification(name, Status.Away);
+
+        }
     }
 }

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Media;
 using System.Windows.Threading;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Ioc;
 using SchProject.TechSupportSecure;
 
 
@@ -54,16 +55,16 @@ namespace SchProject.Resources.Layout.StyleResources
 
     public class DashboardViewModel : ViewModelBase
     {
-        private ObservableCollection<WorkerData> _lastStaff;
+        private ObservableCollection<WorkerData> _workerList;
         public int NewTickets { get; private set; } = 149;
         public int SolvedTickets { get; private set; } = 50;
         public int OpenedTickets { get; private set; } = 11;
         public ObservableCollection<ClientTemporary> LastClients { get; private set; }
 
-        public ObservableCollection<WorkerData> LastStaff
+        public ObservableCollection<WorkerData> WorkerList
         {
-            get { return _lastStaff; }
-            private set { Set(ref _lastStaff, value); }
+            get { return _workerList; }
+            private set { Set(ref _workerList, value); }
         }
 
         public ObservableCollection<TicketTemporary> LastTickets { get; private set; }
@@ -81,16 +82,30 @@ namespace SchProject.Resources.Layout.StyleResources
             SetData();
         }
 
-        private async Task SetData()
+        private async void SetData()
         {
-            using (TechSupportServiceSecure1Client host = new TechSupportServiceSecure1Client())
+            var data = await SimpleIoc.Default.GetInstance<TechSupportServer>().host.StaffListAsync();
+            WorkerList = new ObservableCollection<WorkerData>(data);
+            WorkerList.CollectionChanged += WorkerList_CollectionChanged;
+            await Task.Factory.StartNew(
+                () => SimpleIoc.Default.GetInstance<AzureServiceBus>().StatusHandler += WorkerListUpdate);
+
+        }
+
+        private void WorkerList_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            RaisePropertyChanged("WorkerList");
+        }
+
+        private async void WorkerListUpdate(object sender, ServiceBus.StatusChangedEventArgs e)
+        {
+            var user= await Task.Factory.StartNew(() =>
             {
-                host.ClientCredentials.UserName.UserName = "Flynn";
-                host.ClientCredentials.UserName.Password = "sam";
-                host.Open();
-                var lop = await host.StaffListAsync();
-                Dispatcher.CurrentDispatcher.Invoke(()=> { LastStaff = new ObservableCollection<WorkerData>(lop); });
-            }
+                return WorkerList.Where(x => x.Username == e.Username).Select(x => x).FirstOrDefault();
+            });
+            
+            if (user != null)
+                user.Status = e.Status;
         }
     }
 }

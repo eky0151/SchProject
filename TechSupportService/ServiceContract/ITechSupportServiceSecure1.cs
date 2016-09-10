@@ -31,6 +31,9 @@ namespace TechSupportService
         void ChangeWorkerStatus(string username, Status status);
 
         [OperationContract(IsOneWay = true)]
+        void ChangeMyStatus(Status newStatus);
+
+        [OperationContract(IsOneWay = true)]
         void SendBugreport(string message, List<string> file);
 
         [OperationContract(IsOneWay = true)]
