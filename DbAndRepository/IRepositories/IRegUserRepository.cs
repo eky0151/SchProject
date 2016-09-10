@@ -14,5 +14,7 @@ namespace DbAndRepository.IRepositories
 
         string GetPicture(string userName);
 
+        List<int> GetLastMonthRegistratedUsers(out List<DateTime> times);
+
     }
 }
