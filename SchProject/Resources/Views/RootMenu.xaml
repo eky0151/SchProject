@@ -93,7 +93,7 @@
         <ScrollViewer VerticalScrollBarVisibility="Disabled"
                       HorizontalScrollBarVisibility="Auto">
             <ContentControl DockPanel.Dock="Right"
-                            Content="{Binding CurrentView}" />
+                            Content="{Binding CurrentView.CurrentContent}" />
         </ScrollViewer>
     </DockPanel>
 </UserControl>
