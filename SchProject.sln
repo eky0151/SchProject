@@ -30,7 +30,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFClientTest", "WPFClientT
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFServerTest", "WPFServerTest\WPFServerTest.csproj", "{29A0847C-A71D-4C3B-932F-9B472C0908C4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolvedQuestionInit", "SolvedQuestionInit\SolvedQuestionInit.csproj", "{DFE9DC1C-E12C-4B23-90F4-47EC11421260}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolvedQuestionInitUWP", "SolvedQuestionInitUWP\SolvedQuestionInitUWP.csproj", "{DFE9DC1C-E12C-4B23-90F4-47EC11421260}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
