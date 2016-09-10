@@ -397,7 +397,13 @@
     <None Include="Service References\TechSupportSecure\TechSupportServiceSecure5.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\TechSupportService\SchProject.TechSupportService.GetLastSevedDaysSolvesResponse.datasource">
+    <None Include="Service References\TechSupportService\SchProject.TechSupportService.CustomerData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\TechSupportService\SchProject.TechSupportService.LoginResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\TechSupportService\SchProject.TechSupportService.WorkerData.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\TechSupportService\TechSupportService.xsd">
@@ -408,6 +414,12 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\TechSupportService\TechSupportService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\TechSupportService\TechSupportService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\TechSupportService\TechSupportService4.xsd">
       <SubType>Designer</SubType>
     </None>
     <Resource Include="Resources\Layout\Fonts\HelveticaNeue.ttf" />
@@ -501,21 +513,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\TechSupportService\TechSupportService.disco" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\TechSupportService\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\TechSupportService\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\TechSupportService\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\Layout\Images\user.png" />
   </ItemGroup>
   <ItemGroup>
@@ -529,6 +526,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\TechSupportSecure\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\TechSupportService\TechSupportService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\TechSupportService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\TechSupportService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\TechSupportService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

@@ -15,8 +15,7 @@
 
         <telerik:ChartDataSource x:Name="dataSource"
                                  ItemsSource="{Binding Path=Data}"
-                                 SamplingUnit="Day" 
-                                />
+                                 SamplingUnit="Day" />
 
         <Label FontFamily="Times New Roman" 
                Content="Demontration"
@@ -46,7 +45,7 @@
                         </telerik:BarSeries>
                     </telerik:RadCartesianChart>
 
-                    <chart:Chart Grid.Column="1" Title="Solved Question by workers" IsTabStop="True" ForceCursor="True" DataContext="{Binding Path=Pie}">
+                    <chart:Chart Grid.Column="1" Title="Solved Question by workers last 7 days" BorderThickness="0" IsTabStop="True" ForceCursor="True" DataContext="{Binding Path=Pie}">
                         <chart:PieSeries DependentValuePath="Value" IndependentValuePath="Key" ItemsSource="{Binding}" IsSelectionEnabled="True"/>
                         <chart:Chart.PlotAreaStyle>
                             <Style TargetType="Grid">

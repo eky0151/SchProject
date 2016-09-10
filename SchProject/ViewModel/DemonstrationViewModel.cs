@@ -35,21 +35,9 @@ namespace SchProject.ViewModel
         }
     }
 
-    public class DemonstrationViewModel : DependencyObject, INotifyPropertyChanged
+    public class DemonstrationViewModel : ViewModelBase
     {
-        //public RadObservableCollection<SolvedQuestionsByDay> Data
-        //{
-        //    get { return (RadObservableCollection<SolvedQuestionsByDay>)GetValue(DataProperty); }
-        //    set { SetValue(DataProperty, value); }
-        //}
-
-        //public static readonly DependencyProperty DataProperty =
-        //    DependencyProperty.Register("Data", typeof(RadObservableCollection<SolvedQuestionsByDay>), typeof(DemonstrationViewModel));
-
         public ObservableCollection<SolvedQuestionsByDay> Data { get; private set; } = new ObservableCollection<SolvedQuestionsByDay>();
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
 
         private int[] Counts;
         private DateTime[] Dates;
@@ -60,11 +48,9 @@ namespace SchProject.ViewModel
             get { return pie; }
         }
         
-
         public  DemonstrationViewModel()
         {
-            GetQuestions();
-            
+            GetQuestions();  
         }
 
         private  void GetQuestions()
@@ -79,11 +65,6 @@ namespace SchProject.ViewModel
                     Count = Counts[i]
                 });
             }
-
-
         }
-
-
-
     }
 }
