@@ -50,37 +50,11 @@ namespace TechSupportService
         [PrincipalPermission(SecurityAction.Demand, Role = "Admin")]
         public void RegisterNewStaffMember(WorkerDataRegistrationData regData)
         {
-            _bankRepository.Insert(new DbAndRepository.Bank()
-            {
-                Account = regData.BankAccount,
-                Name = Enum.GetName(typeof(Bank), regData.Bank)
-            });
-            var bank = _bankRepository.Get(x => x.Account == regData.BankAccount).FirstOrDefault();
-            Worker wk = new Worker()
-            {
-                Address = regData.Address,
-                BankID = bank.ID,
-                Email = regData.Email,
-                FullName = regData.FullName,
-                Phone = regData.Phone,
-                ProfilePicture = regData.ProfilePicture,
-                Status = Enum.GetName(typeof(Status), regData.Status)
-            };
-            _workerRepository.Insert(wk);
-
-            var workerdata =
-                _workerRepository.Get(x => x.FullName.ToString() == regData.FullName.ToString() && x.BankID == bank.ID)
-                    .FirstOrDefault();
-            _authRepository.Insert(new LoginData()
-            {
-                Password = regData.PassWD,
-                Urole = Enum.GetName(typeof(Role), regData.Role),
-                Username = regData.Username,
-                WorkerID = workerdata.ID
-            });
-            if (regData.Technician)
-                _technicianRepository.Insert(new Technician() {Available = "Break", WorkerID = workerdata.ID});
-
+            _workerRepository.RegisterNewWorker(regData.Username, Enum.GetName(typeof(Role),
+                regData.Role), regData.PassWD, Enum.GetName(typeof(Status),
+                regData.Status), regData.Address, regData.Email, regData.FullName,
+                regData.Phone, regData.ProfilePicture, Enum.GetName(typeof(Bank), regData.Bank),
+                regData.BankAccount);
         }
 
         public List<CustomerData> LastCustomerList()
@@ -88,7 +62,7 @@ namespace TechSupportService
             return new List<CustomerData>(_regUserRepository.
                 GetAll().
                 OrderByDescending(i => i.Regtime).
-                Select(i => (CustomerData) i));
+                Select(i => (CustomerData)i));
         }
 
         public List<WorkerData> StaffList()
@@ -100,7 +74,7 @@ namespace TechSupportService
                 WorkerData data = new WorkerData(worker.FullName,
                     _authRepository.Get(x => x.Worker.ID == worker.ID).SingleOrDefault().Username, worker.Email,
                     worker.Phone, worker.Address, worker.ProfilePicture,
-                    (Status) Enum.Parse(typeof(Status), worker.Status),
+                    (Status)Enum.Parse(typeof(Status), worker.Status),
                     (Role)
                     Enum.Parse(typeof(Role), _authRepository.Get(x => x.Worker.ID == worker.ID).SingleOrDefault().Urole));
                 staffreturn.Add(data);
@@ -112,7 +86,7 @@ namespace TechSupportService
 
         public void ChangeWorkerStatus(string username, Status status)
         {
-            AzureServiceBus.SendStatusNotification(username,status);
+            AzureServiceBus.SendStatusNotification(username, status);
             _authRepository.Get(x => x.Username == username).SingleOrDefault().Worker.Status =
                 Enum.GetName(typeof(Status), status);
         }
@@ -123,11 +97,11 @@ namespace TechSupportService
             int? sender =
                 _authRepository.Get(x => x.Username == ServiceSecurityContext.Current.PrimaryIdentity.Name)
                     .SingleOrDefault()?.Worker.ID;
-            _bugsRepository.Insert(new Bugreport() {Date = DateTime.Now, Message = message, Sender = sender ?? 0});
+            _bugsRepository.Insert(new Bugreport() { Date = DateTime.Now, Message = message, Sender = sender ?? 0 });
             var bug = _bugsRepository.Get(x => x.Message == message).SingleOrDefault().ID;
             foreach (string s in file)
             {
-                _fileRepository.Insert(new Files() {BugreportID = bug, File = s});
+                _fileRepository.Insert(new Files() { BugreportID = bug, File = s });
             }
         }
 
@@ -156,7 +130,7 @@ namespace TechSupportService
 
         public WorkerData GetWorker(string username)
         {
-            return (WorkerData) _authRepository.Get(x => x.Username == username).SingleOrDefault();
+            return (WorkerData)_authRepository.Get(x => x.Username == username).SingleOrDefault();
         }
 
         public List<TechnicianData> TechnicianList()
@@ -194,12 +168,12 @@ namespace TechSupportService
 
         public List<TechWork> GetTechWorks()
         {
-            return _techworksRepository.GetAll().Select(x => (TechWork) x).ToList();
+            return _techworksRepository.GetAll().Select(x => (TechWork)x).ToList();
         }
 
         public List<TechWork> NewTechWorks()
         {
-            return new List<TechWork>(_techworksRepository.GetAll().OrderBy(i => i.Finish).Select(i => (TechWork) i));
+            return new List<TechWork>(_techworksRepository.GetAll().OrderBy(i => i.Finish).Select(i => (TechWork)i));
         }
 
         [PrincipalPermission(SecurityAction.Demand, Role = "Technician")]
@@ -278,7 +252,7 @@ namespace TechSupportService
 
         public LoginResult Login()
         {
-            
+
             Guid clientId = Guid.NewGuid();
             string name = ServiceSecurityContext.Current.PrimaryIdentity.Name;
             var worker = _authRepository.Get(x => x.Username == name).SingleOrDefault()?.Worker;
@@ -292,7 +266,7 @@ namespace TechSupportService
                 {
                     Identifier = clientId,
                     FullName = worker.FullName,
-                    Role = (Role) Enum.Parse(typeof(Role), worker.LoginData.FirstOrDefault().Urole)
+                    Role = (Role)Enum.Parse(typeof(Role), worker.LoginData.FirstOrDefault().Urole)
                 };
 
             }

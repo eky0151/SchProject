@@ -19,7 +19,6 @@
           <xs:element minOccurs="0" name="Bank" type="tns:Bank" />
           <xs:element minOccurs="0" name="BankAccount" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="PassWD" nillable="true" type="xs:string" />
-          <xs:element minOccurs="0" name="Technician" type="xs:boolean" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>

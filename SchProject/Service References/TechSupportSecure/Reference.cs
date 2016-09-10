@@ -368,9 +368,6 @@ namespace SchProject.TechSupportSecure {
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string PassWDField;
         
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool TechnicianField;
-        
         [System.Runtime.Serialization.DataMemberAttribute()]
         public SchProject.TechSupportSecure.Bank Bank {
             get {
@@ -406,19 +403,6 @@ namespace SchProject.TechSupportSecure {
                 if ((object.ReferenceEquals(this.PassWDField, value) != true)) {
                     this.PassWDField = value;
                     this.RaisePropertyChanged("PassWD");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool Technician {
-            get {
-                return this.TechnicianField;
-            }
-            set {
-                if ((this.TechnicianField.Equals(value) != true)) {
-                    this.TechnicianField = value;
-                    this.RaisePropertyChanged("Technician");
                 }
             }
         }

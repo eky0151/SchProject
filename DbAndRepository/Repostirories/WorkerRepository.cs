@@ -1,4 +1,6 @@
-﻿namespace DbAndRepository.Repostirories
+﻿using System.Data.Entity.Spatial;
+
+namespace DbAndRepository.Repostirories
 {
     using System.Data.Entity;
     using GenericsEFRepository;
@@ -10,7 +12,6 @@
     public class WorkerRepository : GenericsRepository<Worker>, IWorkerRepository
     {
         private Worker w;
-
         public WorkerRepository(DbContext newDb) : base(newDb)
         {
         }
@@ -23,7 +24,7 @@
             database.SaveChanges();
         }
 
-        public void RegisterNewWorker(string username, string urole,string passwd,string Workerstatus,string available,string address, string email,string fullName,string phone,string profilePicture, string bankName,string bankAccount,bool technician)
+        public void RegisterNewWorker(string username, string urole, string passwd, string Workerstatus, string address, string email, string fullName, string phone, string profilePicture, string bankName, string bankAccount)
         {
             Bank b = new Bank
             {
@@ -32,11 +33,12 @@
             };
 
             Technician t = null;
-            if(technician == true)
+            if (urole == "Technician")
             {
                 t = new Technician
                 {
-                    Available = available           
+                    Available = "Break",
+                    Lastlocation= DbGeography.FromText("POINT(47.491358 19.075642)")
                 };
             }
 
@@ -67,7 +69,7 @@
         {
             return Get(x => x.LoginData.FirstOrDefault().Urole == "HelpDesk").ToList();
         }
-       
+
         public Worker GetAvailableHelpDesk()
         {
             return Get(x => x.LoginData.SingleOrDefault().Urole == "HelpDesk").FirstOrDefault();
@@ -91,6 +93,6 @@
                 Get(x => x.LoginData.SingleOrDefault().Urole == "HelpDesk").Count(x => x.Status == "Available");
         }
 
-       
+
     }
 }
