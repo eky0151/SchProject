@@ -14,6 +14,7 @@ namespace TechSupportService
     {
         [OperationContract]
         LoginResult TechnicianLogin(string username, string passWD);
+
         [OperationContract]
         List<WorkerData> HelpDeskWorkerList();
 

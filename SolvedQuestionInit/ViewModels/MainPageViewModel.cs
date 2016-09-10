@@ -21,7 +21,7 @@ namespace SolvedQuestionInit.ViewModels
     public class MainPageViewModel : ViewModelBase
     {
         static Random rnd = new Random();
-        private TechSupportServiceCrossClient _host;
+        private TechSupportService1Client _host;
         private string _question;
         private string _answer;
         private string _newTopic;
@@ -37,7 +37,7 @@ namespace SolvedQuestionInit.ViewModels
 
         public MainPageViewModel()
         {
-            _host = new TechSupportServiceCrossClient();
+            _host = new TechSupportService1Client();
             AddNewTopic = new RelayCommand(UploadNewIntent);
             SendSolved = new RelayCommand(Send);
             Init();
@@ -98,6 +98,8 @@ namespace SolvedQuestionInit.ViewModels
             get { return _luisIntents; }
             set { Set(ref _luisIntents, value); }
         }
+
+        //business logic should be separeted
         private async void Send()
         {
             await Task.Factory.StartNew(() =>

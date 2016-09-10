@@ -127,20 +127,20 @@
     <None Include="Service References\TechSupportService\SolvedQuestionInit.TechSupportService.WorkerData.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\TechSupportService\TechSupportServiceCross.wsdl" />
-    <None Include="Service References\TechSupportService\TechSupportServiceCross.xsd">
+    <None Include="Service References\TechSupportService\TechSupportService.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\TechSupportService\TechSupportServiceCross1.xsd">
+    <None Include="Service References\TechSupportService\TechSupportService1.wsdl" />
+    <None Include="Service References\TechSupportService\TechSupportService1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\TechSupportService\TechSupportServiceCross2.xsd">
+    <None Include="Service References\TechSupportService\TechSupportService2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\TechSupportService\TechSupportServiceCross3.xsd">
+    <None Include="Service References\TechSupportService\TechSupportService3.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\TechSupportService\TechSupportServiceCross4.xsd">
+    <None Include="Service References\TechSupportService\TechSupportService4.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="SolvedQuestionInit_TemporaryKey.pfx" />
@@ -160,7 +160,7 @@
     </None>
     <None Include="Service References\TechSupportService\configuration.svcinfo" />
     <None Include="Service References\TechSupportService\configuration91.svcinfo" />
-    <None Include="Service References\TechSupportService\TechSupportServiceCross.disco" />
+    <None Include="Service References\TechSupportService\TechSupportService.disco" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">

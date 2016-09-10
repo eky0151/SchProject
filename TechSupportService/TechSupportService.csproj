@@ -137,7 +137,7 @@
     <Compile Include="Entities\LoginData.cs" />
     <Compile Include="Entities\Technician.cs" />
     <Compile Include="Entities\Worker.cs" />
-    <Compile Include="ITechSupportServiceCross.cs" />
+    <Compile Include="ServiceContract\ITechSupportServiceCross.cs" />
     <Compile Include="ServiceContract\ITechSupportBotService.cs" />
     <Compile Include="ServiceContract\ITechSupportService1.cs" />
     <Compile Include="Security\AuthorizationPolicy.cs" />

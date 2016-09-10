@@ -554,29 +554,41 @@ namespace SolvedQuestionInit.TechSupportService {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="TechSupportService.ITechSupportServiceCross")]
-    public interface ITechSupportServiceCross {
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="TechSupportService.ITechSupportService1")]
+    public interface ITechSupportService1 {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportServiceCross/TechnicianLogin", ReplyAction="http://tempuri.org/ITechSupportServiceCross/TechnicianLoginResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportService1/TechnicianLogin", ReplyAction="http://tempuri.org/ITechSupportService1/TechnicianLoginResponse")]
         System.Threading.Tasks.Task<SolvedQuestionInit.TechSupportService.LoginResult> TechnicianLoginAsync(string username, string passWD);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportServiceCross/HelpDeskWorkerList", ReplyAction="http://tempuri.org/ITechSupportServiceCross/HelpDeskWorkerListResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportService1/HelpDeskWorkerList", ReplyAction="http://tempuri.org/ITechSupportService1/HelpDeskWorkerListResponse")]
         System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<SolvedQuestionInit.TechSupportService.WorkerData>> HelpDeskWorkerListAsync();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportServiceCross/CustomerList", ReplyAction="http://tempuri.org/ITechSupportServiceCross/CustomerListResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportService1/CustomerList", ReplyAction="http://tempuri.org/ITechSupportService1/CustomerListResponse")]
         System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<SolvedQuestionInit.TechSupportService.CustomerData>> CustomerListAsync();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportServiceCross/UploadSolvedQuestion", ReplyAction="http://tempuri.org/ITechSupportServiceCross/UploadSolvedQuestionResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportService1/UploadSolvedQuestion", ReplyAction="http://tempuri.org/ITechSupportService1/UploadSolvedQuestionResponse")]
         System.Threading.Tasks.Task UploadSolvedQuestionAsync(SolvedQuestionInit.TechSupportService.SolvedQuestion question);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportService1/UserLogin", ReplyAction="http://tempuri.org/ITechSupportService1/UserLoginResponse")]
+        System.Threading.Tasks.Task<bool> UserLoginAsync(string username, string password);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportService1/GetProfilePicture", ReplyAction="http://tempuri.org/ITechSupportService1/GetProfilePictureResponse")]
+        System.Threading.Tasks.Task<string> GetProfilePictureAsync(string username);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportService1/GetUserProfilePicture", ReplyAction="http://tempuri.org/ITechSupportService1/GetUserProfilePictureResponse")]
+        System.Threading.Tasks.Task<string> GetUserProfilePictureAsync(string username);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ITechSupportService1/RegisterNewUser")]
+        System.Threading.Tasks.Task RegisterNewUserAsync(string fullName, string email, string userName, string password);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface ITechSupportServiceCrossChannel : SolvedQuestionInit.TechSupportService.ITechSupportServiceCross, System.ServiceModel.IClientChannel {
+    public interface ITechSupportService1Channel : SolvedQuestionInit.TechSupportService.ITechSupportService1, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class TechSupportServiceCrossClient : System.ServiceModel.ClientBase<SolvedQuestionInit.TechSupportService.ITechSupportServiceCross>, SolvedQuestionInit.TechSupportService.ITechSupportServiceCross {
+    public partial class TechSupportService1Client : System.ServiceModel.ClientBase<SolvedQuestionInit.TechSupportService.ITechSupportService1>, SolvedQuestionInit.TechSupportService.ITechSupportService1 {
         
         /// <summary>
         /// Implement this partial method to configure the service endpoint.
@@ -585,31 +597,31 @@ namespace SolvedQuestionInit.TechSupportService {
         /// <param name="clientCredentials">The client credentials</param>
         static partial void ConfigureEndpoint(System.ServiceModel.Description.ServiceEndpoint serviceEndpoint, System.ServiceModel.Description.ClientCredentials clientCredentials);
         
-        public TechSupportServiceCrossClient() : 
-                base(TechSupportServiceCrossClient.GetDefaultBinding(), TechSupportServiceCrossClient.GetDefaultEndpointAddress()) {
-            this.Endpoint.Name = EndpointConfiguration.WSHttpBinding_ITechSupportServiceCross.ToString();
+        public TechSupportService1Client() : 
+                base(TechSupportService1Client.GetDefaultBinding(), TechSupportService1Client.GetDefaultEndpointAddress()) {
+            this.Endpoint.Name = EndpointConfiguration.WSHttpBinding_ITechSupportService1.ToString();
             ConfigureEndpoint(this.Endpoint, this.ClientCredentials);
         }
         
-        public TechSupportServiceCrossClient(EndpointConfiguration endpointConfiguration) : 
-                base(TechSupportServiceCrossClient.GetBindingForEndpoint(endpointConfiguration), TechSupportServiceCrossClient.GetEndpointAddress(endpointConfiguration)) {
+        public TechSupportService1Client(EndpointConfiguration endpointConfiguration) : 
+                base(TechSupportService1Client.GetBindingForEndpoint(endpointConfiguration), TechSupportService1Client.GetEndpointAddress(endpointConfiguration)) {
             this.Endpoint.Name = endpointConfiguration.ToString();
             ConfigureEndpoint(this.Endpoint, this.ClientCredentials);
         }
         
-        public TechSupportServiceCrossClient(EndpointConfiguration endpointConfiguration, string remoteAddress) : 
-                base(TechSupportServiceCrossClient.GetBindingForEndpoint(endpointConfiguration), new System.ServiceModel.EndpointAddress(remoteAddress)) {
+        public TechSupportService1Client(EndpointConfiguration endpointConfiguration, string remoteAddress) : 
+                base(TechSupportService1Client.GetBindingForEndpoint(endpointConfiguration), new System.ServiceModel.EndpointAddress(remoteAddress)) {
             this.Endpoint.Name = endpointConfiguration.ToString();
             ConfigureEndpoint(this.Endpoint, this.ClientCredentials);
         }
         
-        public TechSupportServiceCrossClient(EndpointConfiguration endpointConfiguration, System.ServiceModel.EndpointAddress remoteAddress) : 
-                base(TechSupportServiceCrossClient.GetBindingForEndpoint(endpointConfiguration), remoteAddress) {
+        public TechSupportService1Client(EndpointConfiguration endpointConfiguration, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(TechSupportService1Client.GetBindingForEndpoint(endpointConfiguration), remoteAddress) {
             this.Endpoint.Name = endpointConfiguration.ToString();
             ConfigureEndpoint(this.Endpoint, this.ClientCredentials);
         }
         
-        public TechSupportServiceCrossClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+        public TechSupportService1Client(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
         }
         
@@ -629,6 +641,22 @@ namespace SolvedQuestionInit.TechSupportService {
             return base.Channel.UploadSolvedQuestionAsync(question);
         }
         
+        public System.Threading.Tasks.Task<bool> UserLoginAsync(string username, string password) {
+            return base.Channel.UserLoginAsync(username, password);
+        }
+        
+        public System.Threading.Tasks.Task<string> GetProfilePictureAsync(string username) {
+            return base.Channel.GetProfilePictureAsync(username);
+        }
+        
+        public System.Threading.Tasks.Task<string> GetUserProfilePictureAsync(string username) {
+            return base.Channel.GetUserProfilePictureAsync(username);
+        }
+        
+        public System.Threading.Tasks.Task RegisterNewUserAsync(string fullName, string email, string userName, string password) {
+            return base.Channel.RegisterNewUserAsync(fullName, email, userName, password);
+        }
+        
         public virtual System.Threading.Tasks.Task OpenAsync() {
             return System.Threading.Tasks.Task.Factory.FromAsync(((System.ServiceModel.ICommunicationObject)(this)).BeginOpen(null, null), new System.Action<System.IAsyncResult>(((System.ServiceModel.ICommunicationObject)(this)).EndOpen));
         }
@@ -638,7 +666,7 @@ namespace SolvedQuestionInit.TechSupportService {
         }
         
         private static System.ServiceModel.Channels.Binding GetBindingForEndpoint(EndpointConfiguration endpointConfiguration) {
-            if ((endpointConfiguration == EndpointConfiguration.WSHttpBinding_ITechSupportServiceCross)) {
+            if ((endpointConfiguration == EndpointConfiguration.WSHttpBinding_ITechSupportService1)) {
                 System.ServiceModel.Channels.CustomBinding result = new System.ServiceModel.Channels.CustomBinding();
                 System.ServiceModel.Channels.TextMessageEncodingBindingElement textBindingElement = new System.ServiceModel.Channels.TextMessageEncodingBindingElement();
                 result.Elements.Add(textBindingElement);
@@ -653,23 +681,23 @@ namespace SolvedQuestionInit.TechSupportService {
         }
         
         private static System.ServiceModel.EndpointAddress GetEndpointAddress(EndpointConfiguration endpointConfiguration) {
-            if ((endpointConfiguration == EndpointConfiguration.WSHttpBinding_ITechSupportServiceCross)) {
-                return new System.ServiceModel.EndpointAddress("http://techsupportserver.azurewebsites.net/TechSupportServiceCross.svc");
+            if ((endpointConfiguration == EndpointConfiguration.WSHttpBinding_ITechSupportService1)) {
+                return new System.ServiceModel.EndpointAddress("http://techsupportserver.azurewebsites.net/TechSupportService.svc");
             }
             throw new System.InvalidOperationException(string.Format("Could not find endpoint with name \'{0}\'.", endpointConfiguration));
         }
         
         private static System.ServiceModel.Channels.Binding GetDefaultBinding() {
-            return TechSupportServiceCrossClient.GetBindingForEndpoint(EndpointConfiguration.WSHttpBinding_ITechSupportServiceCross);
+            return TechSupportService1Client.GetBindingForEndpoint(EndpointConfiguration.WSHttpBinding_ITechSupportService1);
         }
         
         private static System.ServiceModel.EndpointAddress GetDefaultEndpointAddress() {
-            return TechSupportServiceCrossClient.GetEndpointAddress(EndpointConfiguration.WSHttpBinding_ITechSupportServiceCross);
+            return TechSupportService1Client.GetEndpointAddress(EndpointConfiguration.WSHttpBinding_ITechSupportService1);
         }
         
         public enum EndpointConfiguration {
             
-            WSHttpBinding_ITechSupportServiceCross,
+            WSHttpBinding_ITechSupportService1,
         }
     }
 }

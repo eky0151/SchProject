@@ -7,25 +7,28 @@ using System.ServiceModel.Activation;
 using DbAndRepository;
 using DbAndRepository.IRepositories;
 using DbAndRepository.Repostirories;
+using TechSupportService.DataContract;
 
 namespace TechSupportService
 {
     public class TechSupportService1:ITechSupportService1
     {
-        private IRegUserRepository aspUsers;
-        private ILoginDataRepository _auth;
-        private ISolvedQuestionsRepository _solvedQuestions;
+        private readonly ILoginDataRepository _auth;
+        private readonly IWorkerRepository _workerRepository;
+        private readonly IRegUserRepository _regUserRepository;
+        private readonly ISolvedQuestionsRepository _solvedQuestionsRepository;
 
         public TechSupportService1()
         {
             TechSupportDatabaseEntities db = new TechSupportDatabaseEntities();
-            aspUsers = new RegUserRepository(db);
             _auth = new LoginDataRepository(db);
-            _solvedQuestions = new SolvedQuestionsRepository(db);
+            _workerRepository = new WorkerRepository(db);
+            _regUserRepository = new RegUserRepository(db);
+            _solvedQuestionsRepository = new SolvedQuestionsRepository(db);
         }
         public bool UserLogin(string username, string password)
         {
-            return aspUsers.Autenthicate(username, password);
+            return _regUserRepository.Autenthicate(username, password);
         }
 
         public string GetProfilePicture(string username)
@@ -44,7 +47,7 @@ namespace TechSupportService
         }
         public void RegisterNewUser(string fullName, string email, string userName, string password)
         {
-            aspUsers.Insert(new RegUser
+            _regUserRepository.Insert(new RegUser
             {
                 Fullname = fullName,
                 Email = email,
@@ -53,6 +56,25 @@ namespace TechSupportService
                 Points = 1,
                 Regtime = DateTime.Now,
             });
+        }
+        public List<CustomerData> CustomerList()
+        {
+            return _regUserRepository.GetAll().Select(CustomerData.CustomerToCustomerData).ToList();
+        }
+
+        public List<WorkerData> HelpDeskWorkerList()
+        {
+            return _workerRepository.GetHelpDeskList().Select(WorkerData.WorkerToWorkerData).ToList();
+        }
+
+        public LoginResult TechnicianLogin(string username, string passWD)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UploadSolvedQuestion(SolvedQuestion question)
+        {
+            _solvedQuestionsRepository.Insert(SolvedQuestion.SolvedQuestionToDB(question));
         }
 
     }
