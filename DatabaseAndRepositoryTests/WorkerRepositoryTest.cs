@@ -59,8 +59,8 @@ namespace DatabaseAndRepositoryTests
         {
             IWorkerRepository wp = new WorkerRepository(db);
             
-            wp.RegisterNewWorker("propa2", "HelpDesk", "propa2", "away", "Available", "propaUtca2", "proba@email.hu2", "Propa Propa2", "063010010210", null,
-                "Propa Bank2", "100propaaccount2", false);
+            //wp.RegisterNewWorker("propa2", "HelpDesk", "propa2", "away", "Available", "propaUtca2", "proba@email.hu2", "Propa Propa2", "063010010210", null,
+            //    "Propa Bank2", "100propaaccount2", false);
         }
 
         [TestMethod]
