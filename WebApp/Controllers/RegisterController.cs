@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using TechSharedLibraries;
 using WebApp.Models;
 using WebApp.TechSupportServiceReference;
+using System.IO;
 
 namespace WebApp.Controllers
 {
@@ -18,39 +20,26 @@ namespace WebApp.Controllers
         }
 
         [HttpPost]
-        public ActionResult Registration(string username, string fullname, string password, string email)
+        public async Task<ActionResult> Registration(string username, string fullname, string password, string email, HttpPostedFileBase uploadimage)
         {
             using (TechSupportService1Client client = new TechSupportService1Client())
             {
+                string path = Path.GetFullPath(uploadimage.FileName);
                 client.Open();
-                client.RegisterNewUser(fullname, email, username, password);
-                
-            }
-
-            return View(new RegisterModel(username, fullname, password, email));
-        }
-
-        [HttpPost]
-        public ActionResult Registration(string username, string fullname, string password, string email, HttpPostedFileBase file)
-        {
-            using (TechSupportService1Client client = new TechSupportService1Client())
-            {
-                client.Open();
-                client.RegisterNewUser(fullname, email, username, password);
-
-                if (file != null)
+                string uploadedFile = "";
+                if (uploadimage != null)
                 {
-                    Upload(file);
+                    uploadedFile = await AzureBlobUploader.UploadImageAsync(path);
                 }
+                client.RegisterNewUser(fullname, email, username, password, uploadedFile);
             }
 
-            return View(new RegisterModel(username, fullname, password, email));
+            return View(new RegisterModel(username, fullname, password, email, uploadimage));
         }
 
-        private async void Upload(HttpPostedFileBase file)
+        private async Task<string> Upload(string file)
         {
-            //string path = System.IO.Path.Combine(Server.MapPath("~/images/profile"), pic);
-            //await AzureBlobUploader.UploadImageAsync(path);
+            return await AzureBlobUploader.UploadImageAsync(file);
         }
         
     }

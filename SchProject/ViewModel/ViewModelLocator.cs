@@ -61,6 +61,10 @@ namespace SchProject.ViewModel
         {
             get { return new ManagementViewModel(); }
         }
+        public ErrorViewModel Error
+        {
+            get { return new ErrorViewModel(); }
+        }
         public DashboardViewModel Dashboard
         {
             get { return new DashboardViewModel(); }

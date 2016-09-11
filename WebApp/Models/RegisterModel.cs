@@ -26,12 +26,16 @@ namespace WebApp.Models
         [Compare("Email", ErrorMessage = "Confirm email doesn't match, Type again !")]
         public string ConfirmEmail { get; set; }
 
-        public RegisterModel(string username, string fullname, string password, string email)
+        [Required]
+        public HttpPostedFileBase UploadImage { get; set; }
+
+        public RegisterModel(string username, string fullname, string password, string email, HttpPostedFileBase uploadimage)
         {
             this.Username = username;
             this.FullName = fullname;
             this.Password = password;
             this.Email = email;
+            this.UploadImage = uploadimage;
         }
     }
 

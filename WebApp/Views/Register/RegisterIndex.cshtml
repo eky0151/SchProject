@@ -16,7 +16,7 @@
 <body>
 
 
-@using (Html.BeginForm("Registration", "Register", FormMethod.Post))
+@using (Html.BeginForm("Registration", "Register", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
 
     <div class="container">
@@ -38,6 +38,10 @@
                 @*@Html.ValidationMessageFor(m => m.Email)*@
                 @Html.TextBoxFor(m => m.ConfirmEmail, new { @class = "input-txt", placeholder = "Email Again", autocomplete = "off" })
                 @*@Html.ValidationMessageFor(m => m.ConfirmEmail)*@
+                @Html.TextBoxFor(m => m.UploadImage, new { type = "file" })
+
+
+                @*<input type="file" name="UploadImage" id="UploadImage" />*@
 
                 <div class="login-footer">
                     <input type="submit" class="btn" value="Registration" />

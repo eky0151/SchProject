@@ -26,9 +26,6 @@ namespace WebApp.TechSupportServiceReference {
         private string FullNameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Guid IdentifierField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private WebApp.TechSupportServiceReference.Role RoleField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -53,19 +50,6 @@ namespace WebApp.TechSupportServiceReference {
                 if ((object.ReferenceEquals(this.FullNameField, value) != true)) {
                     this.FullNameField = value;
                     this.RaisePropertyChanged("FullName");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Guid Identifier {
-            get {
-                return this.IdentifierField;
-            }
-            set {
-                if ((this.IdentifierField.Equals(value) != true)) {
-                    this.IdentifierField = value;
-                    this.RaisePropertyChanged("Identifier");
                 }
             }
         }
@@ -483,6 +467,9 @@ namespace WebApp.TechSupportServiceReference {
         private int CustomerIDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string[] KeyWordsField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -548,6 +535,19 @@ namespace WebApp.TechSupportServiceReference {
                 if ((this.CustomerIDField.Equals(value) != true)) {
                     this.CustomerIDField = value;
                     this.RaisePropertyChanged("CustomerID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ID {
+            get {
+                return this.IDField;
+            }
+            set {
+                if ((this.IDField.Equals(value) != true)) {
+                    this.IDField = value;
+                    this.RaisePropertyChanged("ID");
                 }
             }
         }
@@ -700,10 +700,10 @@ namespace WebApp.TechSupportServiceReference {
         System.Threading.Tasks.Task<string> GetUserProfilePictureAsync(string username);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ITechSupportService1/RegisterNewUser")]
-        void RegisterNewUser(string fullName, string email, string userName, string password);
+        void RegisterNewUser(string fullName, string email, string userName, string password, string profilePicture);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ITechSupportService1/RegisterNewUser")]
-        System.Threading.Tasks.Task RegisterNewUserAsync(string fullName, string email, string userName, string password);
+        System.Threading.Tasks.Task RegisterNewUserAsync(string fullName, string email, string userName, string password, string profilePicture);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -789,12 +789,12 @@ namespace WebApp.TechSupportServiceReference {
             return base.Channel.GetUserProfilePictureAsync(username);
         }
         
-        public void RegisterNewUser(string fullName, string email, string userName, string password) {
-            base.Channel.RegisterNewUser(fullName, email, userName, password);
+        public void RegisterNewUser(string fullName, string email, string userName, string password, string profilePicture) {
+            base.Channel.RegisterNewUser(fullName, email, userName, password, profilePicture);
         }
         
-        public System.Threading.Tasks.Task RegisterNewUserAsync(string fullName, string email, string userName, string password) {
-            return base.Channel.RegisterNewUserAsync(fullName, email, userName, password);
+        public System.Threading.Tasks.Task RegisterNewUserAsync(string fullName, string email, string userName, string password, string profilePicture) {
+            return base.Channel.RegisterNewUserAsync(fullName, email, userName, password, profilePicture);
         }
     }
 }

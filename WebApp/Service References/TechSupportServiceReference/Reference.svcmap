@@ -23,12 +23,12 @@
   </MetadataSources>
   <Metadata>
     <MetadataFile FileName="TechSupportService.xsd" MetadataType="Schema" ID="9b4c35cc-015b-4548-857c-b2b5fcabe4ce" SourceId="1" SourceUrl="http://techsupportserver.azurewebsites.net/TechSupportService.svc?xsd=xsd4" />
-    <MetadataFile FileName="TechSupportService1.xsd" MetadataType="Schema" ID="42708555-449e-48bf-9a3a-80cd67b1726d" SourceId="1" SourceUrl="http://techsupportserver.azurewebsites.net/TechSupportService.svc?xsd=xsd3" />
+    <MetadataFile FileName="TechSupportService.disco" MetadataType="Disco" ID="30e00a22-adb9-4959-b0d9-cd4d82fdd105" SourceId="1" SourceUrl="http://techsupportserver.azurewebsites.net/TechSupportService.svc?disco" />
     <MetadataFile FileName="TechSupportService1.wsdl" MetadataType="Wsdl" ID="693e930d-fb5f-441b-b4e5-ae4ce3f399a2" SourceId="1" SourceUrl="http://techsupportserver.azurewebsites.net/TechSupportService.svc?wsdl" />
     <MetadataFile FileName="TechSupportService2.xsd" MetadataType="Schema" ID="8e29e42a-abc9-47a2-9f2f-2377d506ced0" SourceId="1" SourceUrl="http://techsupportserver.azurewebsites.net/TechSupportService.svc?xsd=xsd0" />
     <MetadataFile FileName="TechSupportService3.xsd" MetadataType="Schema" ID="2c418f1a-4620-4b59-8996-5c2829658091" SourceId="1" SourceUrl="http://techsupportserver.azurewebsites.net/TechSupportService.svc?xsd=xsd1" />
     <MetadataFile FileName="TechSupportService4.xsd" MetadataType="Schema" ID="d3211a48-5ff4-4444-a529-cc9a2082c32d" SourceId="1" SourceUrl="http://techsupportserver.azurewebsites.net/TechSupportService.svc?xsd=xsd2" />
-    <MetadataFile FileName="TechSupportService.disco" MetadataType="Disco" ID="30e00a22-adb9-4959-b0d9-cd4d82fdd105" SourceId="1" SourceUrl="http://techsupportserver.azurewebsites.net/TechSupportService.svc?disco" />
+    <MetadataFile FileName="TechSupportService1.xsd" MetadataType="Schema" ID="42708555-449e-48bf-9a3a-80cd67b1726d" SourceId="1" SourceUrl="http://techsupportserver.azurewebsites.net/TechSupportService.svc?xsd=xsd3" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
