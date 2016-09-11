@@ -8,8 +8,10 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Threading;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Ioc;
 using SchProject.Annotations;
 using SchProject.Resources.Layout;
+using SchProject.TechSupportSecure;
 
 namespace SchProject
 {
@@ -51,6 +53,7 @@ namespace SchProject
 
         public void Logout()
         {
+            SimpleIoc.Default.GetInstance<TechSupportServer>().host?.ChangeMyStatus(Status.Away);
             RootControl = new Login();
         }
 
