@@ -270,5 +270,10 @@ namespace TechSupportService
         {
             _workerRepository.ChangePicture(_authRepository.Get(x => x.Username == ServiceSecurityContext.Current.PrimaryIdentity.Name).FirstOrDefault().WorkerID, picture);
         }
+
+        public List<int> GetLastMonthRegistratedUsers(out List<DateTime> Dates)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

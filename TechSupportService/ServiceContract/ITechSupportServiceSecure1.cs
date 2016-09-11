@@ -84,5 +84,7 @@ namespace TechSupportService
         [OperationContract(IsOneWay = true)]
         void ChangeMyPicture(string picture);
 
+        List<int> GetLastMonthRegistratedUsers(out List<DateTime> Dates);
+
     }
 }
