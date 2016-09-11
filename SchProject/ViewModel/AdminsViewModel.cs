@@ -4,8 +4,10 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.CommandWpf;
 using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Maps.MapControl.WPF;
 using Microsoft.Practices.ServiceLocation;
@@ -18,11 +20,20 @@ namespace SchProject.ViewModel
 
         private TechnicianData _selectedTechnician;
         private ObservableCollection<TechnicianData> _admins;
+        private string _message;
+        public ICommand SendMessage { get; private set; }
 
         public AdminsViewModel()
         {
             DownloadData();
+            SendMessage=new RelayCommand(SendToTechnician);
         }
+        public string Message
+        {
+            get { return _message; }
+            set { Set(ref _message, value); }
+        }
+
         public ObservableCollection<TechnicianData> Admins
         {
             get { return _admins; }
@@ -62,5 +73,13 @@ namespace SchProject.ViewModel
                 admin.Status = e.Status;
             }
         }
+
+        private async void SendToTechnician()
+        {
+            await SimpleIoc.Default.GetInstance<AzureServiceBus>()
+                .SendMessageToTechnician(SelectedTechnician.Username, Message);
+            Message = "";
+        }
     }
+
 }
