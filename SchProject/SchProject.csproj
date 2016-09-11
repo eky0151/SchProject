@@ -223,7 +223,7 @@
     <Compile Include="ServiceBus\StatusChangedEventArgs.cs" />
     <Compile Include="Resources\Services\TechSupportServer.cs" />
     <Compile Include="Resources\Services\UserData.cs" />
-    <None Include="ViewModel\ChatViewModel.cs" />
+    <Compile Include="ViewModel\ChatViewModel.cs" />
     <Compile Include="ViewModel\DashboardViewModel.cs" />
     <Compile Include="ViewModel\AdminsViewModel.cs" />
     <Compile Include="ViewModel\BugreportViewModel.cs" />

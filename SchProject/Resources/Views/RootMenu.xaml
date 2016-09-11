@@ -49,6 +49,13 @@
                                  NavigateTo="Admins"
                                  Margin="0,258,0,0"
                                  VerticalAlignment="Top" />
+            <controls:MenuButton Style="{StaticResource MenuButton}"
+                                 Content="CHAT"
+                                 SelectedtPicture="/Resources/Layout/Images/adminSelected.png"
+                                 DefaultPicture="/Resources/Layout/Images/admin.png"
+                                 NavigateTo="Chat"
+                                 Margin="0,258,0,0"
+                                 VerticalAlignment="Top" />
             <ItemsControl ItemsSource="{Binding MenuButtons}"
                           Margin="0,296,0,50">
                 <ItemsControl.ItemTemplate>
