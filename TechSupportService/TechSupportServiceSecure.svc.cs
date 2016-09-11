@@ -279,5 +279,10 @@ namespace TechSupportService
                     .FirstOrDefault();
             return data != null;
         }
+
+        public List<int> GetLastMonthRegistratedUsers(out List<DateTime> Dates)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

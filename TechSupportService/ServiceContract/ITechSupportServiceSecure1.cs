@@ -87,5 +87,8 @@ namespace TechSupportService
         [OperationContract]
         bool CheckMyPassWD(string passWD);
 
+        [OperationContract]
+        List<int> GetLastMonthRegistratedUsers(out List<DateTime> Dates);
+
     }
 }
