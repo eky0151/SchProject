@@ -54,7 +54,7 @@
                             Height="25">
                         <Button.Template>
                             <ControlTemplate>
-                                <Image Source="Images/add.png" />
+                                <Image Source="/Resources/Layout/Images/add.png" />
                             </ControlTemplate>
                         </Button.Template>
                     </Button>
