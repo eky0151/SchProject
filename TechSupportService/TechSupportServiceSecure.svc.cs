@@ -282,7 +282,11 @@ namespace TechSupportService
 
         public List<int> GetLastMonthRegistratedUsers(out List<DateTime> Dates)
         {
-            throw new NotImplementedException();
+            Dates = new List<DateTime>();
+            List<DateTime> t;
+            List<int> a = _regUserRepository.GetLastMonthRegistratedUsers(out t);
+            Dates = t;
+            return a;
         }
     }
 }

@@ -258,6 +258,9 @@
     <None Include="Service References\TechSupportSecure\SchProject.TechSupportSecure.CustomerData.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\TechSupportSecure\SchProject.TechSupportSecure.GetLastMonthRegistratedUsersResponse1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\TechSupportSecure\SchProject.TechSupportSecure.GetLastSevedDaysSolvesResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>

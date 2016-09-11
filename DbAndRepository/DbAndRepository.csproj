@@ -89,7 +89,6 @@
     <Compile Include="Bank.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="BankExtension.cs" />
     <Compile Include="Bugreport.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
