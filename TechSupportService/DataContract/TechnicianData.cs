@@ -24,7 +24,7 @@ namespace TechSupportService.DataContract
         }
         public static TechnicianData ConverTechnicianData(Technician t)
         {
-            TechnicianData data=new TechnicianData(t.Worker.FullName,t.Worker.LoginData.FirstOrDefault().Username,t.Worker.Email,t.Worker.Phone,t.Worker.Address,t.Worker.ProfilePicture,(TechSupportService.Status)Enum.Parse(typeof(Status),t.Worker.Status),(DataContract.Role)Enum.Parse(typeof(Role),t.Worker.LoginData.FirstOrDefault().Urole),t.WorkerID,t.Lastlocation?.ToString(),(TechnicianStatus)Enum.Parse(typeof(TechnicianStatus),t.Available),t.ID);
+            TechnicianData data=new TechnicianData(t.Worker.FullName,t.Worker.LoginData.FirstOrDefault().Username,t.Worker.Email,t.Worker.Phone,t.Worker.Address,t.Worker.ProfilePicture,(TechSupportService.Status)Enum.Parse(typeof(Status),t.Worker.Status),(DataContract.Role)Enum.Parse(typeof(Role),t.Worker.LoginData.FirstOrDefault().Urole),t.WorkerID,t.Lastlocation.Latitude+"$"+t.Lastlocation.Longitude,(TechnicianStatus)Enum.Parse(typeof(TechnicianStatus),t.Available),t.ID);
             return data;
         }
 

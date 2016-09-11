@@ -25,6 +25,8 @@ namespace SchProject
                     return new MenuButtonData(new BitmapImage(new Uri(@"pack://application:,,,/Resources/Layout/Images/error.png")), new BitmapImage(new Uri(@"pack://application:,,,/Resources/Layout/Images/errorSelected.png")), "Error", "HIBÁK");
                 case MenuButtonType.Manager:
                     return new MenuButtonData(new BitmapImage(new Uri(@"pack://application:,,,/Resources/Layout/Images/management.png")), new BitmapImage(new Uri(@"pack://application:,,,/Resources/Layout/Images/managementSelected.png")), "Management", "Kezelés");
+                case MenuButtonType.Report:
+                    return new MenuButtonData(new BitmapImage(new Uri(@"pack://application:,,,/Resources/Layout/Images/report.png")), new BitmapImage(new Uri(@"pack://application:,,,/Resources/Layout/Images/reportSelected.png")), "Report", "Reports");
                 default: throw new ArgumentException();
             }
         }
@@ -33,11 +35,11 @@ namespace SchProject
             switch (role)
             {
                 case Role.Admin:
-                    return new List<MenuButtonData>() { CreateButton(MenuButtonType.Manager), CreateButton(MenuButtonType.Error) };
+                    return new List<MenuButtonData>() { CreateButton(MenuButtonType.Manager), CreateButton(MenuButtonType.Error), CreateButton(MenuButtonType.Report) };
                 case Role.Boss:
-                    return new List<MenuButtonData>() { CreateButton(MenuButtonType.Manager), };
+                    return new List<MenuButtonData>() { CreateButton(MenuButtonType.Manager), CreateButton(MenuButtonType.Report) };
                 case Role.HelpDesk:
-                    return new List<MenuButtonData>() { CreateButton(MenuButtonType.Error), CreateButton(MenuButtonType.Manager) };
+                    return new List<MenuButtonData>() { CreateButton(MenuButtonType.Error) };
                 case Role.Technician:
                     return new List<MenuButtonData>() { CreateButton(MenuButtonType.Manager) };
                 default: throw new ArgumentException();

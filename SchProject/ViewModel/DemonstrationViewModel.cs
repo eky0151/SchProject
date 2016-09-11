@@ -18,6 +18,24 @@ using Microsoft.Practices.ServiceLocation;
 
 namespace SchProject.ViewModel
 {
+    public class RegistratdUsers : ObservableObject
+    {
+        private int count;
+        public int Count
+        {
+            get { return count; }
+            set { Set(ref count, value); }
+        }
+
+        private DateTime time;
+        public DateTime Time
+        {
+            get { return time; }
+            set { Set(ref time, value); }
+        }
+
+
+    }
     public class SolvedQuestionsByDay : ObservableObject
     {
         private DateTime  time;
@@ -35,21 +53,11 @@ namespace SchProject.ViewModel
         }
     }
 
-    public class DemonstrationViewModel : DependencyObject, INotifyPropertyChanged
+    public class DemonstrationViewModel : ViewModelBase
     {
-        //public RadObservableCollection<SolvedQuestionsByDay> Data
-        //{
-        //    get { return (RadObservableCollection<SolvedQuestionsByDay>)GetValue(DataProperty); }
-        //    set { SetValue(DataProperty, value); }
-        //}
-
-        //public static readonly DependencyProperty DataProperty =
-        //    DependencyProperty.Register("Data", typeof(RadObservableCollection<SolvedQuestionsByDay>), typeof(DemonstrationViewModel));
-
         public ObservableCollection<SolvedQuestionsByDay> Data { get; private set; } = new ObservableCollection<SolvedQuestionsByDay>();
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
+        public ObservableCollection<RegistratdUsers> Users { get; private set; } = new ObservableCollection<RegistratdUsers>();
 
         private int[] Counts;
         private DateTime[] Dates;
@@ -59,12 +67,15 @@ namespace SchProject.ViewModel
         {
             get { return pie; }
         }
-        
+
 
         public  DemonstrationViewModel()
         {
             GetQuestions();
-            
+
+            Users.Add(new RegistratdUsers { Count = 10, Time = DateTime.Now.AddDays(10) });
+            Users.Add(new RegistratdUsers { Count = 20, Time = DateTime.Now.AddDays(9) });
+            Users.Add(new RegistratdUsers { Count = 30, Time = DateTime.Now.AddDays(8) });
         }
 
         private  void GetQuestions()
@@ -79,11 +90,6 @@ namespace SchProject.ViewModel
                     Count = Counts[i]
                 });
             }
-
-
         }
-
-
-
     }
 }

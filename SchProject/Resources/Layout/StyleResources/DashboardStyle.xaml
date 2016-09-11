@@ -255,7 +255,7 @@
                                         BorderBrush="#CFCFCF">
                                     <Label Content="Állapot"
                                            Width="93"
-                                           Style="{StaticResource CellLabelStyle}"/>
+                                           Style="{StaticResource CellLabelStyle}" />
                                 </Border>
                             </StackPanel>
                             <ItemsPresenter />
@@ -339,7 +339,7 @@
                                 BorderBrush="#CFCFCF">
                             <Label Content="{Binding Role}"
                                    Width="130"
-                                   Style="{StaticResource CellLabelStyle}"/>
+                                   Style="{StaticResource CellLabelStyle}" />
                         </Border>
                         <Border Background="{Binding (ItemsControl.Background),RelativeSource={RelativeSource TemplatedParent}}"
                                 BorderThickness="0,0,0,1"
@@ -348,7 +348,7 @@
                             <Label Content="{Binding Status}"
                                    Width="113"
                                    Style="{StaticResource CellLabelStyle}"
-                                   Foreground="{Binding Status,Converter={StaticResource StaffStatusToBrushConverter}}"/>
+                                   Foreground="{Binding Status,Converter={StaticResource StaffStatusToBrushConverter}}" />
                         </Border>
                     </VirtualizingStackPanel>
                     <DataTemplate.Triggers>
@@ -409,7 +409,9 @@
                                            Style="{StaticResource CellLabelStyle}" />
                                 </Border>
                             </StackPanel>
-                            <ItemsPresenter />
+                            <ScrollViewer Height="172">
+                                <ItemsPresenter />
+                            </ScrollViewer>
                         </StackPanel>
                         <Border.Effect>
                             <DropShadowEffect ShadowDepth="0"

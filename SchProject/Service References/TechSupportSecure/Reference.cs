@@ -368,9 +368,6 @@ namespace SchProject.TechSupportSecure {
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string PassWDField;
         
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool TechnicianField;
-        
         [System.Runtime.Serialization.DataMemberAttribute()]
         public SchProject.TechSupportSecure.Bank Bank {
             get {
@@ -406,19 +403,6 @@ namespace SchProject.TechSupportSecure {
                 if ((object.ReferenceEquals(this.PassWDField, value) != true)) {
                     this.PassWDField = value;
                     this.RaisePropertyChanged("PassWD");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool Technician {
-            get {
-                return this.TechnicianField;
-            }
-            set {
-                if ((this.TechnicianField.Equals(value) != true)) {
-                    this.TechnicianField = value;
-                    this.RaisePropertyChanged("Technician");
                 }
             }
         }
@@ -974,6 +958,12 @@ namespace SchProject.TechSupportSecure {
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ITechSupportServiceSecure1/ChangeWorkerStatus")]
         System.Threading.Tasks.Task ChangeWorkerStatusAsync(string username, SchProject.TechSupportSecure.Status status);
         
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ITechSupportServiceSecure1/ChangeMyStatus")]
+        void ChangeMyStatus(SchProject.TechSupportSecure.Status newStatus);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ITechSupportServiceSecure1/ChangeMyStatus")]
+        System.Threading.Tasks.Task ChangeMyStatusAsync(SchProject.TechSupportSecure.Status newStatus);
+        
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ITechSupportServiceSecure1/SendBugreport")]
         void SendBugreport(string message, string[] file);
         
@@ -1164,6 +1154,14 @@ namespace SchProject.TechSupportSecure {
         
         public System.Threading.Tasks.Task ChangeWorkerStatusAsync(string username, SchProject.TechSupportSecure.Status status) {
             return base.Channel.ChangeWorkerStatusAsync(username, status);
+        }
+        
+        public void ChangeMyStatus(SchProject.TechSupportSecure.Status newStatus) {
+            base.Channel.ChangeMyStatus(newStatus);
+        }
+        
+        public System.Threading.Tasks.Task ChangeMyStatusAsync(SchProject.TechSupportSecure.Status newStatus) {
+            return base.Channel.ChangeMyStatusAsync(newStatus);
         }
         
         public void SendBugreport(string message, string[] file) {

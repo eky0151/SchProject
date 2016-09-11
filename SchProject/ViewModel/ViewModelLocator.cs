@@ -49,6 +49,8 @@ namespace SchProject.ViewModel
             SimpleIoc.Default.Register<LoginViewModel>();
             SimpleIoc.Default.Register<UserData>();
             SimpleIoc.Default.Register<NavigatorSingleton>();
+            SimpleIoc.Default.Register<AzureServiceBus>();
+            SimpleIoc.Default.Register<ContentNavigator>();
             //SimpleIoc.Default.Register<ChatViewModel>();
 
             //wcf

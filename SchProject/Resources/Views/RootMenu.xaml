@@ -36,16 +36,16 @@
                    HorizontalContentAlignment="Center" />
             <controls:MenuButton Style="{StaticResource MenuButton}"
                                  Content="DASHBOARD"
-                                 SelectedtPicture="Images/homeSelected.png"
-                                 DefaultPicture="Images/home.png"
+                                 SelectedtPicture="/Resources/Layout/Images/homeSelected.png"
+                                 DefaultPicture="/Resources/Layout/Images/home.png"
                                  NavigateTo="Home"
                                  IsChecked="True"
                                  Margin="0,220,0,0"
                                  VerticalAlignment="Top" />
             <controls:MenuButton Style="{StaticResource MenuButton}"
                                  Content="RENDSZERGAZDÁK"
-                                 SelectedtPicture="Images/adminSelected.png"
-                                 DefaultPicture="Images/admin.png"
+                                 SelectedtPicture="/Resources/Layout/Images/adminSelected.png"
+                                 DefaultPicture="/Resources/Layout/Images/admin.png"
                                  NavigateTo="Admins"
                                  Margin="0,258,0,0"
                                  VerticalAlignment="Top" />
@@ -65,15 +65,15 @@
                         VerticalAlignment="Bottom"
                         Margin="0,0,0,5">
                 <controls:MenuButton Style="{StaticResource MenuButtonMini}"
-                                     SelectedtPicture="Images/settingsSelected.png"
-                                     DefaultPicture="Images/settings.png"
+                                     SelectedtPicture="/Resources/Layout/Images/settingsSelected.png"
+                                     DefaultPicture="/Resources/Layout/Images/settings.png"
                                      NavigateTo="Settings"
                                      Margin="10,0,0,0"
                                      Width="22"
                                      Height="22" />
                 <controls:MenuButton Style="{StaticResource MenuButtonMini}"
-                                     SelectedtPicture="Images/bugreportSelected.png"
-                                     DefaultPicture="Images/bugreport.png"
+                                     SelectedtPicture="/Resources/Layout/Images/bugreportSelected.png"
+                                     DefaultPicture="/Resources/Layout/Images/bugreport.png"
                                      NavigateTo="Bugreport"
                                      Width="22"
                                      Height="22" />
@@ -84,7 +84,7 @@
                         Command="{Binding Logout}">
                     <Button.Template>
                         <ControlTemplate>
-                            <Image Source="Images/logout.png" />
+                            <Image Source="/Resources/Layout/Images/logout.png" />
                         </ControlTemplate>
                     </Button.Template>
                 </Button>
@@ -93,7 +93,7 @@
         <ScrollViewer VerticalScrollBarVisibility="Disabled"
                       HorizontalScrollBarVisibility="Auto">
             <ContentControl DockPanel.Dock="Right"
-                            Content="{Binding CurrentView}" />
+                            Content="{Binding CurrentView.CurrentContent}" />
         </ScrollViewer>
     </DockPanel>
 </UserControl>

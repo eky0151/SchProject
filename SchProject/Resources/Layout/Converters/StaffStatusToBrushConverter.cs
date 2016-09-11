@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows.Media;
 using SchProject.Resources.Layout.StyleResources;
+using SchProject.TechSupportSecure;
 
 namespace SchProject.Resources.Layout.Converters
 {
@@ -14,16 +15,13 @@ namespace SchProject.Resources.Layout.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            StaffStatus? stat = value as StaffStatus?;
+            Status? stat = value as Status?;
             if (stat.HasValue)
             {
                 switch (stat)
                 {
-                    case StaffStatus.Available:
+                    case Status.Working:
                         return new SolidColorBrush((Color)ColorConverter.ConvertFromString("#73D673"));
-                    case StaffStatus.Away:
-                        return new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF21"));
-
                 }
             }
             return new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF839E"));

@@ -23,13 +23,12 @@ namespace SchProject.ViewModel
     public class ManagementViewModel : ViewModelBase
     {
         private string _profilePicture;
-        public string FullName { get; set; }
-        public string Username { get; set; }
-        public string Email { get; set; }
-        public string Phone { get; set; }
-        public string Address { get; set; }
-        public string BankAccount { get; set; }
-        public bool Technician { get; set; }
+        private string _bankAccount;
+        private string _address;
+        private string _phone;
+        private string _email;
+        private string _username;
+        private string _fullName;
         public string[] Banks { get; } = Enum.GetNames(typeof(Bank));
         public string[] Roles { get; } = Enum.GetNames(typeof(Role));
         public string SelectedRole { get; set; }
@@ -44,6 +43,42 @@ namespace SchProject.ViewModel
             SelectedBank = Banks.FirstOrDefault();
             SelectedRole = Roles.FirstOrDefault();
         }
+        public string FullName
+        {
+            get { return _fullName; }
+            set { Set(ref _fullName, value); }
+        }
+
+        public string Username
+        {
+            get { return _username; }
+            set { Set(ref _username, value); }
+        }
+
+        public string Email
+        {
+            get { return _email; }
+            set { Set(ref _email, value); }
+        }
+
+        public string Phone
+        {
+            get { return _phone; }
+            set { Set(ref _phone, value); }
+        }
+
+        public string Address
+        {
+            get { return _address; }
+            set { Set(ref _address, value); }
+        }
+
+        public string BankAccount
+        {
+            get { return _bankAccount; }
+            set { Set(ref _bankAccount, value); }
+        }
+
 
         public string ProfilePicture
         {
@@ -71,7 +106,6 @@ namespace SchProject.ViewModel
                     ProfilePicture = file,
                     Username = Username,
                     Role = (Role)Enum.Parse(typeof(Role), SelectedRole),
-                    Technician = Technician,
                     Status = Status.Away
                 };
                 try
@@ -83,7 +117,15 @@ namespace SchProject.ViewModel
 
                     //log
                 }
+
             });
+            Address = "";
+            BankAccount = "";
+            Email = "";
+            FullName = "";
+            Phone = "";
+            ProfilePicture = "";
+            Username = "";
             //busyindicator
         }
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using GalaSoft.MvvmLight.Ioc;
+using SchProject.TechSupportSecure;
 
 namespace SchProject.Resources.Layout
 {
@@ -23,6 +26,11 @@ namespace SchProject.Resources.Layout
         public MainWindowAqua()
         {
             InitializeComponent(); 
+        }
+
+        private void MainWindowAqua_OnClosing(object sender, CancelEventArgs e)
+        {
+             SimpleIoc.Default.GetInstance<TechSupportServer>().host?.ChangeMyStatus(Status.Away);
         }
     }
 }
