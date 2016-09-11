@@ -6,6 +6,7 @@
     <converters:NumberToBrushConverter x:Key="NumberToBrushConverter" />
     <converters:StaffStatusToBrushConverter x:Key="StaffStatusToBrushConverter" />
     <converters:TicketStatusToBrushConverter x:Key="TicketStatusToBrushConverter" />
+    <converters:StringToImageSourceConverter x:Key="StringToImageSourceConverter" />
     <Style TargetType="controls:StatusBox">
         <Setter Property="Template">
             <Setter.Value>
@@ -79,14 +80,13 @@
                 <DataTemplate>
                     <VirtualizingStackPanel Orientation="Horizontal"
                                             DataContext="{Binding}"
-                                            Margin="20,0,0,16">
+                                            Margin="20,0,0,14">
                         <Ellipse Width="32"
                                  Height="32"
                                  Stroke="#757575">
                             <Ellipse.Fill>
-                                <ImageBrush ImageSource="/Resources/Layout/Images/demoPicSmall.jpg"
-                                            Stretch="UniformToFill"
-                                            RenderOptions.BitmapScalingMode="Linear" />
+                                <ImageBrush ImageSource="{Binding Path=Picture,ConverterParameter=32,Converter={StaticResource StringToImageSourceConverter}}"
+                                            Stretch="UniformToFill" />
                             </Ellipse.Fill>
                         </Ellipse>
                         <Label FontWeight="Light"
