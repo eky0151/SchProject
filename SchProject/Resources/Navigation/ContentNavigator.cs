@@ -28,7 +28,7 @@ namespace SchProject
                 {
                         
                     case "Error":
-                        _views[controlName] = new Demonstration();
+                        _views[controlName] = new Chat();
                         break;
                     case "Admins":
                         _views[controlName] = new Admins();

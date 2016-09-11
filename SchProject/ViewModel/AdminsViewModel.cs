@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Maps.MapControl.WPF;
 using Microsoft.Practices.ServiceLocation;
 using SchProject.TechSupportSecure;
@@ -35,14 +36,31 @@ namespace SchProject.ViewModel
 
         private async void DownloadData()
         {
-            var downloaded =await Task.Factory.StartNew(() =>
-            {
-                return ServiceLocator.Current.GetInstance<TechSupportServer>().host.TechnicianList();
-            });
-            Admins=new ObservableCollection<TechnicianData>(downloaded);
+            var downloaded = await Task.Factory.StartNew(() =>
+             {
+                 return ServiceLocator.Current.GetInstance<TechSupportServer>().host.TechnicianList();
+             });
+            Admins = new ObservableCollection<TechnicianData>(downloaded);
+            Admins.CollectionChanged += Admins_CollectionChanged;
+            SimpleIoc.Default.GetInstance<AzureServiceBus>().StatusHandler += AdminsViewModel_StatusHandler;
             SelectedTechnician = Admins.FirstOrDefault();
         }
 
+        private void Admins_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            RaisePropertyChanged("Admins");
+        }
 
+        private async void AdminsViewModel_StatusHandler(object sender, ServiceBus.StatusChangedEventArgs e)
+        {
+            var admin = await Task.Factory.StartNew(() =>
+            {
+                return _admins.FirstOrDefault(y => y.Username == e.Username);
+            });
+            if (admin != null)
+            {
+                admin.Status = e.Status;
+            }
+        }
     }
 }

@@ -29,13 +29,10 @@ namespace TechSupportService
 
             NamespaceMgr = NamespaceManager.CreateFromConnectionString(connectionString);
             Factory = MessagingFactory.CreateFromConnectionString(connectionString);
-            if (NamespaceMgr.TopicExists(_topicPath))
+            if (!NamespaceMgr.TopicExists(_topicPath))
             {
-                NamespaceMgr.DeleteTopic(_topicPath);
+                NamespaceMgr.CreateTopic(_topicPath);
             }
-
-            NamespaceMgr.CreateTopic(_topicPath);
-
             _topicClient = Factory.CreateTopicClient(_topicPath);
         }
 

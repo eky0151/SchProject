@@ -13,13 +13,30 @@
 
     public class ChatViewModel : ViewModelBase
     {
+        public ICommand SendMessageCommand
+        {
+            get { return new RelayCommand(SendMessage, () => message != string.Empty); }
+        }
+
+        public ICommand GetCustomerCommand
+        {
+            get { return new RelayCommand(GetFirstMessage); }
+        }
+
+        public ICommand SendFileCommand
+        {
+            get { return new RelayCommand(UploadFile); }
+        }
+
+
+        //-------------------------------------------------------------------
+
         private string message;
         public string Message
         {
             get { return message; }
             set { Set(ref message, value); }
         }
-
 
         private string fullName;
         public string FullName
@@ -31,33 +48,7 @@
         private string aspClientName = string.Empty;
         Dictionary<string, string[]> questionsByOneUser;
 
-        public ICommand GetCustomerCommand
-        {
-            get
-            {
-                return new RelayCommand(GetFirstMessage);
-            }
-        }
 
-        public ICommand SendFileMessageCommand
-        {
-            get
-            {
-                return new RelayCommand(UploadFile);
-            }
-        }
-
-        public ICommand SendMessageCommand
-        {
-            get
-            {
-                return new RelayCommand(SendMessage,
-                                       () => message != string.Empty);
-            }
-        }
-
-        //&&
-        //client.State == CommunicationState.Opened
 
         public ICommand LoginWorkerCommand
         {
@@ -75,29 +66,62 @@
 
         public ChatViewModel()
         {
+            WriteToConsole("Starting server...");
+            Task.Run(() => StartServer());
+
+
+
             //remove to ServiceLocator
-            InstanceContext ctx = new InstanceContext(new ChatCallback());
-            client = new Chatservice.ChatClient(ctx);
-            fullName = Global.FullName;
-            Init();
+            //InstanceContext ctx = new InstanceContext(new ChatCallback());
+            //client = new Chatservice.ChatClient(ctx);
+            //fullName = Global.FullName;
+            //Init();
         }
 
-        private void Init()
+        private void StartServer()
         {
-            Messenger.Default.Register(this, (SendClientConnect s) => Messages.Add(s));
-            Messenger.Default.Register(this, (SendReceiveMessage s) =>
+            try
             {
-                SendReceiveMessage temp = s;
-                temp.Sender = aspClientName;
-                Messages.Add(temp);
-            });
-            Messenger.Default.Register(this, (SendReceiveFileMessage s) =>
+                SignalR = WebApp.Start(ServerURI);
+            }
+            catch (TargetInvocationException)
             {
-                SendReceiveFileMessage temp = s;
-                temp.Sender = aspClientName;
-                Messages.Add(temp);
-            });
+                WriteToConsole("A server is already running at " + ServerURI);
+                this.Dispatcher.Invoke(() => ButtonStart.IsEnabled = true);
+                return;
+            }
+            this.Dispatcher.Invoke(() => ButtonStop.IsEnabled = true);
+            WriteToConsole("Server started at " + ServerURI);
         }
+
+        public void WriteToConsole(String message)
+        {
+            if (!(RichTextBoxConsole.CheckAccess()))
+            {
+                this.Dispatcher.Invoke(() =>
+                    WriteToConsole(message)
+                );
+                return;
+            }
+            RichTextBoxConsole.AppendText(message + "\r");
+        }
+
+        //private void Init()
+        //{
+        //    Messenger.Default.Register(this, (SendClientConnect s) => Messages.Add(s));
+        //    Messenger.Default.Register(this, (SendReceiveMessage s) =>
+        //    {
+        //        SendReceiveMessage temp = s;
+        //        temp.Sender = aspClientName;
+        //        Messages.Add(temp);
+        //    });
+        //    Messenger.Default.Register(this, (SendReceiveFileMessage s) =>
+        //    {
+        //        SendReceiveFileMessage temp = s;
+        //        temp.Sender = aspClientName;
+        //        Messages.Add(temp);
+        //    });
+        //}
 
         private async void UploadFile()
         {
@@ -122,6 +146,7 @@
 
             }
         }
+
 
         //when de window loaded we connect to the chatservice
         private async void LoginWorker()
