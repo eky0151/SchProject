@@ -33,8 +33,6 @@ namespace SchProject.ViewModel
             get { return time; }
             set { Set(ref time, value); }
         }
-
-
     }
     public class SolvedQuestionsByDay : ObservableObject
     {
@@ -72,10 +70,6 @@ namespace SchProject.ViewModel
         public  DemonstrationViewModel()
         {
             GetQuestions();
-
-            Users.Add(new RegistratdUsers { Count = 10, Time = DateTime.Now.AddDays(10) });
-            Users.Add(new RegistratdUsers { Count = 20, Time = DateTime.Now.AddDays(9) });
-            Users.Add(new RegistratdUsers { Count = 30, Time = DateTime.Now.AddDays(8) });
         }
 
         private  void GetQuestions()
@@ -88,6 +82,17 @@ namespace SchProject.ViewModel
                 {
                     Time = Dates[i],
                     Count = Counts[i]
+                });
+            }
+
+            Counts = ServiceLocator.Current.GetInstance<TechSupportServer>().host.GetLastMonthRegistratedUsers(out Dates);
+
+            for (int i = 0; i < Counts.Length; i++)
+            {
+                Users.Add(new RegistratdUsers
+                {
+                    Count = Counts[i],
+                    Time = Dates[i]
                 });
             }
         }

@@ -226,6 +226,9 @@
     <Compile Include="ServiceBus\StatusChangedEventArgs.cs" />
     <Compile Include="TechSupportServer.cs" />
     <Compile Include="UserData.cs" />
+    <None Include="Service References\TechSupportSecure\SchProject.TechSupportSecure.GetLastMonthRegistratedUsersResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="ViewModel\ChatViewModel.cs" />
     <Compile Include="ViewModel\DashboardViewModel.cs" />
     <Compile Include="ViewModel\AdminsViewModel.cs" />

@@ -77,5 +77,8 @@ namespace TechSupportService
 
         [OperationContract]
         List<int> GetLastSevedDaysSolves(out List<DateTime> dates, out List<KeyValuePair<string, int>> byName);
+
+        [OperationContract]
+        List<int> GetLastMonthRegistratedUsers(out List<DateTime> times);
     }
 }

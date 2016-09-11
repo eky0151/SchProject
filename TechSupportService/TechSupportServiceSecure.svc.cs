@@ -308,5 +308,14 @@ namespace TechSupportService
             AzureServiceBus.SendStatusNotification(name, Status.Away);
 
         }
+
+        public List<int> GetLastMonthRegistratedUsers(out List<DateTime> times)
+        {
+            times = new List<DateTime>();
+            List<DateTime> temp;
+            List<int> z  =_regUserRepository.GetLastMonthRegistratedUsers(out temp);
+            times = temp;
+            return z;
+        }
     }
 }

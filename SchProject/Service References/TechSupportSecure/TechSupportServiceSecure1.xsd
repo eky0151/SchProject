@@ -222,4 +222,17 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="GetLastMonthRegistratedUsers">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetLastMonthRegistratedUsersResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q22="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetLastMonthRegistratedUsersResult" nillable="true" type="q22:ArrayOfint" />
+        <xs:element xmlns:q23="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="times" nillable="true" type="q23:ArrayOfdateTime" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>
