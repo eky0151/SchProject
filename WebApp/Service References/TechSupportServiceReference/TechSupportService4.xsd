@@ -1,27 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/TechSupportService" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/TechSupportService" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import schemaLocation="http://techsupportserver.azurewebsites.net/TechSupportServiceSecure.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/TechSupportService.DataContract" />
-  <xs:import schemaLocation="http://techsupportserver.azurewebsites.net/TechSupportServiceSecure.svc?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/TechSupportService" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/TechSupportService" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://techsupportserver.azurewebsites.net/TechSupportService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:import schemaLocation="http://techsupportserver.azurewebsites.net/TechSupportService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/TechSupportService.DataContract" />
+  <xs:import schemaLocation="http://techsupportserver.azurewebsites.net/TechSupportService.svc?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
   <xs:complexType name="LoginResult">
     <xs:sequence>
       <xs:element minOccurs="0" name="FullName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Identifier" type="ser:guid" />
       <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/TechSupportService.DataContract" minOccurs="0" name="Role" type="q1:Role" />
       <xs:element minOccurs="0" name="Valid" type="xs:boolean" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="LoginResult" nillable="true" type="tns:LoginResult" />
-  <xs:complexType name="WorkerDataRegistrationData">
-    <xs:complexContent mixed="false">
-      <xs:extension base="tns:WorkerData">
-        <xs:sequence>
-          <xs:element minOccurs="0" name="Bank" type="tns:Bank" />
-          <xs:element minOccurs="0" name="BankAccount" nillable="true" type="xs:string" />
-          <xs:element minOccurs="0" name="PassWD" nillable="true" type="xs:string" />
-        </xs:sequence>
-      </xs:extension>
-    </xs:complexContent>
+  <xs:complexType name="ArrayOfWorkerData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="WorkerData" nillable="true" type="tns:WorkerData" />
+    </xs:sequence>
   </xs:complexType>
-  <xs:element name="WorkerDataRegistrationData" nillable="true" type="tns:WorkerDataRegistrationData" />
+  <xs:element name="ArrayOfWorkerData" nillable="true" type="tns:ArrayOfWorkerData" />
   <xs:complexType name="WorkerData">
     <xs:sequence>
       <xs:element minOccurs="0" name="Address" nillable="true" type="xs:string" />
@@ -43,27 +39,11 @@
     </xs:restriction>
   </xs:simpleType>
   <xs:element name="Status" nillable="true" type="tns:Status" />
-  <xs:simpleType name="Bank">
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="MagyarNemzetiBank" />
-      <xs:enumeration value="Erste" />
-      <xs:enumeration value="OrszágosTakarékPénztár" />
-      <xs:enumeration value="OTP" />
-    </xs:restriction>
-  </xs:simpleType>
-  <xs:element name="Bank" nillable="true" type="tns:Bank" />
-  <xs:complexType name="ArrayOfWorkerData">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="WorkerData" nillable="true" type="tns:WorkerData" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfWorkerData" nillable="true" type="tns:ArrayOfWorkerData" />
   <xs:complexType name="SolvedQuestion">
     <xs:sequence>
       <xs:element minOccurs="0" name="Answer" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Category" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="CustomerID" type="xs:int" />
-      <xs:element minOccurs="0" name="ID" type="xs:int" />
       <xs:element xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="KeyWords" nillable="true" type="q3:ArrayOfstring" />
       <xs:element minOccurs="0" name="Question" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="TimeAnswered" type="xs:dateTime" />
@@ -74,10 +54,4 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="SolvedQuestion" nillable="true" type="tns:SolvedQuestion" />
-  <xs:complexType name="ArrayOfSolvedQuestion">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="SolvedQuestion" nillable="true" type="tns:SolvedQuestion" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfSolvedQuestion" nillable="true" type="tns:ArrayOfSolvedQuestion" />
 </xs:schema>

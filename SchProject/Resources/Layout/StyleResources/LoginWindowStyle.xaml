@@ -3,8 +3,6 @@
                     xmlns:local="clr-namespace:SchProject.Resources.Layout.CustomControls"
                     xmlns:converters="clr-namespace:SchProject.Resources.Layout.Converters">
     <converters:EmailToColorConverter x:Key="EmailToColorConverter" />
-    <converters:ParametersToArrayConverter x:Key="ParametersToArrayConverter" />
-    <converters:StringToImageSourceConverter x:Key="StringToImageSourceConverter" />
     <Style x:Key="LoginTextBox"
            TargetType="TextBox">
         <Setter Property="Template">

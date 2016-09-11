@@ -26,9 +26,6 @@ namespace SchProject.TechSupportSecure {
         private string FullNameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Guid IdentifierField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private SchProject.TechSupportSecure.Role RoleField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -53,19 +50,6 @@ namespace SchProject.TechSupportSecure {
                 if ((object.ReferenceEquals(this.FullNameField, value) != true)) {
                     this.FullNameField = value;
                     this.RaisePropertyChanged("FullName");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Guid Identifier {
-            get {
-                return this.IdentifierField;
-            }
-            set {
-                if ((this.IdentifierField.Equals(value) != true)) {
-                    this.IdentifierField = value;
-                    this.RaisePropertyChanged("Identifier");
                 }
             }
         }
@@ -368,9 +352,6 @@ namespace SchProject.TechSupportSecure {
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string PassWDField;
         
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool TechnicianField;
-        
         [System.Runtime.Serialization.DataMemberAttribute()]
         public SchProject.TechSupportSecure.Bank Bank {
             get {
@@ -406,19 +387,6 @@ namespace SchProject.TechSupportSecure {
                 if ((object.ReferenceEquals(this.PassWDField, value) != true)) {
                     this.PassWDField = value;
                     this.RaisePropertyChanged("PassWD");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool Technician {
-            get {
-                return this.TechnicianField;
-            }
-            set {
-                if ((this.TechnicianField.Equals(value) != true)) {
-                    this.TechnicianField = value;
-                    this.RaisePropertyChanged("Technician");
                 }
             }
         }
@@ -645,6 +613,9 @@ namespace SchProject.TechSupportSecure {
         private int CustomerIDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string[] KeyWordsField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -710,6 +681,19 @@ namespace SchProject.TechSupportSecure {
                 if ((this.CustomerIDField.Equals(value) != true)) {
                     this.CustomerIDField = value;
                     this.RaisePropertyChanged("CustomerID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ID {
+            get {
+                return this.IDField;
+            }
+            set {
+                if ((this.IDField.Equals(value) != true)) {
+                    this.IDField = value;
+                    this.RaisePropertyChanged("ID");
                 }
             }
         }
@@ -1071,14 +1055,17 @@ namespace SchProject.TechSupportSecure {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportServiceSecure1/GetLastSevedDaysSolves", ReplyAction="http://tempuri.org/ITechSupportServiceSecure1/GetLastSevedDaysSolvesResponse")]
         System.Threading.Tasks.Task<SchProject.TechSupportSecure.GetLastSevedDaysSolvesResponse> GetLastSevedDaysSolvesAsync(SchProject.TechSupportSecure.GetLastSevedDaysSolvesRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportServiceSecure1/GetLastMonthRegistratedUsers", ReplyAction="http://tempuri.org/ITechSupportServiceSecure1/GetLastMonthRegistratedUsersRespons" +
-            "e")]
-        SchProject.TechSupportSecure.GetLastMonthRegistratedUsersResponse GetLastMonthRegistratedUsers(SchProject.TechSupportSecure.GetLastMonthRegistratedUsersRequest request);
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ITechSupportServiceSecure1/ChangeMyPassWD")]
+        void ChangeMyPassWD(string newPass);
         
-        // CODEGEN: Generating message contract since the operation has multiple return values.
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportServiceSecure1/GetLastMonthRegistratedUsers", ReplyAction="http://tempuri.org/ITechSupportServiceSecure1/GetLastMonthRegistratedUsersRespons" +
-            "e")]
-        System.Threading.Tasks.Task<SchProject.TechSupportSecure.GetLastMonthRegistratedUsersResponse> GetLastMonthRegistratedUsersAsync(SchProject.TechSupportSecure.GetLastMonthRegistratedUsersRequest request);
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ITechSupportServiceSecure1/ChangeMyPassWD")]
+        System.Threading.Tasks.Task ChangeMyPassWDAsync(string newPass);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ITechSupportServiceSecure1/ChangeMyPicture")]
+        void ChangeMyPicture(string picture);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ITechSupportServiceSecure1/ChangeMyPicture")]
+        System.Threading.Tasks.Task ChangeMyPictureAsync(string picture);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -1111,35 +1098,6 @@ namespace SchProject.TechSupportSecure {
             this.GetLastSevedDaysSolvesResult = GetLastSevedDaysSolvesResult;
             this.dates = dates;
             this.byName = byName;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="GetLastMonthRegistratedUsers", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
-    public partial class GetLastMonthRegistratedUsersRequest {
-        
-        public GetLastMonthRegistratedUsersRequest() {
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="GetLastMonthRegistratedUsersResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
-    public partial class GetLastMonthRegistratedUsersResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
-        public int[] GetLastMonthRegistratedUsersResult;
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
-        public System.DateTime[] times;
-        
-        public GetLastMonthRegistratedUsersResponse() {
-        }
-        
-        public GetLastMonthRegistratedUsersResponse(int[] GetLastMonthRegistratedUsersResult, System.DateTime[] times) {
-            this.GetLastMonthRegistratedUsersResult = GetLastMonthRegistratedUsersResult;
-            this.times = times;
         }
     }
     
@@ -1347,20 +1305,20 @@ namespace SchProject.TechSupportSecure {
             return base.Channel.GetLastSevedDaysSolvesAsync(request);
         }
         
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        SchProject.TechSupportSecure.GetLastMonthRegistratedUsersResponse SchProject.TechSupportSecure.ITechSupportServiceSecure1.GetLastMonthRegistratedUsers(SchProject.TechSupportSecure.GetLastMonthRegistratedUsersRequest request) {
-            return base.Channel.GetLastMonthRegistratedUsers(request);
+        public void ChangeMyPassWD(string newPass) {
+            base.Channel.ChangeMyPassWD(newPass);
         }
         
-        public int[] GetLastMonthRegistratedUsers(out System.DateTime[] times) {
-            SchProject.TechSupportSecure.GetLastMonthRegistratedUsersRequest inValue = new SchProject.TechSupportSecure.GetLastMonthRegistratedUsersRequest();
-            SchProject.TechSupportSecure.GetLastMonthRegistratedUsersResponse retVal = ((SchProject.TechSupportSecure.ITechSupportServiceSecure1)(this)).GetLastMonthRegistratedUsers(inValue);
-            times = retVal.times;
-            return retVal.GetLastMonthRegistratedUsersResult;
+        public System.Threading.Tasks.Task ChangeMyPassWDAsync(string newPass) {
+            return base.Channel.ChangeMyPassWDAsync(newPass);
         }
         
-        public System.Threading.Tasks.Task<SchProject.TechSupportSecure.GetLastMonthRegistratedUsersResponse> GetLastMonthRegistratedUsersAsync(SchProject.TechSupportSecure.GetLastMonthRegistratedUsersRequest request) {
-            return base.Channel.GetLastMonthRegistratedUsersAsync(request);
+        public void ChangeMyPicture(string picture) {
+            base.Channel.ChangeMyPicture(picture);
+        }
+        
+        public System.Threading.Tasks.Task ChangeMyPictureAsync(string picture) {
+            return base.Channel.ChangeMyPictureAsync(picture);
         }
     }
 }

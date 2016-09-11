@@ -222,16 +222,17 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="GetLastMonthRegistratedUsers">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GetLastMonthRegistratedUsersResponse">
+  <xs:element name="ChangeMyPassWD">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q22="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetLastMonthRegistratedUsersResult" nillable="true" type="q22:ArrayOfint" />
-        <xs:element xmlns:q23="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="times" nillable="true" type="q23:ArrayOfdateTime" />
+        <xs:element minOccurs="0" name="newPass" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ChangeMyPicture">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="picture" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

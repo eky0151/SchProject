@@ -4,12 +4,14 @@
 <head>
     @RenderSection("head", false)
     <link rel="stylesheet" href="/css/style.css">
+
+    @* Signalr *@
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery-1.6.4.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.signalR-2.1.0.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/signalr/hubs")"></script>
+
 </head>
 <body>
-
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.js"></script>
-    <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.js"></script>
-    <script src="//ajax.aspnetcdn.com/ajax/mvc/5.2.3/jquery.validate.unobtrusive.js"></script>
 
     @RenderBody()
 

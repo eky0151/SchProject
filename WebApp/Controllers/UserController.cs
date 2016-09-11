@@ -24,9 +24,7 @@ namespace WebApp.Controllers
             using (TechSupportService1Client client = new TechSupportService1Client())
             {               
                 if (client.UserLogin(username, password))
-                {
-                    Global.Datas.chatClient.Connect(username);
-                    
+                {                   
                     return View(new UserModel(username));
                 }
                 else

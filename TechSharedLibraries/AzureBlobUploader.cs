@@ -6,6 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ImageProcessor;
+using ImageProcessor.Imaging;
+using ImageProcessor.Imaging.Formats;
 using Microsoft.Azure;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Blob;
@@ -40,22 +42,28 @@ namespace TechSharedLibraries
                 {
                     originalBlob.UploadFromStream(fileStream);
                 }
-                CloudBlockBlob mediumBlob = container.GetBlockBlobReference($"512/{fileName}.png");
+                CloudBlockBlob largeBlob = container.GetBlockBlobReference($"512/{fileName}.png");
                 using (var fileStream = new MemoryStream())
                 {
-                    factory.Resize(new Size(512, 512)).Save(fileStream);
+                    factory.Format(new PngFormat()).Resize(new ResizeLayer(new Size(512,512),ResizeMode.Crop)).Save(fileStream);
+                    largeBlob.UploadFromStream(fileStream);
+                }
+                CloudBlockBlob mediumBlob = container.GetBlockBlobReference($"256/{fileName}.png");
+                using (var fileStream = new MemoryStream())
+                {
+                    factory.Format(new PngFormat()).Resize(new ResizeLayer(new Size(256, 256), ResizeMode.Crop)).Save(fileStream);
                     mediumBlob.UploadFromStream(fileStream);
                 }
                 CloudBlockBlob smallBlob = container.GetBlockBlobReference($"64/{fileName}.png");
                 using (var fileStream = new MemoryStream())
                 {
-                    factory.Resize(new Size(64, 64)).Save(fileStream);
+                    factory.Format(new PngFormat()).Resize(new ResizeLayer(new Size(64, 64), ResizeMode.Crop)).Save(fileStream);
                     smallBlob.UploadFromStream(fileStream);
                 }
                 CloudBlockBlob extraSmallBlob = container.GetBlockBlobReference($"32/{fileName}.png");
                 using (var fileStream = new MemoryStream())
                 {
-                    factory.Resize(new Size(32, 32)).Save(fileStream);
+                    factory.Format(new PngFormat()).Resize(new ResizeLayer(new Size(32, 32), ResizeMode.Crop)).Save(fileStream);
                     extraSmallBlob.UploadFromStream(fileStream);
                 }
 

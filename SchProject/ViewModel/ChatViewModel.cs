@@ -52,7 +52,7 @@
             get
             {
                 return new RelayCommand(SendMessage,
-                                       () => message != string.Empty );
+                                       () => message != string.Empty);
             }
         }
 
@@ -64,7 +64,7 @@
             get
             {
                 return new RelayCommand(LoginWorker,
-                                        () => fullName != string.Empty );
+                                        () => fullName != string.Empty);
             }
         }
 
@@ -77,9 +77,9 @@
         {
             //remove to ServiceLocator
             InstanceContext ctx = new InstanceContext(new ChatCallback());
-            client  = new Chatservice.ChatClient(ctx);
+            client = new Chatservice.ChatClient(ctx);
             fullName = Global.FullName;
-            Init();           
+            Init();
         }
 
         private void Init()
@@ -109,17 +109,17 @@
             {
                 string filename = ofd.FileName;
                 Bitmap b = new Bitmap(filename);
-                if(b != null)
+                if (b != null)
                 {
                     ImageConverter c = new ImageConverter();
-                    
+
                     try
                     {
                         await client.SendFileAsync((byte[])c.ConvertTo(b, typeof(byte[])), fullName, "Picture", aspClientName, Chatservice.ClientType.Worker);
                     }
-                    catch(Exception) { }
+                    catch (Exception) { }
                 }
-               
+
             }
         }
 
@@ -132,7 +132,7 @@
 
         private async void SendMessage()
         {
-            await client.SendMessageAsync(message,fullName, aspClientName, Chatservice.ClientType.Worker);
+            await client.SendMessageAsync(message, fullName, aspClientName, Chatservice.ClientType.Worker);
             bool flag = await client.CheckUserOnlineAsync(aspClientName);
             Messages.Add(new SendReceiveMessage
             {

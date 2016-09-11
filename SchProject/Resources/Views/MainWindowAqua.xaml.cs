@@ -28,9 +28,9 @@ namespace SchProject.Resources.Layout
             InitializeComponent(); 
         }
 
-        private async void MainWindowAqua_OnClosing(object sender, CancelEventArgs e)
+        private void MainWindowAqua_OnClosing(object sender, CancelEventArgs e)
         {
-             SimpleIoc.Default.GetInstance<TechSupportServer>().host.ChangeMyStatus(Status.Away);
+             SimpleIoc.Default.GetInstance<TechSupportServer>().host?.ChangeMyStatus(Status.Away);
         }
     }
 }

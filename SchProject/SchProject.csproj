@@ -15,6 +15,21 @@
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
     <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -155,23 +170,30 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AzureServiceBus.cs" />
-    <Compile Include="MenuButtonFactory.cs" />
-    <Compile Include="Navigator.cs" />
+    <Compile Include="Resources\FixSizedObservableCollection.cs" />
+    <Compile Include="Resources\Layout\Converters\ParametersToArrayConverter.cs" />
+    <Compile Include="Service References\TechSupportSecure\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceBus\AzureServiceBus.cs" />
+    <Compile Include="Resources\Navigation\ContentNavigator.cs" />
+    <Compile Include="Resources\Navigation\MenuButtonFactory.cs" />
+    <Compile Include="Resources\Navigation\Navigator.cs" />
     <Compile Include="Properties\Annotations1.cs" />
-    <Compile Include="Resources\Layout\Admins.xaml.cs">
+    <Compile Include="Resources\Views\Admins.xaml.cs">
       <DependentUpon>Admins.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Resources\Layout\Bugreport.xaml.cs">
+    <Compile Include="Resources\Views\Bugreport.xaml.cs">
       <DependentUpon>Bugreport.xaml</DependentUpon>
     </Compile>
-    <None Include="Resources\Layout\Chat.xaml.cs">
+    <None Include="Resources\Views\Chat.xaml.cs">
       <DependentUpon>Chat.xaml</DependentUpon>
     </None>
     <Compile Include="Resources\Layout\Converters\StatusToImageSourceConverter.cs" />
     <Compile Include="Resources\Layout\Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Resources\Layout\Converters\DataToVisibilityConverter.cs" />
-    <Compile Include="Resources\Layout\Converters\ParametersToArrayConverter.cs" />
     <Compile Include="Resources\Layout\Converters\StaffStatusToBrushConverter.cs" />
     <Compile Include="Resources\Layout\Converters\StringToImageSourceConverter.cs" />
     <Compile Include="Resources\Layout\Converters\StringToLocationConverter.cs" />
@@ -181,39 +203,31 @@
     <Compile Include="Resources\Layout\CustomControls\MenuButton.cs" />
     <Compile Include="Resources\Layout\CustomControls\RoundedButton.cs" />
     <Compile Include="Resources\Layout\CustomControls\StatusBox.cs" />
-    <Compile Include="Resources\Layout\Dashboard.xaml.cs">
+    <Compile Include="Resources\Views\Dashboard.xaml.cs">
       <DependentUpon>Dashboard.xaml</DependentUpon>
     </Compile>
     <Compile Include="Resources\Layout\Converters\EmailToColorConverter.cs" />
     <Compile Include="Resources\Layout\Converters\NumberToBrushConverter.cs" />
-    <Compile Include="Resources\Layout\Demonstration.xaml.cs">
+    <Compile Include="Resources\Views\Demonstration.xaml.cs">
       <DependentUpon>Demonstration.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Resources\Layout\Management.xaml.cs">
+    <Compile Include="Resources\Views\Management.xaml.cs">
       <DependentUpon>Management.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Resources\Layout\Reports.xaml.cs">
-      <DependentUpon>Reports.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Resources\Layout\RootMenu.xaml.cs">
+    <Compile Include="Resources\Views\RootMenu.xaml.cs">
       <DependentUpon>RootMenu.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Resources\Layout\Settings.xaml.cs">
+    <Compile Include="Resources\Views\Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>
     <Compile Include="Resources\Layout\StyleResources\AquaWindowStyle.xaml.cs">
       <DependentUpon>AquaWindowStyle.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Resources\Layout\Login.xaml.cs">
+    <Compile Include="Resources\Views\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Resources\Layout\MainWindowAqua.xaml.cs">
+    <Compile Include="Resources\Views\MainWindowAqua.xaml.cs">
       <DependentUpon>MainWindowAqua.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Service References\TechSupportSecure\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Service References\TechSupportService\Reference.cs">
       <AutoGen>True</AutoGen>
@@ -221,20 +235,57 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="ServiceBus\BugEventArgs.cs" />
+    <Compile Include="ServiceBus\CustomerLoginEventArgs.cs" />
     <Compile Include="ServiceBus\LoginEventArgs.cs" />
     <Compile Include="ServiceBus\StatusChanged.cs" />
     <Compile Include="ServiceBus\StatusChangedEventArgs.cs" />
-    <Compile Include="TechSupportServer.cs" />
-    <Compile Include="UserData.cs" />
-    <None Include="Service References\TechSupportSecure\SchProject.TechSupportSecure.GetLastMonthRegistratedUsersResponse.datasource">
+    <Compile Include="Resources\Services\TechSupportServer.cs" />
+    <Compile Include="Resources\Services\UserData.cs" />
+    <None Include="Service References\TechSupportSecure\SchProject.TechSupportSecure.CustomerData.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\TechSupportSecure\SchProject.TechSupportSecure.GetLastSevedDaysSolvesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\TechSupportSecure\SchProject.TechSupportSecure.LoginResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\TechSupportSecure\SchProject.TechSupportSecure.SolvedQuestion.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\TechSupportSecure\SchProject.TechSupportSecure.TechnicianData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\TechSupportSecure\SchProject.TechSupportSecure.TechWork.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\TechSupportSecure\SchProject.TechSupportSecure.WorkerData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\TechSupportSecure\TechSupportServiceSecure.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\TechSupportSecure\TechSupportServiceSecure1.wsdl" />
+    <None Include="Service References\TechSupportSecure\TechSupportServiceSecure1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\TechSupportSecure\TechSupportServiceSecure2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\TechSupportSecure\TechSupportServiceSecure3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\TechSupportSecure\TechSupportServiceSecure4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\TechSupportSecure\TechSupportServiceSecure5.xsd">
+      <SubType>Designer</SubType>
     </None>
     <None Include="ViewModel\ChatViewModel.cs" />
     <Compile Include="ViewModel\DashboardViewModel.cs" />
     <Compile Include="ViewModel\AdminsViewModel.cs" />
     <Compile Include="ViewModel\BugreportViewModel.cs" />
     <Compile Include="ViewModel\DemonstrationViewModel.cs" />
-    <Compile Include="ViewModel\Global.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ManagementViewModel.cs" />
@@ -245,39 +296,35 @@
     </Compile>
     <Compile Include="ViewModel\SettingsViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
-    <Page Include="Resources\Layout\Admins.xaml">
+    <Page Include="Resources\Views\Admins.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Resources\Layout\Bugreport.xaml">
+    <Page Include="Resources\Views\Bugreport.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <None Include="Resources\Layout\Chat.xaml">
+    <None Include="Resources\Views\Chat.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </None>
-    <Page Include="Resources\Layout\Dashboard.xaml">
+    <Page Include="Resources\Views\Dashboard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Resources\Layout\Demonstration.xaml">
+    <Page Include="Resources\Views\Demonstration.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Resources\Layout\Management.xaml">
+    <Page Include="Resources\Views\Management.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Resources\Layout\Reports.xaml">
+    <Page Include="Resources\Views\RootMenu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Resources\Layout\RootMenu.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Resources\Layout\Settings.xaml">
+    <Page Include="Resources\Views\Settings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -289,11 +336,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Resources\Layout\Login.xaml">
+    <Page Include="Resources\Views\Login.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Resources\Layout\MainWindowAqua.xaml">
+    <Page Include="Resources\Views\MainWindowAqua.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -348,46 +395,6 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <None Include="Service References\TechSupportSecure\SchProject.TechSupportSecure.CustomerData.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\TechSupportSecure\SchProject.TechSupportSecure.GetLastSevedDaysSolvesResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\TechSupportSecure\SchProject.TechSupportSecure.LoginResult.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\TechSupportSecure\SchProject.TechSupportSecure.SolvedQuestion.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\TechSupportSecure\SchProject.TechSupportSecure.TechnicianData.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\TechSupportSecure\SchProject.TechSupportSecure.TechWork.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\TechSupportSecure\SchProject.TechSupportSecure.WorkerData.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\TechSupportSecure\TechSupportServiceSecure.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\TechSupportSecure\TechSupportServiceSecure1.wsdl" />
-    <None Include="Service References\TechSupportSecure\TechSupportServiceSecure1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\TechSupportSecure\TechSupportServiceSecure2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\TechSupportSecure\TechSupportServiceSecure3.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\TechSupportSecure\TechSupportServiceSecure4.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\TechSupportSecure\TechSupportServiceSecure5.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Service References\TechSupportService\SchProject.TechSupportService.CustomerData.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -504,6 +511,27 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Layout\Images\report.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Layout\Images\reportSelected.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.6.1 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Layout\Images\userSmall.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\TechSupportSecure\TechSupportServiceSecure.disco" />

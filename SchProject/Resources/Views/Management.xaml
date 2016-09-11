@@ -11,7 +11,7 @@
     <Grid Background="White"
           DataContext="{Binding Management, Source={StaticResource Locator}}">
         <Border Width="400"
-                Height="458"
+                Height="430"
                 CornerRadius="8"
                 Background="White"
                 VerticalAlignment="Center"
@@ -81,10 +81,7 @@
                            FontSize="15"
                            Margin="10,5,0,0"
                            Height="28" />
-                    <Label Content="Rendszergazda"
-                           FontSize="15"
-                           Margin="10,5,0,0"
-                           Height="28" />
+
                 </StackPanel>
                 <StackPanel DockPanel.Dock="Right"
                             HorizontalAlignment="Center"
@@ -168,9 +165,10 @@
                                  x:Name="Secret"
                                  Width="229"
                                  Margin="0,5,0,0"
+                                 HorizontalContentAlignment="Center"
+                                 VerticalContentAlignment="Center"
                                  HorizontalAlignment="Center"
                                  Height="28" />
-                    <CheckBox Margin="0,15,0,0" IsChecked="{Binding Technician}"/>
                 </StackPanel>
             </DockPanel>
         </Border>

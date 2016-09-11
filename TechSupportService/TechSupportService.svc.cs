@@ -11,7 +11,7 @@ using TechSupportService.DataContract;
 
 namespace TechSupportService
 {
-    public class TechSupportService1:ITechSupportService1
+    public class TechSupportService1 : ITechSupportService1
     {
         private readonly ILoginDataRepository _auth;
         private readonly IWorkerRepository _workerRepository;
@@ -28,7 +28,10 @@ namespace TechSupportService
         }
         public bool UserLogin(string username, string password)
         {
-            return _regUserRepository.Autenthicate(username, password);
+            bool success = _regUserRepository.Autenthicate(username, password);
+            if (success)
+                AzureServiceBus.SendCustomerLoginNotification((CustomerData)_regUserRepository.GetUserByUsername(username));
+            return success;
         }
 
         public string GetProfilePicture(string username)

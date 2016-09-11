@@ -11,18 +11,30 @@ using System.Windows.Media.Imaging;
 
 namespace SchProject.Resources.Layout.Converters
 {
-     class ImageFactory
+    class ImageFactory
     {
-        public static ImageSource Image(string param,string value)
+        public static ImageSource Image(string param, string value)
         {
-            if(String.IsNullOrEmpty(value))
-                return new BitmapImage(new Uri(@"pack://application:,,,/Resources/Layout/Images/user.png"));
+            if (String.IsNullOrEmpty(value))
+            {
+                switch (param)
+                {
+                    case "32":
+                        return new BitmapImage(new Uri(@"pack://application:,,,/Resources/Layout/Images/userSmall.png"));
+                    case "64":
+                        return new BitmapImage(new Uri(@"pack://application:,,,/Resources/Layout/Images/userSmall.png"));
+                    default:
+                        return new BitmapImage(new Uri(@"pack://application:,,,/Resources/Layout/Images/user.png"));
+                }
+            }
             switch (param)
             {
                 case "original":
-                    return new BitmapImage(new Uri("https://techsupportfiles.blob.core.windows.net/images/original/" + value,UriKind.RelativeOrAbsolute));
+                    return new BitmapImage(new Uri("https://techsupportfiles.blob.core.windows.net/images/original/" + value, UriKind.RelativeOrAbsolute));
                 case "512":
                     return new BitmapImage(new Uri("https://techsupportfiles.blob.core.windows.net/images/512/" + value, UriKind.RelativeOrAbsolute));
+                case "256":
+                    return new BitmapImage(new Uri("https://techsupportfiles.blob.core.windows.net/images/256/" + value, UriKind.RelativeOrAbsolute));
                 case "64":
                     return new BitmapImage(new Uri("https://techsupportfiles.blob.core.windows.net/images/64/" + value, UriKind.RelativeOrAbsolute));
                 case "32":
@@ -31,12 +43,12 @@ namespace SchProject.Resources.Layout.Converters
                     return null;
             }
         }
-    }  
-    public class StringToImageSourceConverter:IValueConverter
+    }
+    public class StringToImageSourceConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return ImageFactory.Image((string)parameter, (string) value);
+            return ImageFactory.Image((string)parameter, (string)value);
 
         }
 

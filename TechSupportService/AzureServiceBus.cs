@@ -11,9 +11,9 @@ namespace TechSupportService
 {
     public static class AzureServiceBus
     {
-        private static readonly string _topicPath="Notifications";
-
+        private static readonly string _topicPath = "Notifications";
         private static NamespaceManager NamespaceMgr;
+        private static object _sync = new object();
         private static MessagingFactory Factory;
         private static TopicClient _topicClient;
 
@@ -41,46 +41,46 @@ namespace TechSupportService
 
         public static void SendStatusNotification(string username, Status status)
         {
-            BrokeredMessage msg = new BrokeredMessage(new StatusChanged() {NewStatus = status, Username = username});
+            BrokeredMessage msg = new BrokeredMessage(new StatusChanged() { NewStatus = status, Username = username });
             msg.ContentType = "Status";
-            try
-            {
-                _topicClient.Send(msg);
-            }
-            catch (Exception)
-            {
-             //log error   
-                throw;
-            }
+            SendMessage(msg);
         }
 
         public static void SendWorkerLoginData(string fullname)
         {
             BrokeredMessage msg = new BrokeredMessage(fullname);
             msg.ContentType = "Login";
-            try
-            {
-                _topicClient.Send(msg);
-            }
-            catch (Exception)
-            {
-                //log error   
-                throw;
-            }
+            SendMessage(msg);
+
         }
 
         public static void SendAppBugNotification(string message)
         {
             BrokeredMessage msg = new BrokeredMessage(message);
             msg.ContentType = "Bug";
-            try
+            SendMessage(msg);
+        }
+
+        public static void SendCustomerLoginNotification(CustomerData data)
+        {
+            BrokeredMessage msg = new BrokeredMessage(data);
+            msg.ContentType = "CustomerLogin";
+            SendMessage(msg);
+        }
+
+        private static void SendMessage(BrokeredMessage msg)
+        {
+            lock (_sync)
             {
-                _topicClient.Send(msg);
-            }
-            catch (Exception)
-            {
-                //log error   
-                throw;
+                try
+                {
+                    _topicClient.Send(msg);
+                }
+                catch (Exception)
+                {
+                    //log error   
+                    throw;
+                }
             }
         }
     }

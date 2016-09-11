@@ -7,6 +7,7 @@
     using System.Windows.Media.Imaging;
     using System.Windows.Media;
     using System.Threading.Tasks;
+    using System;
 
     public class LoginDataRepository : GenericsRepository<LoginData>, ILoginDataRepository
     {
@@ -22,6 +23,13 @@
             if (l == null)
                 return false;
             return true;
+        }
+
+        public void ChangePassWD(string username, string newPasswd)
+        {
+            var user = Get(x=>x.Username==username).FirstOrDefault();
+            user.Password = newPasswd;
+            Update(user);
         }
 
         public bool CheckUsername(string username)
@@ -45,10 +53,6 @@
             return database.Set<LoginData>().FirstOrDefault(x => x.ID == id);
         }
 
-        //public async Task<BitmapImage> GetPicture(string userName)
-        //{
-        //     await Task.Run(() => (BitmapImage)new ImageSourceConverter().ConvertFrom((Get(i => i.Username == userName).FirstOrDefault().Worker.Picture)));
-        //}
 
         public string GetPicture(string userName)
         {
@@ -61,5 +65,7 @@
             database.Entry(entityToModify).State = EntityState.Modified;
             database.SaveChanges();
         }
+
+        
     }
 }
