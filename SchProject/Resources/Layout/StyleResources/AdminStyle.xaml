@@ -7,6 +7,7 @@
     <local:DataToVisibilityConverter x:Key="DataToVisibilityConverter"/>
     <local:StringToLocationConverter x:Key="StringToLocationConverter"/>
     <FontFamily x:Key="Helvetia">pack://application:,,,/Resources/Layout/Fonts/HelveticaNeue</FontFamily>
+    <local:StatusToImageSourceConverter x:Key="StatusToImageSourceConverter"/>
     <Style TargetType="ListView"
            x:Key="AdminList">
         <Setter Property="Template">
@@ -50,7 +51,7 @@
                                         <Ellipse Width="18"
                                                  Height="18">
                                             <Ellipse.Fill>
-                                                <ImageBrush ImageSource="{Binding TechnicianStatus,Converter={StaticResource TechnicianStatusToImageSourceConverter}}" />
+                                                <ImageBrush ImageSource="{Binding Status,Converter={StaticResource StatusToImageSourceConverter}}" />
                                             </Ellipse.Fill>
                                         </Ellipse>
                                         <Rectangle Width="3"
