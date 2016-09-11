@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="TechSupportServiceSecure1" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
-  <wsp:Policy wsu:Id="BasicHttpsBinding_ITechSupportServiceSecure1_policy">
+  <wsp:Policy wsu:Id="WSHttpBinding_ITechSupportServiceSecure1_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -17,24 +17,87 @@
             </sp:AlgorithmSuite>
             <sp:Layout>
               <wsp:Policy>
-                <sp:Lax />
+                <sp:Strict />
               </wsp:Policy>
             </sp:Layout>
             <sp:IncludeTimestamp />
           </wsp:Policy>
         </sp:TransportBinding>
-        <sp:SignedSupportingTokens xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+        <sp:EndorsingSupportingTokens xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
           <wsp:Policy>
-            <sp:UsernameToken sp:IncludeToken="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy/IncludeToken/AlwaysToRecipient">
+            <sp:SecureConversationToken sp:IncludeToken="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy/IncludeToken/AlwaysToRecipient">
               <wsp:Policy>
-                <sp:WssUsernameToken10 />
+                <sp:BootstrapPolicy>
+                  <wsp:Policy>
+                    <sp:SignedParts>
+                      <sp:Body />
+                      <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+                      <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+                      <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+                      <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+                      <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+                      <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+                      <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+                    </sp:SignedParts>
+                    <sp:EncryptedParts>
+                      <sp:Body />
+                    </sp:EncryptedParts>
+                    <sp:TransportBinding>
+                      <wsp:Policy>
+                        <sp:TransportToken>
+                          <wsp:Policy>
+                            <sp:HttpsToken RequireClientCertificate="false" />
+                          </wsp:Policy>
+                        </sp:TransportToken>
+                        <sp:AlgorithmSuite>
+                          <wsp:Policy>
+                            <sp:Basic256 />
+                          </wsp:Policy>
+                        </sp:AlgorithmSuite>
+                        <sp:Layout>
+                          <wsp:Policy>
+                            <sp:Strict />
+                          </wsp:Policy>
+                        </sp:Layout>
+                        <sp:IncludeTimestamp />
+                      </wsp:Policy>
+                    </sp:TransportBinding>
+                    <sp:SignedSupportingTokens>
+                      <wsp:Policy>
+                        <sp:UsernameToken sp:IncludeToken="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy/IncludeToken/AlwaysToRecipient">
+                          <wsp:Policy>
+                            <sp:WssUsernameToken10 />
+                          </wsp:Policy>
+                        </sp:UsernameToken>
+                      </wsp:Policy>
+                    </sp:SignedSupportingTokens>
+                    <sp:Wss11>
+                      <wsp:Policy />
+                    </sp:Wss11>
+                    <sp:Trust10>
+                      <wsp:Policy>
+                        <sp:MustSupportIssuedTokens />
+                        <sp:RequireClientEntropy />
+                        <sp:RequireServerEntropy />
+                      </wsp:Policy>
+                    </sp:Trust10>
+                  </wsp:Policy>
+                </sp:BootstrapPolicy>
               </wsp:Policy>
-            </sp:UsernameToken>
+            </sp:SecureConversationToken>
           </wsp:Policy>
-        </sp:SignedSupportingTokens>
-        <sp:Wss10 xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+        </sp:EndorsingSupportingTokens>
+        <sp:Wss11 xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
           <wsp:Policy />
-        </sp:Wss10>
+        </sp:Wss11>
+        <sp:Trust10 xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:MustSupportIssuedTokens />
+            <sp:RequireClientEntropy />
+            <sp:RequireServerEntropy />
+          </wsp:Policy>
+        </sp:Trust10>
+        <wsaw:UsingAddressing />
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
@@ -224,175 +287,178 @@
       <wsdl:output wsaw:Action="http://tempuri.org/ITechSupportServiceSecure1/GetLastSevedDaysSolvesResponse" message="tns:ITechSupportServiceSecure1_GetLastSevedDaysSolves_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
-  <wsdl:binding name="BasicHttpsBinding_ITechSupportServiceSecure1" type="tns:ITechSupportServiceSecure1">
-    <wsp:PolicyReference URI="#BasicHttpsBinding_ITechSupportServiceSecure1_policy" />
-    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+  <wsdl:binding name="WSHttpBinding_ITechSupportServiceSecure1" type="tns:ITechSupportServiceSecure1">
+    <wsp:PolicyReference URI="#WSHttpBinding_ITechSupportServiceSecure1_policy" />
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="Login">
-      <soap:operation soapAction="http://tempuri.org/ITechSupportServiceSecure1/Login" style="document" />
+      <soap12:operation soapAction="http://tempuri.org/ITechSupportServiceSecure1/Login" style="document" />
       <wsdl:input>
-        <soap:body use="literal" />
+        <soap12:body use="literal" />
       </wsdl:input>
       <wsdl:output>
-        <soap:body use="literal" />
+        <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="RegisterNewStaffMember">
-      <soap:operation soapAction="http://tempuri.org/ITechSupportServiceSecure1/RegisterNewStaffMember" style="document" />
+      <soap12:operation soapAction="http://tempuri.org/ITechSupportServiceSecure1/RegisterNewStaffMember" style="document" />
       <wsdl:input>
-        <soap:body use="literal" />
+        <soap12:body use="literal" />
       </wsdl:input>
     </wsdl:operation>
     <wsdl:operation name="LastCustomerList">
-      <soap:operation soapAction="http://tempuri.org/ITechSupportServiceSecure1/LastCustomerList" style="document" />
+      <soap12:operation soapAction="http://tempuri.org/ITechSupportServiceSecure1/LastCustomerList" style="document" />
       <wsdl:input>
-        <soap:body use="literal" />
+        <soap12:body use="literal" />
       </wsdl:input>
       <wsdl:output>
-        <soap:body use="literal" />
+        <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="StaffList">
-      <soap:operation soapAction="http://tempuri.org/ITechSupportServiceSecure1/StaffList" style="document" />
+      <soap12:operation soapAction="http://tempuri.org/ITechSupportServiceSecure1/StaffList" style="document" />
       <wsdl:input>
-        <soap:body use="literal" />
+        <soap12:body use="literal" />
       </wsdl:input>
       <wsdl:output>
-        <soap:body use="literal" />
+        <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="ChangeWorkerStatus">
-      <soap:operation soapAction="http://tempuri.org/ITechSupportServiceSecure1/ChangeWorkerStatus" style="document" />
+      <soap12:operation soapAction="http://tempuri.org/ITechSupportServiceSecure1/ChangeWorkerStatus" style="document" />
       <wsdl:input>
-        <soap:body use="literal" />
+        <soap12:body use="literal" />
       </wsdl:input>
     </wsdl:operation>
     <wsdl:operation name="ChangeMyStatus">
-      <soap:operation soapAction="http://tempuri.org/ITechSupportServiceSecure1/ChangeMyStatus" style="document" />
+      <soap12:operation soapAction="http://tempuri.org/ITechSupportServiceSecure1/ChangeMyStatus" style="document" />
       <wsdl:input>
-        <soap:body use="literal" />
+        <soap12:body use="literal" />
       </wsdl:input>
     </wsdl:operation>
     <wsdl:operation name="SendBugreport">
-      <soap:operation soapAction="http://tempuri.org/ITechSupportServiceSecure1/SendBugreport" style="document" />
+      <soap12:operation soapAction="http://tempuri.org/ITechSupportServiceSecure1/SendBugreport" style="document" />
       <wsdl:input>
-        <soap:body use="literal" />
+        <soap12:body use="literal" />
       </wsdl:input>
     </wsdl:operation>
     <wsdl:operation name="ChangeWorkerPassWD">
-      <soap:operation soapAction="http://tempuri.org/ITechSupportServiceSecure1/ChangeWorkerPassWD" style="document" />
+      <soap12:operation soapAction="http://tempuri.org/ITechSupportServiceSecure1/ChangeWorkerPassWD" style="document" />
       <wsdl:input>
-        <soap:body use="literal" />
+        <soap12:body use="literal" />
       </wsdl:input>
     </wsdl:operation>
     <wsdl:operation name="ChangePassWD">
-      <soap:operation soapAction="http://tempuri.org/ITechSupportServiceSecure1/ChangePassWD" style="document" />
+      <soap12:operation soapAction="http://tempuri.org/ITechSupportServiceSecure1/ChangePassWD" style="document" />
       <wsdl:input>
-        <soap:body use="literal" />
+        <soap12:body use="literal" />
       </wsdl:input>
     </wsdl:operation>
     <wsdl:operation name="GetWorker">
-      <soap:operation soapAction="http://tempuri.org/ITechSupportServiceSecure1/GetWorker" style="document" />
+      <soap12:operation soapAction="http://tempuri.org/ITechSupportServiceSecure1/GetWorker" style="document" />
       <wsdl:input>
-        <soap:body use="literal" />
+        <soap12:body use="literal" />
       </wsdl:input>
       <wsdl:output>
-        <soap:body use="literal" />
+        <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="TechnicianList">
-      <soap:operation soapAction="http://tempuri.org/ITechSupportServiceSecure1/TechnicianList" style="document" />
+      <soap12:operation soapAction="http://tempuri.org/ITechSupportServiceSecure1/TechnicianList" style="document" />
       <wsdl:input>
-        <soap:body use="literal" />
+        <soap12:body use="literal" />
       </wsdl:input>
       <wsdl:output>
-        <soap:body use="literal" />
+        <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="GetAvailableTechnician">
-      <soap:operation soapAction="http://tempuri.org/ITechSupportServiceSecure1/GetAvailableTechnician" style="document" />
+      <soap12:operation soapAction="http://tempuri.org/ITechSupportServiceSecure1/GetAvailableTechnician" style="document" />
       <wsdl:input>
-        <soap:body use="literal" />
+        <soap12:body use="literal" />
       </wsdl:input>
       <wsdl:output>
-        <soap:body use="literal" />
+        <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="AddNewSolvedQuestion">
-      <soap:operation soapAction="http://tempuri.org/ITechSupportServiceSecure1/AddNewSolvedQuestion" style="document" />
+      <soap12:operation soapAction="http://tempuri.org/ITechSupportServiceSecure1/AddNewSolvedQuestion" style="document" />
       <wsdl:input>
-        <soap:body use="literal" />
+        <soap12:body use="literal" />
       </wsdl:input>
     </wsdl:operation>
     <wsdl:operation name="SolvedQuestionList">
-      <soap:operation soapAction="http://tempuri.org/ITechSupportServiceSecure1/SolvedQuestionList" style="document" />
+      <soap12:operation soapAction="http://tempuri.org/ITechSupportServiceSecure1/SolvedQuestionList" style="document" />
       <wsdl:input>
-        <soap:body use="literal" />
+        <soap12:body use="literal" />
       </wsdl:input>
       <wsdl:output>
-        <soap:body use="literal" />
+        <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="GetTechWorks">
-      <soap:operation soapAction="http://tempuri.org/ITechSupportServiceSecure1/GetTechWorks" style="document" />
+      <soap12:operation soapAction="http://tempuri.org/ITechSupportServiceSecure1/GetTechWorks" style="document" />
       <wsdl:input>
-        <soap:body use="literal" />
+        <soap12:body use="literal" />
       </wsdl:input>
       <wsdl:output>
-        <soap:body use="literal" />
+        <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="NewTechWorks">
-      <soap:operation soapAction="http://tempuri.org/ITechSupportServiceSecure1/NewTechWorks" style="document" />
+      <soap12:operation soapAction="http://tempuri.org/ITechSupportServiceSecure1/NewTechWorks" style="document" />
       <wsdl:input>
-        <soap:body use="literal" />
+        <soap12:body use="literal" />
       </wsdl:input>
       <wsdl:output>
-        <soap:body use="literal" />
+        <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="ChangeTechnicianStatus">
-      <soap:operation soapAction="http://tempuri.org/ITechSupportServiceSecure1/ChangeTechnicianStatus" style="document" />
+      <soap12:operation soapAction="http://tempuri.org/ITechSupportServiceSecure1/ChangeTechnicianStatus" style="document" />
       <wsdl:input>
-        <soap:body use="literal" />
+        <soap12:body use="literal" />
       </wsdl:input>
     </wsdl:operation>
     <wsdl:operation name="RegisterTechWork">
-      <soap:operation soapAction="http://tempuri.org/ITechSupportServiceSecure1/RegisterTechWork" style="document" />
+      <soap12:operation soapAction="http://tempuri.org/ITechSupportServiceSecure1/RegisterTechWork" style="document" />
       <wsdl:input>
-        <soap:body use="literal" />
+        <soap12:body use="literal" />
       </wsdl:input>
     </wsdl:operation>
     <wsdl:operation name="LastCustomer">
-      <soap:operation soapAction="http://tempuri.org/ITechSupportServiceSecure1/LastCustomer" style="document" />
+      <soap12:operation soapAction="http://tempuri.org/ITechSupportServiceSecure1/LastCustomer" style="document" />
       <wsdl:input>
-        <soap:body use="literal" />
+        <soap12:body use="literal" />
       </wsdl:input>
       <wsdl:output>
-        <soap:body use="literal" />
+        <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="GetCustomer">
-      <soap:operation soapAction="http://tempuri.org/ITechSupportServiceSecure1/GetCustomer" style="document" />
+      <soap12:operation soapAction="http://tempuri.org/ITechSupportServiceSecure1/GetCustomer" style="document" />
       <wsdl:input>
-        <soap:body use="literal" />
+        <soap12:body use="literal" />
       </wsdl:input>
       <wsdl:output>
-        <soap:body use="literal" />
+        <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="GetLastSevedDaysSolves">
-      <soap:operation soapAction="http://tempuri.org/ITechSupportServiceSecure1/GetLastSevedDaysSolves" style="document" />
+      <soap12:operation soapAction="http://tempuri.org/ITechSupportServiceSecure1/GetLastSevedDaysSolves" style="document" />
       <wsdl:input>
-        <soap:body use="literal" />
+        <soap12:body use="literal" />
       </wsdl:input>
       <wsdl:output>
-        <soap:body use="literal" />
+        <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="TechSupportServiceSecure1">
-    <wsdl:port name="BasicHttpsBinding_ITechSupportServiceSecure1" binding="tns:BasicHttpsBinding_ITechSupportServiceSecure1">
-      <soap:address location="https://techsupportserver.azurewebsites.net/TechSupportServiceSecure.svc" />
+    <wsdl:port name="WSHttpBinding_ITechSupportServiceSecure1" binding="tns:WSHttpBinding_ITechSupportServiceSecure1">
+      <soap12:address location="https://techsupportserver.azurewebsites.net/TechSupportServiceSecure.svc" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>https://techsupportserver.azurewebsites.net/TechSupportServiceSecure.svc</wsa10:Address>
+      </wsa10:EndpointReference>
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

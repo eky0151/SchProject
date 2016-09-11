@@ -172,6 +172,11 @@
     </ApplicationDefinition>
     <Compile Include="Resources\FixSizedObservableCollection.cs" />
     <Compile Include="Resources\Layout\Converters\ParametersToArrayConverter.cs" />
+    <Compile Include="Service References\TechSupportSecure\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="ServiceBus\AzureServiceBus.cs" />
     <Compile Include="Resources\Navigation\ContentNavigator.cs" />
     <Compile Include="Resources\Navigation\MenuButtonFactory.cs" />
@@ -224,11 +229,6 @@
     <Compile Include="Resources\Views\MainWindowAqua.xaml.cs">
       <DependentUpon>MainWindowAqua.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Service References\TechSupportSecure\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
     <Compile Include="Service References\TechSupportService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -241,6 +241,46 @@
     <Compile Include="ServiceBus\StatusChangedEventArgs.cs" />
     <Compile Include="Resources\Services\TechSupportServer.cs" />
     <Compile Include="Resources\Services\UserData.cs" />
+    <None Include="Service References\TechSupportSecure\SchProject.TechSupportSecure.CustomerData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\TechSupportSecure\SchProject.TechSupportSecure.GetLastSevedDaysSolvesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\TechSupportSecure\SchProject.TechSupportSecure.LoginResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\TechSupportSecure\SchProject.TechSupportSecure.SolvedQuestion.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\TechSupportSecure\SchProject.TechSupportSecure.TechnicianData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\TechSupportSecure\SchProject.TechSupportSecure.TechWork.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\TechSupportSecure\SchProject.TechSupportSecure.WorkerData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\TechSupportSecure\TechSupportServiceSecure.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\TechSupportSecure\TechSupportServiceSecure1.wsdl" />
+    <None Include="Service References\TechSupportSecure\TechSupportServiceSecure1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\TechSupportSecure\TechSupportServiceSecure2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\TechSupportSecure\TechSupportServiceSecure3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\TechSupportSecure\TechSupportServiceSecure4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\TechSupportSecure\TechSupportServiceSecure5.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="ViewModel\ChatViewModel.cs" />
     <Compile Include="ViewModel\DashboardViewModel.cs" />
     <Compile Include="ViewModel\AdminsViewModel.cs" />
@@ -355,46 +395,6 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <None Include="Service References\TechSupportSecure\SchProject.TechSupportSecure.CustomerData.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\TechSupportSecure\SchProject.TechSupportSecure.GetLastSevedDaysSolvesResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\TechSupportSecure\SchProject.TechSupportSecure.LoginResult.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\TechSupportSecure\SchProject.TechSupportSecure.SolvedQuestion.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\TechSupportSecure\SchProject.TechSupportSecure.TechnicianData.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\TechSupportSecure\SchProject.TechSupportSecure.TechWork.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\TechSupportSecure\SchProject.TechSupportSecure.WorkerData.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\TechSupportSecure\TechSupportServiceSecure.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\TechSupportSecure\TechSupportServiceSecure1.wsdl" />
-    <None Include="Service References\TechSupportSecure\TechSupportServiceSecure1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\TechSupportSecure\TechSupportServiceSecure2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\TechSupportSecure\TechSupportServiceSecure3.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\TechSupportSecure\TechSupportServiceSecure4.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\TechSupportSecure\TechSupportServiceSecure5.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Service References\TechSupportService\SchProject.TechSupportService.CustomerData.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -513,21 +513,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\TechSupportSecure\TechSupportServiceSecure.disco" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\TechSupportSecure\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\TechSupportSecure\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\TechSupportSecure\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\Layout\Images\report.png" />
   </ItemGroup>
   <ItemGroup>
@@ -547,6 +532,21 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Layout\Images\userSmall.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\TechSupportSecure\TechSupportServiceSecure.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\TechSupportSecure\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\TechSupportSecure\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\TechSupportSecure\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
