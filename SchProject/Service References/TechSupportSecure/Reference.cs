@@ -26,9 +26,6 @@ namespace SchProject.TechSupportSecure {
         private string FullNameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Guid IdentifierField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private SchProject.TechSupportSecure.Role RoleField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -53,19 +50,6 @@ namespace SchProject.TechSupportSecure {
                 if ((object.ReferenceEquals(this.FullNameField, value) != true)) {
                     this.FullNameField = value;
                     this.RaisePropertyChanged("FullName");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Guid Identifier {
-            get {
-                return this.IdentifierField;
-            }
-            set {
-                if ((this.IdentifierField.Equals(value) != true)) {
-                    this.IdentifierField = value;
-                    this.RaisePropertyChanged("Identifier");
                 }
             }
         }
@@ -629,6 +613,9 @@ namespace SchProject.TechSupportSecure {
         private int CustomerIDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string[] KeyWordsField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -694,6 +681,19 @@ namespace SchProject.TechSupportSecure {
                 if ((this.CustomerIDField.Equals(value) != true)) {
                     this.CustomerIDField = value;
                     this.RaisePropertyChanged("CustomerID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ID {
+            get {
+                return this.IDField;
+            }
+            set {
+                if ((this.IDField.Equals(value) != true)) {
+                    this.IDField = value;
+                    this.RaisePropertyChanged("ID");
                 }
             }
         }
@@ -1054,6 +1054,18 @@ namespace SchProject.TechSupportSecure {
         // CODEGEN: Generating message contract since the operation has multiple return values.
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportServiceSecure1/GetLastSevedDaysSolves", ReplyAction="http://tempuri.org/ITechSupportServiceSecure1/GetLastSevedDaysSolvesResponse")]
         System.Threading.Tasks.Task<SchProject.TechSupportSecure.GetLastSevedDaysSolvesResponse> GetLastSevedDaysSolvesAsync(SchProject.TechSupportSecure.GetLastSevedDaysSolvesRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ITechSupportServiceSecure1/ChangeMyPassWD")]
+        void ChangeMyPassWD(string newPass);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ITechSupportServiceSecure1/ChangeMyPassWD")]
+        System.Threading.Tasks.Task ChangeMyPassWDAsync(string newPass);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ITechSupportServiceSecure1/ChangeMyPicture")]
+        void ChangeMyPicture(string picture);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ITechSupportServiceSecure1/ChangeMyPicture")]
+        System.Threading.Tasks.Task ChangeMyPictureAsync(string picture);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -1291,6 +1303,22 @@ namespace SchProject.TechSupportSecure {
         
         public System.Threading.Tasks.Task<SchProject.TechSupportSecure.GetLastSevedDaysSolvesResponse> GetLastSevedDaysSolvesAsync(SchProject.TechSupportSecure.GetLastSevedDaysSolvesRequest request) {
             return base.Channel.GetLastSevedDaysSolvesAsync(request);
+        }
+        
+        public void ChangeMyPassWD(string newPass) {
+            base.Channel.ChangeMyPassWD(newPass);
+        }
+        
+        public System.Threading.Tasks.Task ChangeMyPassWDAsync(string newPass) {
+            return base.Channel.ChangeMyPassWDAsync(newPass);
+        }
+        
+        public void ChangeMyPicture(string picture) {
+            base.Channel.ChangeMyPicture(picture);
+        }
+        
+        public System.Threading.Tasks.Task ChangeMyPictureAsync(string picture) {
+            return base.Channel.ChangeMyPictureAsync(picture);
         }
     }
 }

@@ -8,8 +8,6 @@ namespace TechSupportService
     [DataContract]
     public class LoginResult
     {
-        [DataMember]
-        public Guid Identifier { get; set; }
 
         [DataMember]
         public bool Valid { get; set; }

@@ -33,7 +33,8 @@
                               ItemsSource="{Binding Languages}"
                               SelectedItem="{Binding CurrentLanguage}"
                               HorizontalContentAlignment="Center"
-                              VerticalContentAlignment="Center" />
+                              VerticalContentAlignment="Center"
+                              IsEnabled="False" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal"
                             Margin="0,10,0,0">

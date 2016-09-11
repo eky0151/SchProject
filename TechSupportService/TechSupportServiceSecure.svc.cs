@@ -67,21 +67,7 @@ namespace TechSupportService
 
         public List<WorkerData> StaffList()
         {
-            List<WorkerData> staffreturn = new List<WorkerData>();
-            var staff = _workerRepository.GetAll().ToList();
-            foreach (Worker worker in staff)
-            {
-                WorkerData data = new WorkerData(worker.FullName,
-                    _authRepository.Get(x => x.Worker.ID == worker.ID).SingleOrDefault().Username, worker.Email,
-                    worker.Phone, worker.Address, worker.ProfilePicture,
-                    (Status)Enum.Parse(typeof(Status), worker.Status),
-                    (Role)
-                    Enum.Parse(typeof(Role), _authRepository.Get(x => x.Worker.ID == worker.ID).SingleOrDefault().Urole));
-                staffreturn.Add(data);
-            }
-
-            return staffreturn;
-
+            return _workerRepository.GetAll().ToList().ConvertAll(WorkerData.WorkerToWorkerData).ToList();
         }
 
         public void ChangeWorkerStatus(string username, Status status)
@@ -135,11 +121,9 @@ namespace TechSupportService
 
         public List<TechnicianData> TechnicianList()
         {
-            string role = Enum.GetName(typeof(Role), Role.Technician);
-            var res = _authRepository.Get(x => x.Urole == "Technician")
+            return _authRepository.Get(x => x.Urole == "Technician")
                 .Select(x => x.Worker.Technician.FirstOrDefault())
-                .ToList();
-            return res.ConvertAll(TechnicianData.ConverTechnicianData).ToList();
+                .ToList().ConvertAll(TechnicianData.ConverTechnicianData).ToList();
         }
 
         public List<TechnicianData> GetAvailableTechnician()
@@ -148,32 +132,29 @@ namespace TechSupportService
                 _authRepository.Get(x => x.Urole == Enum.GetName(typeof(Role), Role.Technician))
                     .Where(x => (x.Worker.Technician.SingleOrDefault()).Available == "Available")
                     .Select(x => x.Worker.Technician.SingleOrDefault())
-                    .Cast<TechnicianData>()
+                    .ToList()
+                    .ConvertAll(TechnicianData.ConverTechnicianData)
                     .ToList();
         }
 
         public void AddNewSolvedQuestion(SolvedQuestion solved)
         {
-            _solvedQuestionsRepository.Insert(new DbAndRepository.SolvedQuestion()
-            {
-                Answer = solved.Answer,
-                Category = solved.Category
-            });
+            _solvedQuestionsRepository.Insert(SolvedQuestion.SolvedQuestionToDB(solved));
         }
 
         public List<SolvedQuestion> SolvedQuestionList(uint Page)
         {
-            throw new NotImplementedException();
+            return _solvedQuestionsRepository.Get(x => x.ID < Page).ToList().Cast<SolvedQuestion>().ToList();
         }
 
         public List<TechWork> GetTechWorks()
         {
-            return _techworksRepository.GetAll().Select(x => (TechWork)x).ToList();
+            return _techworksRepository.GetAll().ToList().Cast<TechWork>().ToList();
         }
 
         public List<TechWork> NewTechWorks()
         {
-            return new List<TechWork>(_techworksRepository.GetAll().OrderBy(i => i.Finish).Select(i => (TechWork)i));
+            return _techworksRepository.GetAll().OrderBy(i => i.Finish).ToList().Cast<TechWork>().ToList();
         }
 
         [PrincipalPermission(SecurityAction.Demand, Role = "Technician")]
@@ -182,11 +163,9 @@ namespace TechSupportService
             var res = _authRepository.Get(x => x.Username == ServiceSecurityContext.Current.PrimaryIdentity.Name)?
                 .SingleOrDefault()?
                 .Worker.Technician.SingleOrDefault();
-            if (res != null)
-            {
-                res.Available = Enum.GetName(typeof(TechnicianStatus), status);
-                _technicianRepository.Update(res);
-            }
+            if (res == null) return;
+            res.Available = Enum.GetName(typeof(TechnicianStatus), status);
+            _technicianRepository.Update(res);
         }
 
         public void RegisterTechWork(TechWork work)
@@ -204,15 +183,14 @@ namespace TechSupportService
 
         public CustomerData LastCustomer()
         {
-            var z = _regUserRepository.GetAll().ToList();
-            RegUser u = z[z.Count - 1];
+            var z = _regUserRepository.GetAll().Count();
+            RegUser u = _regUserRepository.GetById(z - 1);
             return ReturnCustomer(u);
         }
 
         public CustomerData GetCustomer(string username)
         {
             RegUser z = _regUserRepository.Get(i => i.Username == username).FirstOrDefault();
-            //return (CustomerData)_regUserRepository.Get(x => x.Username == username).SingleOrDefault();
             return ReturnCustomer(z);
         }
 
@@ -252,8 +230,6 @@ namespace TechSupportService
 
         public LoginResult Login()
         {
-
-            Guid clientId = Guid.NewGuid();
             string name = ServiceSecurityContext.Current.PrimaryIdentity.Name;
             var worker = _authRepository.Get(x => x.Username == name).SingleOrDefault()?.Worker;
             worker.Status = "Working";
@@ -264,7 +240,6 @@ namespace TechSupportService
                 AzureServiceBus.SendStatusNotification(name, Status.Working);
                 return new LoginResult()
                 {
-                    Identifier = clientId,
                     FullName = worker.FullName,
                     Role = (Role)Enum.Parse(typeof(Role), worker.LoginData.FirstOrDefault().Urole)
                 };
@@ -277,10 +252,23 @@ namespace TechSupportService
         {
             string name = ServiceSecurityContext.Current.PrimaryIdentity.Name;
             var worker = _authRepository.Get(x => x.Username == name).SingleOrDefault()?.Worker;
-            worker.Status = "Away";
-            _workerRepository.Update(worker);
-            AzureServiceBus.SendStatusNotification(name, Status.Away);
+            if (worker != null)
+            {
+                worker.Status = "Away";
+                _workerRepository.Update(worker);
+                AzureServiceBus.SendStatusNotification(name, Status.Away);
+            }
 
+        }
+
+        public void ChangeMyPassWD(string newPass)
+        {
+            _authRepository.ChangePassWD(ServiceSecurityContext.Current.PrimaryIdentity.Name, newPass);
+        }
+
+        public void ChangeMyPicture(string picture)
+        {
+            _workerRepository.ChangePicture(_authRepository.Get(x => x.Username == ServiceSecurityContext.Current.PrimaryIdentity.Name).FirstOrDefault().WorkerID, picture);
         }
     }
 }

@@ -77,5 +77,12 @@ namespace TechSupportService
 
         [OperationContract]
         List<int> GetLastSevedDaysSolves(out List<DateTime> dates, out List<KeyValuePair<string, int>> byName);
+
+        [OperationContract(IsOneWay = true)]
+        void ChangeMyPassWD(string newPass);
+
+        [OperationContract(IsOneWay = true)]
+        void ChangeMyPicture(string picture);
+
     }
 }

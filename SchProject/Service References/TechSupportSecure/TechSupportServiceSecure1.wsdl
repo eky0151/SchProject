@@ -210,6 +210,12 @@
   <wsdl:message name="ITechSupportServiceSecure1_GetLastSevedDaysSolves_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetLastSevedDaysSolvesResponse" />
   </wsdl:message>
+  <wsdl:message name="ITechSupportServiceSecure1_ChangeMyPassWD_InputMessage">
+    <wsdl:part name="parameters" element="tns:ChangeMyPassWD" />
+  </wsdl:message>
+  <wsdl:message name="ITechSupportServiceSecure1_ChangeMyPicture_InputMessage">
+    <wsdl:part name="parameters" element="tns:ChangeMyPicture" />
+  </wsdl:message>
   <wsdl:portType name="ITechSupportServiceSecure1">
     <wsdl:operation name="Login">
       <wsdl:input wsaw:Action="http://tempuri.org/ITechSupportServiceSecure1/Login" message="tns:ITechSupportServiceSecure1_Login_InputMessage" />
@@ -285,6 +291,12 @@
     <wsdl:operation name="GetLastSevedDaysSolves">
       <wsdl:input wsaw:Action="http://tempuri.org/ITechSupportServiceSecure1/GetLastSevedDaysSolves" message="tns:ITechSupportServiceSecure1_GetLastSevedDaysSolves_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ITechSupportServiceSecure1/GetLastSevedDaysSolvesResponse" message="tns:ITechSupportServiceSecure1_GetLastSevedDaysSolves_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeMyPassWD">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITechSupportServiceSecure1/ChangeMyPassWD" message="tns:ITechSupportServiceSecure1_ChangeMyPassWD_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeMyPicture">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITechSupportServiceSecure1/ChangeMyPicture" message="tns:ITechSupportServiceSecure1_ChangeMyPicture_InputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="WSHttpBinding_ITechSupportServiceSecure1" type="tns:ITechSupportServiceSecure1">
@@ -451,6 +463,18 @@
       <wsdl:output>
         <soap12:body use="literal" />
       </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeMyPassWD">
+      <soap12:operation soapAction="http://tempuri.org/ITechSupportServiceSecure1/ChangeMyPassWD" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeMyPicture">
+      <soap12:operation soapAction="http://tempuri.org/ITechSupportServiceSecure1/ChangeMyPicture" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
     </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="TechSupportServiceSecure1">

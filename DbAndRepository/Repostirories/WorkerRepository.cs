@@ -93,6 +93,13 @@ namespace DbAndRepository.Repostirories
                 Get(x => x.LoginData.SingleOrDefault().Urole == "HelpDesk").Count(x => x.Status == "Available");
         }
 
+        public void ChangePicture(int workerID, string picture)
+        {
+            var worker = GetById(workerID);
+            worker.ProfilePicture = picture;
+            Update(worker);
+        }
+
 
     }
 }

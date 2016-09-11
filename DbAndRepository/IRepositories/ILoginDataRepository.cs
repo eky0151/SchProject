@@ -8,5 +8,6 @@
         bool Authenticate(string username, string password);
         bool CheckUsername(string username);
         string GetPicture(string userName);
+        void ChangePassWD(string username, string newPasswd);
     }
 }

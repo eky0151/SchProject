@@ -23,7 +23,7 @@
                      Margin="60,50,60,0"
                      VerticalAlignment="Top">
                 <Ellipse.Fill>
-                    <ImageBrush ImageSource="{Binding User.ProfilePicture,Converter={StaticResource StringToImageSourceConverter},ConverterParameter=512}"
+                    <ImageBrush ImageSource="{Binding User.ProfilePicture,Converter={StaticResource StringToImageSourceConverter},ConverterParameter=256}"
                                 Stretch="UniformToFill" />
                 </Ellipse.Fill>
             </Ellipse>
