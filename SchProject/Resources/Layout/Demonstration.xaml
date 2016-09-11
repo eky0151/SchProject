@@ -5,7 +5,11 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
              xmlns:local="clr-namespace:SchProject.Resources.Layout"
+             
              xmlns:chart="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"
+             xmlns:telerikChart="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Charting"
+             xmlns:telerikCharting="clr-namespace:Telerik.Windows.Controls.Charting;assembly=Telerik.Windows.Controls.Charting"
+             xmlns:chartView="clr-namespace:Telerik.Windows.Controls.ChartView;assembly=Telerik.Windows.Controls.Chart"
              mc:Ignorable="d" 
              d:DesignHeight="625" d:DesignWidth="1000"
              DataContext="{Binding Source={StaticResource Locator}, Path=Demonstration}">
@@ -13,13 +17,12 @@
         
         
 
-        <!--<telerik:ChartDataSource x:Name="dataSource"
+        <telerik:ChartDataSource x:Name="dataSource"
                                  ItemsSource="{Binding Path=Data}"
-                                 SamplingUnit="Day" 
-                                />-->
+                                 SamplingUnit="Day" />
 
         <Label FontFamily="Times New Roman" 
-               Content="Demontration"
+               Content="Reports"
                FontSize="20"
                HorizontalAlignment="Center" Height="52" Margin="10,10,10,0" VerticalAlignment="Top" Width="980"
                Background="Transparent"
@@ -32,21 +35,24 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <!--<telerik:RadCartesianChart Grid.Column="0">
+                    <telerik:RadCartesianChart Grid.Column="0">
                         <telerik:RadCartesianChart.HorizontalAxis>
                             <telerik:DateTimeCategoricalAxis LabelFormat="dd/MMM" DateTimeComponent="Ticks"/>
                         </telerik:RadCartesianChart.HorizontalAxis>
                         <telerik:RadCartesianChart.VerticalAxis>
                             <telerik:LinearAxis/>
                         </telerik:RadCartesianChart.VerticalAxis>
+
+
                         <telerik:BarSeries ShowLabels="True"
                                            CategoryBinding="Time"
                                            ValueBinding="Count"
                                            ItemsSource="{Binding ElementName=dataSource}">
-                        </telerik:BarSeries>
-                    </telerik:RadCartesianChart>-->
 
-                    <chart:Chart Grid.Column="1" Title="Solved Question by workers" IsTabStop="True" ForceCursor="True" DataContext="{Binding Path=Pie}">
+                        </telerik:BarSeries>
+                    </telerik:RadCartesianChart>
+
+                    <chart:Chart Grid.Column="1" Title="Solved Question by workers last 7 days" BorderThickness="0" IsTabStop="True" ForceCursor="True" DataContext="{Binding Path=Pie}">
                         <chart:PieSeries DependentValuePath="Value" IndependentValuePath="Key" ItemsSource="{Binding}" IsSelectionEnabled="True"/>
                         <chart:Chart.PlotAreaStyle>
                             <Style TargetType="Grid">
@@ -54,15 +60,37 @@
                             </Style>
                         </chart:Chart.PlotAreaStyle>
                     </chart:Chart>
-                    
+
                 </Grid>
             </TabItem>
             <TabItem Header="TabItem">
-                <Grid Background="#FFE5E5E5"/>
+                <Grid Background="White">
+
+                    <telerik:RadCartesianChart x:Name="telerik" Palette="Windows8Selected">
+                        <telerik:RadCartesianChart.Grid>
+                            <telerik:CartesianChartGrid MajorLinesVisibility="XY" />
+                        </telerik:RadCartesianChart.Grid>
+                        <telerik:RadCartesianChart.HorizontalAxis>
+                            <telerik:LinearAxis />
+                        </telerik:RadCartesianChart.HorizontalAxis>
+
+                        <telerik:RadCartesianChart.VerticalAxis >
+                            <telerik:CategoricalAxis  />
+                        </telerik:RadCartesianChart.VerticalAxis>
+
+
+
+                        <telerik:RadCartesianChart.Series >
+                            <chartView:LineSeries Stroke="Blue" StrokeThickness="2" CategoryBinding="Count" ValueBinding="Time"  ItemsSource="{Binding Path=Users}">
+                            </chartView:LineSeries>
+                            <!--<telerik:BarSeries CombineMode="Stack" Foreground="AliceBlue" CategoryBinding="Time" ValueBinding="Count"  ItemsSource="{Binding Path=Users}">
+                            </telerik:BarSeries>-->
+                        </telerik:RadCartesianChart.Series>
+
+                    </telerik:RadCartesianChart>
+
+                </Grid>
             </TabItem>
         </TabControl>
-
-
-
     </Grid>
 </UserControl>

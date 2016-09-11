@@ -1,14 +1,13 @@
-﻿using DbAndRepository.GenericsEFRepository;
-using DbAndRepository.IRepositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Data.Entity;
-using System.Data.Entity.Core.Objects;
-using static System.Data.Entity.DbFunctions;
-
-namespace DbAndRepository.Repostirories
+﻿namespace DbAndRepository.Repostirories
 {
+    using DbAndRepository.GenericsEFRepository;
+    using DbAndRepository.IRepositories;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Data.Entity;
+    using static System.Data.Entity.DbFunctions;
+
     public class SolvedQuestionsRepository : GenericsRepository<SolvedQuestion>, ISolvedQuestionsRepository
     {
         public SolvedQuestionsRepository(DbContext newDb) : base(newDb)
