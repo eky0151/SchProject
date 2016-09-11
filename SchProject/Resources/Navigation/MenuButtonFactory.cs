@@ -24,9 +24,9 @@ namespace SchProject
                 case MenuButtonType.Error:
                     return new MenuButtonData(new BitmapImage(new Uri(@"pack://application:,,,/Resources/Layout/Images/error.png")), new BitmapImage(new Uri(@"pack://application:,,,/Resources/Layout/Images/errorSelected.png")), "Error", "HIBÁK");
                 case MenuButtonType.Manager:
-                    return new MenuButtonData(new BitmapImage(new Uri(@"pack://application:,,,/Resources/Layout/Images/management.png")), new BitmapImage(new Uri(@"pack://application:,,,/Resources/Layout/Images/managementSelected.png")), "Management", "Kezelés");
+                    return new MenuButtonData(new BitmapImage(new Uri(@"pack://application:,,,/Resources/Layout/Images/management.png")), new BitmapImage(new Uri(@"pack://application:,,,/Resources/Layout/Images/managementSelected.png")), "Management", "KEZELÉS");
                 case MenuButtonType.Report:
-                    return new MenuButtonData(new BitmapImage(new Uri(@"pack://application:,,,/Resources/Layout/Images/report.png")), new BitmapImage(new Uri(@"pack://application:,,,/Resources/Layout/Images/reportSelected.png")), "Report", "Reports");
+                    return new MenuButtonData(new BitmapImage(new Uri(@"pack://application:,,,/Resources/Layout/Images/report.png")), new BitmapImage(new Uri(@"pack://application:,,,/Resources/Layout/Images/reportSelected.png")), "Report", "REPORTS");
                 default: throw new ArgumentException();
             }
         }

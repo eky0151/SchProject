@@ -66,6 +66,11 @@
             return Get(i => i.Username == userName).FirstOrDefault()?.Picture;
         }
 
+        public RegUser GetUserByUsername(string username)
+        {
+            return Get(i => i.Username == username).FirstOrDefault();
+        }
+
         public override void Update(RegUser entityToModify)
         {
             database.Entry(GetById(entityToModify.ID)).CurrentValues.SetValues(entityToModify);

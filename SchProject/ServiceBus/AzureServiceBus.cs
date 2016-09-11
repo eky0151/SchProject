@@ -8,6 +8,7 @@ using GalaSoft.MvvmLight.Messaging;
 using Microsoft.ServiceBus;
 using Microsoft.ServiceBus.Messaging;
 using SchProject.ServiceBus;
+using SchProject.TechSupportSecure;
 using TechSupportService.DataContract;
 
 
@@ -22,6 +23,7 @@ namespace SchProject
         public event EventHandler<LoginEventArgs> LoginHandler;
         public event EventHandler<StatusChangedEventArgs> StatusHandler;
         public event EventHandler<BugEventArgs> BugHandler;
+        public event EventHandler<CustomerLoginEventArgs> CustomerLoginHandler; 
 
 
         public AzureServiceBus()
@@ -73,6 +75,16 @@ namespace SchProject
                 }
 
             }
+            else if (message.ContentType == "CustomerLogin")
+            {
+                EventHandler<CustomerLoginEventArgs> temp = CustomerLoginHandler;
+                if (temp != null)
+                {
+                    var msg = message.GetBody<CustomerData>();
+                    temp.Invoke(this, new CustomerLoginEventArgs() { Customer = msg });
+                }
+            }
+
             else if (message.ContentType == "Bug")
             {
                 EventHandler<BugEventArgs> temp = BugHandler;

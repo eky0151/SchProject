@@ -16,5 +16,7 @@ namespace DbAndRepository.IRepositories
 
         List<int> GetLastMonthRegistratedUsers(out List<DateTime> times);
 
+        RegUser GetUserByUsername(string username);
+
     }
 }

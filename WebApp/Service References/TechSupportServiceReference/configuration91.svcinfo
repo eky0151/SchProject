@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="ch28KoE7BL4c/l2rIDced5fq5Vk=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="kZ7zu8vRfLrmsLDK1NXQitbE6kI=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="wsHttpBinding" name="WSHttpBinding_ITechSupportService1">
       <properties>
@@ -127,10 +127,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="WSHttpBinding_ITechSupportService1" contract="TechSupportServiceReference.ITechSupportService1" bindingType="wsHttpBinding" address="http://techsupportservice.azurewebsites.net/TechSupportService.svc" bindingConfiguration="WSHttpBinding_ITechSupportService1">
+    <endpoint name="WSHttpBinding_ITechSupportService1" contract="TechSupportServiceReference.ITechSupportService1" bindingType="wsHttpBinding" address="http://techsupportserver.azurewebsites.net/TechSupportService.svc" bindingConfiguration="WSHttpBinding_ITechSupportService1">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://techsupportservice.azurewebsites.net/TechSupportService.svc</serializedValue>
+          <serializedValue>http://techsupportserver.azurewebsites.net/TechSupportService.svc</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
