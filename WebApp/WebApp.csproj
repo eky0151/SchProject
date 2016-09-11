@@ -163,17 +163,17 @@
     <None Include="Service References\ChatService\ChatService3.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\TechSupportServiceReference\TechSupportService.disco" />
-    <None Include="Service References\TechSupportServiceReference\configuration91.svcinfo" />
-    <None Include="Service References\TechSupportServiceReference\configuration.svcinfo" />
-    <None Include="Service References\TechSupportServiceReference\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
     <None Include="Service References\ChatService\ChatService.disco" />
     <None Include="Service References\ChatService\configuration91.svcinfo" />
     <None Include="Service References\ChatService\configuration.svcinfo" />
     <None Include="Service References\ChatService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\TechSupportServiceReference\TechSupportService.disco" />
+    <None Include="Service References\TechSupportServiceReference\configuration91.svcinfo" />
+    <None Include="Service References\TechSupportServiceReference\configuration.svcinfo" />
+    <None Include="Service References\TechSupportServiceReference\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -219,6 +219,24 @@
     <None Include="Service References\TechSupportServiceReference\TechSupportService1.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\TechSupportServiceReference\TechSupportService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\TechSupportServiceReference\TechSupportService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\TechSupportServiceReference\TechSupportService4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="Service References\TechSupportServiceReference\WebApp.TechSupportServiceReference.CustomerData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TechSupportServiceReference\WebApp.TechSupportServiceReference.LoginResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\TechSupportServiceReference\WebApp.TechSupportServiceReference.WorkerData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

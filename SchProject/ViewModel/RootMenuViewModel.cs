@@ -73,6 +73,7 @@ namespace SchProject.ViewModel
                     case "Error":
                         Views[d] = new Demonstration();
                         break;
+
                     //case "Reports":
                     //    Views[d] = new Demonstration();
                     //    break;

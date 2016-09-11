@@ -9,11 +9,677 @@
 //------------------------------------------------------------------------------
 
 namespace WebApp.TechSupportServiceReference {
+    using System.Runtime.Serialization;
+    using System;
     
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="LoginResult", Namespace="http://schemas.datacontract.org/2004/07/TechSupportService")]
+    [System.SerializableAttribute()]
+    public partial class LoginResult : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string FullNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Guid IdentifierField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WebApp.TechSupportServiceReference.Role RoleField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool ValidField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string FullName {
+            get {
+                return this.FullNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FullNameField, value) != true)) {
+                    this.FullNameField = value;
+                    this.RaisePropertyChanged("FullName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Guid Identifier {
+            get {
+                return this.IdentifierField;
+            }
+            set {
+                if ((this.IdentifierField.Equals(value) != true)) {
+                    this.IdentifierField = value;
+                    this.RaisePropertyChanged("Identifier");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WebApp.TechSupportServiceReference.Role Role {
+            get {
+                return this.RoleField;
+            }
+            set {
+                if ((this.RoleField.Equals(value) != true)) {
+                    this.RoleField = value;
+                    this.RaisePropertyChanged("Role");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool Valid {
+            get {
+                return this.ValidField;
+            }
+            set {
+                if ((this.ValidField.Equals(value) != true)) {
+                    this.ValidField = value;
+                    this.RaisePropertyChanged("Valid");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Role", Namespace="http://schemas.datacontract.org/2004/07/TechSupportService.DataContract")]
+    public enum Role : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        HelpDesk = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Admin = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Technician = 2,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Boss = 3,
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="WorkerData", Namespace="http://schemas.datacontract.org/2004/07/TechSupportService")]
+    [System.SerializableAttribute()]
+    public partial class WorkerData : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string AddressField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string EmailField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string FullNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PhoneField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ProfilePictureField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WebApp.TechSupportServiceReference.Role RoleField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WebApp.TechSupportServiceReference.Status StatusField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string UsernameField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Address {
+            get {
+                return this.AddressField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AddressField, value) != true)) {
+                    this.AddressField = value;
+                    this.RaisePropertyChanged("Address");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Email {
+            get {
+                return this.EmailField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.EmailField, value) != true)) {
+                    this.EmailField = value;
+                    this.RaisePropertyChanged("Email");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string FullName {
+            get {
+                return this.FullNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FullNameField, value) != true)) {
+                    this.FullNameField = value;
+                    this.RaisePropertyChanged("FullName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ID {
+            get {
+                return this.IDField;
+            }
+            set {
+                if ((this.IDField.Equals(value) != true)) {
+                    this.IDField = value;
+                    this.RaisePropertyChanged("ID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Phone {
+            get {
+                return this.PhoneField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PhoneField, value) != true)) {
+                    this.PhoneField = value;
+                    this.RaisePropertyChanged("Phone");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ProfilePicture {
+            get {
+                return this.ProfilePictureField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ProfilePictureField, value) != true)) {
+                    this.ProfilePictureField = value;
+                    this.RaisePropertyChanged("ProfilePicture");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WebApp.TechSupportServiceReference.Role Role {
+            get {
+                return this.RoleField;
+            }
+            set {
+                if ((this.RoleField.Equals(value) != true)) {
+                    this.RoleField = value;
+                    this.RaisePropertyChanged("Role");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WebApp.TechSupportServiceReference.Status Status {
+            get {
+                return this.StatusField;
+            }
+            set {
+                if ((this.StatusField.Equals(value) != true)) {
+                    this.StatusField = value;
+                    this.RaisePropertyChanged("Status");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Username {
+            get {
+                return this.UsernameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UsernameField, value) != true)) {
+                    this.UsernameField = value;
+                    this.RaisePropertyChanged("Username");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Status", Namespace="http://schemas.datacontract.org/2004/07/TechSupportService")]
+    public enum Status : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Away = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Working = 1,
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="CustomerData", Namespace="http://schemas.datacontract.org/2004/07/TechSupportService.DataContract")]
+    [System.SerializableAttribute()]
+    public partial class CustomerData : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string EmailField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string FullNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PhoneField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PictureField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int PointsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime RegTimeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string UserNameField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Email {
+            get {
+                return this.EmailField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.EmailField, value) != true)) {
+                    this.EmailField = value;
+                    this.RaisePropertyChanged("Email");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string FullName {
+            get {
+                return this.FullNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FullNameField, value) != true)) {
+                    this.FullNameField = value;
+                    this.RaisePropertyChanged("FullName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ID {
+            get {
+                return this.IDField;
+            }
+            set {
+                if ((this.IDField.Equals(value) != true)) {
+                    this.IDField = value;
+                    this.RaisePropertyChanged("ID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Phone {
+            get {
+                return this.PhoneField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PhoneField, value) != true)) {
+                    this.PhoneField = value;
+                    this.RaisePropertyChanged("Phone");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Picture {
+            get {
+                return this.PictureField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PictureField, value) != true)) {
+                    this.PictureField = value;
+                    this.RaisePropertyChanged("Picture");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Points {
+            get {
+                return this.PointsField;
+            }
+            set {
+                if ((this.PointsField.Equals(value) != true)) {
+                    this.PointsField = value;
+                    this.RaisePropertyChanged("Points");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime RegTime {
+            get {
+                return this.RegTimeField;
+            }
+            set {
+                if ((this.RegTimeField.Equals(value) != true)) {
+                    this.RegTimeField = value;
+                    this.RaisePropertyChanged("RegTime");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string UserName {
+            get {
+                return this.UserNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UserNameField, value) != true)) {
+                    this.UserNameField = value;
+                    this.RaisePropertyChanged("UserName");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="SolvedQuestion", Namespace="http://schemas.datacontract.org/2004/07/TechSupportService")]
+    [System.SerializableAttribute()]
+    public partial class SolvedQuestion : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string AnswerField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CategoryField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int CustomerIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string[] KeyWordsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string QuestionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime TimeAnsweredField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime TimeAskedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string TopicField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int WorkerIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string WorkerNameField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Answer {
+            get {
+                return this.AnswerField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AnswerField, value) != true)) {
+                    this.AnswerField = value;
+                    this.RaisePropertyChanged("Answer");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Category {
+            get {
+                return this.CategoryField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CategoryField, value) != true)) {
+                    this.CategoryField = value;
+                    this.RaisePropertyChanged("Category");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int CustomerID {
+            get {
+                return this.CustomerIDField;
+            }
+            set {
+                if ((this.CustomerIDField.Equals(value) != true)) {
+                    this.CustomerIDField = value;
+                    this.RaisePropertyChanged("CustomerID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string[] KeyWords {
+            get {
+                return this.KeyWordsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.KeyWordsField, value) != true)) {
+                    this.KeyWordsField = value;
+                    this.RaisePropertyChanged("KeyWords");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Question {
+            get {
+                return this.QuestionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.QuestionField, value) != true)) {
+                    this.QuestionField = value;
+                    this.RaisePropertyChanged("Question");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime TimeAnswered {
+            get {
+                return this.TimeAnsweredField;
+            }
+            set {
+                if ((this.TimeAnsweredField.Equals(value) != true)) {
+                    this.TimeAnsweredField = value;
+                    this.RaisePropertyChanged("TimeAnswered");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime TimeAsked {
+            get {
+                return this.TimeAskedField;
+            }
+            set {
+                if ((this.TimeAskedField.Equals(value) != true)) {
+                    this.TimeAskedField = value;
+                    this.RaisePropertyChanged("TimeAsked");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Topic {
+            get {
+                return this.TopicField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TopicField, value) != true)) {
+                    this.TopicField = value;
+                    this.RaisePropertyChanged("Topic");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int WorkerID {
+            get {
+                return this.WorkerIDField;
+            }
+            set {
+                if ((this.WorkerIDField.Equals(value) != true)) {
+                    this.WorkerIDField = value;
+                    this.RaisePropertyChanged("WorkerID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string WorkerName {
+            get {
+                return this.WorkerNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.WorkerNameField, value) != true)) {
+                    this.WorkerNameField = value;
+                    this.RaisePropertyChanged("WorkerName");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="TechSupportServiceReference.ITechSupportService1")]
     public interface ITechSupportService1 {
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportService1/TechnicianLogin", ReplyAction="http://tempuri.org/ITechSupportService1/TechnicianLoginResponse")]
+        WebApp.TechSupportServiceReference.LoginResult TechnicianLogin(string username, string passWD);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportService1/TechnicianLogin", ReplyAction="http://tempuri.org/ITechSupportService1/TechnicianLoginResponse")]
+        System.Threading.Tasks.Task<WebApp.TechSupportServiceReference.LoginResult> TechnicianLoginAsync(string username, string passWD);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportService1/HelpDeskWorkerList", ReplyAction="http://tempuri.org/ITechSupportService1/HelpDeskWorkerListResponse")]
+        WebApp.TechSupportServiceReference.WorkerData[] HelpDeskWorkerList();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportService1/HelpDeskWorkerList", ReplyAction="http://tempuri.org/ITechSupportService1/HelpDeskWorkerListResponse")]
+        System.Threading.Tasks.Task<WebApp.TechSupportServiceReference.WorkerData[]> HelpDeskWorkerListAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportService1/CustomerList", ReplyAction="http://tempuri.org/ITechSupportService1/CustomerListResponse")]
+        WebApp.TechSupportServiceReference.CustomerData[] CustomerList();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportService1/CustomerList", ReplyAction="http://tempuri.org/ITechSupportService1/CustomerListResponse")]
+        System.Threading.Tasks.Task<WebApp.TechSupportServiceReference.CustomerData[]> CustomerListAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportService1/UploadSolvedQuestion", ReplyAction="http://tempuri.org/ITechSupportService1/UploadSolvedQuestionResponse")]
+        void UploadSolvedQuestion(WebApp.TechSupportServiceReference.SolvedQuestion question);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportService1/UploadSolvedQuestion", ReplyAction="http://tempuri.org/ITechSupportService1/UploadSolvedQuestionResponse")]
+        System.Threading.Tasks.Task UploadSolvedQuestionAsync(WebApp.TechSupportServiceReference.SolvedQuestion question);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportService1/UserLogin", ReplyAction="http://tempuri.org/ITechSupportService1/UserLoginResponse")]
         bool UserLogin(string username, string password);
@@ -65,6 +731,38 @@ namespace WebApp.TechSupportServiceReference {
         
         public TechSupportService1Client(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
+        }
+        
+        public WebApp.TechSupportServiceReference.LoginResult TechnicianLogin(string username, string passWD) {
+            return base.Channel.TechnicianLogin(username, passWD);
+        }
+        
+        public System.Threading.Tasks.Task<WebApp.TechSupportServiceReference.LoginResult> TechnicianLoginAsync(string username, string passWD) {
+            return base.Channel.TechnicianLoginAsync(username, passWD);
+        }
+        
+        public WebApp.TechSupportServiceReference.WorkerData[] HelpDeskWorkerList() {
+            return base.Channel.HelpDeskWorkerList();
+        }
+        
+        public System.Threading.Tasks.Task<WebApp.TechSupportServiceReference.WorkerData[]> HelpDeskWorkerListAsync() {
+            return base.Channel.HelpDeskWorkerListAsync();
+        }
+        
+        public WebApp.TechSupportServiceReference.CustomerData[] CustomerList() {
+            return base.Channel.CustomerList();
+        }
+        
+        public System.Threading.Tasks.Task<WebApp.TechSupportServiceReference.CustomerData[]> CustomerListAsync() {
+            return base.Channel.CustomerListAsync();
+        }
+        
+        public void UploadSolvedQuestion(WebApp.TechSupportServiceReference.SolvedQuestion question) {
+            base.Channel.UploadSolvedQuestion(question);
+        }
+        
+        public System.Threading.Tasks.Task UploadSolvedQuestionAsync(WebApp.TechSupportServiceReference.SolvedQuestion question) {
+            return base.Channel.UploadSolvedQuestionAsync(question);
         }
         
         public bool UserLogin(string username, string password) {
