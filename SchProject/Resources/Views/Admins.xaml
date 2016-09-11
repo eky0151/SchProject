@@ -90,7 +90,7 @@
                             Margin="10,88,428,10">
                         <Button.Template>
                             <ControlTemplate>
-                                <Image Source="Images/send-symbol.png" />
+                                <Image Source="/Resources/Layout/Images/send-symbol.png" />
                             </ControlTemplate>
                         </Button.Template>
                     </Button>
