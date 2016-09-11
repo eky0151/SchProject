@@ -69,10 +69,10 @@ namespace SchProject.ViewModel
 
         public  DemonstrationViewModel()
         {
-            GetQuestions();
+            Init();
         }
 
-        private  void GetQuestions()
+        private  void Init()
         {
             Counts = ServiceLocator.Current.GetInstance<TechSupportServer>().host.GetLastSevedDaysSolves(out Dates, out pie);
 
@@ -85,16 +85,16 @@ namespace SchProject.ViewModel
                 });
             }
 
-            //Counts = ServiceLocator.Current.GetInstance<TechSupportServer>().host.GetLastMonthRegistratedUsers(out Dates);
+            Counts = ServiceLocator.Current.GetInstance<TechSupportServer>().host.GetLastMonthRegistratedUsers(out Dates);
 
-            //for (int i = 0; i < Counts.Length; i++)
-            //{
-            //    Users.Add(new RegistratdUsers
-            //    {
-            //        Count = Counts[i],
-            //        Time = Dates[i]
-            //    });
-            //}
+            for (int i = 0; i < Counts.Length; i++)
+            {
+                Users.Add(new RegistratdUsers
+                {
+                    Count = Counts[i],
+                    Time = Dates[i]
+                });
+            }
         }
     }
 }

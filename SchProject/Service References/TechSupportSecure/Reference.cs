@@ -1072,6 +1072,15 @@ namespace SchProject.TechSupportSecure {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportServiceSecure1/CheckMyPassWD", ReplyAction="http://tempuri.org/ITechSupportServiceSecure1/CheckMyPassWDResponse")]
         System.Threading.Tasks.Task<bool> CheckMyPassWDAsync(string passWD);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportServiceSecure1/GetLastMonthRegistratedUsers", ReplyAction="http://tempuri.org/ITechSupportServiceSecure1/GetLastMonthRegistratedUsersRespons" +
+            "e")]
+        SchProject.TechSupportSecure.GetLastMonthRegistratedUsersResponse GetLastMonthRegistratedUsers(SchProject.TechSupportSecure.GetLastMonthRegistratedUsersRequest request);
+        
+        // CODEGEN: Generating message contract since the operation has multiple return values.
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportServiceSecure1/GetLastMonthRegistratedUsers", ReplyAction="http://tempuri.org/ITechSupportServiceSecure1/GetLastMonthRegistratedUsersRespons" +
+            "e")]
+        System.Threading.Tasks.Task<SchProject.TechSupportSecure.GetLastMonthRegistratedUsersResponse> GetLastMonthRegistratedUsersAsync(SchProject.TechSupportSecure.GetLastMonthRegistratedUsersRequest request);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -1104,6 +1113,35 @@ namespace SchProject.TechSupportSecure {
             this.GetLastSevedDaysSolvesResult = GetLastSevedDaysSolvesResult;
             this.dates = dates;
             this.byName = byName;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="GetLastMonthRegistratedUsers", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class GetLastMonthRegistratedUsersRequest {
+        
+        public GetLastMonthRegistratedUsersRequest() {
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="GetLastMonthRegistratedUsersResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class GetLastMonthRegistratedUsersResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public int[] GetLastMonthRegistratedUsersResult;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
+        public System.DateTime[] Dates;
+        
+        public GetLastMonthRegistratedUsersResponse() {
+        }
+        
+        public GetLastMonthRegistratedUsersResponse(int[] GetLastMonthRegistratedUsersResult, System.DateTime[] Dates) {
+            this.GetLastMonthRegistratedUsersResult = GetLastMonthRegistratedUsersResult;
+            this.Dates = Dates;
         }
     }
     
@@ -1333,6 +1371,22 @@ namespace SchProject.TechSupportSecure {
         
         public System.Threading.Tasks.Task<bool> CheckMyPassWDAsync(string passWD) {
             return base.Channel.CheckMyPassWDAsync(passWD);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        SchProject.TechSupportSecure.GetLastMonthRegistratedUsersResponse SchProject.TechSupportSecure.ITechSupportServiceSecure1.GetLastMonthRegistratedUsers(SchProject.TechSupportSecure.GetLastMonthRegistratedUsersRequest request) {
+            return base.Channel.GetLastMonthRegistratedUsers(request);
+        }
+        
+        public int[] GetLastMonthRegistratedUsers(out System.DateTime[] Dates) {
+            SchProject.TechSupportSecure.GetLastMonthRegistratedUsersRequest inValue = new SchProject.TechSupportSecure.GetLastMonthRegistratedUsersRequest();
+            SchProject.TechSupportSecure.GetLastMonthRegistratedUsersResponse retVal = ((SchProject.TechSupportSecure.ITechSupportServiceSecure1)(this)).GetLastMonthRegistratedUsers(inValue);
+            Dates = retVal.Dates;
+            return retVal.GetLastMonthRegistratedUsersResult;
+        }
+        
+        public System.Threading.Tasks.Task<SchProject.TechSupportSecure.GetLastMonthRegistratedUsersResponse> GetLastMonthRegistratedUsersAsync(SchProject.TechSupportSecure.GetLastMonthRegistratedUsersRequest request) {
+            return base.Channel.GetLastMonthRegistratedUsersAsync(request);
         }
     }
 }

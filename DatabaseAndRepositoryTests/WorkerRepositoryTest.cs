@@ -27,9 +27,9 @@ namespace DatabaseAndRepositoryTests
             techWorksRepo = new TechWorksRepository(db);
             technicianRepo = new TechninicanRepository(db);
             workerList = new List<Worker>(workerRepo.GetAll());
-            host.ClientCredentials.UserName.UserName = "Flynn";
-            host.ClientCredentials.UserName.Password = "sam";
-            host.Open();
+            //host.ClientCredentials.UserName.UserName = "Flynn";
+            //host.ClientCredentials.UserName.Password = "sam";
+            //host.Open();
         }
 
         [TestCleanup]
@@ -120,12 +120,11 @@ namespace DatabaseAndRepositoryTests
         [TestMethod]
         public void GetLastSevenDaySolvedQuestions()
         {
-            //ISolvedQuestionsRepository i = new SolvedQuestionsRepository(db);
+            IRegUserRepository users = new RegUserRepository(db);
 
-            //List<int> c = new List<int>();
-            //List<DateTime> t = new List<DateTime>();
+            List<DateTime> times;
+            List<int> a  = users.GetLastMonthRegistratedUsers(out times);
 
-            //c = i.GetLastSevenDaysSolvedQuestions(out t);
 
 
             Console.WriteLine();
