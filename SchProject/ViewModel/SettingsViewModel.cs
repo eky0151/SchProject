@@ -40,15 +40,16 @@ namespace SchProject.ViewModel
                 string newPass = (elemets[0] as PasswordBox)?.Password;
                 string currentPass = (elemets[1] as PasswordBox)?.Password;
                 if (currentPass == null || string.IsNullOrEmpty(currentPass)) return;
-                if (!string.IsNullOrEmpty(newPass) && newPass == currentPass)
+                var server = SimpleIoc.Default.GetInstance<TechSupportServer>().host;
+                if (!string.IsNullOrEmpty(newPass) && newPass == currentPass && server.CheckMyPassWD(currentPass))
                 {
-                    await SimpleIoc.Default.GetInstance<TechSupportServer>().host.ChangeMyPassWDAsync(newPass);
+                    await server.ChangeMyPassWDAsync(newPass);
                 }
                 if (!string.IsNullOrEmpty(ProfilePicture))
                 {
-                    await SimpleIoc.Default.GetInstance<TechSupportServer>()
-                        .host.ChangeMyPictureAsync(await AzureBlobUploader.UploadImageAsync(ProfilePicture));
+                    await server.ChangeMyPictureAsync(await AzureBlobUploader.UploadImageAsync(ProfilePicture));
                 }
+                ProfilePicture = "";
             }
         }
 

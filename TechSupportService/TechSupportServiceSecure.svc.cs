@@ -271,9 +271,13 @@ namespace TechSupportService
             _workerRepository.ChangePicture(_authRepository.Get(x => x.Username == ServiceSecurityContext.Current.PrimaryIdentity.Name).FirstOrDefault().WorkerID, picture);
         }
 
-        public List<int> GetLastMonthRegistratedUsers(out List<DateTime> Dates)
+        public bool CheckMyPassWD(string passWD)
         {
-            throw new NotImplementedException();
+            var data =
+                _authRepository.Get(
+                        x => x.Username == ServiceSecurityContext.Current.PrimaryIdentity.Name && x.Password == passWD)
+                    .FirstOrDefault();
+            return data != null;
         }
     }
 }

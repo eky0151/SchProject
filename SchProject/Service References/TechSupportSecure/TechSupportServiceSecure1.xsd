@@ -236,4 +236,18 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="CheckMyPassWD">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="passWD" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckMyPassWDResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CheckMyPassWDResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

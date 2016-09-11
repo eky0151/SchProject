@@ -216,6 +216,12 @@
   <wsdl:message name="ITechSupportServiceSecure1_ChangeMyPicture_InputMessage">
     <wsdl:part name="parameters" element="tns:ChangeMyPicture" />
   </wsdl:message>
+  <wsdl:message name="ITechSupportServiceSecure1_CheckMyPassWD_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckMyPassWD" />
+  </wsdl:message>
+  <wsdl:message name="ITechSupportServiceSecure1_CheckMyPassWD_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckMyPassWDResponse" />
+  </wsdl:message>
   <wsdl:portType name="ITechSupportServiceSecure1">
     <wsdl:operation name="Login">
       <wsdl:input wsaw:Action="http://tempuri.org/ITechSupportServiceSecure1/Login" message="tns:ITechSupportServiceSecure1_Login_InputMessage" />
@@ -297,6 +303,10 @@
     </wsdl:operation>
     <wsdl:operation name="ChangeMyPicture">
       <wsdl:input wsaw:Action="http://tempuri.org/ITechSupportServiceSecure1/ChangeMyPicture" message="tns:ITechSupportServiceSecure1_ChangeMyPicture_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckMyPassWD">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITechSupportServiceSecure1/CheckMyPassWD" message="tns:ITechSupportServiceSecure1_CheckMyPassWD_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITechSupportServiceSecure1/CheckMyPassWDResponse" message="tns:ITechSupportServiceSecure1_CheckMyPassWD_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="WSHttpBinding_ITechSupportServiceSecure1" type="tns:ITechSupportServiceSecure1">
@@ -475,6 +485,15 @@
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="CheckMyPassWD">
+      <soap12:operation soapAction="http://tempuri.org/ITechSupportServiceSecure1/CheckMyPassWD" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
     </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="TechSupportServiceSecure1">
