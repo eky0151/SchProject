@@ -84,5 +84,8 @@ namespace TechSupportService
         [OperationContract(IsOneWay = true)]
         void ChangeMyPicture(string picture);
 
+        [OperationContract]
+        bool CheckMyPassWD(string passWD);
+
     }
 }

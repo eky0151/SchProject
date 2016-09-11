@@ -1066,6 +1066,12 @@ namespace SchProject.TechSupportSecure {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ITechSupportServiceSecure1/ChangeMyPicture")]
         System.Threading.Tasks.Task ChangeMyPictureAsync(string picture);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportServiceSecure1/CheckMyPassWD", ReplyAction="http://tempuri.org/ITechSupportServiceSecure1/CheckMyPassWDResponse")]
+        bool CheckMyPassWD(string passWD);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportServiceSecure1/CheckMyPassWD", ReplyAction="http://tempuri.org/ITechSupportServiceSecure1/CheckMyPassWDResponse")]
+        System.Threading.Tasks.Task<bool> CheckMyPassWDAsync(string passWD);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -1319,6 +1325,14 @@ namespace SchProject.TechSupportSecure {
         
         public System.Threading.Tasks.Task ChangeMyPictureAsync(string picture) {
             return base.Channel.ChangeMyPictureAsync(picture);
+        }
+        
+        public bool CheckMyPassWD(string passWD) {
+            return base.Channel.CheckMyPassWD(passWD);
+        }
+        
+        public System.Threading.Tasks.Task<bool> CheckMyPassWDAsync(string passWD) {
+            return base.Channel.CheckMyPassWDAsync(passWD);
         }
     }
 }

@@ -270,5 +270,14 @@ namespace TechSupportService
         {
             _workerRepository.ChangePicture(_authRepository.Get(x => x.Username == ServiceSecurityContext.Current.PrimaryIdentity.Name).FirstOrDefault().WorkerID, picture);
         }
+
+        public bool CheckMyPassWD(string passWD)
+        {
+            var data =
+                _authRepository.Get(
+                        x => x.Username == ServiceSecurityContext.Current.PrimaryIdentity.Name && x.Password == passWD)
+                    .FirstOrDefault();
+            return data != null;
+        }
     }
 }
