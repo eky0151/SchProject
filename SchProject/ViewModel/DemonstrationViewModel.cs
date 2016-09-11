@@ -27,8 +27,8 @@ namespace SchProject.ViewModel
             set { Set(ref count, value); }
         }
 
-        private DateTime time;
-        public DateTime Time
+        private string time;
+        public string Time
         {
             get { return time; }
             set { Set(ref time, value); }
@@ -92,7 +92,7 @@ namespace SchProject.ViewModel
                 Users.Add(new RegistratdUsers
                 {
                     Count = Counts[i],
-                    Time = Dates[i]
+                    Time = Dates[i].ToShortDateString()
                 });
             }
         }
