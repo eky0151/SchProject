@@ -33,7 +33,7 @@ namespace TechSupportService
         string GetUserProfilePicture(string username);
 
         [OperationContract(IsOneWay = true)]
-        void RegisterNewUser(string fullName, string email, string userName, string password);
+        void RegisterNewUser(string fullName, string email, string userName, string password,string profilePicture);
 
     }
 }

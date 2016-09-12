@@ -48,7 +48,7 @@ namespace TechSupportService
         {
             return "";
         }
-        public void RegisterNewUser(string fullName, string email, string userName, string password)
+        public void RegisterNewUser(string fullName, string email, string userName, string password, string profilePicture)
         {
             _regUserRepository.Insert(new RegUser
             {
@@ -57,6 +57,7 @@ namespace TechSupportService
                 Username = userName,
                 Password = password,
                 Points = 1,
+                Picture = profilePicture,
                 Regtime = DateTime.Now,
             });
         }
