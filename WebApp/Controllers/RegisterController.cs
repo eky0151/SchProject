@@ -20,7 +20,7 @@ namespace WebApp.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Registration(string username, string fullname, string password, string email, HttpPostedFileBase uploadimage)
+        public async Task<ActionResult> Registration(string username, string fullname, string password, string email, string uploadimage) //HttpPostedFileBase
         {
             using (TechSupportService1Client client = new TechSupportService1Client())
             {
