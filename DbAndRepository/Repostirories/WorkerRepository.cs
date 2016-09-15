@@ -90,7 +90,7 @@ namespace DbAndRepository.Repostirories
         public int GetAvailableHelpDeskCount()
         {
             return
-                Get(x => x.LoginData.SingleOrDefault().Urole == "HelpDesk").Count(x => x.Status == "Available");
+                Get(x => x.LoginData.FirstOrDefault().Urole == "HelpDesk").Count(x => x.Status == "Working");
         }
 
         public void ChangePicture(int workerID, string picture)

@@ -7,6 +7,8 @@ using System.Text;
 using DbAndRepository;
 using DbAndRepository.IRepositories;
 using DbAndRepository.Repostirories;
+using SupportBot.LUIS_Classes;
+using SupportBot.TextAnalitycs_Classes;
 using TechSupportService.DataContract;
 
 namespace TechSupportService
@@ -18,17 +20,31 @@ namespace TechSupportService
         private readonly IWorkerRepository _workerRepository;
         private readonly ITechnicianRepository _technicianRepository;
         private readonly ITechWorksRepository _techWorksRepository;
+        private readonly ISolvedQuestionsRepository _solvedQuestionsRepository;
+
 
         public TechSupportBotService()
         {
-            TechSupportDatabaseEntities db=new TechSupportDatabaseEntities();
-            _workerRepository=new WorkerRepository(db);
-            _technicianRepository=new TechninicanRepository(db);
-            _techWorksRepository=new TechWorksRepository(db);
+            TechSupportDatabaseEntities db = new TechSupportDatabaseEntities();
+            _workerRepository = new WorkerRepository(db);
+            _technicianRepository = new TechninicanRepository(db);
+            _techWorksRepository = new TechWorksRepository(db);
+            _solvedQuestionsRepository = new SolvedQuestionsRepository(db);
         }
         public List<SolvedQuestion> FindSimilar(string question)
         {
-            throw new NotImplementedException();
+            var res = LUIS.ParseUserInput(question).Result;
+            Intentsresult topic = res.OrderByDescending(x => x.score).FirstOrDefault();
+            if (topic != null && topic.score > 0.6)
+            {
+              var temp= _solvedQuestionsRepository.FindSimilarQuestions(question, TextAnalitycs.MakeRequests(question).Result.keyPhrases,
+                    topic.Name).ToList();
+                if (temp.Count > 0)
+                {
+                    return temp.ConvertAll(SolvedQuestion.DbToSolvedQuestion).ToList();
+                }
+            }
+            return null;
         }
 
         public int GetAvailableHelpDesk()
@@ -41,10 +57,10 @@ namespace TechSupportService
             return _technicianRepository.GetAvailableTechnicianCount();
         }
 
-        public TechnicianData ResgisterNewTechWork(string location,CustomerData customer)
+        public TechnicianData ResgisterNewTechWork(string location, CustomerData customer)
         {
-           var technician= _technicianRepository.GetAvailableTechnician();
-            _techWorksRepository.RegisterNewWork(new TechWorks() {Customeraddress = location,Customername = customer.FullName,TechID = technician.ID});
+            var technician = _technicianRepository.GetAvailableTechnician();
+            _techWorksRepository.RegisterNewWork(new TechWorks() { Customeraddress = location, Customername = customer.FullName, TechID = technician.ID });
             return (TechnicianData)technician;
         }
     }
