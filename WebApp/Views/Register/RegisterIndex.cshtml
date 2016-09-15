@@ -11,50 +11,60 @@
 <head>
     <meta charset="UTF-8">
 
+    <style>
+
+    </style>
+
 </head>
 
 <body>
 
 
-@using (Html.BeginForm("Registration", "Register", FormMethod.Post, new { enctype = "multipart/form-data" }))
-{
+    @using (Html.BeginForm("Registration", "Register", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
 
-    <div class="container">
-        <div class="login">
-            <h1 class="login-heading">
-                <strong>Registration</strong>
-            </h1>
-            <form method="post">
+        <div class="container">
+            <div class="login">
+                <h1 class="login-heading">
+                    <strong>Registration</strong>
+                </h1>
+                <form method="post">
 
-                @Html.TextBoxFor(m => m.Username, new { @class = "input-txt", placeholder = "Username", autocomplete = "off" })
-                @*@Html.ValidationMessageFor(m => m.Username)*@
-                @Html.TextBoxFor(m => m.FullName, new { @class = "input-txt", placeholder = "Full Name", autocomplete = "off" })
-                @*@Html.ValidationMessageFor(m => m.Username)*@
-                @Html.PasswordFor(m => m.Password, new { @class = "input-txt", placeholder = "Password" })
-                @*@Html.ValidationMessageFor(m => m.Password)*@
-                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "input-txt", placeholder = "Password Again" })
-                @*@Html.ValidationMessageFor(m => m.ConfirmPassword)*@
-                @Html.TextBoxFor(m => m.Email, new { @class = "input-txt", placeholder = "Email", autocomplete = "off", @type = "email" })
-                @*@Html.ValidationMessageFor(m => m.Email)*@
-                @Html.TextBoxFor(m => m.ConfirmEmail, new { @class = "input-txt", placeholder = "Email Again", autocomplete = "off" })
-                @*@Html.ValidationMessageFor(m => m.ConfirmEmail)*@
-                @Html.TextBoxFor(m => m.UploadImage, new { type = "file" })
+                    @Html.TextBoxFor(m => m.Username, new { @class = "input-txt", placeholder = "Username", autocomplete = "off" })
+                    @*@Html.ValidationMessageFor(m => m.Username)*@
+                    @Html.TextBoxFor(m => m.FullName, new { @class = "input-txt", placeholder = "Full Name", autocomplete = "off" })
+                    @*@Html.ValidationMessageFor(m => m.Username)*@
+                    @Html.PasswordFor(m => m.Password, new { @class = "input-txt", placeholder = "Password" })
+                    @*@Html.ValidationMessageFor(m => m.Password)*@
+                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "input-txt", placeholder = "Password Again" })
+                    @*@Html.ValidationMessageFor(m => m.ConfirmPassword)*@
+                    @Html.TextBoxFor(m => m.Email, new { @class = "input-txt", placeholder = "Email", autocomplete = "off", @type = "email" })
+                    @*@Html.ValidationMessageFor(m => m.Email)*@
+                    @Html.TextBoxFor(m => m.ConfirmEmail, new { @class = "input-txt", placeholder = "Email Again", autocomplete = "off" })
+                    @*@Html.ValidationMessageFor(m => m.ConfirmEmail)*@
 
 
-                @*<input type="file" name="UploadImage" id="UploadImage" />*@
 
-                <div class="login-footer">
-                    <input type="submit" class="btn" value="Registration" />
-                </div>
 
-            </form>
+
+                    @Html.TextBoxFor(m => m.UploadImage, new { type = "file" })
+
+
+
+                    <div class="login-footer">
+                        <input type="submit" class="btn" value="Registration" />
+                    </div>
+
+                </form>
+            </div>
         </div>
-    </div>
 
-    @* Registration *@
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.js"></script>
-    <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.js"></script>
-    <script src="//ajax.aspnetcdn.com/ajax/mvc/5.2.3/jquery.validate.unobtrusive.js"></script>
-}
+
+        @* Registration *@
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.js"></script>
+        <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.js"></script>
+        <script src="//ajax.aspnetcdn.com/ajax/mvc/5.2.3/jquery.validate.unobtrusive.js"></script>
+    }
+
 </body>
 </html>

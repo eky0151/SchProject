@@ -20,11 +20,14 @@ namespace WebApp.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Registration(string username, string fullname, string password, string email, string uploadimage) //HttpPostedFileBase
+        public async Task<ActionResult> Registration(string username, string fullname, string password, string email, HttpPostedFileBase uploadimage) //HttpPostedFileBase
         {
             using (TechSupportService1Client client = new TechSupportService1Client())
             {
-                string path = Path.GetFullPath(uploadimage.FileName);
+                string fileName = Path.GetFileName(uploadimage.FileName);
+                string path = Server.MapPath("~//Temp//");
+                uploadimage.SaveAs(path + fileName);
+
                 client.Open();
                 string uploadedFile = "";
                 if (uploadimage != null)
