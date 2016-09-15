@@ -6,7 +6,7 @@ using System.Web;
 namespace SupportBot
 {
 
-    public class Rootobject
+    public class SimilarQuestions
     {
         public Findsimilarresult[] FindSimilarResult { get; set; }
     }

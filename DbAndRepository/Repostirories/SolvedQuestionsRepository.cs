@@ -1,4 +1,6 @@
-﻿namespace DbAndRepository.Repostirories
+﻿using System.Threading.Tasks;
+
+namespace DbAndRepository.Repostirories
 {
     using DbAndRepository.GenericsEFRepository;
     using DbAndRepository.IRepositories;
@@ -22,8 +24,8 @@
         public List<SolvedQuestion> FindSimilarQuestions(string question, string[] keywords, string topic)
         {
             var filteredBytopic = Get(x => x.Topic == topic).ToList();
-            List<SolvedQuestion> similarQuestions=new List<SolvedQuestion>();
-            foreach (SolvedQuestion solvedQuestion in filteredBytopic)
+            List<SolvedQuestion> similarQuestions = new List<SolvedQuestion>();
+            Parallel.ForEach(filteredBytopic, (solvedQuestion) =>
             {
                 string[] solvedKeywords = solvedQuestion.KeyWords.Split(',');
                 int found = 0;
@@ -34,11 +36,11 @@
                         found++;
                     }
                 }
-                if (found>((double)keywords.Length)*0.6)
+                if (found > ((double)keywords.Length) * 0.6)
                 {
                     similarQuestions.Add(solvedQuestion);
                 }
-            }
+            });
             return similarQuestions;
         }
 
@@ -52,7 +54,7 @@
             return Get(i => i.WorkerID == id).ToList();
         }
 
-     
+
 
         public List<int> GetLastSevenDaysSolvedQuestions(out List<DateTime> d, out List<KeyValuePair<string, int>> byName)
         {
