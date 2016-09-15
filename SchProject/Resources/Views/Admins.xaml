@@ -83,10 +83,12 @@
                              FontWeight="SemiBold"
                              Foreground="#585757"
                              BorderThickness="0"
+                             Text="{Binding Message,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                              Style="{StaticResource AdminMessageBoxStyle}" />
                     <Button Style="{StaticResource ImageButton}"
                             Width="20"
                             Height="20"
+                            Command="{Binding SendMessage}"
                             Margin="10,88,428,10">
                         <Button.Template>
                             <ControlTemplate>

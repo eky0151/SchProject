@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using SchProject.Annotations;
 using SchProject.Resources.Layout;
+using SchProject.Resources.Views;
 
 namespace SchProject
 {
@@ -28,7 +29,7 @@ namespace SchProject
                 {
                         
                     case "Error":
-                        _views[controlName] = new Chat();
+                        _views[controlName] = new Error();
                         break;
                     case "Admins":
                         _views[controlName] = new Admins();

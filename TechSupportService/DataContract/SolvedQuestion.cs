@@ -46,6 +46,11 @@ namespace TechSupportService
         {
             return new SolvedQuestion() { ID=q.ID,WorkerID = q.WorkerID,CustomerID = q.UserID,WorkerName = q.Worker.FullName,Question = q.Question,Answer = q.Answer,Topic = q.Topic,Category = q.Category,KeyWords = q.KeyWords.Split(','),TimeAnswered = q.Timeanswered,TimeAsked = q.Timeasked };
         }
+
+        public static SolvedQuestion DbToSolvedQuestion(DbAndRepository.SolvedQuestion q)
+        {
+            return new SolvedQuestion() { ID=q.ID,WorkerID = q.WorkerID,CustomerID = q.UserID,WorkerName = q.Worker.FullName,Question = q.Question,Answer = q.Answer,Topic = q.Topic,Category = q.Category,KeyWords = q.KeyWords.Split(','),TimeAnswered = q.Timeanswered,TimeAsked = q.Timeasked };
+        }
         public static DbAndRepository.SolvedQuestion SolvedQuestionToDB(SolvedQuestion q)
         {
             return new DbAndRepository.SolvedQuestion()

@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using GalaSoft.MvvmLight.Ioc;
 using SchProject.TechSupportSecure;
+using GalaSoft.MvvmLight.Messaging;
 
 namespace SchProject.Resources.Layout
 {
@@ -30,7 +31,8 @@ namespace SchProject.Resources.Layout
 
         private void MainWindowAqua_OnClosing(object sender, CancelEventArgs e)
         {
-             SimpleIoc.Default.GetInstance<TechSupportServer>().host?.ChangeMyStatus(Status.Away);
+            Messenger.Default.Send<string>("closing");
+            SimpleIoc.Default.GetInstance<TechSupportServer>().host?.ChangeMyStatus(Status.Away);
         }
     }
 }
