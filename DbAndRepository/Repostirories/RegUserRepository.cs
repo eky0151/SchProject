@@ -5,8 +5,6 @@
     using System.Linq;
     using DbAndRepository.GenericsEFRepository;
     using DbAndRepository.IRepositories;
-    using System.Windows.Media.Imaging;
-    using System.Windows.Media;
     using System.Collections.Generic;
     using static System.Data.Entity.DbFunctions;
 

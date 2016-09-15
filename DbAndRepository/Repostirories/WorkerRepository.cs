@@ -1,13 +1,11 @@
-﻿using System.Data.Entity.Spatial;
-
-namespace DbAndRepository.Repostirories
+﻿namespace DbAndRepository.Repostirories
 {
+    using System.Data.Entity.Spatial;
     using System.Data.Entity;
     using GenericsEFRepository;
     using IRepositories;
     using System.Linq;
     using System.Collections.Generic;
-    using System;
 
     public class WorkerRepository : GenericsRepository<Worker>, IWorkerRepository
     {
@@ -89,8 +87,7 @@ namespace DbAndRepository.Repostirories
 
         public int GetAvailableHelpDeskCount()
         {
-            return
-                Get(x => x.LoginData.FirstOrDefault().Urole == "HelpDesk").Count(x => x.Status == "Working");
+            return Get(x => x.LoginData.SingleOrDefault().Urole == "HelpDesk").Count(x => x.Status == "Available");
         }
 
         public void ChangePicture(int workerID, string picture)
@@ -99,7 +96,5 @@ namespace DbAndRepository.Repostirories
             worker.ProfilePicture = picture;
             Update(worker);
         }
-
-
     }
 }

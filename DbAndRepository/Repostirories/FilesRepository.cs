@@ -16,16 +16,22 @@
         public override void Delete(int id)
         {
             files = GetById(id);
+            database.Set<Files>().Remove(files);
+            database.Entry<Files>(files).State = EntityState.Deleted;
+            database.SaveChanges();
         }
 
-        public override Files GetById(int id)
+        public override async Files GetById(int id)
         {
-            throw new NotImplementedException();
+            files = await Get(i => i.ID == id).FirstOrDefaultAsync();
+            return files;
         }
 
         public override void Update(Files entityToModify)
         {
-            throw new NotImplementedException();
+            database.Entry(GetById(entityToModify.ID)).CurrentValues.SetValues(entityToModify);
+            database.Entry<Files>(entityToModify).State = EntityState.Modified;
+            database.SaveChanges();
         }
     }
 }

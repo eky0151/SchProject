@@ -28,7 +28,7 @@
                HorizontalContentAlignment="Center"/>
 
         <TabControl HorizontalAlignment="Left" Height="548" Margin="10,67,0,0" VerticalAlignment="Top" Width="780">
-            <TabItem Header="Solved questions last week by">
+            <TabItem Header="Solved questions">
                 <Grid Background="White">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -62,7 +62,7 @@
 
                 </Grid>
             </TabItem>
-            <TabItem Header="TabItem">
+            <TabItem Header="Registrated users">
                 <Grid Background="White">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="30"/>
