@@ -1,19 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Data.Entity.Validation;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DbAndRepository.GenericsEFRepository
+﻿namespace DbAndRepository.GenericsEFRepository
 {
-    public abstract class GenericsRepositorynoMUD<TEntity> : IGenericsRepositryNoDUM<TEntity> where TEntity : class
+    using System;
+    using System.Data.Entity;
+    using System.Data.Entity.Validation;
+    using System.Linq;
+    using System.Linq.Expressions;
+
+    public abstract class GenericsRepositoryNoDUM<TEntity> : IGenericsRepositoryNoDUM<TEntity> where TEntity : class
     {
         protected DbContext database;
 
-        protected GenericsRepositorynoMUD(DbContext newDb)
+        protected GenericsRepositoryNoDUM(DbContext newDb)
         {
             if (newDb == null)
                 throw new ArgumentNullException(nameof(newDb));

@@ -2,7 +2,6 @@
 {
     using DbAndRepository.GenericsEFRepository;
     using DbAndRepository.IRepositories;
-    using System;
     using System.Linq;
     using System.Data.Entity;
     using System.Collections.Generic;
@@ -37,8 +36,9 @@
 
         public override void Update(Bugreport entityToModify)
         {
-            throw new System.NotImplementedException();
-            //do not modify
+            database.Entry(GetById(entityToModify.ID)).CurrentValues.SetValues(entityToModify);
+            database.Entry<Bugreport>(entityToModify).State = EntityState.Modified;
+            database.SaveChanges();
         }
     }
 }

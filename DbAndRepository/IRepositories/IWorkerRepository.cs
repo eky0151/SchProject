@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
-
-namespace DbAndRepository.IRepositories
+﻿namespace DbAndRepository.IRepositories
 {
+    using System.Collections.Generic;
     using GenericsEFRepository;
 
     public interface IWorkerRepository : IGenericsRepository<Worker>

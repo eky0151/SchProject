@@ -21,14 +21,5 @@
         TEntity GetById(int id);
     }
 
-    public interface IGenericsRepositryNoDUM<TEntity> : IDisposable where TEntity : class
-    {
-        void Insert(TEntity newEntity);
-
-        IQueryable<TEntity> GetAll();
-
-        IQueryable<TEntity> Get(Expression<Func<TEntity, bool>> predicate);
-
-        TEntity GetById(int id);
-    }
+   
 }

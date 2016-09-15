@@ -1,18 +1,18 @@
-﻿using DbAndRepository.GenericsEFRepository;
-using DbAndRepository.IRepositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data.Entity;
-
-namespace DbAndRepository.Repostirories
+﻿namespace DbAndRepository.Repostirories
 {
+    using DbAndRepository.GenericsEFRepository;
+    using DbAndRepository.IRepositories;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Data.Entity;
+
     public class TechninicanRepository : GenericsRepository<Technician>, ITechnicianRepository
     {
         private Technician tc;
-        static Random rnd=new Random();
+
+        private static Random rnd=new Random();
+
         public TechninicanRepository(DbContext newDb) : base(newDb)
         {
         }
@@ -48,9 +48,9 @@ namespace DbAndRepository.Repostirories
 
         public Technician GetAvailableTechnician()
         {
-           var res=Get(x => x.Available == "Available").FirstOrDefault() ??
+           tc=Get(x => x.Available == "Available").FirstOrDefault() ??
                    Get(x => x.ID == rnd.Next(GetAll().Count())).FirstOrDefault();
-            return res;
+           return tc;
         }
 
         public Technician GetByName(string name)

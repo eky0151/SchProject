@@ -8,15 +8,10 @@
     using System.Data.Entity;
     using static System.Data.Entity.DbFunctions;
 
-    public class SolvedQuestionsRepository : GenericsRepository<SolvedQuestion>, ISolvedQuestionsRepository
+    public class SolvedQuestionsRepository : GenericsRepositoryNoDUM<SolvedQuestion>, ISolvedQuestionsRepository
     {
         public SolvedQuestionsRepository(DbContext newDb) : base(newDb)
         {
-        }
-
-        public override void Delete(int id)
-        {
-            throw new NotImplementedException();
         }
 
         public override SolvedQuestion GetById(int id)
@@ -28,8 +23,6 @@
         {
             return Get(i => i.WorkerID == id).ToList();
         }
-
-     
 
         public List<int> GetLastSevenDaysSolvedQuestions(out List<DateTime> d, out List<KeyValuePair<string, int>> byName)
         {
@@ -70,12 +63,6 @@
             }
 
             return s;
-        }
-
-        public override void Update(SolvedQuestion entityToModify)
-        {
-            throw new NotImplementedException();
-            //do not mod
         }
     }
 }

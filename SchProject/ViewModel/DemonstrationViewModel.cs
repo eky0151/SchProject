@@ -1,19 +1,7 @@
-﻿using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.CommandWpf;
-using GalaSoft.MvvmLight.Messaging;
+﻿using GalaSoft.MvvmLight;
 using System;
 using System.Collections.ObjectModel;
-using System.Windows.Input;
-using System.ServiceModel;
 using System.Collections.Generic;
-using System.Drawing;
-using System.Windows.Forms;
-using System.Windows;
-//using Telerik.Windows.Data;
-using System.ComponentModel;
 using Microsoft.Practices.ServiceLocation;
 
 namespace SchProject.ViewModel
