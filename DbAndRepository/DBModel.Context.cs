@@ -38,6 +38,5 @@ namespace DbAndRepository
         public virtual DbSet<Technician> Technician { get; set; }
         public virtual DbSet<TechWorks> TechWorks { get; set; }
         public virtual DbSet<Worker> Worker { get; set; }
-        public virtual DbSet<database_firewall_rules> database_firewall_rules { get; set; }
     }
 }

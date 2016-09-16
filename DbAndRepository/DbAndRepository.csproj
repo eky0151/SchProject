@@ -95,9 +95,6 @@
     <Compile Include="ClientLogs.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="database_firewall_rules.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="DBModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -127,6 +124,7 @@
     <Compile Include="IRepositories\IFileRepository.cs" />
     <Compile Include="IRepositories\ILoginDataRepository.cs" />
     <Compile Include="IRepositories\ILoginLogsRepository.cs" />
+    <Compile Include="IRepositories\INewTechWorksRepository.cs" />
     <Compile Include="IRepositories\IRegUserRepository.cs" />
     <Compile Include="IRepositories\ISolvedQuestionsRepository.cs" />
     <Compile Include="IRepositories\ITechnicianRepository.cs" />
@@ -151,6 +149,7 @@
     <Compile Include="Repostirories\FilesRepository.cs" />
     <Compile Include="Repostirories\LoginDataRepository.cs" />
     <Compile Include="Repostirories\LoginLogsRepository.cs" />
+    <Compile Include="Repostirories\NewTechWorksRepository.cs" />
     <Compile Include="Repostirories\RegUserRepository.cs" />
     <Compile Include="Repostirories\SolvedQuestionsRepository.cs" />
     <Compile Include="Repostirories\TechninicanRepository.cs" />

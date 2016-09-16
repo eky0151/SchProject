@@ -10,6 +10,7 @@
     public class WorkerRepository : GenericsRepository<Worker>, IWorkerRepository
     {
         private Worker w;
+
         public WorkerRepository(DbContext newDb) : base(newDb)
         {
         }

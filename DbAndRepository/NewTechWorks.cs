@@ -18,6 +18,7 @@ namespace DbAndRepository
         public string CustomerName { get; set; }
         public string Address { get; set; }
         public int TechID { get; set; }
+        public System.DateTime TimeOrdered { get; set; }
     
         public virtual Technician Technician { get; set; }
     }
