@@ -103,8 +103,6 @@ namespace SchProject.ViewModel
             set { Set(ref _loginMessage, value); }
         }
 
-        //can be null Worker -> email, phone, profilpicture
-        //logindata, bank  nothing
         private async void Save(PasswordBox obj)
         {
             //busyindicator

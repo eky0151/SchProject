@@ -58,6 +58,15 @@
           <Property Name="Success" Type="bit" Nullable="false" />
           <Property Name="Date" Type="datetime" Nullable="false" />
         </EntityType>
+        <EntityType Name="NewTechWorks">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CustomerName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Address" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TechID" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="RegUser">
           <Key>
             <PropertyRef Name="ID" />
@@ -162,7 +171,9 @@ warning 6002: The table/view 'TechSupportDatabase.sys.database_firewall_rules' d
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_LoginData_Worker">
-          <End Role="Worker" Type="Self.Worker" Multiplicity="1" />
+          <End Role="Worker" Type="Self.Worker" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="LoginData" Type="Self.LoginData" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Worker">
@@ -197,8 +208,22 @@ warning 6002: The table/view 'TechSupportDatabase.sys.database_firewall_rules' d
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_TechID_Technician">
+          <End Role="Technician" Type="Self.Technician" Multiplicity="1" />
+          <End Role="NewTechWorks" Type="Self.NewTechWorks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Technician">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="NewTechWorks">
+              <PropertyRef Name="TechID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Technician_Worker">
-          <End Role="Worker" Type="Self.Worker" Multiplicity="1" />
+          <End Role="Worker" Type="Self.Worker" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Technician" Type="Self.Technician" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Worker">
@@ -209,8 +234,10 @@ warning 6002: The table/view 'TechSupportDatabase.sys.database_firewall_rules' d
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TechWorks_Technician">
-          <End Role="Technician" Type="Self.Technician" Multiplicity="1" />
+        <Association Name="FK_TechWorks_TechID_Technicia">
+          <End Role="Technician" Type="Self.Technician" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="TechWorks" Type="Self.TechWorks" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Technician">
@@ -233,37 +260,6 @@ warning 6002: The table/view 'TechSupportDatabase.sys.database_firewall_rules' d
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
-        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-          <Parameter Name="version" Type="int" Mode="In" />
-          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
-        </Function>
-        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-          <Parameter Name="version" Type="int" Mode="In" />
-          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
-        </Function>
-        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-        </Function>
-        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-        </Function>
-        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-        </Function>
-        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
-        </Function>
-        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="TechSupportDatabaseModelStoreContainer">
           <EntitySet Name="Bank" EntityType="Self.Bank" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Bugreport" EntityType="Self.Bugreport" Schema="dbo" store:Type="Tables" />
@@ -271,6 +267,7 @@ warning 6002: The table/view 'TechSupportDatabase.sys.database_firewall_rules' d
           <EntitySet Name="Files" EntityType="Self.Files" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LoginData" EntityType="Self.LoginData" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LoginLogs" EntityType="Self.LoginLogs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NewTechWorks" EntityType="Self.NewTechWorks" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RegUser" EntityType="Self.RegUser" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SolvedQuestion" EntityType="Self.SolvedQuestion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
@@ -303,11 +300,15 @@ warning 6002: The table/view 'TechSupportDatabase.sys.database_firewall_rules' d
             <End Role="Worker" EntitySet="Worker" />
             <End Role="SolvedQuestion" EntitySet="SolvedQuestion" />
           </AssociationSet>
+          <AssociationSet Name="FK_TechID_Technician" Association="Self.FK_TechID_Technician">
+            <End Role="Technician" EntitySet="Technician" />
+            <End Role="NewTechWorks" EntitySet="NewTechWorks" />
+          </AssociationSet>
           <AssociationSet Name="FK_Technician_Worker" Association="Self.FK_Technician_Worker">
             <End Role="Worker" EntitySet="Worker" />
             <End Role="Technician" EntitySet="Technician" />
           </AssociationSet>
-          <AssociationSet Name="FK_TechWorks_Technician" Association="Self.FK_TechWorks_Technician">
+          <AssociationSet Name="FK_TechWorks_TechID_Technicia" Association="Self.FK_TechWorks_TechID_Technicia">
             <End Role="Technician" EntitySet="Technician" />
             <End Role="TechWorks" EntitySet="TechWorks" />
           </AssociationSet>
@@ -378,6 +379,16 @@ warning 6002: The table/view 'TechSupportDatabase.sys.database_firewall_rules' d
           <Property Name="Success" Type="Boolean" Nullable="false" />
           <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
+        <EntityType Name="NewTechWorks">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TechID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Technician" Relationship="Self.FK_TechID_Technician" FromRole="NewTechWorks" ToRole="Technician" />
+        </EntityType>
         <EntityType Name="RegUser">
           <Key>
             <PropertyRef Name="ID" />
@@ -428,8 +439,9 @@ warning 6002: The table/view 'TechSupportDatabase.sys.database_firewall_rules' d
           <Property Name="WorkerID" Type="Int32" Nullable="false" />
           <Property Name="Available" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="Lastlocation" Type="Geography" />
+          <NavigationProperty Name="NewTechWorks" Relationship="Self.FK_TechID_Technician" FromRole="Technician" ToRole="NewTechWorks" />
           <NavigationProperty Name="Worker" Relationship="Self.FK_Technician_Worker" FromRole="Technician" ToRole="Worker" />
-          <NavigationProperty Name="TechWorks" Relationship="Self.FK_TechWorks_Technician" FromRole="Technician" ToRole="TechWorks" />
+          <NavigationProperty Name="TechWorks" Relationship="Self.FK_TechWorks_TechID_Technicia" FromRole="Technician" ToRole="TechWorks" />
         </EntityType>
         <EntityType Name="TechWorks">
           <Key>
@@ -442,7 +454,7 @@ warning 6002: The table/view 'TechSupportDatabase.sys.database_firewall_rules' d
           <Property Name="Price" Type="Int32" Nullable="false" />
           <Property Name="Customername" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Customeraddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Technician" Relationship="Self.FK_TechWorks_Technician" FromRole="TechWorks" ToRole="Technician" />
+          <NavigationProperty Name="Technician" Relationship="Self.FK_TechWorks_TechID_Technicia" FromRole="TechWorks" ToRole="Technician" />
         </EntityType>
         <EntityType Name="Worker">
           <Key>
@@ -502,7 +514,9 @@ warning 6002: The table/view 'TechSupportDatabase.sys.database_firewall_rules' d
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_LoginData_Worker">
-          <End Role="Worker" Type="Self.Worker" Multiplicity="1" />
+          <End Role="Worker" Type="Self.Worker" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="LoginData" Type="Self.LoginData" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Worker">
@@ -510,6 +524,18 @@ warning 6002: The table/view 'TechSupportDatabase.sys.database_firewall_rules' d
             </Principal>
             <Dependent Role="LoginData">
               <PropertyRef Name="WorkerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TechID_Technician">
+          <End Role="Technician" Type="Self.Technician" Multiplicity="1" />
+          <End Role="NewTechWorks" Type="Self.NewTechWorks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Technician">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="NewTechWorks">
+              <PropertyRef Name="TechID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -538,7 +564,9 @@ warning 6002: The table/view 'TechSupportDatabase.sys.database_firewall_rules' d
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Technician_Worker">
-          <End Role="Worker" Type="Self.Worker" Multiplicity="1" />
+          <End Role="Worker" Type="Self.Worker" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Technician" Type="Self.Technician" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Worker">
@@ -549,8 +577,10 @@ warning 6002: The table/view 'TechSupportDatabase.sys.database_firewall_rules' d
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TechWorks_Technician">
-          <End Role="Technician" Type="Self.Technician" Multiplicity="1" />
+        <Association Name="FK_TechWorks_TechID_Technicia">
+          <End Role="Technician" Type="Self.Technician" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="TechWorks" Type="Self.TechWorks" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Technician">
@@ -568,6 +598,7 @@ warning 6002: The table/view 'TechSupportDatabase.sys.database_firewall_rules' d
           <EntitySet Name="Files" EntityType="Self.Files" />
           <EntitySet Name="LoginData" EntityType="Self.LoginData" />
           <EntitySet Name="LoginLogs" EntityType="Self.LoginLogs" />
+          <EntitySet Name="NewTechWorks" EntityType="Self.NewTechWorks" />
           <EntitySet Name="RegUser" EntityType="Self.RegUser" />
           <EntitySet Name="SolvedQuestion" EntityType="Self.SolvedQuestion" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
@@ -587,6 +618,10 @@ warning 6002: The table/view 'TechSupportDatabase.sys.database_firewall_rules' d
             <End Role="Worker" EntitySet="Worker" />
             <End Role="LoginData" EntitySet="LoginData" />
           </AssociationSet>
+          <AssociationSet Name="FK_TechID_Technician" Association="Self.FK_TechID_Technician">
+            <End Role="Technician" EntitySet="Technician" />
+            <End Role="NewTechWorks" EntitySet="NewTechWorks" />
+          </AssociationSet>
           <AssociationSet Name="FK_SolvedQuestion_RegUser" Association="Self.FK_SolvedQuestion_RegUser">
             <End Role="RegUser" EntitySet="RegUser" />
             <End Role="SolvedQuestion" EntitySet="SolvedQuestion" />
@@ -599,52 +634,11 @@ warning 6002: The table/view 'TechSupportDatabase.sys.database_firewall_rules' d
             <End Role="Worker" EntitySet="Worker" />
             <End Role="Technician" EntitySet="Technician" />
           </AssociationSet>
-          <AssociationSet Name="FK_TechWorks_Technician" Association="Self.FK_TechWorks_Technician">
+          <AssociationSet Name="FK_TechWorks_TechID_Technicia" Association="Self.FK_TechWorks_TechID_Technicia">
             <End Role="Technician" EntitySet="Technician" />
             <End Role="TechWorks" EntitySet="TechWorks" />
           </AssociationSet>
-          <FunctionImport Name="sp_alterdiagram">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-            <Parameter Name="version" Mode="In" Type="Int32" />
-            <Parameter Name="definition" Mode="In" Type="Binary" />
-          </FunctionImport>
-          <FunctionImport Name="sp_creatediagram">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-            <Parameter Name="version" Mode="In" Type="Int32" />
-            <Parameter Name="definition" Mode="In" Type="Binary" />
-          </FunctionImport>
-          <FunctionImport Name="sp_dropdiagram">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(TechSupportDatabaseModel.sp_helpdiagramdefinition_Result)">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(TechSupportDatabaseModel.sp_helpdiagrams_Result)">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_renamediagram">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-            <Parameter Name="new_diagramname" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="sp_upgraddiagrams" />
         </EntityContainer>
-        <ComplexType Name="sp_helpdiagramdefinition_Result">
-          <Property Type="Int32" Name="version" Nullable="true" />
-          <Property Type="Binary" Name="definition" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="sp_helpdiagrams_Result">
-          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
-          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
-          <Property Type="Int32" Name="ID" Nullable="false" />
-          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
-          <Property Type="Int32" Name="OwnerID" Nullable="false" />
-        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -707,6 +701,16 @@ warning 6002: The table/view 'TechSupportDatabase.sys.database_firewall_rules' d
                 <ScalarProperty Name="LoginName" ColumnName="LoginName" />
                 <ScalarProperty Name="Success" ColumnName="Success" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NewTechWorks">
+            <EntityTypeMapping TypeName="TechSupportDatabaseModel.NewTechWorks">
+              <MappingFragment StoreEntitySet="NewTechWorks">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="TechID" ColumnName="TechID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -801,30 +805,6 @@ warning 6002: The table/view 'TechSupportDatabase.sys.database_firewall_rules' d
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="TechSupportDatabaseModel.Store.sp_alterdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="TechSupportDatabaseModel.Store.sp_creatediagram" />
-          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="TechSupportDatabaseModel.Store.sp_dropdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="TechSupportDatabaseModel.Store.sp_helpdiagramdefinition">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="TechSupportDatabaseModel.sp_helpdiagramdefinition_Result">
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="TechSupportDatabaseModel.Store.sp_helpdiagrams">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="TechSupportDatabaseModel.sp_helpdiagrams_Result">
-                <ScalarProperty Name="Database" ColumnName="Database" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Owner" ColumnName="Owner" />
-                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="TechSupportDatabaseModel.Store.sp_renamediagram" />
-          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="TechSupportDatabaseModel.Store.sp_upgraddiagrams" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

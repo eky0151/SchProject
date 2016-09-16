@@ -78,7 +78,7 @@ namespace DatabaseAndRepositoryTests
 
             techWorksRepo.Insert(new TechWorks
             {
-                Technician = techs[0],
+                TechID = techs[0].ID,
                 Customeraddress = "1019, Bütyke Úrimalom utca 30",
                 Customername = "Molnár András",
                 Finish = DateTime.Now,
