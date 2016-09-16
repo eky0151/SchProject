@@ -86,6 +86,8 @@ namespace SchProject.ViewModel
             set { Set(ref _profilePicture, value); }
         }
 
+        //can be null Worker -> email, phone, profilpicture
+        //logindata, bank  nothing
         private async void Save(PasswordBox obj)
         {
             //busyindicator
@@ -94,20 +96,28 @@ namespace SchProject.ViewModel
                 string file = "";
                 if (ProfilePicture != null)
                     file = AzureBlobUploader.UploadImageAsync(ProfilePicture).Result;
-                WorkerDataRegistrationData regdata = new WorkerDataRegistrationData()
+
+                string empty = string.Empty;
+                if (_address != empty && _bankAccount != empty && _fullName != empty && obj.Password != empty && Username != empty)
                 {
-                    Address = Address,
-                    Bank = (Bank)Enum.Parse(typeof(Bank), SelectedBank),
-                    BankAccount = BankAccount,
-                    Email = Email,
-                    FullName = FullName,
-                    PassWD = obj.Password,
-                    Phone = Phone,
-                    ProfilePicture = file,
-                    Username = Username,
-                    Role = (Role)Enum.Parse(typeof(Role), SelectedRole),
-                    Status = Status.Away
-                };
+                    WorkerDataRegistrationData regdata = new WorkerDataRegistrationData()
+                    {
+                        Address = Address,
+                        Bank = (Bank)Enum.Parse(typeof(Bank), SelectedBank),
+                        BankAccount = BankAccount,
+                        Email = Email,
+                        FullName = FullName,
+                        PassWD = obj.Password,
+                        Phone = Phone,
+                        ProfilePicture = file,
+                        Username = Username,
+                        Role = (Role)Enum.Parse(typeof(Role), SelectedRole),
+                        Status = Status.Away
+                    };
+                }
+                else return;
+
+                
                 try
                 {
                     ServiceLocator.Current.GetInstance<TechSupportServer>().host.RegisterNewStaffMember(regdata);
