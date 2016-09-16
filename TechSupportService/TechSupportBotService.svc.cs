@@ -13,13 +13,12 @@ using TechSupportService.DataContract;
 
 namespace TechSupportService
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "TechSupportBotService" in code, svc and config file together.
-    // NOTE: In order to launch WCF Test Client for testing this service, please select TechSupportBotService.svc or TechSupportBotService.svc.cs at the Solution Explorer and start debugging.
     public class TechSupportBotService : ITechSupportBotService
     {
         private readonly IWorkerRepository _workerRepository;
         private readonly ITechnicianRepository _technicianRepository;
         private readonly ITechWorksRepository _techWorksRepository;
+        private readonly IRegUserRepository _regUserRepository;
         private readonly ISolvedQuestionsRepository _solvedQuestionsRepository;
 
 
@@ -30,6 +29,7 @@ namespace TechSupportService
             _technicianRepository = new TechninicanRepository(db);
             _techWorksRepository = new TechWorksRepository(db);
             _solvedQuestionsRepository = new SolvedQuestionsRepository(db);
+            _regUserRepository = new RegUserRepository(db);
         }
         public List<SolvedQuestion> FindSimilar(string question)
         {
@@ -37,8 +37,8 @@ namespace TechSupportService
             Intentsresult topic = res.OrderByDescending(x => x.score).FirstOrDefault();
             if (topic != null && topic.score > 0.6)
             {
-              var temp= _solvedQuestionsRepository.FindSimilarQuestions(question, TextAnalitycs.MakeRequests(question).Result.keyPhrases,
-                    topic.Name).ToList();
+                var temp = _solvedQuestionsRepository.FindSimilarQuestions(question, TextAnalitycs.MakeRequests(question).Result.keyPhrases,
+                      topic.Name).ToList();
                 if (temp.Count > 0)
                 {
                     return temp.ConvertAll(SolvedQuestion.DbToSolvedQuestion).ToList();
@@ -57,10 +57,10 @@ namespace TechSupportService
             return _technicianRepository.GetAvailableTechnicianCount();
         }
 
-        public TechnicianData ResgisterNewTechWork(string location, CustomerData customer)
+        public TechnicianData ResgisterNewTechWork(string location, string fullname)
         {
             var technician = _technicianRepository.GetAvailableTechnician();
-            _techWorksRepository.RegisterNewWork(new TechWorks() { Customeraddress = location, Customername = customer.FullName, TechID = technician.ID });
+            _techWorksRepository.RegisterNewWork(new TechWorks() { Customeraddress = location, Customername = fullname, TechID = technician.ID });
             return (TechnicianData)technician;
         }
     }

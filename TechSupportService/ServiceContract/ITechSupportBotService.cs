@@ -24,8 +24,8 @@ namespace TechSupportService
         int GetAvailableTechnician();
 
         [OperationContract]
-        [WebInvoke(BodyStyle = WebMessageBodyStyle.Wrapped)]
-        TechnicianData ResgisterNewTechWork(string location, CustomerData customer);
+        [WebInvoke(Method = "GET", UriTemplate = "registertechwork?location={location}&fullname={fullname}", ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped)]
+        TechnicianData ResgisterNewTechWork(string location, string fullname);
 
         [OperationContract]
         [WebInvoke(UriTemplate = "findsimilar", ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped)]
