@@ -118,7 +118,7 @@
     </Compile>
     <Compile Include="FormattedDbEntityValidationException.cs" />
     <Compile Include="GenericsEFRepository\GenericsRepository.cs" />
-    <Compile Include="GenericsEFRepository\GenericsRepositorynoMUD.cs" />
+    <Compile Include="GenericsEFRepository\GenericsRepositoryNoDUM.cs" />
     <Compile Include="GenericsEFRepository\IGenericsRepository.cs" />
     <Compile Include="GenericsEFRepository\IGenericsRepositoryNoDUM.cs" />
     <Compile Include="IRepositories\IBankRepository.cs" />
