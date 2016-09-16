@@ -10,16 +10,12 @@ namespace DbAndRepository.Repostirories
     using System.Data.Entity;
     using static System.Data.Entity.DbFunctions;
 
-    public class SolvedQuestionsRepository : GenericsRepository<SolvedQuestion>, ISolvedQuestionsRepository
+    public class SolvedQuestionsRepository : GenericsRepositoryNoDUM<SolvedQuestion>, ISolvedQuestionsRepository
     {
         public SolvedQuestionsRepository(DbContext newDb) : base(newDb)
         {
         }
 
-        public override void Delete(int id)
-        {
-            throw new NotImplementedException();
-        }
 
         public List<SolvedQuestion> FindSimilarQuestions(string question, string[] keywords, string topic)
         {
@@ -97,10 +93,5 @@ namespace DbAndRepository.Repostirories
             return s;
         }
 
-        public override void Update(SolvedQuestion entityToModify)
-        {
-            throw new NotImplementedException();
-            //do not mod
-        }
     }
 }

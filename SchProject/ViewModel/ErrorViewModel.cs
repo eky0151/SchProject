@@ -17,6 +17,8 @@
     using System.Threading;
     using GalaSoft.MvvmLight.Ioc;
 
+    using System.Windows.Threading;
+
     public class ErrorViewModel : ViewModelBase
     {
         public String UserName { get; set; }
@@ -36,8 +38,14 @@
         public ICommand SendMessageCommand
         {
             get;
-            private set;              
-           
+            private set;                        
+        }
+
+        
+        public ICommand EventCommand
+        {
+            get;
+            private set;
         }
 
         private void ButtonSend_Click()
@@ -45,12 +53,30 @@
             HubProxy.Invoke("Send", UserName, message);
         }
 
+        //---------------------------------------------------
+        //using System.Windows.Threading;
+        DispatcherTimer timer = new DispatcherTimer();
+
+        public void ToConsole(object sender, EventArgs e)
+        {
+
+            HubProxy.Invoke("Send", UserName, "uzenet");
+        }
+        private void Event_Click()
+        {
+            timer.Tick += new EventHandler(ToConsole);
+            timer.Interval = new TimeSpan(0, 0, 5);
+            timer.Start();
+        }
+        //---------------------------------------------------
+
         public ErrorViewModel()
         {
             WriteToConsole("Starting server...");
             Messenger.Default.Register<string>(this, WPFClient_Closing);
             UserName = SimpleIoc.Default.GetInstance<UserData>().FullName;
             SendMessageCommand = new RelayCommand(ButtonSend_Click);
+            EventCommand = new RelayCommand(Event_Click);
 
             ConnectAsync();
         }

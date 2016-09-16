@@ -26,8 +26,7 @@
         </ScrollViewer>
                 <TextBox Text="{Binding Path=Message, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="45" Width="443" Margin="25,426,0,0" TextWrapping="Wrap" VerticalAlignment="Top" />
                 <Button Content="Send" Command="{Binding SendMessageCommand}" Foreground="Black" HorizontalAlignment="Left" Height="31" Margin="25,484,0,0" VerticalAlignment="Top" Width="129" RenderTransformOrigin="0.853,0.419"/>
-                <Button Content="Get question" Command="{Binding Path=GetCustomerCommand}"  Foreground="Black" HorizontalAlignment="Left" Height="31" Margin="178,484,0,0" VerticalAlignment="Top" Width="129" RenderTransformOrigin="0.853,0.419"/>
-                <Button Content="Upload file"  Command="{Binding Path=SendFileCommand}" Foreground="Black" HorizontalAlignment="Left" Height="31" Margin="339,484,0,0" VerticalAlignment="Top" Width="129"/>
-                <!--Background="Transparent"-->
+                <Button Content="Event" Command="{Binding Path=EventCommand}"  Foreground="Black" HorizontalAlignment="Left" Height="31" Margin="178,484,0,0" VerticalAlignment="Top" Width="129" RenderTransformOrigin="0.853,0.419"/>
+
     </Grid>
 </UserControl>

@@ -29,6 +29,8 @@ namespace SchProject.ViewModel
         private string _email;
         private string _username;
         private string _fullName;
+        private string _loginMessage;
+
         public string[] Banks { get; } = Enum.GetNames(typeof(Bank));
         public string[] Roles { get; } = Enum.GetNames(typeof(Role));
         public string SelectedRole { get; set; }
@@ -86,39 +88,58 @@ namespace SchProject.ViewModel
             set { Set(ref _profilePicture, value); }
         }
 
+        public string LoginMessage
+        {
+            get { return _loginMessage; }
+            set { Set(ref _loginMessage, value); }
+        }
+
+        //can be null Worker -> email, phone, profilpicture
+        //logindata, bank  nothing
         private async void Save(PasswordBox obj)
         {
             //busyindicator
-            await Task.Factory.StartNew(() =>
-            {
-                string file = "";
-                if (ProfilePicture != null)
-                    file = AzureBlobUploader.UploadImageAsync(ProfilePicture).Result;
-                WorkerDataRegistrationData regdata = new WorkerDataRegistrationData()
-                {
-                    Address = Address,
-                    Bank = (Bank)Enum.Parse(typeof(Bank), SelectedBank),
-                    BankAccount = BankAccount,
-                    Email = Email,
-                    FullName = FullName,
-                    PassWD = obj.Password,
-                    Phone = Phone,
-                    ProfilePicture = file,
-                    Username = Username,
-                    Role = (Role)Enum.Parse(typeof(Role), SelectedRole),
-                    Status = Status.Away
-                };
-                try
-                {
-                    ServiceLocator.Current.GetInstance<TechSupportServer>().host.RegisterNewStaffMember(regdata);
-                }
-                catch (MessageSecurityException e)
-                {
+            bool isSucced = await Task.Factory.StartNew<bool>(() =>
+                    {
+                        string file = "";
+                        if (ProfilePicture != null)
+                            file = AzureBlobUploader.UploadImageAsync(ProfilePicture).Result;
 
-                    //log
-                }
+                        string empty = string.Empty;
+                        WorkerDataRegistrationData regdata;
+                        if (_address != empty && _bankAccount != empty && _fullName != empty && obj.Password != empty && Username != empty)
+                        {
+                            regdata = new WorkerDataRegistrationData()
+                            {
+                                Address = Address,
+                                Bank = (Bank)Enum.Parse(typeof(Bank), SelectedBank),
+                                BankAccount = BankAccount,
+                                Email = Email,
+                                FullName = FullName,
+                                PassWD = obj.Password,
+                                Phone = Phone,
+                                ProfilePicture = file,
+                                Username = Username,
+                                Role = (Role)Enum.Parse(typeof(Role), SelectedRole),
+                                Status = Status.Away
+                            };
+                        }
+                        else return false;
 
-            });
+                
+                        try
+                        {
+                            ServiceLocator.Current.GetInstance<TechSupportServer>().host.RegisterNewStaffMember(regdata);
+                        }
+                        catch (MessageSecurityException e)
+                        {
+
+                            //log
+                        }
+
+                        return true;
+
+                });
             Address = "";
             BankAccount = "";
             Email = "";
@@ -127,6 +148,8 @@ namespace SchProject.ViewModel
             ProfilePicture = "";
             Username = "";
             //busyindicator
+
+            LoginMessage = isSucced ? "New worker saved" : "Something went wrong, try again";
         }
 
         private void Browse()

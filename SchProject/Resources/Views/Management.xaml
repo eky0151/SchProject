@@ -11,12 +11,12 @@
     <Grid Background="White"
           DataContext="{Binding Management, Source={StaticResource Locator}}">
         <Border Width="400"
-                Height="430"
+                Height="500"
                 CornerRadius="8"
                 Background="White"
                 VerticalAlignment="Center"
                 HorizontalAlignment="Left"
-                Margin="20,0,0,0">
+                Margin="29,42,0,83">
             <Border.Effect>
                 <DropShadowEffect BlurRadius="5"
                                   Direction="0"
@@ -40,7 +40,7 @@
                 </StackPanel>
                 <StackPanel DockPanel.Dock="Left"
                             Width="120"
-                            Margin="10,10,0,0">
+                            Margin="10,10,0,70">
                     <Label Content="Név"
                            Margin="10,5,0,0"
                            Height="28"
@@ -80,12 +80,12 @@
                     <Label Content="Jelszó"
                            FontSize="15"
                            Margin="10,5,0,0"
-                           Height="28" />
+                           Height="46" />
 
                 </StackPanel>
                 <StackPanel DockPanel.Dock="Right"
                             HorizontalAlignment="Center"
-                            Margin="0,10,20,0">
+                            Margin="0,10,20,70">
                     <TextBox Style="{StaticResource RoundedText}"
                              Text="{Binding FullName}"
                              Width="229"
@@ -170,11 +170,9 @@
                                  HorizontalAlignment="Center"
                                  Height="28" />
                 </StackPanel>
+
             </DockPanel>
         </Border>
-        <Label Content="Valami"
-               HorizontalAlignment="Left"
-               Margin="1405,290,0,0"
-               VerticalAlignment="Top" />
+        <Label Content="{Binding Path=LoginMessage}" Foreground="Red" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Height="35" Margin="29,547,0,0" VerticalAlignment="Top" Width="400"/>
     </Grid>
 </UserControl>

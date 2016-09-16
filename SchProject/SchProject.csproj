@@ -195,6 +195,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Resources\FixSizedObservableCollection.cs" />
+    <Compile Include="Resources\Layout\Converters\ConnectionToImageSourceConverter.cs" />
     <Compile Include="Resources\Layout\Converters\ParametersToArrayConverter.cs" />
     <Compile Include="Resources\NotificationActivator.cs" />
     <Compile Include="Resources\Notifications.cs" />

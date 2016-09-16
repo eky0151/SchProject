@@ -2,7 +2,7 @@
 {
     using DbAndRepository.GenericsEFRepository;
     using DbAndRepository.IRepositories;
-    using System;
+    using System.Collections.Generic;
     using System.Data.Entity;
 
     public class FilesRepository : GenericsRepository<Files>, IFileRepository
@@ -15,16 +15,16 @@
 
         public override void Delete(int id)
         {
-            files = GetById(id);
+            files =  GetById(id);
             database.Set<Files>().Remove(files);
             database.Entry<Files>(files).State = EntityState.Deleted;
             database.SaveChanges();
         }
 
-        public override async Files GetById(int id)
+        public override Files GetById(int id)
         {
-            files = await Get(i => i.ID == id).FirstOrDefaultAsync();
-            return files;
+            List<Files> a = new List<Files>(GetAll());
+            return  a.Find(i => i.ID == id);
         }
 
         public override void Update(Files entityToModify)
