@@ -1,13 +1,9 @@
-﻿using DbAndRepository.GenericsEFRepository;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DbAndRepository.IRepositories
+﻿namespace DbAndRepository.IRepositories
 {
-    interface IClientLogsRepository : IGenericsRepository<ClientLogs>
+    using DbAndRepository.GenericsEFRepository;
+    using System.Collections.Generic;
+
+    interface IClientLogsRepository : IGenericsRepositoryNoDUM<ClientLogs>
     {
         List<ClientLogs> GetByUser(RegUser user);
     }

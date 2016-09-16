@@ -3,7 +3,7 @@
     using GenericsEFRepository;
     using System.Collections.Generic;
 
-    public interface ILoginLogsRepository : IGenericsRepository<LoginLogs>
+    public interface ILoginLogsRepository : IGenericsRepositoryNoDUM<LoginLogs>
     {
         List<LoginLogs> GetByWorker(Worker worker);
     }

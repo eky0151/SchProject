@@ -20,4 +20,6 @@
 
         TEntity GetById(int id);
     }
+
+   
 }

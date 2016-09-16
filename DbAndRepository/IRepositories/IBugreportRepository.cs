@@ -1,8 +1,8 @@
-﻿using DbAndRepository.GenericsEFRepository;
-using System.Collections.Generic;
-
-namespace DbAndRepository.IRepositories
+﻿namespace DbAndRepository.IRepositories
 {
+    using DbAndRepository.GenericsEFRepository;
+    using System.Collections.Generic;
+
     public interface IBugreportRepository : IGenericsRepository<Bugreport>
     {
         List<string> GetFilesByBugreportID(int id);

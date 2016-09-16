@@ -1,4 +1,6 @@
-﻿namespace DbAndRepository.Repostirories
+﻿using System.Threading.Tasks;
+
+namespace DbAndRepository.Repostirories
 {
     using DbAndRepository.GenericsEFRepository;
     using DbAndRepository.IRepositories;
@@ -8,15 +10,34 @@
     using System.Data.Entity;
     using static System.Data.Entity.DbFunctions;
 
-    public class SolvedQuestionsRepository : GenericsRepository<SolvedQuestion>, ISolvedQuestionsRepository
+    public class SolvedQuestionsRepository : GenericsRepositoryNoDUM<SolvedQuestion>, ISolvedQuestionsRepository
     {
         public SolvedQuestionsRepository(DbContext newDb) : base(newDb)
         {
         }
 
-        public override void Delete(int id)
+
+        public List<SolvedQuestion> FindSimilarQuestions(string question, string[] keywords, string topic)
         {
-            throw new NotImplementedException();
+            var filteredBytopic = Get(x => x.Topic == topic).ToList();
+            List<SolvedQuestion> similarQuestions = new List<SolvedQuestion>();
+            Parallel.ForEach(filteredBytopic, (solvedQuestion) =>
+            {
+                string[] solvedKeywords = solvedQuestion.KeyWords.Split(',');
+                int found = 0;
+                foreach (string keyword in keywords)
+                {
+                    if (solvedKeywords.Any(keyword.Contains))
+                    {
+                        found++;
+                    }
+                }
+                if (found > ((double)keywords.Length) * 0.6)
+                {
+                    similarQuestions.Add(solvedQuestion);
+                }
+            });
+            return similarQuestions;
         }
 
         public override SolvedQuestion GetById(int id)
@@ -29,7 +50,7 @@
             return Get(i => i.WorkerID == id).ToList();
         }
 
-     
+
 
         public List<int> GetLastSevenDaysSolvedQuestions(out List<DateTime> d, out List<KeyValuePair<string, int>> byName)
         {
@@ -72,10 +93,5 @@
             return s;
         }
 
-        public override void Update(SolvedQuestion entityToModify)
-        {
-            throw new NotImplementedException();
-            //do not mod
-        }
     }
 }

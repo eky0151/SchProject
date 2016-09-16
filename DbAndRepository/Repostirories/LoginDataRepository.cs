@@ -19,45 +19,23 @@
 
         public bool Authenticate(string username, string password)
         {
-            //l = Get(i => i.Username == username && i.Password == password).FirstOrDefault();
-            //if (l == null)
-            //    return false;
-            //return true;
-
-            l = GetAll().Where(i => i.Username == username && i.Password == password).AsEnumerable().
-                FirstOrDefault(i => i.Username == username && i.Password == password);
-
+            l = Get(i => i.Username == username && i.Password == password).FirstOrDefault();
             if (l == null)
-            {
                 return false;
-            }
-
             return true;
-
         }
 
         public void ChangePassWD(string username, string newPasswd)
         {
-            //var user = Get(x=>x.Username==username).FirstOrDefault();
-            //user.Password = newPasswd;
-            //Update(user);
-
-            l = GetAll().Where(i => i.Username == username && i.Password == newPasswd).AsEnumerable()
-                .FirstOrDefault(i => i.Username == username && i.Password == newPasswd);
-            l.Password = newPasswd;
-            Update(l);
+            var user = Get(x => x.Username == username).FirstOrDefault();
+            user.Password = newPasswd;
+            Update(user);
         }
 
         public bool CheckUsername(string username)
         {
-            //var login = Get(x => x.Username == username).FirstOrDefault();
-            //if (login == null)
-            //    return false;
-            //return true;
-
-            l = GetAll().Where(i => i.Username == username).AsEnumerable().FirstOrDefault
-                (i => i.Username == username);
-            return l == null ? false : true;
+            var login = Get(x => x.Username == username).FirstOrDefault();
+            return login == null ? false : true;
         }
 
         public override void Delete(int id)
@@ -76,9 +54,7 @@
 
         public string GetPicture(string userName)
         {
-            //return Get(i => i.Username == userName).FirstOrDefault()?.Worker.ProfilePicture;
-            return  GetAll().Where(i => i.Username == userName).AsEnumerable()
-                .FirstOrDefault(i => i.Username == userName)?.Worker.ProfilePicture;
+            return Get(i => i.Username == userName).FirstOrDefault()?.Worker.ProfilePicture;
         }
 
         public override void Update(LoginData entityToModify)
@@ -87,7 +63,5 @@
             database.Entry(entityToModify).State = EntityState.Modified;
             database.SaveChanges();
         }
-
-        
     }
 }
