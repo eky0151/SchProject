@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Ioc;
+using SchProject.Resources;
 using SchProject.TechSupportSecure;
 
 namespace SchProject
@@ -18,7 +20,10 @@ namespace SchProject
         {
             FullName = login.FullName;
             Role = login.Role;
+            SimpleIoc.Default.GetInstance<AzureServiceBus>().StatusHandler += SimpleIoc.Default.GetInstance<Notifications>().ShowStatusUpdateAsync;
         }
+
+
         public string FullName
         {
             get { return _fullName; }

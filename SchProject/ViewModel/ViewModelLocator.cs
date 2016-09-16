@@ -17,6 +17,7 @@ using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
 using SchProject.Resources.Layout.StyleResources;
 using System.ServiceModel;
+using SchProject.Resources;
 
 namespace SchProject.ViewModel
 {
@@ -51,6 +52,7 @@ namespace SchProject.ViewModel
             SimpleIoc.Default.Register<NavigatorSingleton>();
             SimpleIoc.Default.Register<AzureServiceBus>();
             SimpleIoc.Default.Register<ContentNavigator>();
+            SimpleIoc.Default.Register<Notifications>();
             //SimpleIoc.Default.Register<ChatViewModel>();
 
             //wcf
