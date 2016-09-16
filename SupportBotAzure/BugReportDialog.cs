@@ -19,6 +19,7 @@ namespace SupportBot
     {
         protected Findsimilarresult[] _answers;
         protected int _currentAnswer;
+
         public Task StartAsync(IDialogContext context)
         {
             context.Wait(ConversationStartedAsync);
@@ -49,8 +50,8 @@ namespace SupportBot
             {
                 int technicians = int.Parse(GetAvailableAdminCount());
                 string message = technicians > 0
-                    ? $"There are {technicians} available Sytem Administrator. Please send your location."
-                    : "There is no available Technician at the moment, but you can send your location and we will send a worker";
+                    ? $"There are {technicians} available Sytem Administrator. Please send your location and your name."
+                    : "There is no available Technician at the moment, but you can send your location and your name, and we will send a worker";
                 PromptDialog.Text(
                     context: context,
                     resume: ResumeAndPromptAdminInformations,
@@ -73,10 +74,11 @@ namespace SupportBot
                         _answers = res.FindSimilarResult;
                         _currentAnswer = 0;
                         PromptDialog.Confirm(
-                        context: context,
-                        resume: MultipleAnswerFound,
-                        prompt: $"{_currentAnswer + 1}/{_answers.Length}. The first answer i found is {_answers[_currentAnswer]}.",
-                        retry: "I didn't understand. Please try again.");
+                            context: context,
+                            resume: MultipleAnswerFound,
+                            prompt:
+                            $"{_currentAnswer + 1}/{_answers.Length}. The first answer i found is {_answers[_currentAnswer]}.",
+                            retry: "I didn't understand. Please try again.");
                     }
                     PromptDialog.Text(
                         context: context,
@@ -110,30 +112,52 @@ namespace SupportBot
                     PromptDialog.Confirm(
                         context: context,
                         resume: MultipleAnswerFound,
-                        prompt: $"{_currentAnswer + 1}/{_answers.Length}. The next answer which if found is {_answers[_currentAnswer]}.",
+                        prompt:
+                        $"{_currentAnswer + 1}/{_answers.Length}. The next answer which if found is {_answers[_currentAnswer]}.",
                         retry: "I didn't understand. Please try again.");
                 }
             }
         }
+
         private async Task ResumeAndPromptAdminInformations(IDialogContext context, IAwaitable<string> argument)
         {
             var location = await argument;
-            var informaton = SendAdmin(location,"Teszt Elek");
-            await
-                context.PostAsync(
-                    $"I've sent an Administrator. His/Her name is {informaton.Name}  you can reach his/her phone {informaton.Phone}  or email {informaton.Email}");
+            var informaton = SendAdmin(location, "Teszt Elek");
+            if (informaton != null)
+            {
+                await
+                    context.PostAsync(
+                        $"I've sent an Administrator. His/Her name is {informaton.FullName}  you can reach his/her phone {informaton.Phone}  or email {informaton.Email}");
+            }
+            else
+            {
+                await
+                    context.PostAsync("Sorry we have a problem, please contact us at ....");
+            }
             context.Done(context);
         }
 
-        private TechnicianData SendAdmin(string location,string fullname)
+        private Resgisternewtechworkresult SendAdmin(string location, string fullname)
         {
             string resp;
+            TechnicianData techniciandata;
             using (var http = new HttpClient())
             {
-                string uri = $"http://techsupportserver.azurewebsites.net/techsupportbotservice.svc/registertechwork?location={location}&fullname={fullname}";
+                string uri =
+                    $"http://techsupportserver.azurewebsites.net/techsupportbotservice.svc/registertechwork?location={location}&fullname={fullname}";
                 resp = http.GetStringAsync(uri).Result;
             }
-            return new TechnicianData() { Name = "Géza", Email = "sadokasdas@sr.re", Phone = "06304891378" };
+            try
+            {
+                techniciandata = JsonConvert.DeserializeObject<TechnicianData>(resp);
+
+            }
+            catch (JsonSerializationException)
+            {
+
+                throw;
+            }
+            return techniciandata.ResgisterNewTechWorkResult;
         }
 
 

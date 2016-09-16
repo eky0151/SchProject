@@ -1,9 +1,11 @@
-﻿namespace DbAndRepository.IRepositories
+﻿using System;
+
+namespace DbAndRepository.IRepositories
 {
     using DbAndRepository.GenericsEFRepository;
 
-    interface INewTechWorksRepository : IGenericsRepository<NewTechWorks>
+    public interface INewTechWorksRepository : IGenericsRepository<NewTechWorks>
     {
-
+        void AddNewTechWork(string address, string customerName, DateTime orderTime, int technicianID);
     }
 }

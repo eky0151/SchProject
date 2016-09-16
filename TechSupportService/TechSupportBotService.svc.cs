@@ -17,7 +17,7 @@ namespace TechSupportService
     {
         private readonly IWorkerRepository _workerRepository;
         private readonly ITechnicianRepository _technicianRepository;
-        private readonly ITechWorksRepository _techWorksRepository;
+        private readonly INewTechWorksRepository _newTechWorksRepository;
         private readonly IRegUserRepository _regUserRepository;
         private readonly ISolvedQuestionsRepository _solvedQuestionsRepository;
 
@@ -27,7 +27,7 @@ namespace TechSupportService
             TechSupportDatabaseEntities db = new TechSupportDatabaseEntities();
             _workerRepository = new WorkerRepository(db);
             _technicianRepository = new TechninicanRepository(db);
-            _techWorksRepository = new TechWorksRepository(db);
+            _newTechWorksRepository = new NewTechWorksRepository(db);
             _solvedQuestionsRepository = new SolvedQuestionsRepository(db);
             _regUserRepository = new RegUserRepository(db);
         }
@@ -60,7 +60,7 @@ namespace TechSupportService
         public TechnicianData ResgisterNewTechWork(string location, string fullname)
         {
             var technician = _technicianRepository.GetAvailableTechnician();
-            _techWorksRepository.RegisterNewWork(new TechWorks() { Customeraddress = location, Customername = fullname, TechID = technician.ID });
+            _newTechWorksRepository.AddNewTechWork(location, fullname, DateTime.Now, technician.ID);
             return (TechnicianData)technician;
         }
     }

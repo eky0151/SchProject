@@ -3,13 +3,19 @@
     using DbAndRepository.IRepositories;
     using System.Linq;
     using System.Data.Entity;
+    using System;
 
-    class NewTechWorksRepository : GenericsEFRepository.GenericsRepository<NewTechWorks>, INewTechWorksRepository
+    public class NewTechWorksRepository : GenericsEFRepository.GenericsRepository<NewTechWorks>, INewTechWorksRepository
     {
         private NewTechWorks ntw;
 
         public NewTechWorksRepository(DbContext newDb) : base(newDb)
         {
+        }
+
+        public void AddNewTechWork(string address, string customerName, DateTime orderTime, int technicianID)
+        {
+            Insert(new NewTechWorks() { Address = address, CustomerName = customerName, TechID = technicianID, TimeOrdered = orderTime });
         }
 
         public override void Delete(int id)
@@ -19,6 +25,7 @@
             database.Entry<NewTechWorks>(ntw).State = EntityState.Deleted;
             database.SaveChanges();
         }
+
 
         public override NewTechWorks GetById(int id)
         {
