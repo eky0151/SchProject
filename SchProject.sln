@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchProject", "SchProject\SchProject.csproj", "{853E5F23-12B3-460A-ADD0-D6B2700CD5D9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechSupportWPF", "TechSupportWPF\TechSupportWPF.csproj", "{853E5F23-12B3-460A-ADD0-D6B2700CD5D9}"
 	ProjectSection(ProjectDependencies) = postProject
 		{C4F912C6-C838-4BB1-BD46-3B1B5197E256} = {C4F912C6-C838-4BB1-BD46-3B1B5197E256}
 		{4C3CB9FE-A9F3-447C-A940-C4CC35B6C618} = {4C3CB9FE-A9F3-447C-A940-C4CC35B6C618}
