@@ -11,7 +11,7 @@
     {
         private Technician tc;
 
-        private static Random rnd=new Random();
+        private static Random rnd = new Random();
 
         public TechninicanRepository(DbContext newDb) : base(newDb)
         {
@@ -48,9 +48,10 @@
 
         public Technician GetAvailableTechnician()
         {
-           tc=Get(x => x.Available == "Available").FirstOrDefault() ??
-                   Get(x => x.ID == rnd.Next(GetAll().Count())).FirstOrDefault();
-           return tc;
+            int randID = rnd.Next(GetAll().Count());
+            tc = Get(x => x.Available == "Available").FirstOrDefault() ??
+                    Get(x => x.ID == randID).FirstOrDefault();
+            return tc;
         }
 
         public Technician GetByName(string name)

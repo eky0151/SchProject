@@ -17,6 +17,8 @@ namespace SupportBot
     [Serializable]
     public class BugReportDialog : IDialog<object>
     {
+        protected Findsimilarresult[] _answers;
+        protected int _currentAnswer;
         public Task StartAsync(IDialogContext context)
         {
             context.Wait(ConversationStartedAsync);
@@ -28,8 +30,8 @@ namespace SupportBot
             var message = await argument;
             int availableHelpDesk = int.Parse(GetAvailableSupportCount());
             string sendmessage = availableHelpDesk > 0
-                ? $"Hi my name is Sarah, how can I help you?\nIf you want to call an Administrator type \"Call admin\", and follow the dialog.\nYou can speak to the {availableHelpDesk} available support member directly by typing \"Live\".\n If you have a question please start typing"
-                : $"Hi my name is Sarah, how can I help you?\nIf you want to call an Administrator type \"Call admin\", and follow the dialog.\n If you have a question please start typing";
+                ? $"Hi my name is Sarah, how can I help you?\nIf you want to call an Administrator type \"Call admin\", and follow the dialog.\nYou can speak to the {availableHelpDesk} available support member directly by typing \"Live\".\n You can start typing your question"
+                : $"Hi my name is Sarah, how can I help you?\nIf you want to call an Administrator type \"Call admin\", and follow the dialog.\n You can start typing your question";
 
             PromptDialog.Text(
                 context: context,
@@ -66,7 +68,16 @@ namespace SupportBot
                 SimilarQuestions res = await PostSimilarities(choice);
                 if (res != null && res.FindSimilarResult.Length > 0)
                 {
-
+                    if (res.FindSimilarResult.Length > 1)
+                    {
+                        _answers = res.FindSimilarResult;
+                        _currentAnswer = 0;
+                        PromptDialog.Confirm(
+                        context: context,
+                        resume: MultipleAnswerFound,
+                        prompt: $"{_currentAnswer + 1}/{_answers.Length}. The first answer i found is {_answers[_currentAnswer]}.",
+                        retry: "I didn't understand. Please try again.");
+                    }
                     PromptDialog.Text(
                         context: context,
                         resume: EndConversation,
@@ -76,18 +87,52 @@ namespace SupportBot
             }
         }
 
+        private async Task MultipleAnswerFound(IDialogContext context, IAwaitable<bool> argument)
+        {
+            bool confirm = await argument;
+            if (confirm)
+            {
+                await context.PostAsync("You're welcome, it was my pleasure to help.");
+                context.Done(context);
+            }
+            else
+            {
+                if (_currentAnswer >= _answers.Length)
+                {
+                    await
+                        context.PostAsync(
+                            "Sorry there is no more result to show. Please contact one of our employee at ....");
+                    context.Done(context);
+                }
+                else
+                {
+                    _currentAnswer++;
+                    PromptDialog.Confirm(
+                        context: context,
+                        resume: MultipleAnswerFound,
+                        prompt: $"{_currentAnswer + 1}/{_answers.Length}. The next answer which if found is {_answers[_currentAnswer]}.",
+                        retry: "I didn't understand. Please try again.");
+                }
+            }
+        }
         private async Task ResumeAndPromptAdminInformations(IDialogContext context, IAwaitable<string> argument)
         {
             var location = await argument;
-            var informaton = SendAdmin(location);
+            var informaton = SendAdmin(location,"Teszt Elek");
             await
                 context.PostAsync(
                     $"I've sent an Administrator. His/Her name is {informaton.Name}  you can reach his/her phone {informaton.Phone}  or email {informaton.Email}");
             context.Done(context);
         }
 
-        private TechnicianData SendAdmin(string location)
+        private TechnicianData SendAdmin(string location,string fullname)
         {
+            string resp;
+            using (var http = new HttpClient())
+            {
+                string uri = $"http://techsupportserver.azurewebsites.net/techsupportbotservice.svc/registertechwork?location={location}&fullname={fullname}";
+                resp = http.GetStringAsync(uri).Result;
+            }
             return new TechnicianData() { Name = "Géza", Email = "sadokasdas@sr.re", Phone = "06304891378" };
         }
 
