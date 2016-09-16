@@ -10,10 +10,16 @@
 namespace DbAndRepository
 {
     using System;
+    using System.Collections.Generic;
     
-    public partial class sp_helpdiagramdefinition_Result
+    public partial class NewTechWorks
     {
-        public Nullable<int> version { get; set; }
-        public byte[] definition { get; set; }
+        public int ID { get; set; }
+        public string CustomerName { get; set; }
+        public string Address { get; set; }
+        public int TechID { get; set; }
+        public System.DateTime TimeOrdered { get; set; }
+    
+        public virtual Technician Technician { get; set; }
     }
 }

@@ -95,9 +95,6 @@
     <Compile Include="ClientLogs.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="database_firewall_rules.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="DBModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -127,6 +124,7 @@
     <Compile Include="IRepositories\IFileRepository.cs" />
     <Compile Include="IRepositories\ILoginDataRepository.cs" />
     <Compile Include="IRepositories\ILoginLogsRepository.cs" />
+    <Compile Include="IRepositories\INewTechWorksRepository.cs" />
     <Compile Include="IRepositories\IRegUserRepository.cs" />
     <Compile Include="IRepositories\ISolvedQuestionsRepository.cs" />
     <Compile Include="IRepositories\ITechnicianRepository.cs" />
@@ -136,6 +134,9 @@
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="LoginLogs.cs">
+      <DependentUpon>DBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NewTechWorks.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -148,18 +149,13 @@
     <Compile Include="Repostirories\FilesRepository.cs" />
     <Compile Include="Repostirories\LoginDataRepository.cs" />
     <Compile Include="Repostirories\LoginLogsRepository.cs" />
+    <Compile Include="Repostirories\NewTechWorksRepository.cs" />
     <Compile Include="Repostirories\RegUserRepository.cs" />
     <Compile Include="Repostirories\SolvedQuestionsRepository.cs" />
     <Compile Include="Repostirories\TechninicanRepository.cs" />
     <Compile Include="Repostirories\TechWorksRepository.cs" />
     <Compile Include="Repostirories\WorkerRepository.cs" />
     <Compile Include="SolvedQuestion.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="sp_helpdiagramdefinition_Result.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="sp_helpdiagrams_Result.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="sysdiagrams.cs">
@@ -186,7 +182,6 @@
     </None>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">
       <Visible>False</Visible>
@@ -200,6 +195,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="DBModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>DBModel.edmx</DependentUpon>
@@ -210,9 +208,6 @@
       <DependentUpon>DBModel.edmx</DependentUpon>
       <LastGenOutput>DBModel.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

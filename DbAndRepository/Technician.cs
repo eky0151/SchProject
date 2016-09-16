@@ -17,6 +17,7 @@ namespace DbAndRepository
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Technician()
         {
+            this.NewTechWorks = new HashSet<NewTechWorks>();
             this.TechWorks = new HashSet<TechWorks>();
         }
     
@@ -25,6 +26,8 @@ namespace DbAndRepository
         public string Available { get; set; }
         public System.Data.Entity.Spatial.DbGeography Lastlocation { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<NewTechWorks> NewTechWorks { get; set; }
         public virtual Worker Worker { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TechWorks> TechWorks { get; set; }

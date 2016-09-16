@@ -103,12 +103,10 @@ namespace SchProject.ViewModel
             set { Set(ref _loginMessage, value); }
         }
 
-        //can be null Worker -> email, phone, profilpicture
-        //logindata, bank  nothing
         private async void Save(PasswordBox obj)
         {
             //busyindicator
-            bool isSucced = await Task.Factory.StartNew<bool>(() =>
+            bool isSucceed = await Task.Factory.StartNew<bool>(() =>
                     {
                         string file = "";
                         if (ProfilePicture != null && ProfilePicture != string.Empty) //the second time someone wanna save ProfilPicture is string.Empty not null
@@ -158,7 +156,7 @@ namespace SchProject.ViewModel
             Username = "";
             //busyindicator
 
-            LoginMessage = isSucced ? "New worker saved" : "Something went wrong, try again";
+            LoginMessage = isSucceed ? "New worker saved" : "Something went wrong, try again";
             timer.Start();
         }
 
