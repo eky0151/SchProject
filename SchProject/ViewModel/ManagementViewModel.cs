@@ -98,9 +98,10 @@ namespace SchProject.ViewModel
                     file = AzureBlobUploader.UploadImageAsync(ProfilePicture).Result;
 
                 string empty = string.Empty;
+                WorkerDataRegistrationData regdata;
                 if (_address != empty && _bankAccount != empty && _fullName != empty && obj.Password != empty && Username != empty)
                 {
-                    WorkerDataRegistrationData regdata = new WorkerDataRegistrationData()
+                    regdata = new WorkerDataRegistrationData()
                     {
                         Address = Address,
                         Bank = (Bank)Enum.Parse(typeof(Bank), SelectedBank),
