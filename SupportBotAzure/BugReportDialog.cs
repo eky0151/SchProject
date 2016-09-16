@@ -17,7 +17,6 @@ namespace SupportBot
     [Serializable]
     public class BugReportDialog : IDialog<object>
     {
-        //várom az adatbázis, RestApi tervet azure-ban lesz ez a project hostolva
         public Task StartAsync(IDialogContext context)
         {
             context.Wait(ConversationStartedAsync);
@@ -64,7 +63,7 @@ namespace SupportBot
             }
             else
             {
-                Rootobject res = await PostSimilarities(choice);
+                SimilarQuestions res = await PostSimilarities(choice);
                 if (res != null && res.FindSimilarResult.Length > 0)
                 {
 
@@ -102,8 +101,6 @@ namespace SupportBot
 
         private string GetAvailableSupportCount()
         {
-            //logic goes here
-            //api hívás, várom aza adatbázis elkészültét ezért nincs implementálva
             string resp;
             using (var http = new HttpClient())
             {
@@ -115,7 +112,6 @@ namespace SupportBot
 
         private string GetAvailableAdminCount()
         {
-            //api hívás, várom aza adatbázis elkészültét ezért nincs implementálva
             string resp;
             using (var http = new HttpClient())
             {
@@ -125,33 +121,28 @@ namespace SupportBot
             return resp;
         }
 
-        class MyClass
-        {
-            public string question { get; set; }
-        }
 
-        private async Task<Rootobject> PostSimilarities(string input)
+        private async Task<SimilarQuestions> PostSimilarities(string input)
         {
-            //api hívás, várom aza adatbázis elkészültét ezért nincs implementálva
-            string cucc;
-            Rootobject result;
+            SimilarQuestions result;
             using (var http = new HttpClient())
             {
                 string uri = $"http://techsupportserver.azurewebsites.net/techsupportbotservice.svc/findsimilar";
-                var cuccs = JsonConvert.SerializeObject(new MyClass() { question = input });
+                var cuccs = JsonConvert.SerializeObject(new JsonQuestion() { question = input });
                 byte[] byteData =
                     Encoding.UTF8.GetBytes(cuccs);
+                string serverResponse;
                 using (var content = new ByteArrayContent(byteData))
                 {
                     content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
                     var dolog = await http.PostAsync(uri, content);
-                    cucc = await dolog.Content.ReadAsStringAsync();
+                    serverResponse = await dolog.Content.ReadAsStringAsync();
                 }
                 try
                 {
-                    result = JsonConvert.DeserializeObject<Rootobject>(cucc);
+                    result = JsonConvert.DeserializeObject<SimilarQuestions>(serverResponse);
                 }
-                catch (Exception)
+                catch (JsonSerializationException)
                 {
 
                     throw;
@@ -159,12 +150,9 @@ namespace SupportBot
             }
             return result;
         }
-
-        private async Task<string> SearchSolution(string bug)
+        class JsonQuestion
         {
-            //luis + database it takes some time
-            //api hívás , várom aza adatbázis elkészültét ezért nincs implementálva
-            return "dfdfgdf";
+            public string question;
         }
     }
 }
