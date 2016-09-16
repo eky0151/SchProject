@@ -17,11 +17,14 @@ using ImageProcessor;
 using Microsoft.Practices.ServiceLocation;
 using SchProject.TechSupportSecure;
 using TechSharedLibraries;
+using System.Timers;
 
 namespace SchProject.ViewModel
 {
     public class ManagementViewModel : ViewModelBase
     {
+        private Timer timer;
+
         private string _profilePicture;
         private string _bankAccount;
         private string _address;
@@ -44,7 +47,13 @@ namespace SchProject.ViewModel
             SaveCommand = new RelayCommand<PasswordBox>(Save);
             SelectedBank = Banks.FirstOrDefault();
             SelectedRole = Roles.FirstOrDefault();
+
+            timer = new Timer();
+            timer.Interval = 3000;
+            timer.Elapsed += (s, e) => {   LoginMessage = string.Empty;
+                                           timer.Stop(); };
         }
+
         public string FullName
         {
             get { return _fullName; }
@@ -102,7 +111,7 @@ namespace SchProject.ViewModel
             bool isSucced = await Task.Factory.StartNew<bool>(() =>
                     {
                         string file = "";
-                        if (ProfilePicture != null)
+                        if (ProfilePicture != null && ProfilePicture != string.Empty) //the second time someone wanna save ProfilPicture is string.Empty not null
                             file = AzureBlobUploader.UploadImageAsync(ProfilePicture).Result;
 
                         string empty = string.Empty;
@@ -150,6 +159,7 @@ namespace SchProject.ViewModel
             //busyindicator
 
             LoginMessage = isSucced ? "New worker saved" : "Something went wrong, try again";
+            timer.Start();
         }
 
         private void Browse()
@@ -163,5 +173,7 @@ namespace SchProject.ViewModel
                 ProfilePicture = dlg.FileName;
             }
         }
+
+        
     }
 }
