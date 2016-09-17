@@ -14,11 +14,11 @@
     using System.Net.Http;
     using System.Windows;
     using Microsoft.AspNet.SignalR.Client;
-    using System.Threading;
     using GalaSoft.MvvmLight.Ioc;
 
     using System.Windows.Threading;
     using Microsoft.Practices.ServiceLocation;
+    using WPFServer;
 
     public class ErrorViewModel : ViewModelBase
     {
@@ -74,25 +74,10 @@
 
         private void ButtonSend_Click()
         {
-            HubProxy.Invoke("Send", UserName, message);
-        }
+            HubProxy.Invoke<MyMessage>("send", new MyMessage() { Msg = "Hello World", Group = "RoomA" });
 
-        //---------------------------------------------------
-        //using System.Windows.Threading;
-        DispatcherTimer timer = new DispatcherTimer();
-
-        public void ToConsole(object sender, EventArgs e)
-        {
-
-            HubProxy.Invoke("Send", UserName, "uzenet");
+            // HubProxy.Invoke("Send", UserName, message);
         }
-        private void Event_Click()
-        {
-            timer.Tick += new EventHandler(ToConsole);
-            timer.Interval = new TimeSpan(0, 0, 5);
-            timer.Start();
-        }
-        //---------------------------------------------------
 
         public ErrorViewModel()
         {
@@ -100,7 +85,6 @@
             Messenger.Default.Register<string>(this, WPFClient_Closing);
             UserName = SimpleIoc.Default.GetInstance<UserData>().FullName;
             SendMessageCommand = new RelayCommand(ButtonSend_Click);
-            EventCommand = new RelayCommand(Event_Click);
 
             ConnectAsync();
         }

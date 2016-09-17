@@ -1,10 +1,5 @@
 ﻿
-@{
-    Page.Title = "Login page";
-}
-
 @model WebApp.Models.UserModel
-
 
 <!DOCTYPE html>
 <html>
@@ -58,6 +53,9 @@
 
             // Declare a proxy to reference the hub.
             var chat = $.connection.myHub;
+
+            //Sajat
+            chat.server.send({ Msg: "Hello World", Group: "RoomA" });
 
             // Create a function that the hub can call to broadcast messages.
             chat.client.addMessage = function (name, message) {

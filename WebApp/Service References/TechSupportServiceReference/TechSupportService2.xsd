@@ -41,10 +41,24 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="GetMyNewTechworks">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMyNewTechworksResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/TechSupportService.DataContract" minOccurs="0" name="GetMyNewTechworksResult" nillable="true" type="q4:ArrayOfNewTechWork" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="UploadSolvedQuestion">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/TechSupportService" minOccurs="0" name="question" nillable="true" type="q4:SolvedQuestion" />
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/TechSupportService" minOccurs="0" name="question" nillable="true" type="q5:SolvedQuestion" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -104,6 +118,14 @@
         <xs:element minOccurs="0" name="userName" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="profilePicture" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SendMessageToSupport">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="message" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

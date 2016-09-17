@@ -209,6 +209,9 @@
     <Content Include="Service References\TechSupportServiceReference\WebApp.TechSupportServiceReference.WorkerData.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Service References\TechSupportServiceReference\WebApp.TechSupportServiceReference.NewTechWork.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
