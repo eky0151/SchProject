@@ -28,6 +28,7 @@ namespace TechSupportService
         private readonly ISolvedQuestionsRepository _solvedQuestionsRepository;
         private readonly ITechWorksRepository _techworksRepository;
         private readonly IRegUserRepository _regUserRepository;
+        private readonly INewTechWorksRepository _newTechWorksRepository;
 
 
         public TechSupportServiceSecure1()
@@ -42,6 +43,7 @@ namespace TechSupportService
             _solvedQuestionsRepository = new SolvedQuestionsRepository(db);
             _techworksRepository = new TechWorksRepository(db);
             _regUserRepository = new RegUserRepository(db);
+            _newTechWorksRepository = new NewTechWorksRepository(db);
         }
 
 
@@ -125,11 +127,15 @@ namespace TechSupportService
                 .ToList().ConvertAll(TechnicianData.ConverTechnicianData).ToList();
         }
 
+        //TODO : NOT WORKING
         public List<TechnicianData> GetAvailableTechnician()
         {
+            string role = Enum.GetName(typeof(Role), Role.Technician);
+            string a = "Available";
+
             return
-                _authRepository.Get(x => x.Urole == Enum.GetName(typeof(Role), Role.Technician))
-                    .Where(x => (x.Worker.Technician.SingleOrDefault()).Available == "Available")
+                _authRepository.Get(x => x.Urole == role)
+                    .Where(x => (x.Worker.Technician.SingleOrDefault()).Available == a)
                     .Select(x => x.Worker.Technician.SingleOrDefault())
                     .ToList()
                     .ConvertAll(TechnicianData.ConverTechnicianData)
@@ -291,6 +297,17 @@ namespace TechSupportService
         public async void SendMessageToTechnician(string username, string message)
         {
            await AzureServiceBus.SendMessageToTechnician(username, message);
+        }
+
+        public void InsertNewTechWorks(dynamic d)
+        {
+            _newTechWorksRepository.Insert(new NewTechWorks
+            {
+                CustomerName = d.Name,
+                Address = d.Address,
+                TechID = d.TechID,
+                TimeOrdered = d.Time
+            });
         }
     }
 }
