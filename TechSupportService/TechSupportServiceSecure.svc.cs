@@ -299,14 +299,14 @@ namespace TechSupportService
             await AzureServiceBus.SendMessageToTechnician(username, message);
         }
 
-        public void InsertNewTechWorks(dynamic d)
+        public void InsertNewTechWorks(NewTechWork d)
         {
-            _newTechWorksRepository.Insert(new NewTechWorks
+            _newTechWorksRepository.Insert(new DbAndRepository.NewTechWorks
             {
-                CustomerName = d.Name,
+                CustomerName = d.CustomerName,
                 Address = d.Address,
                 TechID = d.TechID,
-                TimeOrdered = d.Time
+                TimeOrdered = d.TimeOrdered
             });
         }
     }

@@ -92,5 +92,8 @@ namespace TechSupportService
         [OperationContract]
         void SendMessageToTechnician(string username, string message);
 
+        [OperationContract]
+        void InsertNewTechWorks(NewTechWork d);
+
     }
 }

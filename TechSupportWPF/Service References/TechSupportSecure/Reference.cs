@@ -924,6 +924,115 @@ namespace SchProject.TechSupportSecure {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="NewTechWork", Namespace="http://schemas.datacontract.org/2004/07/TechSupportService.DataContract")]
+    [System.SerializableAttribute()]
+    public partial class NewTechWork : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string AddressField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CustomerNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int TechIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime TimeOrderedField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Address {
+            get {
+                return this.AddressField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AddressField, value) != true)) {
+                    this.AddressField = value;
+                    this.RaisePropertyChanged("Address");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string CustomerName {
+            get {
+                return this.CustomerNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CustomerNameField, value) != true)) {
+                    this.CustomerNameField = value;
+                    this.RaisePropertyChanged("CustomerName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ID {
+            get {
+                return this.IDField;
+            }
+            set {
+                if ((this.IDField.Equals(value) != true)) {
+                    this.IDField = value;
+                    this.RaisePropertyChanged("ID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int TechID {
+            get {
+                return this.TechIDField;
+            }
+            set {
+                if ((this.TechIDField.Equals(value) != true)) {
+                    this.TechIDField = value;
+                    this.RaisePropertyChanged("TechID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime TimeOrdered {
+            get {
+                return this.TimeOrderedField;
+            }
+            set {
+                if ((this.TimeOrderedField.Equals(value) != true)) {
+                    this.TimeOrderedField = value;
+                    this.RaisePropertyChanged("TimeOrdered");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="TechSupportSecure.ITechSupportServiceSecure1")]
     public interface ITechSupportServiceSecure1 {
@@ -1087,6 +1196,12 @@ namespace SchProject.TechSupportSecure {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportServiceSecure1/SendMessageToTechnician", ReplyAction="http://tempuri.org/ITechSupportServiceSecure1/SendMessageToTechnicianResponse")]
         System.Threading.Tasks.Task SendMessageToTechnicianAsync(string username, string message);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportServiceSecure1/InsertNewTechWorks", ReplyAction="http://tempuri.org/ITechSupportServiceSecure1/InsertNewTechWorksResponse")]
+        void InsertNewTechWorks(SchProject.TechSupportSecure.NewTechWork d);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportServiceSecure1/InsertNewTechWorks", ReplyAction="http://tempuri.org/ITechSupportServiceSecure1/InsertNewTechWorksResponse")]
+        System.Threading.Tasks.Task InsertNewTechWorksAsync(SchProject.TechSupportSecure.NewTechWork d);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -1401,6 +1516,14 @@ namespace SchProject.TechSupportSecure {
         
         public System.Threading.Tasks.Task SendMessageToTechnicianAsync(string username, string message) {
             return base.Channel.SendMessageToTechnicianAsync(username, message);
+        }
+        
+        public void InsertNewTechWorks(SchProject.TechSupportSecure.NewTechWork d) {
+            base.Channel.InsertNewTechWorks(d);
+        }
+        
+        public System.Threading.Tasks.Task InsertNewTechWorksAsync(SchProject.TechSupportSecure.NewTechWork d) {
+            return base.Channel.InsertNewTechWorksAsync(d);
         }
     }
 }
