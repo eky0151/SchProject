@@ -63,7 +63,10 @@
             NewWorkData.TechName = available[0] == null ? "Sorry no available tech" : available[0].FullName;
             NewWorkData.TechID = NewWorkData.TechName == "Sorry no available tech" ? -1 : available[0].TechnicianID;
             NewWorkData.Time = DateTime.Now;
-            
+
+            //await ServiceLocator.Current.GetInstance<TechSupportServer>().host.InsertNewTechWorks(NewWorkData);
+
+
         }
 
         public ICommand EventCommand
