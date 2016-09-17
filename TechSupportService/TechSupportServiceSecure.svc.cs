@@ -127,16 +127,10 @@ namespace TechSupportService
                 .ToList().ConvertAll(TechnicianData.ConverTechnicianData).ToList();
         }
 
-        //TODO : NOT WORKING
         public List<TechnicianData> GetAvailableTechnician()
         {
-            string role = Enum.GetName(typeof(Role), Role.Technician);
-            string a = "Available";
-
             return
-                _authRepository.Get(x => x.Urole == role)
-                    .Where(x => (x.Worker.Technician.SingleOrDefault()).Available == a)
-                    .Select(x => x.Worker.Technician.SingleOrDefault())
+                _technicianRepository.Get(x => x.Available == "Available")
                     .ToList()
                     .ConvertAll(TechnicianData.ConverTechnicianData)
                     .ToList();
@@ -165,9 +159,11 @@ namespace TechSupportService
         [PrincipalPermission(SecurityAction.Demand, Role = "Technician")]
         public void ChangeTechnicianStatus(TechnicianStatus status)
         {
-            var res = _authRepository.Get(x => x.Username == ServiceSecurityContext.Current.PrimaryIdentity.Name)?
-                .SingleOrDefault()?
-                .Worker.Technician.SingleOrDefault();
+            var res =
+                _technicianRepository.Get(
+                    x =>
+                        x.Worker.LoginData.FirstOrDefault().Username ==
+                        ServiceSecurityContext.Current.PrimaryIdentity.Name).FirstOrDefault();
             if (res == null) return;
             res.Available = Enum.GetName(typeof(TechnicianStatus), status);
             _technicianRepository.Update(res);
@@ -238,6 +234,10 @@ namespace TechSupportService
             string name = ServiceSecurityContext.Current.PrimaryIdentity.Name;
             var worker = _authRepository.Get(x => x.Username == name).SingleOrDefault()?.Worker;
             worker.Status = "Working";
+            if (worker.LoginData.FirstOrDefault()?.Urole == "Technician")
+            {
+                worker.Technician.FirstOrDefault().Available = "Available";
+            }
             _workerRepository.Update(worker);
             if (worker != null)
             {
@@ -296,17 +296,17 @@ namespace TechSupportService
 
         public async void SendMessageToTechnician(string username, string message)
         {
-           await AzureServiceBus.SendMessageToTechnician(username, message);
+            await AzureServiceBus.SendMessageToTechnician(username, message);
         }
 
-        public void InsertNewTechWorks(dynamic d)
+        public void InsertNewTechWorks(NewTechWork d)
         {
-            _newTechWorksRepository.Insert(new NewTechWorks
+            _newTechWorksRepository.Insert(new DbAndRepository.NewTechWorks
             {
-                CustomerName = d.Name,
+                CustomerName = d.CustomerName,
                 Address = d.Address,
                 TechID = d.TechID,
-                TimeOrdered = d.Time
+                TimeOrdered = d.TimeOrdered
             });
         }
     }

@@ -124,12 +124,14 @@ namespace DatabaseAndRepositoryTests
 
             List<DateTime> times;
             List<int> a  = users.GetLastMonthRegistratedUsers(out times);
+        }
 
+        [TestMethod]
+        public void GetAvailableTechnicians()
+        {
+            Technician t = technicianRepo.GetAvailableTechnician();
 
-
-            Console.WriteLine();
-
-            
+            Assert.AreEqual(t, null);
         }
     }
 }

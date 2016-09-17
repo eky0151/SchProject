@@ -276,4 +276,16 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
+  <xs:element name="InsertNewTechWorks">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/TechSupportService.DataContract" minOccurs="0" name="d" nillable="true" type="q24:NewTechWork" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InsertNewTechWorksResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

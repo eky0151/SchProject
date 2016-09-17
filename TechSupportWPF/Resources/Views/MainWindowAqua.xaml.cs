@@ -61,7 +61,13 @@ namespace SchProject.Resources.Layout
         private void MainWindowAqua_OnClosing(object sender, CancelEventArgs e)
         {
             Messenger.Default.Send<string>("closing");
-            SimpleIoc.Default.GetInstance<TechSupportServer>().host?.ChangeMyStatus(Status.Away);
+            var host = SimpleIoc.Default.GetInstance<TechSupportServer>().host;
+            host?.ChangeMyStatus(Status.Away);
+            if (SimpleIoc.Default.GetInstance<UserData>().Role == Role.Technician)
+            {
+                host?.ChangeTechnicianStatus(TechnicianStatus.Break);
+            }
+
         }
     }
 }

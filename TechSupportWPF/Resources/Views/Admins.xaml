@@ -59,7 +59,7 @@
                     <Ellipse Width="18"
                              Height="18">
                         <Ellipse.Fill>
-                            <ImageBrush ImageSource="{Binding TechnicianStatus,Converter={StaticResource BoolToImageSourceConverter}}" />
+                            <ImageBrush ImageSource="{Binding TechnicianStatus,Converter={StaticResource TechnicianStatusToImageSourceConverter}}" />
                         </Ellipse.Fill>
                     </Ellipse>
                     <Label FontSize="15"
