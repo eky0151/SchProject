@@ -25,7 +25,7 @@ namespace WebApp.Controllers
             {               
                 if (client.UserLogin(username, password))
                 {                   
-                    return View(new UserModel(username));
+                    return View(new UserModel(username, password));
                 }
                 else
                 {
@@ -33,14 +33,5 @@ namespace WebApp.Controllers
                 }
             }
         }
-
-        [HttpPost]
-        public ActionResult Send(string name, string message)
-        {
-            UserModel.ChatText += String.Format("{0} {1}: {2}", Environment.NewLine, name, message);
-
-            return View("~/Views/User/Login.cshtml");
-        }
-
     }
 }

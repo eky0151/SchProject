@@ -73,4 +73,14 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="TechWork" nillable="true" type="tns:TechWork" />
+  <xs:complexType name="NewTechWork">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Address" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CustomerName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="TechID" type="xs:int" />
+      <xs:element minOccurs="0" name="TimeOrdered" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="NewTechWork" nillable="true" type="tns:NewTechWork" />
 </xs:schema>

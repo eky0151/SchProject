@@ -521,6 +521,10 @@
       <Project>{86e64cf5-55d1-4b73-bcb0-8edb66dd348f}</Project>
       <Name>TechSharedLibraries</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WPFServerTest\WPFServerTest.csproj">
+      <Project>{29A0847C-A71D-4C3B-932F-9B472C0908C4}</Project>
+      <Name>WPFServerTest</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Layout\Images\management.png" />

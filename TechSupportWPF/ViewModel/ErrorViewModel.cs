@@ -6,19 +6,13 @@
     using System;
     using System.Collections.ObjectModel;
     using System.Windows.Input;
-    using System.ServiceModel;
-    using System.Collections.Generic;
-    using System.Drawing;
     using System.Windows.Forms;
-    using System.Threading.Tasks;
     using System.Net.Http;
-    using System.Windows;
     using Microsoft.AspNet.SignalR.Client;
-    using System.Threading;
     using GalaSoft.MvvmLight.Ioc;
-
     using System.Windows.Threading;
     using Microsoft.Practices.ServiceLocation;
+    using WPFServer;
 
     public class ErrorViewModel : ViewModelBase
     {
@@ -36,13 +30,6 @@
             set {  Set(ref message, value); }
         }
 
-        private Visibility visibility = Visibility.Hidden;
-        public Visibility Visibility
-        {
-            get { return visibility; }
-            set { Set(ref visibility, value); }
-        }
-
         public NewWorkData NewWorkData { get; set; } = new NewWorkData();
 
         public ICommand SendMessageCommand
@@ -53,20 +40,37 @@
 
         public ICommand NewWorkCommand
         {
-            get { return new RelayCommand(InsertNewTechWork); }
+            get { return new RelayCommand(NewTechWork); }
         }
 
-        private async void InsertNewTechWork()
+        public ICommand SaveNewTechWork
         {
-            Visibility = Visibility.Visible;
+            get { return new RelayCommand(SaveTehcWork, () => NewWorkData != null); }
+        }
+
+        private async void SaveTehcWork()
+        {
+            await ServiceLocator.Current.GetInstance<TechSupportServer>().host.InsertNewTechWorksAsync(
+                new TechSupportSecure.NewTechWork
+                {
+                    CustomerName = NewWorkData.Name,
+                    Address = NewWorkData.Address,
+                    TimeOrdered = NewWorkData.Time,
+                    TechID = NewWorkData.TechID
+                });
+
+            NewWorkData.Reset();
+            RaisePropertyChanged(nameof(NewWorkData.Visibility), NewWorkData.Visibility = true, NewWorkData.Visibility = false, false);
+        }
+
+        private async void NewTechWork()
+        {
+            NewWorkData.Visibility = true;
             TechSupportSecure.TechnicianData[] available = await ServiceLocator.Current.GetInstance<TechSupportServer>().host.GetAvailableTechnicianAsync();
-            NewWorkData.TechName = available[0] == null ? "Sorry no available tech" : available[0].FullName;
-            NewWorkData.TechID = NewWorkData.TechName == "Sorry no available tech" ? -1 : available[0].TechnicianID;
+            int member = available.Length == 1 ? 0 : new Random().Next(0, available.Length - 1);
+            NewWorkData.TechName = ( available != null && available[member] != null) ? available[member]?.FullName : "Sorry, no available technician";
+            NewWorkData.TechID = NewWorkData.TechName == "Sorry no available tech" ? -1 : available[member].TechnicianID;
             NewWorkData.Time = DateTime.Now;
-
-            //await ServiceLocator.Current.GetInstance<TechSupportServer>().host.InsertNewTechWorks(NewWorkData);
-
-
         }
 
         public ICommand EventCommand
@@ -75,37 +79,32 @@
             private set;
         }
 
+        string room; // TODO
         private void ButtonSend_Click()
         {
-            HubProxy.Invoke("Send", UserName, message);
+            HubProxy.Invoke<MyMessage>("Send", UserName, new MyMessage() { Msg = message, Group = room });
+            Messages.Add(UserName + " " + message);
+
+            // HubProxy.Invoke("Send", UserName, message);
         }
-
-        //---------------------------------------------------
-        //using System.Windows.Threading;
-        DispatcherTimer timer = new DispatcherTimer();
-
-        public void ToConsole(object sender, EventArgs e)
+        
+        private void ButtonEvent_Click()
         {
-
-            HubProxy.Invoke("Send", UserName, "uzenet");
+            room = "RoomA";
+            HubProxy.Invoke("Join", "RoomA");
         }
-        private void Event_Click()
-        {
-            timer.Tick += new EventHandler(ToConsole);
-            timer.Interval = new TimeSpan(0, 0, 5);
-            timer.Start();
-        }
-        //---------------------------------------------------
 
         public ErrorViewModel()
         {
             WriteToConsole("Starting server...");
             Messenger.Default.Register<string>(this, WPFClient_Closing);
             UserName = SimpleIoc.Default.GetInstance<UserData>().FullName;
+            EventCommand = new RelayCommand(ButtonEvent_Click);
             SendMessageCommand = new RelayCommand(ButtonSend_Click);
-            EventCommand = new RelayCommand(Event_Click);
 
             ConnectAsync();
+
+            NewWorkData.Visibility = false;
         }
 
         private async void ConnectAsync()
@@ -114,9 +113,9 @@
             Connection.Closed += Connection_Closed;
             HubProxy = Connection.CreateHubProxy("MyHub");
             //Handle incoming event from server: use Invoke to write to console from SignalR's thread
-            HubProxy.On<string, string>("AddMessage", (name, message) =>
+            HubProxy.On<string, string>("AddMessage", (name, Msg) => //(name, message)
                 App.Current.Dispatcher.Invoke(() =>
-                    Messages.Add(String.Format("{0}: {1}\r", name, message))
+                    Messages.Add(String.Format("{0}: {1}\r", name, Msg))
                 )
             );
             try
@@ -211,6 +210,18 @@
             set { Set(ref techName, value); }
         }
 
+        private bool visibility;
+        public bool Visibility
+        {
+            get { return visibility; }
+            set { Set(ref visibility, value); }
+        }
+
+        public void Reset()
+        {
+            Address = TechName = Name = string.Empty;
+            Visibility = false;
+        }
 
 
 
