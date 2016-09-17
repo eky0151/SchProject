@@ -75,11 +75,19 @@
             private set;
         }
 
+        string room; // TODO
         private void ButtonSend_Click()
         {
-            HubProxy.Invoke<MyMessage>("send", new MyMessage() { Msg = "Hello World", Group = "RoomA" });
+            HubProxy.Invoke<MyMessage>("Send", UserName, new MyMessage() { Msg = message, Group = room });
+            Messages.Add(UserName + " " + message);
 
             // HubProxy.Invoke("Send", UserName, message);
+        }
+        
+        private void ButtonEvent_Click()
+        {
+            room = "RoomA";
+            HubProxy.Invoke("Join", "RoomA");
         }
 
         public ErrorViewModel()
@@ -87,6 +95,7 @@
             WriteToConsole("Starting server...");
             Messenger.Default.Register<string>(this, WPFClient_Closing);
             UserName = SimpleIoc.Default.GetInstance<UserData>().FullName;
+            EventCommand = new RelayCommand(ButtonEvent_Click);
             SendMessageCommand = new RelayCommand(ButtonSend_Click);
 
             ConnectAsync();
@@ -98,9 +107,9 @@
             Connection.Closed += Connection_Closed;
             HubProxy = Connection.CreateHubProxy("MyHub");
             //Handle incoming event from server: use Invoke to write to console from SignalR's thread
-            HubProxy.On<string, string>("AddMessage", (name, message) =>
+            HubProxy.On<string, string>("AddMessage", (name, Msg) => //(name, message)
                 App.Current.Dispatcher.Invoke(() =>
-                    Messages.Add(String.Format("{0}: {1}\r", name, message))
+                    Messages.Add(String.Format("{0}: {1}\r", name, Msg))
                 )
             );
             try

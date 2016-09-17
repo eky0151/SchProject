@@ -25,8 +25,8 @@
         </ScrollViewer>
 
         <TextBox Text="{Binding Path=Message, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="45" Width="427" Margin="25,517,0,0" TextWrapping="Wrap" VerticalAlignment="Top" />
-        <Button Content="Send" Command="{Binding SendMessageCommand}" Foreground="Black" Background="White" HorizontalAlignment="Left" Height="31" Margin="25,589,0,0" VerticalAlignment="Top" Width="129" />
-        <Button Content="Event" Command="{Binding Path=EventCommand}"  Foreground="Black" Background="White" HorizontalAlignment="Left" Height="31" Margin="173,589,0,0" VerticalAlignment="Top" Width="129"/>
+        <Button Content="Send" Command="{Binding SendMessageCommand}" Foreground="Black" Background="White" HorizontalAlignment="Left" Height="31" Margin="25,578,0,0" VerticalAlignment="Top" Width="129" />
+        <Button Content="Event" Command="{Binding Path=EventCommand}"  Foreground="Black" Background="White" HorizontalAlignment="Left" Height="31" Margin="176,578,0,0" VerticalAlignment="Top" Width="129"/>
         <Grid DataContext="{Binding Path=NewWorkData}" Visibility="{Binding Path=Visibility}" HorizontalAlignment="Left" Height="609" Margin="429,11,0,0" VerticalAlignment="Top" Width="399">
             <TextBox Text="New Work" Foreground="Black" HorizontalContentAlignment="Center" IsEnabled="False"  HorizontalAlignment="Left" Height="33" Margin="10,10,0,0" VerticalAlignment="Top" Width="400"/>
             <Label Content="Full name" HorizontalAlignment="Left" Height="29" Margin="10,64,0,0" VerticalAlignment="Top" Width="156" RenderTransformOrigin="-0.042,0.207"/>
@@ -39,7 +39,7 @@
             <TextBox HorizontalAlignment="Left" Height="29" Margin="171,166,0,0" TextWrapping="Wrap" Text="{Binding Path=TEchID}" VerticalAlignment="Top" Width="218"/>
 
         </Grid>
-        <Button Content="New Work" Command="{Binding Path=NewWorkCommand}"  Foreground="Black" Background="White" HorizontalAlignment="Left" Height="31" Margin="323,589,0,0" VerticalAlignment="Top" Width="129"/>
+        <Button Content="New Work" Command="{Binding Path=NewWorkCommand}"  Foreground="Black" Background="White" HorizontalAlignment="Left" Height="31" Margin="323,578,0,0" VerticalAlignment="Top" Width="129"/>
 
     </Grid>
 </UserControl>

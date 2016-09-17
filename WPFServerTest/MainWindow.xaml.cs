@@ -99,17 +99,29 @@ namespace WPFServer
     /// </summary>
     public class MyHub : Hub
     {
-        public void Send(MyMessage message)
+        public void Send(string username, MyMessage message)
         {
-            // Call the addMessage method on all clients            
-            Clients.All.addMessage(message.Msg);
-            Clients.Group(message.Group).addMessage("Group Message " + message.Msg);
+            // Call the addMessage method on all clients                       
+            if (message.Group != null)
+            {
+                Clients.Group(message.Group).addMessage(username + " Group Message: " + message.Msg);
+            }
+            else
+            {
+                //Clients.All.addMessage(username, message.Msg);
+            }
+        }
+
+        public void Join(string groupName)
+        {
+            Groups.Add(Context.ConnectionId, groupName);
         }
 
         //public void Send(string name, string message)
         //{
         //    Clients.All.addMessage(name, message);
         //}
+
         public override Task OnConnected()
         {
             //Use Application.Current.Dispatcher to access UI thread from outside the MainWindow class
