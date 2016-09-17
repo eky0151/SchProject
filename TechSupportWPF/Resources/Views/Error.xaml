@@ -7,26 +7,39 @@
              xmlns:local="clr-namespace:SchProject.Resources.Layout"
              xmlns:class="clr-namespace:SchProject.ViewModel"
              mc:Ignorable="d" 
-             d:DesignHeight="630" d:DesignWidth="790"
-             DataContext="{Binding Source={StaticResource Locator}, Path=Error}">
+             d:DesignHeight="630"
+             DataContext="{Binding Source={StaticResource Locator}, Path=Error}" Width="838">
 
-            <!--Material Design Themes-->
-            <UserControl.Resources>
-                <ResourceDictionary>
-                    <ResourceDictionary.MergedDictionaries>
-                        <ResourceDictionary Source="/Resources/Layout/StyleResources/MaterialDesign.xaml"/>
-                    </ResourceDictionary.MergedDictionaries>
-                </ResourceDictionary>
-            </UserControl.Resources>
+    <!--Material Design Themes-->
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/Layout/StyleResources/MaterialDesign.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
 
-            <Grid Background="White">
-        <ScrollViewer Width="443" Height="420" Margin="25,-29,322,159">
-            <ItemsControl ItemsSource="{Binding Path=Messages}" />
-
+    <Grid Background="White">
+        <ScrollViewer Margin="25,11,366,138">
+            <ItemsControl ItemsSource="{Binding Path=Messages}" Width="399" />
         </ScrollViewer>
-                <TextBox Text="{Binding Path=Message, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="45" Width="443" Margin="25,426,0,0" TextWrapping="Wrap" VerticalAlignment="Top" />
-                <Button Content="Send" Command="{Binding SendMessageCommand}" Foreground="Black" HorizontalAlignment="Left" Height="31" Margin="25,484,0,0" VerticalAlignment="Top" Width="129" RenderTransformOrigin="0.853,0.419"/>
-                <Button Content="Event" Command="{Binding Path=EventCommand}"  Foreground="Black" HorizontalAlignment="Left" Height="31" Margin="178,484,0,0" VerticalAlignment="Top" Width="129" RenderTransformOrigin="0.853,0.419"/>
+
+        <TextBox Text="{Binding Path=Message, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="45" Width="427" Margin="25,517,0,0" TextWrapping="Wrap" VerticalAlignment="Top" />
+        <Button Content="Send" Command="{Binding SendMessageCommand}" Foreground="Black" Background="White" HorizontalAlignment="Left" Height="31" Margin="25,589,0,0" VerticalAlignment="Top" Width="129" />
+        <Button Content="Event" Command="{Binding Path=EventCommand}"  Foreground="Black" Background="White" HorizontalAlignment="Left" Height="31" Margin="173,589,0,0" VerticalAlignment="Top" Width="129"/>
+        <Grid DataContext="{Binding Path=NewWorkData}" Visibility="{Binding Path=Visibility}" HorizontalAlignment="Left" Height="609" Margin="429,11,0,0" VerticalAlignment="Top" Width="399">
+            <TextBox Text="New Work" Foreground="Black" HorizontalContentAlignment="Center" IsEnabled="False"  HorizontalAlignment="Left" Height="33" Margin="10,10,0,0" VerticalAlignment="Top" Width="400"/>
+            <Label Content="Full name" HorizontalAlignment="Left" Height="29" Margin="10,64,0,0" VerticalAlignment="Top" Width="156" RenderTransformOrigin="-0.042,0.207"/>
+            <Label Content="Address" HorizontalAlignment="Left" Height="29" Margin="10,98,0,0" VerticalAlignment="Top" Width="156" RenderTransformOrigin="-0.042,0.207"/>
+            <Label Content="Time" HorizontalAlignment="Left" Height="29" Margin="10,132,0,0" VerticalAlignment="Top" Width="156" RenderTransformOrigin="-0.042,0.207"/>
+            <Label Content="Technician name" HorizontalAlignment="Left" Height="29" Margin="10,166,0,0" VerticalAlignment="Top" Width="156" RenderTransformOrigin="-0.042,0.207"/>
+            <TextBox HorizontalAlignment="Left"  Height="29" Margin="171,64,0,0" TextWrapping="Wrap" Text="{Binding Path=Name}" VerticalAlignment="Top" Width="218"/>
+            <TextBox HorizontalAlignment="Left" Height="29" Margin="171,98,0,0" TextWrapping="Wrap" Text="{Binding Path=Address}" VerticalAlignment="Top" Width="218"/>
+            <TextBox HorizontalAlignment="Left" Height="29" Margin="171,132,0,0" TextWrapping="Wrap" Text="{Binding Path=Time}" VerticalAlignment="Top" Width="218"/>
+            <TextBox HorizontalAlignment="Left" Height="29" Margin="171,166,0,0" TextWrapping="Wrap" Text="{Binding Path=TEchID}" VerticalAlignment="Top" Width="218"/>
+
+        </Grid>
+        <Button Content="New Work" Command="{Binding Path=NewWorkCommand}"  Foreground="Black" Background="White" HorizontalAlignment="Left" Height="31" Margin="323,589,0,0" VerticalAlignment="Top" Width="129"/>
 
     </Grid>
 </UserControl>

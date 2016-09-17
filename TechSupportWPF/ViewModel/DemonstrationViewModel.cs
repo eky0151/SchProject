@@ -1,11 +1,11 @@
-﻿using GalaSoft.MvvmLight;
-using System;
-using System.Collections.ObjectModel;
-using System.Collections.Generic;
-using Microsoft.Practices.ServiceLocation;
-
-namespace SchProject.ViewModel
+﻿namespace SchProject.ViewModel
 {
+    using GalaSoft.MvvmLight;
+    using System;
+    using System.Collections.ObjectModel;
+    using System.Collections.Generic;
+    using Microsoft.Practices.ServiceLocation;
+
     public class RegistratdUsers : ObservableObject
     {
         private int count;
@@ -41,9 +41,11 @@ namespace SchProject.ViewModel
 
     public class DemonstrationViewModel : ViewModelBase
     {
-        public ObservableCollection<SolvedQuestionsByDay> Data { get; private set; } = new ObservableCollection<SolvedQuestionsByDay>();
+        public ObservableCollection<SolvedQuestionsByDay> Data { get; private set; }
+            = new ObservableCollection<SolvedQuestionsByDay>();
 
-        public ObservableCollection<RegistratdUsers> Users { get; private set; } = new ObservableCollection<RegistratdUsers>();
+        public ObservableCollection<RegistratdUsers> Users { get; private set; }
+            = new ObservableCollection<RegistratdUsers>();
 
         private int[] Counts;
         private DateTime[] Dates;

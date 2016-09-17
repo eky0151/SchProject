@@ -31,10 +31,18 @@
             <TabItem Header="Solved questions">
                 <Grid Background="White">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="148*"/>
+                        <ColumnDefinition Width="239*"/>
+                        <ColumnDefinition Width="387*"/>
                     </Grid.ColumnDefinitions>
-                    <telerik:RadCartesianChart Grid.Column="0">
+                    <telerik:RadCartesianChart Grid.Column="0" Grid.ColumnSpan="2">
+                        <telerik:RadCartesianChart.Behaviors>
+                            <telerik:ChartPanAndZoomBehavior PanMode="Horizontal"
+                                                             ZoomMode="Horizontal"/>
+                            <telerik:ChartTrackBallBehavior ShowIntersectionPoints="True"
+                                                            ShowTrackInfo="True"
+                                                            SnapMode="AllClosePoints"/>
+                        </telerik:RadCartesianChart.Behaviors>
                         <telerik:RadCartesianChart.HorizontalAxis>
                             <telerik:DateTimeCategoricalAxis LabelFormat="dd/MMM" DateTimeComponent="Ticks"/>
                         </telerik:RadCartesianChart.HorizontalAxis>
@@ -51,7 +59,7 @@
                         </telerik:BarSeries>
                     </telerik:RadCartesianChart>
 
-                    <chart:Chart Grid.Column="1" Title="Solved Question by workers last 7 days" BorderThickness="0" IsTabStop="True" ForceCursor="True" DataContext="{Binding Path=Pie}">
+                    <chart:Chart Grid.Column="2" Title="Solved Question by workers last 7 days" BorderThickness="0" IsTabStop="True" ForceCursor="True" DataContext="{Binding Path=Pie}">
                         <chart:PieSeries DependentValuePath="Value" IndependentValuePath="Key" ItemsSource="{Binding}" IsSelectionEnabled="True"/>
                         <chart:Chart.PlotAreaStyle>
                             <Style TargetType="Grid">

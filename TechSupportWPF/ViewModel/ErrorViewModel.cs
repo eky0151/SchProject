@@ -18,6 +18,7 @@
     using GalaSoft.MvvmLight.Ioc;
 
     using System.Windows.Threading;
+    using Microsoft.Practices.ServiceLocation;
 
     public class ErrorViewModel : ViewModelBase
     {
@@ -35,13 +36,36 @@
             set {  Set(ref message, value); }
         }
 
+        private Visibility visibility = Visibility.Hidden;
+        public Visibility Visibility
+        {
+            get { return visibility; }
+            set { Set(ref visibility, value); }
+        }
+
+        public NewWorkData NewWorkData { get; set; } = new NewWorkData();
+
         public ICommand SendMessageCommand
         {
             get;
             private set;                        
         }
 
-        
+        public ICommand NewWorkCommand
+        {
+            get { return new RelayCommand(InsertNewTechWork); }
+        }
+
+        private async void InsertNewTechWork()
+        {
+            Visibility = Visibility.Visible;
+            TechSupportSecure.TechnicianData[] available = await ServiceLocator.Current.GetInstance<TechSupportServer>().host.GetAvailableTechnicianAsync();
+            NewWorkData.TechName = available[0] == null ? "Sorry no available tech" : available[0].FullName;
+            NewWorkData.TechID = NewWorkData.TechName == "Sorry no available tech" ? -1 : available[0].TechnicianID;
+            NewWorkData.Time = DateTime.Now;
+            
+        }
+
         public ICommand EventCommand
         {
             get;
@@ -144,6 +168,50 @@
 
             }
         }
+
+    }
+
+    public class NewWorkData : ViewModelBase
+    {
+        private string name;
+        public string Name
+        {
+            get { return name; }
+            set { Set(ref name, value); }
+        }
+
+        private DateTime time;
+        public DateTime Time
+        {
+            get { return time; }
+            set { Set(ref time, value); }
+        }
+
+        private string address;
+        public string Address
+        {
+            get { return address; }
+            set { Set(ref address, value); }
+        }
+
+        private int techID;
+        public int TechID
+        {
+            get { return techID; }
+            set { Set(ref techID, value); }
+        }
+
+        private string techName;
+        public string TechName
+        {
+            get { return techName; }
+            set { Set(ref techName, value); }
+        }
+
+
+
+
+
 
     }
  
