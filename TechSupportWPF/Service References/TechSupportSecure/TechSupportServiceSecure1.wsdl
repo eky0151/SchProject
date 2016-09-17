@@ -228,6 +228,12 @@
   <wsdl:message name="ITechSupportServiceSecure1_GetLastMonthRegistratedUsers_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetLastMonthRegistratedUsersResponse" />
   </wsdl:message>
+  <wsdl:message name="ITechSupportServiceSecure1_SendMessageToTechnician_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendMessageToTechnician" />
+  </wsdl:message>
+  <wsdl:message name="ITechSupportServiceSecure1_SendMessageToTechnician_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SendMessageToTechnicianResponse" />
+  </wsdl:message>
   <wsdl:portType name="ITechSupportServiceSecure1">
     <wsdl:operation name="Login">
       <wsdl:input wsaw:Action="http://tempuri.org/ITechSupportServiceSecure1/Login" message="tns:ITechSupportServiceSecure1_Login_InputMessage" />
@@ -317,6 +323,10 @@
     <wsdl:operation name="GetLastMonthRegistratedUsers">
       <wsdl:input wsaw:Action="http://tempuri.org/ITechSupportServiceSecure1/GetLastMonthRegistratedUsers" message="tns:ITechSupportServiceSecure1_GetLastMonthRegistratedUsers_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ITechSupportServiceSecure1/GetLastMonthRegistratedUsersResponse" message="tns:ITechSupportServiceSecure1_GetLastMonthRegistratedUsers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SendMessageToTechnician">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITechSupportServiceSecure1/SendMessageToTechnician" message="tns:ITechSupportServiceSecure1_SendMessageToTechnician_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITechSupportServiceSecure1/SendMessageToTechnicianResponse" message="tns:ITechSupportServiceSecure1_SendMessageToTechnician_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="WSHttpBinding_ITechSupportServiceSecure1" type="tns:ITechSupportServiceSecure1">
@@ -507,6 +517,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetLastMonthRegistratedUsers">
       <soap12:operation soapAction="http://tempuri.org/ITechSupportServiceSecure1/GetLastMonthRegistratedUsers" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendMessageToTechnician">
+      <soap12:operation soapAction="http://tempuri.org/ITechSupportServiceSecure1/SendMessageToTechnician" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

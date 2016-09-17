@@ -4,6 +4,7 @@
     using System.Linq;
     using System.Data.Entity;
     using System;
+    using System.Collections.Generic;
 
     public class NewTechWorksRepository : GenericsEFRepository.GenericsRepository<NewTechWorks>, INewTechWorksRepository
     {
@@ -30,6 +31,11 @@
         public override NewTechWorks GetById(int id)
         {
             return Get(i => i.ID == id).FirstOrDefault();
+        }
+
+        public List<NewTechWorks> GetMyNewTechWorks(string username)
+        {
+            return Get(x => x.Technician.Worker.LoginData.FirstOrDefault().Username == username).ToList();
         }
 
         public override void Update(NewTechWorks entityToModify)

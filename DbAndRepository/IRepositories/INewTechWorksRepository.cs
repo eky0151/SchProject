@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace DbAndRepository.IRepositories
 {
@@ -7,5 +8,7 @@ namespace DbAndRepository.IRepositories
     public interface INewTechWorksRepository : IGenericsRepository<NewTechWorks>
     {
         void AddNewTechWork(string address, string customerName, DateTime orderTime, int technicianID);
+
+        List<NewTechWorks> GetMyNewTechWorks(string username);
     }
 }

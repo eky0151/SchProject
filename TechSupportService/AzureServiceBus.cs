@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using Microsoft.ServiceBus;
 using Microsoft.ServiceBus.Messaging;
@@ -12,14 +13,17 @@ namespace TechSupportService
     public static class AzureServiceBus
     {
         private static readonly string _topicPath = "Notifications";
+        private static readonly string _technicianChatPath = "TechnicianChat";
         private static NamespaceManager NamespaceMgr;
         private static object _sync = new object();
         private static MessagingFactory Factory;
         private static TopicClient _topicClient;
+        private static TopicClient _technicianMessage;
 
         static AzureServiceBus()
         {
             CreateManagerAndFactory();
+            InitTechnicianMessages();
         }
 
         private static void CreateManagerAndFactory()
@@ -34,6 +38,17 @@ namespace TechSupportService
                 NamespaceMgr.CreateTopic(_topicPath);
             }
             _topicClient = Factory.CreateTopicClient(_topicPath);
+        }
+        private static async void InitTechnicianMessages()
+        {
+            _technicianMessage = await Task.Factory.StartNew(() =>
+            {
+                if (!NamespaceMgr.TopicExists(_technicianChatPath))
+                {
+                    NamespaceMgr.CreateTopic(_technicianChatPath);
+                }
+                return Factory.CreateTopicClient(_technicianChatPath);
+            });
         }
 
         public static void SendStatusNotification(string username, Status status)
@@ -63,6 +78,25 @@ namespace TechSupportService
             BrokeredMessage msg = new BrokeredMessage(data);
             msg.ContentType = "CustomerLogin";
             SendMessage(msg);
+        }
+
+        public static async Task SendMessageToTechnician(string username, string message)
+        {
+            await Task.Factory.StartNew(() =>
+            {
+                BrokeredMessage brokeredMessage = new BrokeredMessage(message);
+                brokeredMessage.Properties.Add("Username", username);
+                _technicianMessage.Send(brokeredMessage);
+            });
+        }
+        public static async Task SendMessage(string username, string message)
+        {
+            await Task.Factory.StartNew(() =>
+            {
+                BrokeredMessage brokeredMessage = new BrokeredMessage(message);
+                brokeredMessage.Properties.Add("Username", username);
+                _technicianMessage.Send(brokeredMessage);
+            });
         }
 
         private static void SendMessage(BrokeredMessage msg)

@@ -26,9 +26,6 @@ namespace SchProject.TechSupportService {
         private string FullNameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Guid IdentifierField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private SchProject.TechSupportService.Role RoleField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -53,19 +50,6 @@ namespace SchProject.TechSupportService {
                 if ((object.ReferenceEquals(this.FullNameField, value) != true)) {
                     this.FullNameField = value;
                     this.RaisePropertyChanged("FullName");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Guid Identifier {
-            get {
-                return this.IdentifierField;
-            }
-            set {
-                if ((this.IdentifierField.Equals(value) != true)) {
-                    this.IdentifierField = value;
-                    this.RaisePropertyChanged("Identifier");
                 }
             }
         }
@@ -466,6 +450,115 @@ namespace SchProject.TechSupportService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="NewTechWork", Namespace="http://schemas.datacontract.org/2004/07/TechSupportService.DataContract")]
+    [System.SerializableAttribute()]
+    public partial class NewTechWork : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string AddressField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CustomerNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int TechIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime TimeOrderedField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Address {
+            get {
+                return this.AddressField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AddressField, value) != true)) {
+                    this.AddressField = value;
+                    this.RaisePropertyChanged("Address");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string CustomerName {
+            get {
+                return this.CustomerNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CustomerNameField, value) != true)) {
+                    this.CustomerNameField = value;
+                    this.RaisePropertyChanged("CustomerName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ID {
+            get {
+                return this.IDField;
+            }
+            set {
+                if ((this.IDField.Equals(value) != true)) {
+                    this.IDField = value;
+                    this.RaisePropertyChanged("ID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int TechID {
+            get {
+                return this.TechIDField;
+            }
+            set {
+                if ((this.TechIDField.Equals(value) != true)) {
+                    this.TechIDField = value;
+                    this.RaisePropertyChanged("TechID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime TimeOrdered {
+            get {
+                return this.TimeOrderedField;
+            }
+            set {
+                if ((this.TimeOrderedField.Equals(value) != true)) {
+                    this.TimeOrderedField = value;
+                    this.RaisePropertyChanged("TimeOrdered");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="SolvedQuestion", Namespace="http://schemas.datacontract.org/2004/07/TechSupportService")]
     [System.SerializableAttribute()]
     public partial class SolvedQuestion : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -481,6 +574,9 @@ namespace SchProject.TechSupportService {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int CustomerIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string[] KeyWordsField;
@@ -548,6 +644,19 @@ namespace SchProject.TechSupportService {
                 if ((this.CustomerIDField.Equals(value) != true)) {
                     this.CustomerIDField = value;
                     this.RaisePropertyChanged("CustomerID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ID {
+            get {
+                return this.IDField;
+            }
+            set {
+                if ((this.IDField.Equals(value) != true)) {
+                    this.IDField = value;
+                    this.RaisePropertyChanged("ID");
                 }
             }
         }
@@ -675,6 +784,12 @@ namespace SchProject.TechSupportService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportService1/CustomerList", ReplyAction="http://tempuri.org/ITechSupportService1/CustomerListResponse")]
         System.Threading.Tasks.Task<SchProject.TechSupportService.CustomerData[]> CustomerListAsync();
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportService1/GetMyNewTechworks", ReplyAction="http://tempuri.org/ITechSupportService1/GetMyNewTechworksResponse")]
+        SchProject.TechSupportService.NewTechWork[] GetMyNewTechworks(string username);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportService1/GetMyNewTechworks", ReplyAction="http://tempuri.org/ITechSupportService1/GetMyNewTechworksResponse")]
+        System.Threading.Tasks.Task<SchProject.TechSupportService.NewTechWork[]> GetMyNewTechworksAsync(string username);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportService1/UploadSolvedQuestion", ReplyAction="http://tempuri.org/ITechSupportService1/UploadSolvedQuestionResponse")]
         void UploadSolvedQuestion(SchProject.TechSupportService.SolvedQuestion question);
         
@@ -700,10 +815,16 @@ namespace SchProject.TechSupportService {
         System.Threading.Tasks.Task<string> GetUserProfilePictureAsync(string username);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ITechSupportService1/RegisterNewUser")]
-        void RegisterNewUser(string fullName, string email, string userName, string password);
+        void RegisterNewUser(string fullName, string email, string userName, string password, string profilePicture);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ITechSupportService1/RegisterNewUser")]
-        System.Threading.Tasks.Task RegisterNewUserAsync(string fullName, string email, string userName, string password);
+        System.Threading.Tasks.Task RegisterNewUserAsync(string fullName, string email, string userName, string password, string profilePicture);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ITechSupportService1/SendMessageToSupport")]
+        void SendMessageToSupport(string username, string message);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ITechSupportService1/SendMessageToSupport")]
+        System.Threading.Tasks.Task SendMessageToSupportAsync(string username, string message);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -757,6 +878,14 @@ namespace SchProject.TechSupportService {
             return base.Channel.CustomerListAsync();
         }
         
+        public SchProject.TechSupportService.NewTechWork[] GetMyNewTechworks(string username) {
+            return base.Channel.GetMyNewTechworks(username);
+        }
+        
+        public System.Threading.Tasks.Task<SchProject.TechSupportService.NewTechWork[]> GetMyNewTechworksAsync(string username) {
+            return base.Channel.GetMyNewTechworksAsync(username);
+        }
+        
         public void UploadSolvedQuestion(SchProject.TechSupportService.SolvedQuestion question) {
             base.Channel.UploadSolvedQuestion(question);
         }
@@ -789,12 +918,20 @@ namespace SchProject.TechSupportService {
             return base.Channel.GetUserProfilePictureAsync(username);
         }
         
-        public void RegisterNewUser(string fullName, string email, string userName, string password) {
-            base.Channel.RegisterNewUser(fullName, email, userName, password);
+        public void RegisterNewUser(string fullName, string email, string userName, string password, string profilePicture) {
+            base.Channel.RegisterNewUser(fullName, email, userName, password, profilePicture);
         }
         
-        public System.Threading.Tasks.Task RegisterNewUserAsync(string fullName, string email, string userName, string password) {
-            return base.Channel.RegisterNewUserAsync(fullName, email, userName, password);
+        public System.Threading.Tasks.Task RegisterNewUserAsync(string fullName, string email, string userName, string password, string profilePicture) {
+            return base.Channel.RegisterNewUserAsync(fullName, email, userName, password, profilePicture);
+        }
+        
+        public void SendMessageToSupport(string username, string message) {
+            base.Channel.SendMessageToSupport(username, message);
+        }
+        
+        public System.Threading.Tasks.Task SendMessageToSupportAsync(string username, string message) {
+            return base.Channel.SendMessageToSupportAsync(username, message);
         }
     }
 }

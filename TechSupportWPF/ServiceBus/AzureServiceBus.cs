@@ -17,7 +17,7 @@ namespace SchProject
     public class AzureServiceBus
     {
         private readonly string _notificationsPath = "Notifications";
-        private readonly string _technicianChatPath = "TecchnicianChat";
+        private readonly string _technicianChatPath = "TechnicianChat";
         private NamespaceManager NamespaceMgr;
         private MessagingFactory Factory;
         private SubscriptionClient _subscriptionClient;
@@ -110,8 +110,6 @@ namespace SchProject
                 }
                 return Factory.CreateTopicClient(_technicianChatPath);
             });
-
-
         }
         public async Task SendMessageToTechnician(string username, string message)
         {

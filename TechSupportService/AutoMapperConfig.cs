@@ -13,9 +13,7 @@ namespace TechSupportService
     {
         public static void Init()
         {
-            Mapper.Initialize(cgf => cgf.CreateMap<DbAndRepository.Technician, TechSupportService.Entities.Technician>());
-            Mapper.Initialize(cgf => cgf.CreateMap<DbAndRepository.Worker, TechSupportService.Entities.Worker>());
-            Mapper.Initialize(cgf => cgf.CreateMap<DbAndRepository.LoginData, TechSupportService.Entities.LoginData>());
+            Mapper.Initialize(cgf => cgf.CreateMap<DbAndRepository.NewTechWorks, TechSupportService.DataContract.NewTechWork>());
         }
     }
 }

@@ -14,7 +14,6 @@ using DbAndRepository;
 using DbAndRepository.IRepositories;
 using DbAndRepository.Repostirories;
 using TechSupportService.DataContract;
-using TechSupportService.ServiceContract;
 
 namespace TechSupportService
 {
@@ -287,6 +286,11 @@ namespace TechSupportService
             List<int> a = _regUserRepository.GetLastMonthRegistratedUsers(out t);
             Dates = t;
             return a;
+        }
+
+        public async void SendMessageToTechnician(string username, string message)
+        {
+           await AzureServiceBus.SendMessageToTechnician(username, message);
         }
     }
 }

@@ -1081,6 +1081,12 @@ namespace SchProject.TechSupportSecure {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportServiceSecure1/GetLastMonthRegistratedUsers", ReplyAction="http://tempuri.org/ITechSupportServiceSecure1/GetLastMonthRegistratedUsersRespons" +
             "e")]
         System.Threading.Tasks.Task<SchProject.TechSupportSecure.GetLastMonthRegistratedUsersResponse> GetLastMonthRegistratedUsersAsync(SchProject.TechSupportSecure.GetLastMonthRegistratedUsersRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportServiceSecure1/SendMessageToTechnician", ReplyAction="http://tempuri.org/ITechSupportServiceSecure1/SendMessageToTechnicianResponse")]
+        void SendMessageToTechnician(string username, string message);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportServiceSecure1/SendMessageToTechnician", ReplyAction="http://tempuri.org/ITechSupportServiceSecure1/SendMessageToTechnicianResponse")]
+        System.Threading.Tasks.Task SendMessageToTechnicianAsync(string username, string message);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -1387,6 +1393,14 @@ namespace SchProject.TechSupportSecure {
         
         public System.Threading.Tasks.Task<SchProject.TechSupportSecure.GetLastMonthRegistratedUsersResponse> GetLastMonthRegistratedUsersAsync(SchProject.TechSupportSecure.GetLastMonthRegistratedUsersRequest request) {
             return base.Channel.GetLastMonthRegistratedUsersAsync(request);
+        }
+        
+        public void SendMessageToTechnician(string username, string message) {
+            base.Channel.SendMessageToTechnician(username, message);
+        }
+        
+        public System.Threading.Tasks.Task SendMessageToTechnicianAsync(string username, string message) {
+            return base.Channel.SendMessageToTechnicianAsync(username, message);
         }
     }
 }

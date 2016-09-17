@@ -7,7 +7,6 @@ using System.Text;
 using System.Threading.Tasks;
 using DbAndRepository;
 using TechSupportService.DataContract;
-using TechSupportService.ServiceContract;
 
 namespace TechSupportService
 {
@@ -89,6 +88,9 @@ namespace TechSupportService
 
         [OperationContract]
         List<int> GetLastMonthRegistratedUsers(out List<DateTime> Dates);
+
+        [OperationContract]
+        void SendMessageToTechnician(string username, string message);
 
     }
 }
