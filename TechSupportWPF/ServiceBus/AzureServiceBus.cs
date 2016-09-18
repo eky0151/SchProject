@@ -34,6 +34,7 @@ namespace SchProject
         public event EventHandler<CustomerLoginEventArgs> CustomerLoginHandler;
         public event EventHandler<MessageEventArgs> MessageHandler;
         public event EventHandler<NewCustomerMessageEventArgs> CustomerMessage;
+        private string _subName;
 
 
         public AzureServiceBus()
@@ -74,7 +75,8 @@ namespace SchProject
 
         private void CreateManagerAndFactory()
         {
-            string subscriptName = Guid.NewGuid().ToString();
+            _subName= Guid.NewGuid().ToString();
+            
             string connectionString =
                 ConfigurationManager.AppSettings["Microsoft.Azure.NotificationHubs.ConnectionString"];
 
@@ -82,12 +84,12 @@ namespace SchProject
             Factory = MessagingFactory.CreateFromConnectionString(connectionString);
             try
             {
-                CreateSubs(subscriptName);
-                _subscriptionClient = SubscriptionClient.CreateFromConnectionString(connectionString, _notificationsPath, subscriptName);
+                CreateSubs(_subName);
+                _subscriptionClient = SubscriptionClient.CreateFromConnectionString(connectionString, _notificationsPath, _subName);
                 OnMessageOptions options = new OnMessageOptions() { MaxConcurrentCalls = 1, AutoComplete = false };
                 _subscriptionClient.OnMessage(ProcessMessage, options);
                 CustomerClient = SubscriptionClient.CreateFromConnectionString(connectionString, _customerChatPath, _messagesSubName);
-                _customerMessageWireTap = SubscriptionClient.CreateFromConnectionString(connectionString, _customerChatPath, subscriptName);
+                _customerMessageWireTap = SubscriptionClient.CreateFromConnectionString(connectionString, _customerChatPath, _subName);
                 _customerMessageWireTap.OnMessage(Customermessageprocess);
             }
             catch (Exception)
@@ -122,6 +124,7 @@ namespace SchProject
 
         private void ProcessMessage(BrokeredMessage message)
         {
+            message.Complete();
             if (message.ContentType == "Login")
             {
                 EventHandler<LoginEventArgs> temp = LoginHandler;
@@ -156,10 +159,18 @@ namespace SchProject
                     var msg = message.GetBody<string>();
                     temp.Invoke(this, new BugEventArgs() { Message = msg });
                 }
-            }
-            message.Complete();
+            }  
         }
 
+        public void DeleteSubs()
+        {
+            _subscriptionClient.Close();
+            _customerMessageWireTap.Close();
+            _technicianMessage.Close();
+            CustomerClient.Close();
+            NamespaceMgr.DeleteSubscription(_notificationsPath, _subName);
+            NamespaceMgr.DeleteSubscription(_customerChatPath, _subName);
+        }
         public int GetMessagesCount()
         {
             var data = NamespaceMgr.GetSubscription(_customerChatPath, _messagesSubName).MessageCount;

@@ -67,7 +67,7 @@ namespace SchProject.Resources.Layout
             {
                 host?.ChangeTechnicianStatus(TechnicianStatus.Break);
             }
-
+            SimpleIoc.Default.GetInstance<AzureServiceBus>().DeleteSubs();
         }
     }
 }
