@@ -18,15 +18,17 @@ namespace TechSupport
 		{
 			base.ViewDidLoad();
 			CGRect frameRect = Response.Frame;
-			frameRect.Size = new CGSize() { Height = 222, Width = frameRect.Size.Width };
-			Response.Frame = frameRect;
 			UserName.Text = Sender;
+			Response.Frame = frameRect;
 			SenderMessage.Text = Message;
+			UserName.TextColor = UIColor.White;
+			LableSeender.TextColor = UIColor.White;
+			frameRect.Size = new CGSize() { Height = 222, Width = frameRect.Size.Width };
 		}
 
 		partial void SendClick(UIButton sender)
 		{
-			TechSupportServer.Client.SendMessageToSupportAsync(Sender, Response.Text);
+			TechSupportServer.Client.SendMessageToSupportAsync(Sender,UserData.Username, Response.Text);
 			TechSupportServer.Client.SendMessageToSupportCompleted += CleanMessage;
 		}
 

@@ -35,8 +35,6 @@ namespace TechSupport
 			var introController = (BaseController)Storyboard.InstantiateViewController("LoginViewModel");
 			var menuController = (MenuController)Storyboard.InstantiateViewController("MenuController");
 
-			// create a slideout navigation controller with the top navigation controller and the menu view controller
-
 			SidebarController = new SidebarNavigation.SidebarController(this, introController, menuController);
 			SidebarController.MenuLocation = MenuLocations.Left;
 			SidebarController.MenuWidth = 250;

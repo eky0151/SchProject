@@ -214,7 +214,7 @@
         <scene sceneID="161">
             <objects>
                 <viewController id="162" sceneMemberID="viewController" storyboardIdentifier="DetailsViewController" customClass="DetailsViewController">
-                    <view key="view" contentMode="scaleToFill" id="163">
+                    <view key="view" contentMode="scaleToFill" id="163" customClass="MessageView">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -228,16 +228,16 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sender:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="167">
-                                <rect key="frame" x="51" y="95" width="77" height="21"/>
+                                <rect key="frame" x="320" y="20" width="77" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20" weight="medium"/>
+                                <nil key="textColor" colorSpace="calibratedWhite" white="1" alpha="1"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="168">
-                                <rect key="frame" x="115" y="95" width="107" height="21"/>
+                                <rect key="frame" x="394" y="20" width="107" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20" weight="medium"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -272,10 +272,12 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="183">
-                                <rect key="frame" x="20" y="38" width="62" height="30"/>
+                                <rect key="frame" x="0.0" y="20" width="89" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="&lt; Back">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleColor" colorSpace="calibratedWhite" white="1" alpha="1"/>
                                 </state>
                                 <connections>
                                     <action selector="OnDismiss:" destination="162" id="184" eventType="touchDown"/>
@@ -287,6 +289,7 @@
                         <outlet property="UserName" destination="168" id="name-outlet-168"/>
                         <outlet property="SenderMessage" destination="166" id="name-outlet-166"/>
                         <outlet property="Response" destination="171" id="name-outlet-171"/>
+                        <outlet property="LableSeender" destination="167" id="name-outlet-167"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="164" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -297,5 +300,6 @@
     <resources>
         <image name="user.png" width="512" height="512"/>
         <image name="placeholder.jpg" width="2706" height="2706"/>
+        <image name="Images/logo.png" width="1500" height="1500"/>
     </resources>
 </document>

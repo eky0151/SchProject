@@ -16,6 +16,10 @@ namespace TechSupport
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UILabel LableSeender { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UITextField Response { get; set; }
 
         [Outlet]
@@ -36,6 +40,11 @@ namespace TechSupport
 
         void ReleaseDesignerOutlets ()
         {
+            if (LableSeender != null) {
+                LableSeender.Dispose ();
+                LableSeender = null;
+            }
+
             if (Response != null) {
                 Response.Dispose ();
                 Response = null;

@@ -8,7 +8,7 @@ namespace TechSupport
 {
 	public partial class MessagesController : UIViewController
 	{
-		List<Message> messages = new List<Message>() { new Message() { Sender = "Tron", Messag = "cnasdijcnasdijnoasdicnasodcnasduincaosducn" } };
+		List<Message> messages = new List<Message>();
 		public MessagesController(IntPtr handle) : base(handle)
 		{
 
@@ -25,11 +25,7 @@ namespace TechSupport
 		{
 			InvokeOnMainThread(() =>
 			{
-				foreach (var item in e.Result)
-				{
-					messages.Add(item);
-				}
-				EmailView.Source = new MessagesDataSource(this, messages);
+				EmailView.Source = new MessagesDataSource(this, new List<Message>(e.Result));
 				EmailView.ReloadData();
 			});
 		}

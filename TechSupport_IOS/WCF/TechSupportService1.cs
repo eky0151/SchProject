@@ -716,7 +716,7 @@ public interface ITechSupportService1
     void EndRegisterNewUser(System.IAsyncResult result);
     
     [System.ServiceModel.OperationContractAttribute(IsOneWay=true, AsyncPattern=true, Action="http://tempuri.org/ITechSupportService1/SendMessageToSupport")]
-    System.IAsyncResult BeginSendMessageToSupport(string username, string message, System.AsyncCallback callback, object asyncState);
+    System.IAsyncResult BeginSendMessageToSupport(string username, string sender, string message, System.AsyncCallback callback, object asyncState);
     
     void EndSendMessageToSupport(System.IAsyncResult result);
     
@@ -1597,9 +1597,9 @@ public partial class TechSupportService1Client : System.ServiceModel.ClientBase<
     }
     
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    System.IAsyncResult ITechSupportService1.BeginSendMessageToSupport(string username, string message, System.AsyncCallback callback, object asyncState)
+    System.IAsyncResult ITechSupportService1.BeginSendMessageToSupport(string username, string sender, string message, System.AsyncCallback callback, object asyncState)
     {
-        return base.Channel.BeginSendMessageToSupport(username, message, callback, asyncState);
+        return base.Channel.BeginSendMessageToSupport(username, sender, message, callback, asyncState);
     }
     
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -1611,8 +1611,9 @@ public partial class TechSupportService1Client : System.ServiceModel.ClientBase<
     private System.IAsyncResult OnBeginSendMessageToSupport(object[] inValues, System.AsyncCallback callback, object asyncState)
     {
         string username = ((string)(inValues[0]));
-        string message = ((string)(inValues[1]));
-        return ((ITechSupportService1)(this)).BeginSendMessageToSupport(username, message, callback, asyncState);
+        string sender = ((string)(inValues[1]));
+        string message = ((string)(inValues[2]));
+        return ((ITechSupportService1)(this)).BeginSendMessageToSupport(username, sender, message, callback, asyncState);
     }
     
     private object[] OnEndSendMessageToSupport(System.IAsyncResult result)
@@ -1630,12 +1631,12 @@ public partial class TechSupportService1Client : System.ServiceModel.ClientBase<
         }
     }
     
-    public void SendMessageToSupportAsync(string username, string message)
+    public void SendMessageToSupportAsync(string username, string sender, string message)
     {
-        this.SendMessageToSupportAsync(username, message, null);
+        this.SendMessageToSupportAsync(username, sender, message, null);
     }
     
-    public void SendMessageToSupportAsync(string username, string message, object userState)
+    public void SendMessageToSupportAsync(string username, string sender, string message, object userState)
     {
         if ((this.onBeginSendMessageToSupportDelegate == null))
         {
@@ -1651,6 +1652,7 @@ public partial class TechSupportService1Client : System.ServiceModel.ClientBase<
         }
         base.InvokeAsync(this.onBeginSendMessageToSupportDelegate, new object[] {
                     username,
+                    sender,
                     message}, this.onEndSendMessageToSupportDelegate, this.onSendMessageToSupportCompletedDelegate, userState);
     }
     
@@ -1945,11 +1947,12 @@ public partial class TechSupportService1Client : System.ServiceModel.ClientBase<
             base.EndInvoke("RegisterNewUser", _args, result);
         }
         
-        public System.IAsyncResult BeginSendMessageToSupport(string username, string message, System.AsyncCallback callback, object asyncState)
+        public System.IAsyncResult BeginSendMessageToSupport(string username, string sender, string message, System.AsyncCallback callback, object asyncState)
         {
-            object[] _args = new object[2];
+            object[] _args = new object[3];
             _args[0] = username;
-            _args[1] = message;
+            _args[1] = sender;
+            _args[2] = message;
             System.IAsyncResult _result = base.BeginInvoke("SendMessageToSupport", _args, callback, asyncState);
             return _result;
         }
