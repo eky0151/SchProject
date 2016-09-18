@@ -64,6 +64,7 @@ namespace SchProject
             {
                 temp.Invoke(this, new MessageEventArgs(message.Properties["Sender"].ToString(), message.GetBody<string>()));
             }
+            message.Complete();
         }
 
         private void CreateManagerAndFactory()

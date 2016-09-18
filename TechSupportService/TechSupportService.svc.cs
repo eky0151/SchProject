@@ -83,7 +83,17 @@ namespace TechSupportService
             {
                 var user = _auth.Get(x => x.Username == username).FirstOrDefault();
                 if (user != null)
-                    return new LoginResult() { FullName = user.Worker.FullName, Role = (Role)Enum.Parse(typeof(Role), user.Urole), Valid = true };
+                {
+                    user.Worker.Status = "Working";
+                    _auth.Update(user);
+                    AzureServiceBus.SendCustomerLoginNotification((CustomerData)_regUserRepository.GetUserByUsername(username));
+                    return new LoginResult()
+                    {
+                        FullName = user.Worker.FullName,
+                        Role = (Role) Enum.Parse(typeof(Role), user.Urole),
+                        Valid = true
+                    };
+                }
             }
             return new LoginResult() { Valid = false };
         }
