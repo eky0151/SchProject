@@ -54,21 +54,11 @@
             // Declare a proxy to reference the hub.
             var chat = $.connection.myHub;
 
-            //Sajat
+            // Create a function that the hub can call to broadcast messages.
             chat.client.addMessage = function (name, Msg) {
                 $('#discussion').append('<li>' + name + " " + Msg + '</li>');
             };
-
-
-            // Create a function that the hub can call to broadcast messages.
-            //chat.client.addMessage = function (name, Msg) {
-            //    // Html encode display name and message.
-            //    var encodedName = $('<div />').text(name).html();
-            //    var encodedMsg = $('<div />').text(Msg).html();
-            //    // Add the message to the page.
-            //    $('#discussion').append('<li><strong>' + encodedName
-            //        + '</strong>:&nbsp;&nbsp;' + encodedMsg + '</li>');
-            //};
+ 
 
             // Get the user name and store it to prepend to messages.
             $('#displayname').val("@Model.Username");
@@ -84,7 +74,21 @@
 
                 $('#sendmessage').click(function () {
 
-                    chat.server.send($('#displayname').val(), { Msg: $('#message').val(), Group: "RoomA" }); //$('#displayname').val(), 
+                    chat.server.send($('#displayname').val(), { Msg: $('#message').val(), Group: "RoomA" });
+
+                    $.ajax(
+                    {
+                        type: "POST",
+                        url: "pageone.aspx/PageOneMethodOne",
+                        data: "{}",
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function (msg) {
+                            //something
+                        }
+                    }
+                );
+
                     // Call the Send method on the hub.
                     //chat.server.send($('#displayname').val(), $('#message').val());
                     // Clear text box and reset focus for next comment.
