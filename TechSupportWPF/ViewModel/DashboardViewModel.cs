@@ -37,7 +37,7 @@ namespace SchProject.Resources.Layout.StyleResources
         public DashboardViewModel()
         {
             LastClients = new FixSizedObservableCollection<CustomerData>(9);
-            LastTickets = new FixSizedObservableCollection<TicketTemporary>(5);
+            LastTickets = new FixSizedObservableCollection<TicketTemporary>(7);
             SetData();
         }
 
