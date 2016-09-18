@@ -271,6 +271,7 @@
     <Compile Include="ServiceBus\CustomerLoginEventArgs.cs" />
     <Compile Include="ServiceBus\LoginEventArgs.cs" />
     <Compile Include="ServiceBus\MessageEventArgs.cs" />
+    <Compile Include="ServiceBus\NewCustomerMessageEventArgs.cs" />
     <Compile Include="ServiceBus\StatusChanged.cs" />
     <Compile Include="ServiceBus\StatusChangedEventArgs.cs" />
     <Compile Include="Resources\Services\TechSupportServer.cs" />

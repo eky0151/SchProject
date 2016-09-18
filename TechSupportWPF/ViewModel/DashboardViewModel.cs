@@ -29,33 +29,43 @@ namespace SchProject.Resources.Layout.StyleResources
 
     public class DashboardViewModel : ViewModelBase
     {
+        private int _newTickets;
+        private int _solvedTickets;
+        private int _openedTickets;
         private ObservableCollection<WorkerData> _workerList;
-        public int NewTickets { get; private set; } = 149;
-        public int SolvedTickets { get; private set; } = 50;
-        public int OpenedTickets { get; private set; } = 11;
-        public FixSizedObservableCollection<CustomerData> LastClients { get; private set; }
 
+        public DashboardViewModel()
+        {
+            LastClients = new FixSizedObservableCollection<CustomerData>(9);
+            LastTickets = new FixSizedObservableCollection<TicketTemporary>(5);
+            SetData();
+        }
+
+        public FixSizedObservableCollection<CustomerData> LastClients { get; }
+        public FixSizedObservableCollection<TicketTemporary> LastTickets { get; }
         public ObservableCollection<WorkerData> WorkerList
         {
             get { return _workerList; }
             private set { Set(ref _workerList, value); }
         }
-
-        public ObservableCollection<TicketTemporary> LastTickets { get; private set; }
-
-        public DashboardViewModel()
+        public int NewTickets
         {
-            LastClients = new FixSizedObservableCollection<CustomerData>(9);
-
-            LastTickets = new ObservableCollection<TicketTemporary>()
-            {
-                new TicketTemporary("#324342", "Msmaksasmomofm isodmfoskdfmkfdoms", "New"),
-                new TicketTemporary("#324342", "Msmaksasmomofm isodmfoskdfmkfdoms", "New"),
-                new TicketTemporary("#324342", "Msmaksasmomofm isodmfoskdfmkfdoms", "New")
-            };
-            SetData();
+            get { return _newTickets; }
+            private set { Set(ref _newTickets, value); }
         }
 
+
+        public int SolvedTickets
+        {
+            get { return _solvedTickets; }
+            private set { Set(ref _solvedTickets, value); }
+        }
+
+        public int OpenedTickets
+        {
+            get { return _openedTickets; }
+            private set { Set(ref _openedTickets, value); ; }
+        }
         private async void SetData()
         {
             var data = await SimpleIoc.Default.GetInstance<TechSupportServer>().host.StaffListAsync();
@@ -65,11 +75,19 @@ namespace SchProject.Resources.Layout.StyleResources
                 () =>
                 {
                     AzureServiceBus bus = SimpleIoc.Default.GetInstance<AzureServiceBus>();
+                    bus.CustomerMessage += Bus_CustomerMessage;
                     bus.StatusHandler += WorkerListUpdate;
                     bus.CustomerLoginHandler += CustomerLogin_event;
+                    NewTickets = bus.GetMessagesCount();
                 });
 
 
+        }
+
+
+        private void Bus_CustomerMessage(object sender, ServiceBus.NewCustomerMessageEventArgs e)
+        {
+            LastTickets.Put(new TicketTemporary(e.ID, e.Message, "New"));
         }
 
         private void CustomerLogin_event(object sender, ServiceBus.CustomerLoginEventArgs e)

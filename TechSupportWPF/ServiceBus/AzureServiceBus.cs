@@ -21,16 +21,19 @@ namespace SchProject
         private readonly string _notificationsPath = "Notifications";
         private readonly string _technicianChatPath = "TechnicianChat";
         private readonly string _customerChatPath = "Messages";
+        private readonly string _messagesSubName= "Messages";
         private NamespaceManager NamespaceMgr;
         private MessagingFactory Factory;
         public SubscriptionClient CustomerClient;
         private SubscriptionClient _subscriptionClient;
         private SubscriptionClient _technicianMessage;
+        private SubscriptionClient _customerMessageWireTap;
         public event EventHandler<LoginEventArgs> LoginHandler;
         public event EventHandler<StatusChangedEventArgs> StatusHandler;
         public event EventHandler<BugEventArgs> BugHandler;
         public event EventHandler<CustomerLoginEventArgs> CustomerLoginHandler;
         public event EventHandler<MessageEventArgs> MessageHandler;
+        public event EventHandler<NewCustomerMessageEventArgs> CustomerMessage;
 
 
         public AzureServiceBus()
@@ -79,17 +82,13 @@ namespace SchProject
             Factory = MessagingFactory.CreateFromConnectionString(connectionString);
             try
             {
-                var description = new SubscriptionDescription(_notificationsPath, subscriptName) { AutoDeleteOnIdle = TimeSpan.FromMinutes(5) };
-                var customerDescription = new SubscriptionDescription(_customerChatPath, "Messages") { AutoDeleteOnIdle = TimeSpan.FromDays(7), DefaultMessageTimeToLive = TimeSpan.FromDays(7) };
-                NamespaceMgr.CreateSubscription(description);
-                if (!NamespaceMgr.SubscriptionExists(_customerChatPath, "Messages"))
-                {
-                    NamespaceMgr.CreateSubscription(customerDescription);
-                }
+                CreateSubs(subscriptName);
                 _subscriptionClient = SubscriptionClient.CreateFromConnectionString(connectionString, _notificationsPath, subscriptName);
                 OnMessageOptions options = new OnMessageOptions() { MaxConcurrentCalls = 1, AutoComplete = false };
-                _subscriptionClient.OnMessageAsync(message => ProcessMessage(message), options);
-                CustomerClient = SubscriptionClient.CreateFromConnectionString(connectionString,_customerChatPath, "Messages");
+                _subscriptionClient.OnMessage(ProcessMessage, options);
+                CustomerClient = SubscriptionClient.CreateFromConnectionString(connectionString, _customerChatPath, _messagesSubName);
+                _customerMessageWireTap = SubscriptionClient.CreateFromConnectionString(connectionString, _customerChatPath, subscriptName);
+                _customerMessageWireTap.OnMessage(Customermessageprocess);
             }
             catch (Exception)
             {
@@ -98,15 +97,35 @@ namespace SchProject
             }
         }
 
-        private async Task ProcessMessage(BrokeredMessage message)
+        private void Customermessageprocess(BrokeredMessage message)
+        {
+            EventHandler<NewCustomerMessageEventArgs> temp = CustomerMessage;
+            temp?.Invoke(this, new NewCustomerMessageEventArgs()
+            {
+                ID = message.Properties["Group"].ToString(),
+                Message = message.GetBody<string>()
+            });
+        }
+
+        private void CreateSubs(string subscriptName)
+        {
+            var description = new SubscriptionDescription(_notificationsPath, subscriptName) { AutoDeleteOnIdle = TimeSpan.FromMinutes(5) };
+            var customerDescription = new SubscriptionDescription(_customerChatPath, _messagesSubName) { AutoDeleteOnIdle = TimeSpan.FromDays(7), DefaultMessageTimeToLive = TimeSpan.FromDays(7) };
+            var wiretapDescription = new SubscriptionDescription(_customerChatPath, subscriptName) { AutoDeleteOnIdle = TimeSpan.FromMinutes(5) };
+            NamespaceMgr.CreateSubscription(description);
+            NamespaceMgr.CreateSubscription(wiretapDescription);
+            if (!NamespaceMgr.SubscriptionExists(_customerChatPath, _messagesSubName))
+            {
+                NamespaceMgr.CreateSubscription(customerDescription);
+            }
+        }
+
+        private void ProcessMessage(BrokeredMessage message)
         {
             if (message.ContentType == "Login")
             {
                 EventHandler<LoginEventArgs> temp = LoginHandler;
-                if (temp != null)
-                {
-                    temp.Invoke(this, new LoginEventArgs() { FullName = message.GetBody<string>() });
-                }
+                temp?.Invoke(this, new LoginEventArgs() { FullName = message.GetBody<string>() });
             }
 
             else if (message.ContentType == "Status")
@@ -139,6 +158,12 @@ namespace SchProject
                 }
             }
             message.Complete();
+        }
+
+        public int GetMessagesCount()
+        {
+            var data = NamespaceMgr.GetSubscription(_customerChatPath, _messagesSubName).MessageCount;
+            return (int)data;
         }
     }
 }
