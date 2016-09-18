@@ -105,7 +105,6 @@ namespace WPFServer
             if (message.Group != null)
             {
                 Clients.Group(message.Group).addMessage(username, " Group Message: " + message.Msg);
-               // Clients.All.addMessage(username, message.Msg);
             }
             else
             {

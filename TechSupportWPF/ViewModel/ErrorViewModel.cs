@@ -30,7 +30,7 @@
             set {  Set(ref message, value); }
         }
 
-        public NewWorkData NewWorkData { get; set; } = new NewWorkData();
+        public NewWorkData NewWorkData { get; set; } = new NewWorkData { Visibility = false };
 
         public ICommand SendMessageCommand
         {
@@ -69,7 +69,7 @@
             TechSupportSecure.TechnicianData[] available = await ServiceLocator.Current.GetInstance<TechSupportServer>().host.GetAvailableTechnicianAsync();
             int member = available.Length == 1 ? 0 : new Random().Next(0, available.Length - 1);
             NewWorkData.TechName = ( available != null && available[member] != null) ? available[member]?.FullName : "Sorry, no available technician";
-            NewWorkData.TechID = NewWorkData.TechName == "Sorry no available tech" ? -1 : available[member].TechnicianID;
+            NewWorkData.TechID = NewWorkData.TechName == "Sorry, no available tech" ? -1 : available[member].TechnicianID;
             NewWorkData.Time = DateTime.Now;
         }
 
@@ -103,8 +103,6 @@
             SendMessageCommand = new RelayCommand(ButtonSend_Click);
 
             ConnectAsync();
-
-            NewWorkData.Visibility = false;
         }
 
         private async void ConnectAsync()
@@ -222,11 +220,6 @@
             Address = TechName = Name = string.Empty;
             Visibility = false;
         }
-
-
-
-
-
     }
  
 }
