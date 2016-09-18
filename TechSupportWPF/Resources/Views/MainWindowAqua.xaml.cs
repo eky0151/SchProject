@@ -43,17 +43,17 @@ namespace SchProject.Resources.Layout
             base.OnClosing(e);
             NotificationActivator.UnregisterComType();
         }
-        private void OnActivated(string arguments, Dictionary<string, string> data)
+        private async void OnActivated(string arguments, Dictionary<string, string> data)
         {
-            var result = "Activated";
             if ((arguments?.StartsWith("action=")).GetValueOrDefault())
             {
-                result = arguments.Substring("action=".Length);
+                var result = arguments.Substring("action=".Length);
 
                 if (data.Count > 0 && result == "Replied")
                 {
                     var res = data.FirstOrDefault();
-                    Messenger.Default.Send<ReplyMessage>(new ReplyMessage(res.Key, res.Value));
+                    await SimpleIoc.Default.GetInstance<TechSupportServer>()
+                        .host.SendMessageToTechnicianAsync(res.Key, res.Value);
                 }
             }
         }

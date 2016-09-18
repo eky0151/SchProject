@@ -103,5 +103,10 @@ namespace TechSupportService
         {
             await AzureServiceBus.SendMessage(username, message);
         }
+
+        public List<Message> GetMyMessages(string username)
+        {
+           return AzureServiceBus.GetMessages(username);
+        }
     }
 }

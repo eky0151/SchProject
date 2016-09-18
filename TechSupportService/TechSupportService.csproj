@@ -140,6 +140,7 @@
     <Compile Include="DataContract\Bank.cs" />
     <Compile Include="DataContract\CustomerData.cs" />
     <Compile Include="DataContract\LoginResult.cs" />
+    <Compile Include="DataContract\Message.cs" />
     <Compile Include="DataContract\NewTechWork.cs" />
     <Compile Include="DataContract\Role.cs" />
     <Compile Include="DataContract\StatusChanged.cs" />
