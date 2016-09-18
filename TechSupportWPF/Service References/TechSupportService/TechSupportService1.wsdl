@@ -88,6 +88,12 @@
   <wsdl:message name="ITechSupportService1_SendMessageToSupport_InputMessage">
     <wsdl:part name="parameters" element="tns:SendMessageToSupport" />
   </wsdl:message>
+  <wsdl:message name="ITechSupportService1_GetMyMessages_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMyMessages" />
+  </wsdl:message>
+  <wsdl:message name="ITechSupportService1_GetMyMessages_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMyMessagesResponse" />
+  </wsdl:message>
   <wsdl:portType name="ITechSupportService1">
     <wsdl:operation name="TechnicianLogin">
       <wsdl:input wsaw:Action="http://tempuri.org/ITechSupportService1/TechnicianLogin" message="tns:ITechSupportService1_TechnicianLogin_InputMessage" />
@@ -126,6 +132,10 @@
     </wsdl:operation>
     <wsdl:operation name="SendMessageToSupport">
       <wsdl:input wsaw:Action="http://tempuri.org/ITechSupportService1/SendMessageToSupport" message="tns:ITechSupportService1_SendMessageToSupport_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMyMessages">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITechSupportService1/GetMyMessages" message="tns:ITechSupportService1_GetMyMessages_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITechSupportService1/GetMyMessagesResponse" message="tns:ITechSupportService1_GetMyMessages_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpsBinding_ITechSupportService1" type="tns:ITechSupportService1">
@@ -214,6 +224,15 @@
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="GetMyMessages">
+      <soap:operation soapAction="http://tempuri.org/ITechSupportService1/GetMyMessages" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
     </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="TechSupportService1">

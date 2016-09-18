@@ -294,9 +294,9 @@ namespace TechSupportService
             return a;
         }
 
-        public async void SendMessageToTechnician(string username, string message)
+        public async void SendMessageToTechnician(string username,string sender, string message)
         {
-            await AzureServiceBus.SendMessageToTechnician(username, message);
+            await AzureServiceBus.SendMessageToTechnician(username,sender, message);
         }
 
         public void InsertNewTechWorks(NewTechWork d)

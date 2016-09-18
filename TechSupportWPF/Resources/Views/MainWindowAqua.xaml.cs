@@ -53,7 +53,7 @@ namespace SchProject.Resources.Layout
                 {
                     var res = data.FirstOrDefault();
                     await SimpleIoc.Default.GetInstance<TechSupportServer>()
-                        .host.SendMessageToTechnicianAsync(res.Key, res.Value);
+                        .host.SendMessageToTechnicianAsync(res.Key, SimpleIoc.Default.GetInstance<UserData>().UserName, res.Value);
                 }
             }
         }

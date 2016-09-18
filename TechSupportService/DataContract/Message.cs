@@ -18,7 +18,7 @@ namespace TechSupportService.DataContract
 
         public static Message BrokerdMessageToMessage(BrokeredMessage msg)
         {
-            var sender = msg.Properties["Username"];
+            var sender = msg.Properties["Sender"];
             return new Message() { Sender = (string)sender, Messag = msg.GetBody<string>() };
         }
     }

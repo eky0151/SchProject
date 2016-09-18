@@ -51,7 +51,7 @@ namespace SchProject
             EventHandler<MessageEventArgs> temp = MessageHandler;
             if (temp != null)
             {
-                temp.Invoke(this, new MessageEventArgs(message.Properties["Username"].ToString(), message.GetBody<string>()));
+                temp.Invoke(this, new MessageEventArgs(message.Properties["Sender"].ToString(), message.GetBody<string>()));
             }
         }
 

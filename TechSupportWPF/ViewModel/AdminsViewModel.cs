@@ -77,7 +77,7 @@ namespace SchProject.ViewModel
         private async void SendToTechnician()
         {
             await SimpleIoc.Default.GetInstance<TechSupportServer>()
-                .host.SendMessageToTechnicianAsync(SelectedTechnician.Username, Message);
+                .host.SendMessageToTechnicianAsync(SelectedTechnician.Username,SimpleIoc.Default.GetInstance<UserData>().UserName, Message);
             Message = "";
         }
     }

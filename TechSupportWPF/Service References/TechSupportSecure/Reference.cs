@@ -1192,10 +1192,10 @@ namespace SchProject.TechSupportSecure {
         System.Threading.Tasks.Task<SchProject.TechSupportSecure.GetLastMonthRegistratedUsersResponse> GetLastMonthRegistratedUsersAsync(SchProject.TechSupportSecure.GetLastMonthRegistratedUsersRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportServiceSecure1/SendMessageToTechnician", ReplyAction="http://tempuri.org/ITechSupportServiceSecure1/SendMessageToTechnicianResponse")]
-        void SendMessageToTechnician(string username, string message);
+        void SendMessageToTechnician(string username, string sender, string message);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportServiceSecure1/SendMessageToTechnician", ReplyAction="http://tempuri.org/ITechSupportServiceSecure1/SendMessageToTechnicianResponse")]
-        System.Threading.Tasks.Task SendMessageToTechnicianAsync(string username, string message);
+        System.Threading.Tasks.Task SendMessageToTechnicianAsync(string username, string sender, string message);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportServiceSecure1/InsertNewTechWorks", ReplyAction="http://tempuri.org/ITechSupportServiceSecure1/InsertNewTechWorksResponse")]
         void InsertNewTechWorks(SchProject.TechSupportSecure.NewTechWork d);
@@ -1510,12 +1510,12 @@ namespace SchProject.TechSupportSecure {
             return base.Channel.GetLastMonthRegistratedUsersAsync(request);
         }
         
-        public void SendMessageToTechnician(string username, string message) {
-            base.Channel.SendMessageToTechnician(username, message);
+        public void SendMessageToTechnician(string username, string sender, string message) {
+            base.Channel.SendMessageToTechnician(username, sender, message);
         }
         
-        public System.Threading.Tasks.Task SendMessageToTechnicianAsync(string username, string message) {
-            return base.Channel.SendMessageToTechnicianAsync(username, message);
+        public System.Threading.Tasks.Task SendMessageToTechnicianAsync(string username, string sender, string message) {
+            return base.Channel.SendMessageToTechnicianAsync(username, sender, message);
         }
         
         public void InsertNewTechWorks(SchProject.TechSupportSecure.NewTechWork d) {

@@ -90,7 +90,7 @@ namespace TechSupportService
         List<int> GetLastMonthRegistratedUsers(out List<DateTime> Dates);
 
         [OperationContract]
-        void SendMessageToTechnician(string username, string message);
+        void SendMessageToTechnician(string username,string sender, string message);
 
         [OperationContract]
         void InsertNewTechWorks(NewTechWork d);

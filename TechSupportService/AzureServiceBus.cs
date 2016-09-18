@@ -80,26 +80,22 @@ namespace TechSupportService
             SendMessage(msg);
         }
 
-        public static async Task SendMessageToTechnician(string username, string message)
+        public static async Task SendMessageToTechnician(string username,string sender, string message)
         {
             if (!NamespaceMgr.SubscriptionExists(_technicianChatPath, username))
             {
                 var desc = new SubscriptionDescription(_technicianChatPath, username) { AutoDeleteOnIdle = TimeSpan.FromDays(3), DefaultMessageTimeToLive = TimeSpan.FromDays(3),MaxDeliveryCount = 100};
                 NamespaceMgr.CreateSubscription(desc, new SqlFilter($" Username = '{username}' "));
             }
-            await Task.Factory.StartNew(() =>
-            {
-                BrokeredMessage brokeredMessage = new BrokeredMessage(message);
-                brokeredMessage.Properties.Add("Username", username);
-                _technicianMessage.Send(brokeredMessage);
-            });
+            await SendMessage(username, sender, message);
         }
-        public static async Task SendMessage(string username, string message)
+        public static async Task SendMessage(string username,string sender, string message)
         {
             await Task.Factory.StartNew(() =>
             {
                 BrokeredMessage brokeredMessage = new BrokeredMessage(message);
                 brokeredMessage.Properties.Add("Username", username);
+                brokeredMessage.Properties.Add("Sender", sender);
                 _technicianMessage.Send(brokeredMessage);
             });
         }

@@ -438,6 +438,9 @@
     <None Include="Service References\TechSupportService\SchProject.TechSupportService.LoginResult.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\TechSupportService\SchProject.TechSupportService.Message.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\TechSupportService\SchProject.TechSupportService.NewTechWork.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>

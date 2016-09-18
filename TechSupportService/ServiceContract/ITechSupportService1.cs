@@ -39,7 +39,7 @@ namespace TechSupportService
         void RegisterNewUser(string fullName, string email, string userName, string password, string profilePicture);
 
         [OperationContract(IsOneWay = true)]
-        void SendMessageToSupport(string username, string message);
+        void SendMessageToSupport(string username,string sender, string message);
 
         [OperationContract]
         List<Message> GetMyMessages(string username);

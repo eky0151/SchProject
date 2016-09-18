@@ -18,6 +18,7 @@ namespace SchProject
         public Role Role { get; private set; }
         public void SetData(LoginResult login,string username)
         {
+            UserName = username;
             AzureServiceBus bus = SimpleIoc.Default.GetInstance<AzureServiceBus>();
             bus.MessagesInit(username);
             FullName = login.FullName;
@@ -27,6 +28,7 @@ namespace SchProject
             bus.MessageHandler += SimpleIoc.Default.GetInstance<Notifications>().ShowMessageAsync;
         }
 
+        public string UserName { get; set; }
 
         public string FullName
         {
