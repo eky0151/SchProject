@@ -91,7 +91,7 @@
         private void ButtonEvent_Click()
         {
             room = "RoomA";
-            HubProxy.Invoke("Join", "RoomA");
+            HubProxy.Invoke("Join", room);
         }
 
         public ErrorViewModel()
@@ -113,9 +113,9 @@
             Connection.Closed += Connection_Closed;
             HubProxy = Connection.CreateHubProxy("MyHub");
             //Handle incoming event from server: use Invoke to write to console from SignalR's thread
-            HubProxy.On<string, string>("AddMessage", (name, Msg) => //(name, message)
+            HubProxy.On<string, string>("AddMessage", (Msg, Group) => //(name, message)
                 App.Current.Dispatcher.Invoke(() =>
-                    Messages.Add(String.Format("{0}: {1}\r", name, Msg))
+                    Messages.Add(String.Format("{0}: {1}\r", Msg, Group))
                 )
             );
             try
