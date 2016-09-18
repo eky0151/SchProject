@@ -20,8 +20,10 @@ namespace SchProject
     {
         private readonly string _notificationsPath = "Notifications";
         private readonly string _technicianChatPath = "TechnicianChat";
+        private readonly string _customerChatPath = "Messages";
         private NamespaceManager NamespaceMgr;
         private MessagingFactory Factory;
+        public SubscriptionClient CustomerClient;
         private SubscriptionClient _subscriptionClient;
         private SubscriptionClient _technicianMessage;
         public event EventHandler<LoginEventArgs> LoginHandler;
@@ -62,7 +64,7 @@ namespace SchProject
             EventHandler<MessageEventArgs> temp = MessageHandler;
             if (temp != null)
             {
-                temp.Invoke(this, new MessageEventArgs(message.Properties["Sender"].ToString(), message.GetBody<string>()));
+                temp.Invoke(this, new MessageEventArgs(message.Properties["Username"].ToString(), message.GetBody<string>()));
             }
         }
 
@@ -77,10 +79,16 @@ namespace SchProject
             try
             {
                 var description = new SubscriptionDescription(_notificationsPath, subscriptName) { AutoDeleteOnIdle = TimeSpan.FromMinutes(5) };
+                var customerDescription = new SubscriptionDescription(_customerChatPath, "Messages") { AutoDeleteOnIdle = TimeSpan.FromDays(7), DefaultMessageTimeToLive = TimeSpan.FromDays(7) };
                 NamespaceMgr.CreateSubscription(description);
+                if (!NamespaceMgr.SubscriptionExists(_customerChatPath, "Messages"))
+                {
+                    NamespaceMgr.CreateSubscription(customerDescription);
+                }
                 _subscriptionClient = SubscriptionClient.CreateFromConnectionString(connectionString, _notificationsPath, subscriptName);
                 OnMessageOptions options = new OnMessageOptions() { MaxConcurrentCalls = 1, AutoComplete = false };
                 _subscriptionClient.OnMessageAsync(message => ProcessMessage(message), options);
+                CustomerClient = SubscriptionClient.CreateFromConnectionString(connectionString,_customerChatPath, "Messages");
             }
             catch (Exception)
             {

@@ -73,7 +73,7 @@
             $('#message').focus();
 
             $.connection.hub.start(function () {
-                chat.server.join("RoomA");
+                chat.server.join("@Model.Username");
             });
 
             // Start the connection.
@@ -81,7 +81,7 @@
 
                 $('#sendmessage').click(function () {
 
-                    chat.server.send($('#displayname').val(), { Msg: $('#message').val(), Group: "RoomA" });
+                    chat.server.send($('#displayname').val(), { Msg: $('#message').val(), Group: "@Model.Username" });
 
                     // Call the Send method on the hub.
                     //chat.server.send($('#displayname').val(), $('#message').val());

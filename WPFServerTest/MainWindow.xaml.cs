@@ -5,6 +5,7 @@ using Microsoft.ServiceBus;
 using Microsoft.ServiceBus.Messaging;
 using Owin;
 using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Reflection;
 using System.Threading.Tasks;
@@ -102,21 +103,29 @@ namespace WPFServer
     /// </summary>
     public class MyHub : Hub
     {
-        public static string ConnectionString = ConfigurationManager.AppSettings["Microsoft.ServiceBus.ConnectionString"];
+        public static string ConnectionString = ConfigurationManager.AppSettings["Microsoft.Azure.NotificationHubs.ConnectionString"];
         private NamespaceManager m_NamespaceManager;
         private static MessagingFactory Factory;
+        public static Dictionary<string, bool> UserGroups = new Dictionary<string, bool>();
+        private static TopicClient TClient;
+        private static string messagesTopicPath = "Messages";
 
         public MyHub()
         {
             m_NamespaceManager = NamespaceManager.CreateFromConnectionString(ConnectionString);
             Factory = MessagingFactory.CreateFromConnectionString(ConnectionString);
+            if (!m_NamespaceManager.TopicExists(messagesTopicPath))
+            {
+                m_NamespaceManager.CreateTopic(messagesTopicPath);
+            }
+            TClient = Factory.CreateTopicClient(messagesTopicPath);
         }
 
-        public static void IntoQueue(string s)
+        public static void IntoQueue(string roomId, string message)
         {
-            var queueClient = QueueClient.CreateFromConnectionString(ConnectionString);
-            var message = new BrokeredMessage(s);
-            queueClient.Send(message);
+            BrokeredMessage msg = new BrokeredMessage(message);
+            msg.Properties.Add("Group", roomId);
+            TClient.Send(msg);
         }
 
         public void Send(string username, MyMessage message)
@@ -124,8 +133,12 @@ namespace WPFServer
             // Call the addMessage method on all clients                       
             if (message.Group != null)
             {
-                Clients.Group(message.Group).addMessage(username, " Group Message: " + message.Msg);
-                //IntoQueue(username + " Group Message: " + message.Msg);
+                if (UserGroups[message.Group] == false)
+                {
+                    IntoQueue(message.Group, message.Msg);
+                    UserGroups[message.Group] = true;
+                }
+                Clients.Group(message.Group).addMessage(username, " Group Message: " + message.Msg);                
             }
             else
             {
@@ -133,8 +146,13 @@ namespace WPFServer
             }
         }
 
+        
         public void Join(string groupName)
         {
+            if (!UserGroups.ContainsKey(groupName))
+            {
+                UserGroups[groupName] = false;
+            }           
             Groups.Add(Context.ConnectionId, groupName);
         }
 

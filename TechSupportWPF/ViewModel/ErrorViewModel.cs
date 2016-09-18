@@ -89,9 +89,14 @@
         }
         
         private void ButtonEvent_Click()
-        {            
-            room = "RoomA";
-            HubProxy.Invoke("Join", room);
+        {
+            var queue = SimpleIoc.Default.GetInstance<AzureServiceBus>().CustomerClient;
+            var message = queue.Receive();
+            if (message != null)
+            {
+                room = message.Properties["Group"].ToString();
+                HubProxy.Invoke("Join", room);
+            }
         }
 
         public ErrorViewModel()
@@ -111,7 +116,7 @@
             Connection.Closed += Connection_Closed;
             HubProxy = Connection.CreateHubProxy("MyHub");
             //Handle incoming event from server: use Invoke to write to console from SignalR's thread
-            HubProxy.On<string, string>("AddMessage", (Msg, Group) => //(name, message)
+            HubProxy.On<string, string>("AddMessage", (Msg, Group) =>
                 App.Current.Dispatcher.Invoke(() =>
                     Messages.Add(String.Format("{0}: {1}\r", Msg, Group))
                 )
