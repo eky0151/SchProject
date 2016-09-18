@@ -25,7 +25,7 @@ namespace SchProject
             Role = login.Role;
             if (Role == Role.Admin || Role == Role.Boss)
                 bus.StatusHandler += SimpleIoc.Default.GetInstance<Notifications>().ShowStatusUpdateAsync;
-            bus.MessageHandler += SimpleIoc.Default.GetInstance<Notifications>().ShowMessageAsync;
+            
         }
 
         public string UserName { get; set; }

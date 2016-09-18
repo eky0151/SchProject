@@ -4,9 +4,11 @@ using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
 using Microsoft.ServiceBus;
 using Microsoft.ServiceBus.Messaging;
+using SchProject.Resources;
 using SchProject.ServiceBus;
 using SchProject.TechSupportSecure;
 using TechSupportService.DataContract;
@@ -34,16 +36,25 @@ namespace SchProject
             CreateManagerAndFactory();
         }
 
-        public void MessagesInit(string username)
+        public async void MessagesInit(string username)
         {
-            if (!NamespaceMgr.SubscriptionExists(_technicianChatPath, username))
+            _technicianMessage = await Task.Factory.StartNew(() =>
             {
-                var desc = new SubscriptionDescription(_technicianChatPath, username) { AutoDeleteOnIdle = TimeSpan.FromDays(3), DefaultMessageTimeToLive = TimeSpan.FromDays(3),MaxDeliveryCount = 100};
-                NamespaceMgr.CreateSubscription(desc,new SqlFilter($" Username = '{username}' "));
-            }
-            _technicianMessage = Factory.CreateSubscriptionClient(_technicianChatPath, username);
+                if (!NamespaceMgr.SubscriptionExists(_technicianChatPath, username))
+                {
+                    var desc = new SubscriptionDescription(_technicianChatPath, username)
+                    {
+                        AutoDeleteOnIdle = TimeSpan.FromDays(3),
+                        DefaultMessageTimeToLive = TimeSpan.FromDays(3),
+                        MaxDeliveryCount = 100
+                    };
+                    NamespaceMgr.CreateSubscription(desc, new SqlFilter($" Username = '{username}' "));
+                }
+                return Factory.CreateSubscriptionClient(_technicianChatPath, username);
+            });
             OnMessageOptions options = new OnMessageOptions() { MaxConcurrentCalls = 1, AutoComplete = false };
             _technicianMessage.OnMessage(RecieveMessage, options);
+            MessageHandler += SimpleIoc.Default.GetInstance<Notifications>().ShowMessageAsync;
         }
 
         private void RecieveMessage(BrokeredMessage message)
