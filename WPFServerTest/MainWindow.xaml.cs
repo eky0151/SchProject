@@ -1,8 +1,11 @@
 ﻿using Microsoft.AspNet.SignalR;
 using Microsoft.Owin.Cors;
 using Microsoft.Owin.Hosting;
+using Microsoft.ServiceBus;
+using Microsoft.ServiceBus.Messaging;
 using Owin;
 using System;
+using System.Configuration;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
@@ -99,12 +102,30 @@ namespace WPFServer
     /// </summary>
     public class MyHub : Hub
     {
+        public static string ConnectionString = ConfigurationManager.AppSettings["Microsoft.ServiceBus.ConnectionString"];
+        private NamespaceManager m_NamespaceManager;
+        private static MessagingFactory Factory;
+
+        public MyHub()
+        {
+            m_NamespaceManager = NamespaceManager.CreateFromConnectionString(ConnectionString);
+            Factory = MessagingFactory.CreateFromConnectionString(ConnectionString);
+        }
+
+        public static void IntoQueue(string s)
+        {
+            var queueClient = QueueClient.CreateFromConnectionString(ConnectionString);
+            var message = new BrokeredMessage(s);
+            queueClient.Send(message);
+        }
+
         public void Send(string username, MyMessage message)
         {
             // Call the addMessage method on all clients                       
             if (message.Group != null)
             {
                 Clients.Group(message.Group).addMessage(username, " Group Message: " + message.Msg);
+                //IntoQueue(username + " Group Message: " + message.Msg);
             }
             else
             {
@@ -116,11 +137,6 @@ namespace WPFServer
         {
             Groups.Add(Context.ConnectionId, groupName);
         }
-
-        //public void Send(string name, string message)
-        //{
-        //    Clients.All.addMessage(name, message);
-        //}
 
         public override Task OnConnected()
         {
@@ -138,6 +154,8 @@ namespace WPFServer
 
             return base.OnDisconnected();
         }
+
+
 
     }
 

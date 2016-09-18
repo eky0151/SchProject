@@ -89,7 +89,7 @@
         }
         
         private void ButtonEvent_Click()
-        {
+        {            
             room = "RoomA";
             HubProxy.Invoke("Join", room);
         }
