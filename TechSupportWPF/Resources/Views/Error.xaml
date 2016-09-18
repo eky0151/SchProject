@@ -8,7 +8,8 @@
              xmlns:class="clr-namespace:SchProject.ViewModel"
              mc:Ignorable="d" 
              d:DesignHeight="630"
-             DataContext="{Binding Source={StaticResource Locator}, Path=Error}" Width="838">
+             d:DesignWidth="838"
+             DataContext="{Binding Source={StaticResource Locator}, Path=Error}" >
 
     <!--Material Design Themes-->
     <UserControl.Resources>
@@ -20,7 +21,8 @@
     </UserControl.Resources>
 
     <Grid Background="White">
-
+        
+        <!-- Chat messages view-->
         <ScrollViewer Margin="25,11,366,168">
             <ItemsControl ItemsSource="{Binding Path=Messages}" />
         </ScrollViewer>
@@ -31,9 +33,11 @@
                 Foreground="Black" Background="White" HorizontalAlignment="Left" Height="31" Margin="25,553,0,0" VerticalAlignment="Top" Width="129" />
         <Button Content="Event" Command="{Binding Path=EventCommand}"
                 Foreground="Black" Background="White" HorizontalAlignment="Left" Height="31" Margin="173,553,0,0" VerticalAlignment="Top" Width="129"/>
-        <Grid DataContext="{Binding Path=NewWorkData}" Visibility="{Binding Path=Visibility, Converter={StaticResource BoolToVisibilityConverter}}"
+        
+        <!-- Insert new techworks-->
+        <Grid DataContext="{Binding Path=NewWorkData}"  Visibility="{Binding Path=Visibility, Converter={StaticResource BoolToVisibilityConverter}}"
               HorizontalAlignment="Left" Height="551" Margin="429,11,0,0" VerticalAlignment="Top" Width="399">
-            <TextBox  Text="New Work" Foreground="Black" HorizontalContentAlignment="Center" IsEnabled="False"  HorizontalAlignment="Left" Height="33" Margin="10,10,0,0" VerticalAlignment="Top" Width="400"/>
+            <TextBox  Text="New Work" Foreground="Black" HorizontalContentAlignment="Center" IsEnabled="False"  HorizontalAlignment="Left" Height="33" Margin="10,10,0,0" VerticalAlignment="Top" Width="362"/>
             <Label  Content="Customer name" HorizontalAlignment="Left" Height="29" Margin="10,64,0,0" VerticalAlignment="Top" Width="136" RenderTransformOrigin="-0.042,0.207"/>
             <Label  Content="Customer Address" HorizontalAlignment="Left" Height="29" Margin="10,98,0,0" VerticalAlignment="Top" Width="136" RenderTransformOrigin="-0.042,0.207"/>
             <Label  Content="Time" HorizontalAlignment="Left" Height="29" Margin="10,132,0,0" VerticalAlignment="Top" Width="136" RenderTransformOrigin="-0.042,0.207"/>
@@ -47,8 +51,12 @@
             <TextBox Text="{Binding Path=TechName, UpdateSourceTrigger=PropertyChanged}"
                      HorizontalAlignment="Left" Height="29" Margin="151,166,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="221"/>
         </Grid>
-        <Button Content="New Work" Command="{Binding Path=NewWorkCommand}"  Foreground="Black" Background="White" HorizontalAlignment="Left" Height="31" Margin="323,553,0,0" VerticalAlignment="Top" Width="129"/>
+        
+        <Button Content="New Work" Command="{Binding Path=NewWorkCommand}"
+                Foreground="Black" Background="White" HorizontalAlignment="Left" Height="31" Margin="323,553,0,0" VerticalAlignment="Top" Width="129"/>
+        
         <Button Content="Save" Command="{Binding Path=SaveNewTechWork}" Visibility="{Binding Path=NewWorkData.Visibility, Converter={StaticResource BoolToVisibilityConverter}}"
                 Foreground="Black" Background="White" HorizontalAlignment="Left" Height="31" Margin="568,553,0,0" VerticalAlignment="Top" Width="128"/>
+        
     </Grid>
 </UserControl>
