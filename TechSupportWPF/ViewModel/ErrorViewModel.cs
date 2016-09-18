@@ -92,6 +92,7 @@
         {
             var queue = SimpleIoc.Default.GetInstance<AzureServiceBus>().CustomerClient;
             var message = queue.Receive();
+            message.Complete();
             if (message != null)
             {
                 room = message.Properties["Group"].ToString();
