@@ -21,17 +21,38 @@ namespace SchProject
         private NamespaceManager NamespaceMgr;
         private MessagingFactory Factory;
         private SubscriptionClient _subscriptionClient;
-        private TopicClient _technicianMessage;
+        private SubscriptionClient _technicianMessage;
         public event EventHandler<LoginEventArgs> LoginHandler;
         public event EventHandler<StatusChangedEventArgs> StatusHandler;
         public event EventHandler<BugEventArgs> BugHandler;
         public event EventHandler<CustomerLoginEventArgs> CustomerLoginHandler;
+        public event EventHandler<MessageEventArgs> MessageHandler;
 
 
         public AzureServiceBus()
         {
             CreateManagerAndFactory();
-            InitTechnicianMessages();
+        }
+
+        public void MessagesInit(string username)
+        {
+            if (!NamespaceMgr.SubscriptionExists(_technicianChatPath, username))
+            {
+                var desc = new SubscriptionDescription(_technicianChatPath, username) { AutoDeleteOnIdle = TimeSpan.FromDays(3), DefaultMessageTimeToLive = TimeSpan.FromDays(3),MaxDeliveryCount = 100};
+                NamespaceMgr.CreateSubscription(desc,new SqlFilter($" Username = '{username}' "));
+            }
+            _technicianMessage = Factory.CreateSubscriptionClient(_technicianChatPath, username);
+            OnMessageOptions options = new OnMessageOptions() { MaxConcurrentCalls = 1, AutoComplete = false };
+            _technicianMessage.OnMessage(RecieveMessage, options);
+        }
+
+        private void RecieveMessage(BrokeredMessage message)
+        {
+            EventHandler<MessageEventArgs> temp = MessageHandler;
+            if (temp != null)
+            {
+                temp.Invoke(this, new MessageEventArgs(message.Properties["Username"].ToString(), message.GetBody<string>()));
+            }
         }
 
         private void CreateManagerAndFactory()
@@ -48,7 +69,7 @@ namespace SchProject
                 NamespaceMgr.CreateSubscription(description);
                 _subscriptionClient = SubscriptionClient.CreateFromConnectionString(connectionString, _notificationsPath, subscriptName);
                 OnMessageOptions options = new OnMessageOptions() { MaxConcurrentCalls = 1, AutoComplete = false };
-                _subscriptionClient.OnMessageAsync(message => ProcessMessage(message));
+                _subscriptionClient.OnMessageAsync(message => ProcessMessage(message), options);
             }
             catch (Exception)
             {
@@ -98,27 +119,6 @@ namespace SchProject
                 }
             }
             message.Complete();
-        }
-
-        private async void InitTechnicianMessages()
-        {
-            _technicianMessage = await Task.Factory.StartNew(() =>
-            {
-                if (!NamespaceMgr.TopicExists(_technicianChatPath))
-                {
-                    NamespaceMgr.CreateTopic(_technicianChatPath);
-                }
-                return Factory.CreateTopicClient(_technicianChatPath);
-            });
-        }
-        public async Task SendMessageToTechnician(string username, string message)
-        {
-            await Task.Factory.StartNew(() =>
-            {
-                BrokeredMessage brokeredMessage = new BrokeredMessage(message);
-                brokeredMessage.Properties.Add("Username",username);
-                _technicianMessage.Send(brokeredMessage);
-            });
         }
     }
 }

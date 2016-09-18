@@ -21,6 +21,10 @@ namespace SchProject.Resources
             await ShowSimpleNotification($"{e.Username} updated his/her status", "The new status is " + e.Status, file);
         }
 
+        public async void ShowMessageAsync(object sender, ServiceBus.MessageEventArgs e)
+        {
+            await ShowMessageToastAsync(e.Sender, e.Message);
+        }
 
         public async Task ShowSimpleNotification(string title, string body, string picturePath)
         {

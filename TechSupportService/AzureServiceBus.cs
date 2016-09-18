@@ -82,6 +82,11 @@ namespace TechSupportService
 
         public static async Task SendMessageToTechnician(string username, string message)
         {
+            if (!NamespaceMgr.SubscriptionExists(_technicianChatPath, username))
+            {
+                var desc = new SubscriptionDescription(_technicianChatPath, username) { AutoDeleteOnIdle = TimeSpan.FromDays(3), DefaultMessageTimeToLive = TimeSpan.FromDays(3),MaxDeliveryCount = 100};
+                NamespaceMgr.CreateSubscription(desc, new SqlFilter($" Username = '{username}' "));
+            }
             await Task.Factory.StartNew(() =>
             {
                 BrokeredMessage brokeredMessage = new BrokeredMessage(message);
@@ -98,7 +103,7 @@ namespace TechSupportService
                 _technicianMessage.Send(brokeredMessage);
             });
         }
-
+        
         private static void SendMessage(BrokeredMessage msg)
         {
             lock (_sync)
@@ -113,6 +118,22 @@ namespace TechSupportService
                     throw;
                 }
             }
+        }
+
+        public static List<Message> GetMessages(string username)
+        {
+            if (NamespaceMgr.SubscriptionExists(_technicianChatPath, username))
+            {
+                SubscriptionClient subClient = Factory.CreateSubscriptionClient(_technicianChatPath, username);
+                var cucc = subClient.ReceiveBatch(100);
+                var brokeredMessages = cucc as BrokeredMessage[] ?? cucc.ToArray();
+                foreach (BrokeredMessage brokeredMessage in brokeredMessages)
+                {
+                    brokeredMessage.Complete();
+                }
+                return brokeredMessages.ToList().ConvertAll(Message.BrokerdMessageToMessage);
+            }
+            return new List<Message>();
         }
     }
 }
