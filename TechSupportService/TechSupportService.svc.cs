@@ -99,9 +99,9 @@ namespace TechSupportService
             return _newTechWorksRepository.GetMyNewTechWorks(username).Select(Mapper.Map<NewTechWorks, NewTechWork>).ToList();
         }
 
-        public async void SendMessageToSupport(string username, string message)
+        public async void SendMessageToSupport(string username,string sender, string message)
         {
-            await AzureServiceBus.SendMessage(username, message);
+            await AzureServiceBus.SendMessage(username,sender, message);
         }
 
         public List<Message> GetMyMessages(string username)
