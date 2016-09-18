@@ -177,7 +177,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="Views\User\BehindClass.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />

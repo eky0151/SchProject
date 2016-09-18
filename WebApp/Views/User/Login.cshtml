@@ -9,7 +9,7 @@
         .container {
             background-color: #99CCFF;
             border: thick solid #808080;
-            border-radius: 25px;
+            border-radius: 10px;
             min-height: 250px;
             position: relative;
             margin: auto;
@@ -25,12 +25,19 @@
             bottom: 15px;
             left: 30px;
         }
+
+        div {
+            overflow: auto;
+        }
+        
     </style>
 </head>
 <body>
     <p align="center"><strong>To connect the web client, reload this page after a server is started</strong></p>
     <div class="container">
-        <ul id="discussion"></ul>
+        <div style="height: 350px">
+            <ul id="discussion"></ul>
+        </div>        
         <div class="content">
             <input type="text" id="message" />
             <input type="button" id="sendmessage" value="Send" />
@@ -58,7 +65,7 @@
             chat.client.addMessage = function (name, Msg) {
                 $('#discussion').append('<li>' + name + " " + Msg + '</li>');
             };
- 
+
 
             // Get the user name and store it to prepend to messages.
             $('#displayname').val("@Model.Username");
@@ -75,19 +82,6 @@
                 $('#sendmessage').click(function () {
 
                     chat.server.send($('#displayname').val(), { Msg: $('#message').val(), Group: "RoomA" });
-
-                    $.ajax(
-                    {
-                        type: "POST",
-                        url: "pageone.aspx/PageOneMethodOne",
-                        data: "{}",
-                        contentType: "application/json; charset=utf-8",
-                        dataType: "json",
-                        success: function (msg) {
-                            //something
-                        }
-                    }
-                );
 
                     // Call the Send method on the hub.
                     //chat.server.send($('#displayname').val(), $('#message').val());
