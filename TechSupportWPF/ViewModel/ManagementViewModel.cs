@@ -50,8 +50,10 @@ namespace SchProject.ViewModel
 
             timer = new Timer();
             timer.Interval = 3000;
-            timer.Elapsed += (s, e) => {   LoginMessage = string.Empty;
-                                           timer.Stop(); };
+            timer.Elapsed += (s, e) => {
+                                           LoginMessage = string.Empty;
+                                           timer.Stop();
+                                       };
         }
 
         public string FullName
@@ -156,7 +158,7 @@ namespace SchProject.ViewModel
             Username = "";
             //busyindicator
 
-            LoginMessage = isSucceed ? "New worker saved" : "Something went wrong, try again";
+            LoginMessage = isSucceed ? "New worker saved" : "Something went wrong, some of the data is not valid";
             timer.Start();
         }
 

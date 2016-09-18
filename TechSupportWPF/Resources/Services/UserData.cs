@@ -16,11 +16,15 @@ namespace SchProject
         private string _profilePicture;
         private string _fullName;
         public Role Role { get; private set; }
-        public void SetData(LoginResult login)
+        public void SetData(LoginResult login,string username)
         {
+            AzureServiceBus bus = SimpleIoc.Default.GetInstance<AzureServiceBus>();
+            bus.MessagesInit(username);
             FullName = login.FullName;
             Role = login.Role;
-            SimpleIoc.Default.GetInstance<AzureServiceBus>().StatusHandler += SimpleIoc.Default.GetInstance<Notifications>().ShowStatusUpdateAsync;
+            if (Role == Role.Admin || Role == Role.Boss)
+                bus.StatusHandler += SimpleIoc.Default.GetInstance<Notifications>().ShowStatusUpdateAsync;
+            bus.MessageHandler += SimpleIoc.Default.GetInstance<Notifications>().ShowMessageAsync;
         }
 
 

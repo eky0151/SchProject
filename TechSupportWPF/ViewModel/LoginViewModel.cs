@@ -51,7 +51,7 @@ namespace SchProject.ViewModel
             bool res = await server.Login(this.UserName, box.Password);
             if (res)
             {
-                ServiceLocator.Current.GetInstance<UserData>().SetData(server.host.Login());
+                ServiceLocator.Current.GetInstance<UserData>().SetData(server.host.Login(), UserName);
                 ServiceLocator.Current.GetInstance<NavigatorSingleton>().Navigator.Login();
             }
             else

@@ -41,5 +41,8 @@ namespace TechSupportService
         [OperationContract(IsOneWay = true)]
         void SendMessageToSupport(string username, string message);
 
+        [OperationContract]
+        List<Message> GetMyMessages(string username);
+
     }
 }
