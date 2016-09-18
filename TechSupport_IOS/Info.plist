@@ -4,8 +4,6 @@
 <dict>
 	<key>CFBundleName</key>
 	<string>TechSupport</string>
-	<key>CFBundleIdentifier</key>
-	<string>thedancs.home.techsupport</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
@@ -13,11 +11,17 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>MinimumOSVersion</key>
-	<string>9.3</string>
+	<string>10.0</string>
 	<key>UIDeviceFamily</key>
 	<array>
 		<integer>2</integer>
 	</array>
+	<key>NSLocationUsageDescription</key>
+	<string>paraMobile möchte Ihren aktuellen Standort verwenden.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>paraMobile möchte Ihren aktuellen Standort verwenden.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>paraMobile möchte Ihren aktuellen Standort verwenden.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile~ipad</key>
@@ -34,7 +38,7 @@
 	</array>
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/AppIcon.appiconset</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Improve search result</string>
+	<key>CFBundleIdentifier</key>
+	<string>TheDancs.Home.Test</string>
 </dict>
 </plist>

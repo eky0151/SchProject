@@ -96,6 +96,11 @@
     <Reference Include="SDWebImage">
       <HintPath>..\packages\Xamarin.SDWebImage.3.7.5\lib\Xamarin.iOS\SDWebImage.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Net.Http" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
@@ -105,7 +110,14 @@
       <InProject>false</InProject>
     </ImageAsset>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Resources\" />
+    <Folder Include="Controllers\" />
+    <Folder Include="SLide\" />
+    <Folder Include="Map\" />
+    <Folder Include="Views\" />
+    <Folder Include="WCF\" />
+  </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
     <InterfaceDefinition Include="Main.storyboard" />
@@ -118,15 +130,6 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="TechSupportService1.cs" />
-    <Compile Include="LoginViewModel.cs" />
-    <Compile Include="LoginViewModel.designer.cs">
-      <DependentUpon>LoginViewModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="LoginView.cs" />
-    <Compile Include="LoginView.designer.cs">
-      <DependentUpon>LoginView.cs</DependentUpon>
-    </Compile>
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\MenuController.designer.cs" />
@@ -136,10 +139,39 @@
     <Compile Include="SLide\SidebarContentArea.cs" />
     <Compile Include="SLide\SidebarController.cs" />
     <Compile Include="SLide\SidebarMenuArea.cs" />
-    <Compile Include="MenuView.cs" />
-    <Compile Include="MenuView.designer.cs">
+    <Compile Include="Controllers\MainController.cs" />
+    <Compile Include="Controllers\MainController.designer.cs">
+      <DependentUpon>MainController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\MessagesController.cs" />
+    <Compile Include="Controllers\MessagesController.designer.cs">
+      <DependentUpon>MessagesController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Map\GoogleMapsResult.cs" />
+    <Compile Include="Map\CustomerAnnotation.cs" />
+    <Compile Include="Map\CustomerMapDelegate.cs" />
+    <Compile Include="Views\LoginView.cs" />
+    <Compile Include="Views\LoginView.designer.cs">
+      <DependentUpon>LoginView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\LoginViewModel.cs" />
+    <Compile Include="Controllers\LoginViewModel.designer.cs">
+      <DependentUpon>LoginViewModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MenuView.cs" />
+    <Compile Include="Views\MenuView.designer.cs">
       <DependentUpon>MenuView.cs</DependentUpon>
     </Compile>
+    <Compile Include="WCF\TechSupportServer.cs" />
+    <Compile Include="WCF\UserData.cs" />
+    <Compile Include="MessagesDataSource.cs" />
+    <Compile Include="Controllers\DetailsViewController.cs" />
+    <Compile Include="Controllers\DetailsViewController.designer.cs">
+      <DependentUpon>DetailsViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AzureServiceBus.cs" />
+    <Compile Include="WCF\TechSupportService1.cs" />
+    <Compile Include="LocationHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <XamarinComponentReference Include="sdwebimage">
@@ -150,7 +182,7 @@
   <ItemGroup>
     <BundleResource Include="Resources\user.png" />
     <BundleResource Include="user.png" />
-    <BundleResource Include="Stourhead_garden.jpg" />
+    <BundleResource Include="placeholder.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

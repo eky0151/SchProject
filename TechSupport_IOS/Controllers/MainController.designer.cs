@@ -26,6 +26,10 @@ namespace TechSupport
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UIScrollView ScrollViewer { get; set; }
 
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UILabel WelcomeMessage { get; set; }
+
         void ReleaseDesignerOutlets ()
         {
             if (MainView != null) {
@@ -41,6 +45,11 @@ namespace TechSupport
             if (ScrollViewer != null) {
                 ScrollViewer.Dispose ();
                 ScrollViewer = null;
+            }
+
+            if (WelcomeMessage != null) {
+                WelcomeMessage.Dispose ();
+                WelcomeMessage = null;
             }
         }
     }

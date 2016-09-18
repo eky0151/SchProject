@@ -14,8 +14,16 @@ namespace TechSupport
     [Register ("MessagesController")]
     partial class MessagesController
     {
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UITableView EmailView { get; set; }
+
         void ReleaseDesignerOutlets ()
         {
+            if (EmailView != null) {
+                EmailView.Dispose ();
+                EmailView = null;
+            }
         }
     }
 }

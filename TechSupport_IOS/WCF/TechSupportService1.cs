@@ -625,6 +625,43 @@ namespace TechSupportService.DataContract
             }
         }
     }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Message", Namespace="http://schemas.datacontract.org/2004/07/TechSupportService.DataContract")]
+    public partial class Message : object
+    {
+        
+        private string MessagField;
+        
+        private string SenderField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Messag
+        {
+            get
+            {
+                return this.MessagField;
+            }
+            set
+            {
+                this.MessagField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Sender
+        {
+            get
+            {
+                return this.SenderField;
+            }
+            set
+            {
+                this.SenderField = value;
+            }
+        }
+    }
 }
 
 
@@ -682,6 +719,11 @@ public interface ITechSupportService1
     System.IAsyncResult BeginSendMessageToSupport(string username, string message, System.AsyncCallback callback, object asyncState);
     
     void EndSendMessageToSupport(System.IAsyncResult result);
+    
+    [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/ITechSupportService1/GetMyMessages", ReplyAction="http://tempuri.org/ITechSupportService1/GetMyMessagesResponse")]
+    System.IAsyncResult BeginGetMyMessages(string username, System.AsyncCallback callback, object asyncState);
+    
+    TechSupportService.DataContract.Message[] EndGetMyMessages(System.IAsyncResult result);
 }
 
 [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -852,6 +894,29 @@ public partial class GetUserProfilePictureCompletedEventArgs : System.ComponentM
 
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+public partial class GetMyMessagesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs
+{
+    
+    private object[] results;
+    
+    public GetMyMessagesCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+            base(exception, cancelled, userState)
+    {
+        this.results = results;
+    }
+    
+    public TechSupportService.DataContract.Message[] Result
+    {
+        get
+        {
+            base.RaiseExceptionIfNecessary();
+            return ((TechSupportService.DataContract.Message[])(this.results[0]));
+        }
+    }
+}
+
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
 public partial class TechSupportService1Client : System.ServiceModel.ClientBase<ITechSupportService1>, ITechSupportService1
 {
     
@@ -914,6 +979,12 @@ public partial class TechSupportService1Client : System.ServiceModel.ClientBase<
     private EndOperationDelegate onEndSendMessageToSupportDelegate;
     
     private System.Threading.SendOrPostCallback onSendMessageToSupportCompletedDelegate;
+    
+    private BeginOperationDelegate onBeginGetMyMessagesDelegate;
+    
+    private EndOperationDelegate onEndGetMyMessagesDelegate;
+    
+    private System.Threading.SendOrPostCallback onGetMyMessagesCompletedDelegate;
     
     private BeginOperationDelegate onBeginOpenDelegate;
     
@@ -999,6 +1070,8 @@ public partial class TechSupportService1Client : System.ServiceModel.ClientBase<
     public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> RegisterNewUserCompleted;
     
     public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> SendMessageToSupportCompleted;
+    
+    public event System.EventHandler<GetMyMessagesCompletedEventArgs> GetMyMessagesCompleted;
     
     public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> OpenCompleted;
     
@@ -1581,6 +1654,63 @@ public partial class TechSupportService1Client : System.ServiceModel.ClientBase<
                     message}, this.onEndSendMessageToSupportDelegate, this.onSendMessageToSupportCompletedDelegate, userState);
     }
     
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    System.IAsyncResult ITechSupportService1.BeginGetMyMessages(string username, System.AsyncCallback callback, object asyncState)
+    {
+        return base.Channel.BeginGetMyMessages(username, callback, asyncState);
+    }
+    
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    TechSupportService.DataContract.Message[] ITechSupportService1.EndGetMyMessages(System.IAsyncResult result)
+    {
+        return base.Channel.EndGetMyMessages(result);
+    }
+    
+    private System.IAsyncResult OnBeginGetMyMessages(object[] inValues, System.AsyncCallback callback, object asyncState)
+    {
+        string username = ((string)(inValues[0]));
+        return ((ITechSupportService1)(this)).BeginGetMyMessages(username, callback, asyncState);
+    }
+    
+    private object[] OnEndGetMyMessages(System.IAsyncResult result)
+    {
+        TechSupportService.DataContract.Message[] retVal = ((ITechSupportService1)(this)).EndGetMyMessages(result);
+        return new object[] {
+                retVal};
+    }
+    
+    private void OnGetMyMessagesCompleted(object state)
+    {
+        if ((this.GetMyMessagesCompleted != null))
+        {
+            InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+            this.GetMyMessagesCompleted(this, new GetMyMessagesCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+        }
+    }
+    
+    public void GetMyMessagesAsync(string username)
+    {
+        this.GetMyMessagesAsync(username, null);
+    }
+    
+    public void GetMyMessagesAsync(string username, object userState)
+    {
+        if ((this.onBeginGetMyMessagesDelegate == null))
+        {
+            this.onBeginGetMyMessagesDelegate = new BeginOperationDelegate(this.OnBeginGetMyMessages);
+        }
+        if ((this.onEndGetMyMessagesDelegate == null))
+        {
+            this.onEndGetMyMessagesDelegate = new EndOperationDelegate(this.OnEndGetMyMessages);
+        }
+        if ((this.onGetMyMessagesCompletedDelegate == null))
+        {
+            this.onGetMyMessagesCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetMyMessagesCompleted);
+        }
+        base.InvokeAsync(this.onBeginGetMyMessagesDelegate, new object[] {
+                    username}, this.onEndGetMyMessagesDelegate, this.onGetMyMessagesCompletedDelegate, userState);
+    }
+    
     private System.IAsyncResult OnBeginOpen(object[] inValues, System.AsyncCallback callback, object asyncState)
     {
         return ((System.ServiceModel.ICommunicationObject)(this)).BeginOpen(callback, asyncState);
@@ -1828,6 +1958,21 @@ public partial class TechSupportService1Client : System.ServiceModel.ClientBase<
         {
             object[] _args = new object[0];
             base.EndInvoke("SendMessageToSupport", _args, result);
+        }
+        
+        public System.IAsyncResult BeginGetMyMessages(string username, System.AsyncCallback callback, object asyncState)
+        {
+            object[] _args = new object[1];
+            _args[0] = username;
+            System.IAsyncResult _result = base.BeginInvoke("GetMyMessages", _args, callback, asyncState);
+            return _result;
+        }
+        
+        public TechSupportService.DataContract.Message[] EndGetMyMessages(System.IAsyncResult result)
+        {
+            object[] _args = new object[0];
+            TechSupportService.DataContract.Message[] _result = ((TechSupportService.DataContract.Message[])(base.EndInvoke("GetMyMessages", _args, result)));
+            return _result;
         }
     }
 }
