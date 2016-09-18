@@ -96,6 +96,7 @@
             if (message != null)
             {
                 room = message.Properties["Group"].ToString();
+
                 HubProxy.Invoke("Join", room);
             }
         }
