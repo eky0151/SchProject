@@ -182,11 +182,8 @@ namespace SchProject
         private void RecieveMessage(BrokeredMessage message)
         {
             EventHandler<MessageEventArgs> temp = MessageHandler;
-            if (temp != null)
-            {
-                temp.Invoke(this,
-                    new MessageEventArgs(message.Properties["Username"].ToString(), message.GetBody<string>()));
-            }
+            temp?.Invoke(this,
+                new MessageEventArgs(message.Properties["Sender"].ToString(), message.GetBody<string>()));
             CompleteMessagesSafe(message);
         }
 
