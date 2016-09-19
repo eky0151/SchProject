@@ -124,6 +124,12 @@
     <None Include="Service References\TechSupportService\SolvedQuestionInit.TechSupportService.LoginResult.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\TechSupportService\SolvedQuestionInit.TechSupportService.Message.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\TechSupportService\SolvedQuestionInit.TechSupportService.NewTechWork.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\TechSupportService\SolvedQuestionInit.TechSupportService.WorkerData.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>

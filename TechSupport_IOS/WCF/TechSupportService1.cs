@@ -14,20 +14,20 @@
 namespace TechSupportService
 {
     using System.Runtime.Serialization;
-    
-    
+
+
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="LoginResult", Namespace="http://schemas.datacontract.org/2004/07/TechSupportService")]
+    [System.Runtime.Serialization.DataContractAttribute(Name = "LoginResult", Namespace = "http://schemas.datacontract.org/2004/07/TechSupportService")]
     public partial class LoginResult : object
     {
-        
+
         private string FullNameField;
-        
+
         private TechSupportService.DataContract.Role RoleField;
-        
+
         private bool ValidField;
-        
+
         [System.Runtime.Serialization.DataMemberAttribute()]
         public string FullName
         {
@@ -40,7 +40,7 @@ namespace TechSupportService
                 this.FullNameField = value;
             }
         }
-        
+
         [System.Runtime.Serialization.DataMemberAttribute()]
         public TechSupportService.DataContract.Role Role
         {
@@ -53,7 +53,7 @@ namespace TechSupportService
                 this.RoleField = value;
             }
         }
-        
+
         [System.Runtime.Serialization.DataMemberAttribute()]
         public bool Valid
         {
@@ -67,31 +67,31 @@ namespace TechSupportService
             }
         }
     }
-    
+
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="WorkerData", Namespace="http://schemas.datacontract.org/2004/07/TechSupportService")]
+    [System.Runtime.Serialization.DataContractAttribute(Name = "WorkerData", Namespace = "http://schemas.datacontract.org/2004/07/TechSupportService")]
     public partial class WorkerData : object
     {
-        
+
         private string AddressField;
-        
+
         private string EmailField;
-        
+
         private string FullNameField;
-        
+
         private int IDField;
-        
+
         private string PhoneField;
-        
+
         private string ProfilePictureField;
-        
+
         private TechSupportService.DataContract.Role RoleField;
-        
+
         private TechSupportService.Status StatusField;
-        
+
         private string UsernameField;
-        
+
         [System.Runtime.Serialization.DataMemberAttribute()]
         public string Address
         {
@@ -104,7 +104,7 @@ namespace TechSupportService
                 this.AddressField = value;
             }
         }
-        
+
         [System.Runtime.Serialization.DataMemberAttribute()]
         public string Email
         {
@@ -117,7 +117,7 @@ namespace TechSupportService
                 this.EmailField = value;
             }
         }
-        
+
         [System.Runtime.Serialization.DataMemberAttribute()]
         public string FullName
         {
@@ -130,7 +130,7 @@ namespace TechSupportService
                 this.FullNameField = value;
             }
         }
-        
+
         [System.Runtime.Serialization.DataMemberAttribute()]
         public int ID
         {
@@ -143,7 +143,7 @@ namespace TechSupportService
                 this.IDField = value;
             }
         }
-        
+
         [System.Runtime.Serialization.DataMemberAttribute()]
         public string Phone
         {
@@ -156,7 +156,7 @@ namespace TechSupportService
                 this.PhoneField = value;
             }
         }
-        
+
         [System.Runtime.Serialization.DataMemberAttribute()]
         public string ProfilePicture
         {
@@ -169,7 +169,7 @@ namespace TechSupportService
                 this.ProfilePictureField = value;
             }
         }
-        
+
         [System.Runtime.Serialization.DataMemberAttribute()]
         public TechSupportService.DataContract.Role Role
         {
@@ -182,7 +182,7 @@ namespace TechSupportService
                 this.RoleField = value;
             }
         }
-        
+
         [System.Runtime.Serialization.DataMemberAttribute()]
         public TechSupportService.Status Status
         {
@@ -195,7 +195,7 @@ namespace TechSupportService
                 this.StatusField = value;
             }
         }
-        
+
         [System.Runtime.Serialization.DataMemberAttribute()]
         public string Username
         {
@@ -209,47 +209,47 @@ namespace TechSupportService
             }
         }
     }
-    
+
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Status", Namespace="http://schemas.datacontract.org/2004/07/TechSupportService")]
+    [System.Runtime.Serialization.DataContractAttribute(Name = "Status", Namespace = "http://schemas.datacontract.org/2004/07/TechSupportService")]
     public enum Status : int
     {
-        
+
         [System.Runtime.Serialization.EnumMemberAttribute()]
         Away = 0,
-        
+
         [System.Runtime.Serialization.EnumMemberAttribute()]
         Working = 1,
     }
-    
+
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="SolvedQuestion", Namespace="http://schemas.datacontract.org/2004/07/TechSupportService")]
+    [System.Runtime.Serialization.DataContractAttribute(Name = "SolvedQuestion", Namespace = "http://schemas.datacontract.org/2004/07/TechSupportService")]
     public partial class SolvedQuestion : object
     {
-        
+
         private string AnswerField;
-        
+
         private string CategoryField;
-        
+
         private int CustomerIDField;
-        
+
         private int IDField;
-        
+
         private string[] KeyWordsField;
-        
+
         private string QuestionField;
-        
+
         private System.DateTime TimeAnsweredField;
-        
+
         private System.DateTime TimeAskedField;
-        
+
         private string TopicField;
-        
+
         private int WorkerIDField;
-        
+
         private string WorkerNameField;
-        
+
         [System.Runtime.Serialization.DataMemberAttribute()]
         public string Answer
         {
@@ -262,7 +262,7 @@ namespace TechSupportService
                 this.AnswerField = value;
             }
         }
-        
+
         [System.Runtime.Serialization.DataMemberAttribute()]
         public string Category
         {
@@ -275,7 +275,7 @@ namespace TechSupportService
                 this.CategoryField = value;
             }
         }
-        
+
         [System.Runtime.Serialization.DataMemberAttribute()]
         public int CustomerID
         {
@@ -288,7 +288,7 @@ namespace TechSupportService
                 this.CustomerIDField = value;
             }
         }
-        
+
         [System.Runtime.Serialization.DataMemberAttribute()]
         public int ID
         {
@@ -301,7 +301,7 @@ namespace TechSupportService
                 this.IDField = value;
             }
         }
-        
+
         [System.Runtime.Serialization.DataMemberAttribute()]
         public string[] KeyWords
         {
@@ -314,7 +314,7 @@ namespace TechSupportService
                 this.KeyWordsField = value;
             }
         }
-        
+
         [System.Runtime.Serialization.DataMemberAttribute()]
         public string Question
         {
@@ -327,7 +327,7 @@ namespace TechSupportService
                 this.QuestionField = value;
             }
         }
-        
+
         [System.Runtime.Serialization.DataMemberAttribute()]
         public System.DateTime TimeAnswered
         {
@@ -340,7 +340,7 @@ namespace TechSupportService
                 this.TimeAnsweredField = value;
             }
         }
-        
+
         [System.Runtime.Serialization.DataMemberAttribute()]
         public System.DateTime TimeAsked
         {
@@ -353,7 +353,7 @@ namespace TechSupportService
                 this.TimeAskedField = value;
             }
         }
-        
+
         [System.Runtime.Serialization.DataMemberAttribute()]
         public string Topic
         {
@@ -366,7 +366,7 @@ namespace TechSupportService
                 this.TopicField = value;
             }
         }
-        
+
         [System.Runtime.Serialization.DataMemberAttribute()]
         public int WorkerID
         {
@@ -379,7 +379,7 @@ namespace TechSupportService
                 this.WorkerIDField = value;
             }
         }
-        
+
         [System.Runtime.Serialization.DataMemberAttribute()]
         public string WorkerName
         {
@@ -397,48 +397,48 @@ namespace TechSupportService
 namespace TechSupportService.DataContract
 {
     using System.Runtime.Serialization;
-    
-    
+
+
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Role", Namespace="http://schemas.datacontract.org/2004/07/TechSupportService.DataContract")]
+    [System.Runtime.Serialization.DataContractAttribute(Name = "Role", Namespace = "http://schemas.datacontract.org/2004/07/TechSupportService.DataContract")]
     public enum Role : int
     {
-        
+
         [System.Runtime.Serialization.EnumMemberAttribute()]
         HelpDesk = 0,
-        
+
         [System.Runtime.Serialization.EnumMemberAttribute()]
         Admin = 1,
-        
+
         [System.Runtime.Serialization.EnumMemberAttribute()]
         Technician = 2,
-        
+
         [System.Runtime.Serialization.EnumMemberAttribute()]
         Boss = 3,
     }
-    
+
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="CustomerData", Namespace="http://schemas.datacontract.org/2004/07/TechSupportService.DataContract")]
+    [System.Runtime.Serialization.DataContractAttribute(Name = "CustomerData", Namespace = "http://schemas.datacontract.org/2004/07/TechSupportService.DataContract")]
     public partial class CustomerData : object
     {
-        
+
         private string EmailField;
-        
+
         private string FullNameField;
-        
+
         private int IDField;
-        
+
         private string PhoneField;
-        
+
         private string PictureField;
-        
+
         private int PointsField;
-        
+
         private System.DateTime RegTimeField;
-        
+
         private string UserNameField;
-        
+
         [System.Runtime.Serialization.DataMemberAttribute()]
         public string Email
         {
@@ -451,7 +451,7 @@ namespace TechSupportService.DataContract
                 this.EmailField = value;
             }
         }
-        
+
         [System.Runtime.Serialization.DataMemberAttribute()]
         public string FullName
         {
@@ -464,7 +464,7 @@ namespace TechSupportService.DataContract
                 this.FullNameField = value;
             }
         }
-        
+
         [System.Runtime.Serialization.DataMemberAttribute()]
         public int ID
         {
@@ -477,7 +477,7 @@ namespace TechSupportService.DataContract
                 this.IDField = value;
             }
         }
-        
+
         [System.Runtime.Serialization.DataMemberAttribute()]
         public string Phone
         {
@@ -490,7 +490,7 @@ namespace TechSupportService.DataContract
                 this.PhoneField = value;
             }
         }
-        
+
         [System.Runtime.Serialization.DataMemberAttribute()]
         public string Picture
         {
@@ -503,7 +503,7 @@ namespace TechSupportService.DataContract
                 this.PictureField = value;
             }
         }
-        
+
         [System.Runtime.Serialization.DataMemberAttribute()]
         public int Points
         {
@@ -516,7 +516,7 @@ namespace TechSupportService.DataContract
                 this.PointsField = value;
             }
         }
-        
+
         [System.Runtime.Serialization.DataMemberAttribute()]
         public System.DateTime RegTime
         {
@@ -529,7 +529,7 @@ namespace TechSupportService.DataContract
                 this.RegTimeField = value;
             }
         }
-        
+
         [System.Runtime.Serialization.DataMemberAttribute()]
         public string UserName
         {
@@ -543,23 +543,23 @@ namespace TechSupportService.DataContract
             }
         }
     }
-    
+
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="NewTechWork", Namespace="http://schemas.datacontract.org/2004/07/TechSupportService.DataContract")]
+    [System.Runtime.Serialization.DataContractAttribute(Name = "NewTechWork", Namespace = "http://schemas.datacontract.org/2004/07/TechSupportService.DataContract")]
     public partial class NewTechWork : object
     {
-        
+
         private string AddressField;
-        
+
         private string CustomerNameField;
-        
+
         private int IDField;
-        
+
         private int TechIDField;
-        
+
         private System.DateTime TimeOrderedField;
-        
+
         [System.Runtime.Serialization.DataMemberAttribute()]
         public string Address
         {
@@ -572,7 +572,7 @@ namespace TechSupportService.DataContract
                 this.AddressField = value;
             }
         }
-        
+
         [System.Runtime.Serialization.DataMemberAttribute()]
         public string CustomerName
         {
@@ -585,7 +585,7 @@ namespace TechSupportService.DataContract
                 this.CustomerNameField = value;
             }
         }
-        
+
         [System.Runtime.Serialization.DataMemberAttribute()]
         public int ID
         {
@@ -598,7 +598,7 @@ namespace TechSupportService.DataContract
                 this.IDField = value;
             }
         }
-        
+
         [System.Runtime.Serialization.DataMemberAttribute()]
         public int TechID
         {
@@ -611,7 +611,7 @@ namespace TechSupportService.DataContract
                 this.TechIDField = value;
             }
         }
-        
+
         [System.Runtime.Serialization.DataMemberAttribute()]
         public System.DateTime TimeOrdered
         {
@@ -625,17 +625,17 @@ namespace TechSupportService.DataContract
             }
         }
     }
-    
+
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Message", Namespace="http://schemas.datacontract.org/2004/07/TechSupportService.DataContract")]
+    [System.Runtime.Serialization.DataContractAttribute(Name = "Message", Namespace = "http://schemas.datacontract.org/2004/07/TechSupportService.DataContract")]
     public partial class Message : object
     {
-        
+
         private string MessagField;
-        
+
         private string SenderField;
-        
+
         [System.Runtime.Serialization.DataMemberAttribute()]
         public string Messag
         {
@@ -648,7 +648,7 @@ namespace TechSupportService.DataContract
                 this.MessagField = value;
             }
         }
-        
+
         [System.Runtime.Serialization.DataMemberAttribute()]
         public string Sender
         {
@@ -662,68 +662,101 @@ namespace TechSupportService.DataContract
             }
         }
     }
+
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name = "TechnicianStatus", Namespace = "http://schemas.datacontract.org/2004/07/TechSupportService.DataContract")]
+    public enum TechnicianStatus : int
+    {
+
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        FromCustomer = 0,
+
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        AtCustomer = 1,
+
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Break = 2,
+
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Available = 3,
+    }
 }
 
 
 [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-[System.ServiceModel.ServiceContractAttribute(ConfigurationName="ITechSupportService1")]
+[System.ServiceModel.ServiceContractAttribute(ConfigurationName = "ITechSupportService1")]
 public interface ITechSupportService1
 {
-    
-    [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/ITechSupportService1/TechnicianLogin", ReplyAction="http://tempuri.org/ITechSupportService1/TechnicianLoginResponse")]
+
+    [System.ServiceModel.OperationContractAttribute(AsyncPattern = true, Action = "http://tempuri.org/ITechSupportService1/TechnicianLogin", ReplyAction = "http://tempuri.org/ITechSupportService1/TechnicianLoginResponse")]
     System.IAsyncResult BeginTechnicianLogin(string username, string passWD, System.AsyncCallback callback, object asyncState);
-    
+
     TechSupportService.LoginResult EndTechnicianLogin(System.IAsyncResult result);
-    
-    [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/ITechSupportService1/HelpDeskWorkerList", ReplyAction="http://tempuri.org/ITechSupportService1/HelpDeskWorkerListResponse")]
+
+    [System.ServiceModel.OperationContractAttribute(AsyncPattern = true, Action = "http://tempuri.org/ITechSupportService1/HelpDeskWorkerList", ReplyAction = "http://tempuri.org/ITechSupportService1/HelpDeskWorkerListResponse")]
     System.IAsyncResult BeginHelpDeskWorkerList(System.AsyncCallback callback, object asyncState);
-    
+
     TechSupportService.WorkerData[] EndHelpDeskWorkerList(System.IAsyncResult result);
-    
-    [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/ITechSupportService1/CustomerList", ReplyAction="http://tempuri.org/ITechSupportService1/CustomerListResponse")]
+
+    [System.ServiceModel.OperationContractAttribute(AsyncPattern = true, Action = "http://tempuri.org/ITechSupportService1/CustomerList", ReplyAction = "http://tempuri.org/ITechSupportService1/CustomerListResponse")]
     System.IAsyncResult BeginCustomerList(System.AsyncCallback callback, object asyncState);
-    
+
     TechSupportService.DataContract.CustomerData[] EndCustomerList(System.IAsyncResult result);
-    
-    [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/ITechSupportService1/GetMyNewTechworks", ReplyAction="http://tempuri.org/ITechSupportService1/GetMyNewTechworksResponse")]
+
+    [System.ServiceModel.OperationContractAttribute(AsyncPattern = true, Action = "http://tempuri.org/ITechSupportService1/GetMyNewTechworks", ReplyAction = "http://tempuri.org/ITechSupportService1/GetMyNewTechworksResponse")]
     System.IAsyncResult BeginGetMyNewTechworks(string username, System.AsyncCallback callback, object asyncState);
-    
+
     TechSupportService.DataContract.NewTechWork[] EndGetMyNewTechworks(System.IAsyncResult result);
-    
-    [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/ITechSupportService1/UploadSolvedQuestion", ReplyAction="http://tempuri.org/ITechSupportService1/UploadSolvedQuestionResponse")]
+
+    [System.ServiceModel.OperationContractAttribute(AsyncPattern = true, Action = "http://tempuri.org/ITechSupportService1/UploadSolvedQuestion", ReplyAction = "http://tempuri.org/ITechSupportService1/UploadSolvedQuestionResponse")]
     System.IAsyncResult BeginUploadSolvedQuestion(TechSupportService.SolvedQuestion question, System.AsyncCallback callback, object asyncState);
-    
+
     void EndUploadSolvedQuestion(System.IAsyncResult result);
-    
-    [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/ITechSupportService1/UserLogin", ReplyAction="http://tempuri.org/ITechSupportService1/UserLoginResponse")]
+
+    [System.ServiceModel.OperationContractAttribute(AsyncPattern = true, Action = "http://tempuri.org/ITechSupportService1/UserLogin", ReplyAction = "http://tempuri.org/ITechSupportService1/UserLoginResponse")]
     System.IAsyncResult BeginUserLogin(string username, string password, System.AsyncCallback callback, object asyncState);
-    
+
     bool EndUserLogin(System.IAsyncResult result);
-    
-    [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/ITechSupportService1/GetProfilePicture", ReplyAction="http://tempuri.org/ITechSupportService1/GetProfilePictureResponse")]
+
+    [System.ServiceModel.OperationContractAttribute(AsyncPattern = true, Action = "http://tempuri.org/ITechSupportService1/GetProfilePicture", ReplyAction = "http://tempuri.org/ITechSupportService1/GetProfilePictureResponse")]
     System.IAsyncResult BeginGetProfilePicture(string username, System.AsyncCallback callback, object asyncState);
-    
+
     string EndGetProfilePicture(System.IAsyncResult result);
-    
-    [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/ITechSupportService1/GetUserProfilePicture", ReplyAction="http://tempuri.org/ITechSupportService1/GetUserProfilePictureResponse")]
+
+    [System.ServiceModel.OperationContractAttribute(AsyncPattern = true, Action = "http://tempuri.org/ITechSupportService1/GetUserProfilePicture", ReplyAction = "http://tempuri.org/ITechSupportService1/GetUserProfilePictureResponse")]
     System.IAsyncResult BeginGetUserProfilePicture(string username, System.AsyncCallback callback, object asyncState);
-    
+
     string EndGetUserProfilePicture(System.IAsyncResult result);
-    
-    [System.ServiceModel.OperationContractAttribute(IsOneWay=true, AsyncPattern=true, Action="http://tempuri.org/ITechSupportService1/RegisterNewUser")]
+
+    [System.ServiceModel.OperationContractAttribute(IsOneWay = true, AsyncPattern = true, Action = "http://tempuri.org/ITechSupportService1/RegisterNewUser")]
     System.IAsyncResult BeginRegisterNewUser(string fullName, string email, string userName, string password, string profilePicture, System.AsyncCallback callback, object asyncState);
-    
+
     void EndRegisterNewUser(System.IAsyncResult result);
-    
-    [System.ServiceModel.OperationContractAttribute(IsOneWay=true, AsyncPattern=true, Action="http://tempuri.org/ITechSupportService1/SendMessageToSupport")]
+
+    [System.ServiceModel.OperationContractAttribute(IsOneWay = true, AsyncPattern = true, Action = "http://tempuri.org/ITechSupportService1/SendMessageToSupport")]
     System.IAsyncResult BeginSendMessageToSupport(string username, string sender, string message, System.AsyncCallback callback, object asyncState);
-    
+
     void EndSendMessageToSupport(System.IAsyncResult result);
-    
-    [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/ITechSupportService1/GetMyMessages", ReplyAction="http://tempuri.org/ITechSupportService1/GetMyMessagesResponse")]
+
+    [System.ServiceModel.OperationContractAttribute(AsyncPattern = true, Action = "http://tempuri.org/ITechSupportService1/GetMyMessages", ReplyAction = "http://tempuri.org/ITechSupportService1/GetMyMessagesResponse")]
     System.IAsyncResult BeginGetMyMessages(string username, System.AsyncCallback callback, object asyncState);
-    
+
     TechSupportService.DataContract.Message[] EndGetMyMessages(System.IAsyncResult result);
+
+    [System.ServiceModel.OperationContractAttribute(IsOneWay = true, AsyncPattern = true, Action = "http://tempuri.org/ITechSupportService1/Logout")]
+    System.IAsyncResult BeginLogout(string username, System.AsyncCallback callback, object asyncState);
+
+    void EndLogout(System.IAsyncResult result);
+
+    [System.ServiceModel.OperationContractAttribute(IsOneWay = true, AsyncPattern = true, Action = "http://tempuri.org/ITechSupportService1/ChangeMyStatus")]
+    System.IAsyncResult BeginChangeMyStatus(string username, TechSupportService.Status newStatus, System.AsyncCallback callback, object asyncState);
+
+    void EndChangeMyStatus(System.IAsyncResult result);
+
+    [System.ServiceModel.OperationContractAttribute(IsOneWay = true, AsyncPattern = true, Action = "http://tempuri.org/ITechSupportService1/ChangeMyTechnicianStatus")]
+    System.IAsyncResult BeginChangeMyTechnicianStatus(string username, TechSupportService.DataContract.TechnicianStatus status, System.AsyncCallback callback, object asyncState);
+
+    void EndChangeMyTechnicianStatus(System.IAsyncResult result);
 }
 
 [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -735,15 +768,15 @@ public interface ITechSupportService1Channel : ITechSupportService1, System.Serv
 [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
 public partial class TechnicianLoginCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs
 {
-    
+
     private object[] results;
-    
-    public TechnicianLoginCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+
+    public TechnicianLoginCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) :
             base(exception, cancelled, userState)
     {
         this.results = results;
     }
-    
+
     public TechSupportService.LoginResult Result
     {
         get
@@ -758,15 +791,15 @@ public partial class TechnicianLoginCompletedEventArgs : System.ComponentModel.A
 [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
 public partial class HelpDeskWorkerListCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs
 {
-    
+
     private object[] results;
-    
-    public HelpDeskWorkerListCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+
+    public HelpDeskWorkerListCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) :
             base(exception, cancelled, userState)
     {
         this.results = results;
     }
-    
+
     public TechSupportService.WorkerData[] Result
     {
         get
@@ -781,15 +814,15 @@ public partial class HelpDeskWorkerListCompletedEventArgs : System.ComponentMode
 [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
 public partial class CustomerListCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs
 {
-    
+
     private object[] results;
-    
-    public CustomerListCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+
+    public CustomerListCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) :
             base(exception, cancelled, userState)
     {
         this.results = results;
     }
-    
+
     public TechSupportService.DataContract.CustomerData[] Result
     {
         get
@@ -804,15 +837,15 @@ public partial class CustomerListCompletedEventArgs : System.ComponentModel.Asyn
 [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
 public partial class GetMyNewTechworksCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs
 {
-    
+
     private object[] results;
-    
-    public GetMyNewTechworksCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+
+    public GetMyNewTechworksCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) :
             base(exception, cancelled, userState)
     {
         this.results = results;
     }
-    
+
     public TechSupportService.DataContract.NewTechWork[] Result
     {
         get
@@ -827,15 +860,15 @@ public partial class GetMyNewTechworksCompletedEventArgs : System.ComponentModel
 [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
 public partial class UserLoginCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs
 {
-    
+
     private object[] results;
-    
-    public UserLoginCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+
+    public UserLoginCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) :
             base(exception, cancelled, userState)
     {
         this.results = results;
     }
-    
+
     public bool Result
     {
         get
@@ -850,15 +883,15 @@ public partial class UserLoginCompletedEventArgs : System.ComponentModel.AsyncCo
 [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
 public partial class GetProfilePictureCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs
 {
-    
+
     private object[] results;
-    
-    public GetProfilePictureCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+
+    public GetProfilePictureCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) :
             base(exception, cancelled, userState)
     {
         this.results = results;
     }
-    
+
     public string Result
     {
         get
@@ -873,15 +906,15 @@ public partial class GetProfilePictureCompletedEventArgs : System.ComponentModel
 [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
 public partial class GetUserProfilePictureCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs
 {
-    
+
     private object[] results;
-    
-    public GetUserProfilePictureCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+
+    public GetUserProfilePictureCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) :
             base(exception, cancelled, userState)
     {
         this.results = results;
     }
-    
+
     public string Result
     {
         get
@@ -896,15 +929,15 @@ public partial class GetUserProfilePictureCompletedEventArgs : System.ComponentM
 [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
 public partial class GetMyMessagesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs
 {
-    
+
     private object[] results;
-    
-    public GetMyMessagesCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+
+    public GetMyMessagesCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) :
             base(exception, cancelled, userState)
     {
         this.results = results;
     }
-    
+
     public TechSupportService.DataContract.Message[] Result
     {
         get
@@ -919,109 +952,127 @@ public partial class GetMyMessagesCompletedEventArgs : System.ComponentModel.Asy
 [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
 public partial class TechSupportService1Client : System.ServiceModel.ClientBase<ITechSupportService1>, ITechSupportService1
 {
-    
+
     private BeginOperationDelegate onBeginTechnicianLoginDelegate;
-    
+
     private EndOperationDelegate onEndTechnicianLoginDelegate;
-    
+
     private System.Threading.SendOrPostCallback onTechnicianLoginCompletedDelegate;
-    
+
     private BeginOperationDelegate onBeginHelpDeskWorkerListDelegate;
-    
+
     private EndOperationDelegate onEndHelpDeskWorkerListDelegate;
-    
+
     private System.Threading.SendOrPostCallback onHelpDeskWorkerListCompletedDelegate;
-    
+
     private BeginOperationDelegate onBeginCustomerListDelegate;
-    
+
     private EndOperationDelegate onEndCustomerListDelegate;
-    
+
     private System.Threading.SendOrPostCallback onCustomerListCompletedDelegate;
-    
+
     private BeginOperationDelegate onBeginGetMyNewTechworksDelegate;
-    
+
     private EndOperationDelegate onEndGetMyNewTechworksDelegate;
-    
+
     private System.Threading.SendOrPostCallback onGetMyNewTechworksCompletedDelegate;
-    
+
     private BeginOperationDelegate onBeginUploadSolvedQuestionDelegate;
-    
+
     private EndOperationDelegate onEndUploadSolvedQuestionDelegate;
-    
+
     private System.Threading.SendOrPostCallback onUploadSolvedQuestionCompletedDelegate;
-    
+
     private BeginOperationDelegate onBeginUserLoginDelegate;
-    
+
     private EndOperationDelegate onEndUserLoginDelegate;
-    
+
     private System.Threading.SendOrPostCallback onUserLoginCompletedDelegate;
-    
+
     private BeginOperationDelegate onBeginGetProfilePictureDelegate;
-    
+
     private EndOperationDelegate onEndGetProfilePictureDelegate;
-    
+
     private System.Threading.SendOrPostCallback onGetProfilePictureCompletedDelegate;
-    
+
     private BeginOperationDelegate onBeginGetUserProfilePictureDelegate;
-    
+
     private EndOperationDelegate onEndGetUserProfilePictureDelegate;
-    
+
     private System.Threading.SendOrPostCallback onGetUserProfilePictureCompletedDelegate;
-    
+
     private BeginOperationDelegate onBeginRegisterNewUserDelegate;
-    
+
     private EndOperationDelegate onEndRegisterNewUserDelegate;
-    
+
     private System.Threading.SendOrPostCallback onRegisterNewUserCompletedDelegate;
-    
+
     private BeginOperationDelegate onBeginSendMessageToSupportDelegate;
-    
+
     private EndOperationDelegate onEndSendMessageToSupportDelegate;
-    
+
     private System.Threading.SendOrPostCallback onSendMessageToSupportCompletedDelegate;
-    
+
     private BeginOperationDelegate onBeginGetMyMessagesDelegate;
-    
+
     private EndOperationDelegate onEndGetMyMessagesDelegate;
-    
+
     private System.Threading.SendOrPostCallback onGetMyMessagesCompletedDelegate;
-    
+
+    private BeginOperationDelegate onBeginLogoutDelegate;
+
+    private EndOperationDelegate onEndLogoutDelegate;
+
+    private System.Threading.SendOrPostCallback onLogoutCompletedDelegate;
+
+    private BeginOperationDelegate onBeginChangeMyStatusDelegate;
+
+    private EndOperationDelegate onEndChangeMyStatusDelegate;
+
+    private System.Threading.SendOrPostCallback onChangeMyStatusCompletedDelegate;
+
+    private BeginOperationDelegate onBeginChangeMyTechnicianStatusDelegate;
+
+    private EndOperationDelegate onEndChangeMyTechnicianStatusDelegate;
+
+    private System.Threading.SendOrPostCallback onChangeMyTechnicianStatusCompletedDelegate;
+
     private BeginOperationDelegate onBeginOpenDelegate;
-    
+
     private EndOperationDelegate onEndOpenDelegate;
-    
+
     private System.Threading.SendOrPostCallback onOpenCompletedDelegate;
-    
+
     private BeginOperationDelegate onBeginCloseDelegate;
-    
+
     private EndOperationDelegate onEndCloseDelegate;
-    
+
     private System.Threading.SendOrPostCallback onCloseCompletedDelegate;
-    
+
     public TechSupportService1Client()
     {
     }
-    
-    public TechSupportService1Client(string endpointConfigurationName) : 
+
+    public TechSupportService1Client(string endpointConfigurationName) :
             base(endpointConfigurationName)
     {
     }
-    
-    public TechSupportService1Client(string endpointConfigurationName, string remoteAddress) : 
+
+    public TechSupportService1Client(string endpointConfigurationName, string remoteAddress) :
             base(endpointConfigurationName, remoteAddress)
     {
     }
-    
-    public TechSupportService1Client(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+
+    public TechSupportService1Client(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) :
             base(endpointConfigurationName, remoteAddress)
     {
     }
-    
-    public TechSupportService1Client(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+
+    public TechSupportService1Client(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) :
             base(binding, remoteAddress)
     {
     }
-    
+
     public System.Net.CookieContainer CookieContainer
     {
         get
@@ -1050,59 +1101,65 @@ public partial class TechSupportService1Client : System.ServiceModel.ClientBase<
             }
         }
     }
-    
+
     public event System.EventHandler<TechnicianLoginCompletedEventArgs> TechnicianLoginCompleted;
-    
+
     public event System.EventHandler<HelpDeskWorkerListCompletedEventArgs> HelpDeskWorkerListCompleted;
-    
+
     public event System.EventHandler<CustomerListCompletedEventArgs> CustomerListCompleted;
-    
+
     public event System.EventHandler<GetMyNewTechworksCompletedEventArgs> GetMyNewTechworksCompleted;
-    
+
     public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> UploadSolvedQuestionCompleted;
-    
+
     public event System.EventHandler<UserLoginCompletedEventArgs> UserLoginCompleted;
-    
+
     public event System.EventHandler<GetProfilePictureCompletedEventArgs> GetProfilePictureCompleted;
-    
+
     public event System.EventHandler<GetUserProfilePictureCompletedEventArgs> GetUserProfilePictureCompleted;
-    
+
     public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> RegisterNewUserCompleted;
-    
+
     public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> SendMessageToSupportCompleted;
-    
+
     public event System.EventHandler<GetMyMessagesCompletedEventArgs> GetMyMessagesCompleted;
-    
+
+    public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> LogoutCompleted;
+
+    public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> ChangeMyStatusCompleted;
+
+    public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> ChangeMyTechnicianStatusCompleted;
+
     public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> OpenCompleted;
-    
+
     public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> CloseCompleted;
-    
+
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     System.IAsyncResult ITechSupportService1.BeginTechnicianLogin(string username, string passWD, System.AsyncCallback callback, object asyncState)
     {
         return base.Channel.BeginTechnicianLogin(username, passWD, callback, asyncState);
     }
-    
+
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     TechSupportService.LoginResult ITechSupportService1.EndTechnicianLogin(System.IAsyncResult result)
     {
         return base.Channel.EndTechnicianLogin(result);
     }
-    
+
     private System.IAsyncResult OnBeginTechnicianLogin(object[] inValues, System.AsyncCallback callback, object asyncState)
     {
         string username = ((string)(inValues[0]));
         string passWD = ((string)(inValues[1]));
         return ((ITechSupportService1)(this)).BeginTechnicianLogin(username, passWD, callback, asyncState);
     }
-    
+
     private object[] OnEndTechnicianLogin(System.IAsyncResult result)
     {
         TechSupportService.LoginResult retVal = ((ITechSupportService1)(this)).EndTechnicianLogin(result);
         return new object[] {
                 retVal};
     }
-    
+
     private void OnTechnicianLoginCompleted(object state)
     {
         if ((this.TechnicianLoginCompleted != null))
@@ -1111,12 +1168,12 @@ public partial class TechSupportService1Client : System.ServiceModel.ClientBase<
             this.TechnicianLoginCompleted(this, new TechnicianLoginCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
         }
     }
-    
+
     public void TechnicianLoginAsync(string username, string passWD)
     {
         this.TechnicianLoginAsync(username, passWD, null);
     }
-    
+
     public void TechnicianLoginAsync(string username, string passWD, object userState)
     {
         if ((this.onBeginTechnicianLoginDelegate == null))
@@ -1135,31 +1192,31 @@ public partial class TechSupportService1Client : System.ServiceModel.ClientBase<
                     username,
                     passWD}, this.onEndTechnicianLoginDelegate, this.onTechnicianLoginCompletedDelegate, userState);
     }
-    
+
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     System.IAsyncResult ITechSupportService1.BeginHelpDeskWorkerList(System.AsyncCallback callback, object asyncState)
     {
         return base.Channel.BeginHelpDeskWorkerList(callback, asyncState);
     }
-    
+
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     TechSupportService.WorkerData[] ITechSupportService1.EndHelpDeskWorkerList(System.IAsyncResult result)
     {
         return base.Channel.EndHelpDeskWorkerList(result);
     }
-    
+
     private System.IAsyncResult OnBeginHelpDeskWorkerList(object[] inValues, System.AsyncCallback callback, object asyncState)
     {
         return ((ITechSupportService1)(this)).BeginHelpDeskWorkerList(callback, asyncState);
     }
-    
+
     private object[] OnEndHelpDeskWorkerList(System.IAsyncResult result)
     {
         TechSupportService.WorkerData[] retVal = ((ITechSupportService1)(this)).EndHelpDeskWorkerList(result);
         return new object[] {
                 retVal};
     }
-    
+
     private void OnHelpDeskWorkerListCompleted(object state)
     {
         if ((this.HelpDeskWorkerListCompleted != null))
@@ -1168,12 +1225,12 @@ public partial class TechSupportService1Client : System.ServiceModel.ClientBase<
             this.HelpDeskWorkerListCompleted(this, new HelpDeskWorkerListCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
         }
     }
-    
+
     public void HelpDeskWorkerListAsync()
     {
         this.HelpDeskWorkerListAsync(null);
     }
-    
+
     public void HelpDeskWorkerListAsync(object userState)
     {
         if ((this.onBeginHelpDeskWorkerListDelegate == null))
@@ -1190,31 +1247,31 @@ public partial class TechSupportService1Client : System.ServiceModel.ClientBase<
         }
         base.InvokeAsync(this.onBeginHelpDeskWorkerListDelegate, null, this.onEndHelpDeskWorkerListDelegate, this.onHelpDeskWorkerListCompletedDelegate, userState);
     }
-    
+
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     System.IAsyncResult ITechSupportService1.BeginCustomerList(System.AsyncCallback callback, object asyncState)
     {
         return base.Channel.BeginCustomerList(callback, asyncState);
     }
-    
+
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     TechSupportService.DataContract.CustomerData[] ITechSupportService1.EndCustomerList(System.IAsyncResult result)
     {
         return base.Channel.EndCustomerList(result);
     }
-    
+
     private System.IAsyncResult OnBeginCustomerList(object[] inValues, System.AsyncCallback callback, object asyncState)
     {
         return ((ITechSupportService1)(this)).BeginCustomerList(callback, asyncState);
     }
-    
+
     private object[] OnEndCustomerList(System.IAsyncResult result)
     {
         TechSupportService.DataContract.CustomerData[] retVal = ((ITechSupportService1)(this)).EndCustomerList(result);
         return new object[] {
                 retVal};
     }
-    
+
     private void OnCustomerListCompleted(object state)
     {
         if ((this.CustomerListCompleted != null))
@@ -1223,12 +1280,12 @@ public partial class TechSupportService1Client : System.ServiceModel.ClientBase<
             this.CustomerListCompleted(this, new CustomerListCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
         }
     }
-    
+
     public void CustomerListAsync()
     {
         this.CustomerListAsync(null);
     }
-    
+
     public void CustomerListAsync(object userState)
     {
         if ((this.onBeginCustomerListDelegate == null))
@@ -1245,32 +1302,32 @@ public partial class TechSupportService1Client : System.ServiceModel.ClientBase<
         }
         base.InvokeAsync(this.onBeginCustomerListDelegate, null, this.onEndCustomerListDelegate, this.onCustomerListCompletedDelegate, userState);
     }
-    
+
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     System.IAsyncResult ITechSupportService1.BeginGetMyNewTechworks(string username, System.AsyncCallback callback, object asyncState)
     {
         return base.Channel.BeginGetMyNewTechworks(username, callback, asyncState);
     }
-    
+
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     TechSupportService.DataContract.NewTechWork[] ITechSupportService1.EndGetMyNewTechworks(System.IAsyncResult result)
     {
         return base.Channel.EndGetMyNewTechworks(result);
     }
-    
+
     private System.IAsyncResult OnBeginGetMyNewTechworks(object[] inValues, System.AsyncCallback callback, object asyncState)
     {
         string username = ((string)(inValues[0]));
         return ((ITechSupportService1)(this)).BeginGetMyNewTechworks(username, callback, asyncState);
     }
-    
+
     private object[] OnEndGetMyNewTechworks(System.IAsyncResult result)
     {
         TechSupportService.DataContract.NewTechWork[] retVal = ((ITechSupportService1)(this)).EndGetMyNewTechworks(result);
         return new object[] {
                 retVal};
     }
-    
+
     private void OnGetMyNewTechworksCompleted(object state)
     {
         if ((this.GetMyNewTechworksCompleted != null))
@@ -1279,12 +1336,12 @@ public partial class TechSupportService1Client : System.ServiceModel.ClientBase<
             this.GetMyNewTechworksCompleted(this, new GetMyNewTechworksCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
         }
     }
-    
+
     public void GetMyNewTechworksAsync(string username)
     {
         this.GetMyNewTechworksAsync(username, null);
     }
-    
+
     public void GetMyNewTechworksAsync(string username, object userState)
     {
         if ((this.onBeginGetMyNewTechworksDelegate == null))
@@ -1302,31 +1359,31 @@ public partial class TechSupportService1Client : System.ServiceModel.ClientBase<
         base.InvokeAsync(this.onBeginGetMyNewTechworksDelegate, new object[] {
                     username}, this.onEndGetMyNewTechworksDelegate, this.onGetMyNewTechworksCompletedDelegate, userState);
     }
-    
+
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     System.IAsyncResult ITechSupportService1.BeginUploadSolvedQuestion(TechSupportService.SolvedQuestion question, System.AsyncCallback callback, object asyncState)
     {
         return base.Channel.BeginUploadSolvedQuestion(question, callback, asyncState);
     }
-    
+
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     void ITechSupportService1.EndUploadSolvedQuestion(System.IAsyncResult result)
     {
         base.Channel.EndUploadSolvedQuestion(result);
     }
-    
+
     private System.IAsyncResult OnBeginUploadSolvedQuestion(object[] inValues, System.AsyncCallback callback, object asyncState)
     {
         TechSupportService.SolvedQuestion question = ((TechSupportService.SolvedQuestion)(inValues[0]));
         return ((ITechSupportService1)(this)).BeginUploadSolvedQuestion(question, callback, asyncState);
     }
-    
+
     private object[] OnEndUploadSolvedQuestion(System.IAsyncResult result)
     {
         ((ITechSupportService1)(this)).EndUploadSolvedQuestion(result);
         return null;
     }
-    
+
     private void OnUploadSolvedQuestionCompleted(object state)
     {
         if ((this.UploadSolvedQuestionCompleted != null))
@@ -1335,12 +1392,12 @@ public partial class TechSupportService1Client : System.ServiceModel.ClientBase<
             this.UploadSolvedQuestionCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
         }
     }
-    
+
     public void UploadSolvedQuestionAsync(TechSupportService.SolvedQuestion question)
     {
         this.UploadSolvedQuestionAsync(question, null);
     }
-    
+
     public void UploadSolvedQuestionAsync(TechSupportService.SolvedQuestion question, object userState)
     {
         if ((this.onBeginUploadSolvedQuestionDelegate == null))
@@ -1358,33 +1415,33 @@ public partial class TechSupportService1Client : System.ServiceModel.ClientBase<
         base.InvokeAsync(this.onBeginUploadSolvedQuestionDelegate, new object[] {
                     question}, this.onEndUploadSolvedQuestionDelegate, this.onUploadSolvedQuestionCompletedDelegate, userState);
     }
-    
+
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     System.IAsyncResult ITechSupportService1.BeginUserLogin(string username, string password, System.AsyncCallback callback, object asyncState)
     {
         return base.Channel.BeginUserLogin(username, password, callback, asyncState);
     }
-    
+
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     bool ITechSupportService1.EndUserLogin(System.IAsyncResult result)
     {
         return base.Channel.EndUserLogin(result);
     }
-    
+
     private System.IAsyncResult OnBeginUserLogin(object[] inValues, System.AsyncCallback callback, object asyncState)
     {
         string username = ((string)(inValues[0]));
         string password = ((string)(inValues[1]));
         return ((ITechSupportService1)(this)).BeginUserLogin(username, password, callback, asyncState);
     }
-    
+
     private object[] OnEndUserLogin(System.IAsyncResult result)
     {
         bool retVal = ((ITechSupportService1)(this)).EndUserLogin(result);
         return new object[] {
                 retVal};
     }
-    
+
     private void OnUserLoginCompleted(object state)
     {
         if ((this.UserLoginCompleted != null))
@@ -1393,12 +1450,12 @@ public partial class TechSupportService1Client : System.ServiceModel.ClientBase<
             this.UserLoginCompleted(this, new UserLoginCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
         }
     }
-    
+
     public void UserLoginAsync(string username, string password)
     {
         this.UserLoginAsync(username, password, null);
     }
-    
+
     public void UserLoginAsync(string username, string password, object userState)
     {
         if ((this.onBeginUserLoginDelegate == null))
@@ -1417,32 +1474,32 @@ public partial class TechSupportService1Client : System.ServiceModel.ClientBase<
                     username,
                     password}, this.onEndUserLoginDelegate, this.onUserLoginCompletedDelegate, userState);
     }
-    
+
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     System.IAsyncResult ITechSupportService1.BeginGetProfilePicture(string username, System.AsyncCallback callback, object asyncState)
     {
         return base.Channel.BeginGetProfilePicture(username, callback, asyncState);
     }
-    
+
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     string ITechSupportService1.EndGetProfilePicture(System.IAsyncResult result)
     {
         return base.Channel.EndGetProfilePicture(result);
     }
-    
+
     private System.IAsyncResult OnBeginGetProfilePicture(object[] inValues, System.AsyncCallback callback, object asyncState)
     {
         string username = ((string)(inValues[0]));
         return ((ITechSupportService1)(this)).BeginGetProfilePicture(username, callback, asyncState);
     }
-    
+
     private object[] OnEndGetProfilePicture(System.IAsyncResult result)
     {
         string retVal = ((ITechSupportService1)(this)).EndGetProfilePicture(result);
         return new object[] {
                 retVal};
     }
-    
+
     private void OnGetProfilePictureCompleted(object state)
     {
         if ((this.GetProfilePictureCompleted != null))
@@ -1451,12 +1508,12 @@ public partial class TechSupportService1Client : System.ServiceModel.ClientBase<
             this.GetProfilePictureCompleted(this, new GetProfilePictureCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
         }
     }
-    
+
     public void GetProfilePictureAsync(string username)
     {
         this.GetProfilePictureAsync(username, null);
     }
-    
+
     public void GetProfilePictureAsync(string username, object userState)
     {
         if ((this.onBeginGetProfilePictureDelegate == null))
@@ -1474,32 +1531,32 @@ public partial class TechSupportService1Client : System.ServiceModel.ClientBase<
         base.InvokeAsync(this.onBeginGetProfilePictureDelegate, new object[] {
                     username}, this.onEndGetProfilePictureDelegate, this.onGetProfilePictureCompletedDelegate, userState);
     }
-    
+
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     System.IAsyncResult ITechSupportService1.BeginGetUserProfilePicture(string username, System.AsyncCallback callback, object asyncState)
     {
         return base.Channel.BeginGetUserProfilePicture(username, callback, asyncState);
     }
-    
+
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     string ITechSupportService1.EndGetUserProfilePicture(System.IAsyncResult result)
     {
         return base.Channel.EndGetUserProfilePicture(result);
     }
-    
+
     private System.IAsyncResult OnBeginGetUserProfilePicture(object[] inValues, System.AsyncCallback callback, object asyncState)
     {
         string username = ((string)(inValues[0]));
         return ((ITechSupportService1)(this)).BeginGetUserProfilePicture(username, callback, asyncState);
     }
-    
+
     private object[] OnEndGetUserProfilePicture(System.IAsyncResult result)
     {
         string retVal = ((ITechSupportService1)(this)).EndGetUserProfilePicture(result);
         return new object[] {
                 retVal};
     }
-    
+
     private void OnGetUserProfilePictureCompleted(object state)
     {
         if ((this.GetUserProfilePictureCompleted != null))
@@ -1508,12 +1565,12 @@ public partial class TechSupportService1Client : System.ServiceModel.ClientBase<
             this.GetUserProfilePictureCompleted(this, new GetUserProfilePictureCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
         }
     }
-    
+
     public void GetUserProfilePictureAsync(string username)
     {
         this.GetUserProfilePictureAsync(username, null);
     }
-    
+
     public void GetUserProfilePictureAsync(string username, object userState)
     {
         if ((this.onBeginGetUserProfilePictureDelegate == null))
@@ -1531,19 +1588,19 @@ public partial class TechSupportService1Client : System.ServiceModel.ClientBase<
         base.InvokeAsync(this.onBeginGetUserProfilePictureDelegate, new object[] {
                     username}, this.onEndGetUserProfilePictureDelegate, this.onGetUserProfilePictureCompletedDelegate, userState);
     }
-    
+
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     System.IAsyncResult ITechSupportService1.BeginRegisterNewUser(string fullName, string email, string userName, string password, string profilePicture, System.AsyncCallback callback, object asyncState)
     {
         return base.Channel.BeginRegisterNewUser(fullName, email, userName, password, profilePicture, callback, asyncState);
     }
-    
+
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     void ITechSupportService1.EndRegisterNewUser(System.IAsyncResult result)
     {
         base.Channel.EndRegisterNewUser(result);
     }
-    
+
     private System.IAsyncResult OnBeginRegisterNewUser(object[] inValues, System.AsyncCallback callback, object asyncState)
     {
         string fullName = ((string)(inValues[0]));
@@ -1553,13 +1610,13 @@ public partial class TechSupportService1Client : System.ServiceModel.ClientBase<
         string profilePicture = ((string)(inValues[4]));
         return ((ITechSupportService1)(this)).BeginRegisterNewUser(fullName, email, userName, password, profilePicture, callback, asyncState);
     }
-    
+
     private object[] OnEndRegisterNewUser(System.IAsyncResult result)
     {
         ((ITechSupportService1)(this)).EndRegisterNewUser(result);
         return null;
     }
-    
+
     private void OnRegisterNewUserCompleted(object state)
     {
         if ((this.RegisterNewUserCompleted != null))
@@ -1568,12 +1625,12 @@ public partial class TechSupportService1Client : System.ServiceModel.ClientBase<
             this.RegisterNewUserCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
         }
     }
-    
+
     public void RegisterNewUserAsync(string fullName, string email, string userName, string password, string profilePicture)
     {
         this.RegisterNewUserAsync(fullName, email, userName, password, profilePicture, null);
     }
-    
+
     public void RegisterNewUserAsync(string fullName, string email, string userName, string password, string profilePicture, object userState)
     {
         if ((this.onBeginRegisterNewUserDelegate == null))
@@ -1595,19 +1652,19 @@ public partial class TechSupportService1Client : System.ServiceModel.ClientBase<
                     password,
                     profilePicture}, this.onEndRegisterNewUserDelegate, this.onRegisterNewUserCompletedDelegate, userState);
     }
-    
+
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     System.IAsyncResult ITechSupportService1.BeginSendMessageToSupport(string username, string sender, string message, System.AsyncCallback callback, object asyncState)
     {
         return base.Channel.BeginSendMessageToSupport(username, sender, message, callback, asyncState);
     }
-    
+
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     void ITechSupportService1.EndSendMessageToSupport(System.IAsyncResult result)
     {
         base.Channel.EndSendMessageToSupport(result);
     }
-    
+
     private System.IAsyncResult OnBeginSendMessageToSupport(object[] inValues, System.AsyncCallback callback, object asyncState)
     {
         string username = ((string)(inValues[0]));
@@ -1615,13 +1672,13 @@ public partial class TechSupportService1Client : System.ServiceModel.ClientBase<
         string message = ((string)(inValues[2]));
         return ((ITechSupportService1)(this)).BeginSendMessageToSupport(username, sender, message, callback, asyncState);
     }
-    
+
     private object[] OnEndSendMessageToSupport(System.IAsyncResult result)
     {
         ((ITechSupportService1)(this)).EndSendMessageToSupport(result);
         return null;
     }
-    
+
     private void OnSendMessageToSupportCompleted(object state)
     {
         if ((this.SendMessageToSupportCompleted != null))
@@ -1630,12 +1687,12 @@ public partial class TechSupportService1Client : System.ServiceModel.ClientBase<
             this.SendMessageToSupportCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
         }
     }
-    
+
     public void SendMessageToSupportAsync(string username, string sender, string message)
     {
         this.SendMessageToSupportAsync(username, sender, message, null);
     }
-    
+
     public void SendMessageToSupportAsync(string username, string sender, string message, object userState)
     {
         if ((this.onBeginSendMessageToSupportDelegate == null))
@@ -1655,32 +1712,32 @@ public partial class TechSupportService1Client : System.ServiceModel.ClientBase<
                     sender,
                     message}, this.onEndSendMessageToSupportDelegate, this.onSendMessageToSupportCompletedDelegate, userState);
     }
-    
+
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     System.IAsyncResult ITechSupportService1.BeginGetMyMessages(string username, System.AsyncCallback callback, object asyncState)
     {
         return base.Channel.BeginGetMyMessages(username, callback, asyncState);
     }
-    
+
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     TechSupportService.DataContract.Message[] ITechSupportService1.EndGetMyMessages(System.IAsyncResult result)
     {
         return base.Channel.EndGetMyMessages(result);
     }
-    
+
     private System.IAsyncResult OnBeginGetMyMessages(object[] inValues, System.AsyncCallback callback, object asyncState)
     {
         string username = ((string)(inValues[0]));
         return ((ITechSupportService1)(this)).BeginGetMyMessages(username, callback, asyncState);
     }
-    
+
     private object[] OnEndGetMyMessages(System.IAsyncResult result)
     {
         TechSupportService.DataContract.Message[] retVal = ((ITechSupportService1)(this)).EndGetMyMessages(result);
         return new object[] {
                 retVal};
     }
-    
+
     private void OnGetMyMessagesCompleted(object state)
     {
         if ((this.GetMyMessagesCompleted != null))
@@ -1689,12 +1746,12 @@ public partial class TechSupportService1Client : System.ServiceModel.ClientBase<
             this.GetMyMessagesCompleted(this, new GetMyMessagesCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
         }
     }
-    
+
     public void GetMyMessagesAsync(string username)
     {
         this.GetMyMessagesAsync(username, null);
     }
-    
+
     public void GetMyMessagesAsync(string username, object userState)
     {
         if ((this.onBeginGetMyMessagesDelegate == null))
@@ -1712,18 +1769,190 @@ public partial class TechSupportService1Client : System.ServiceModel.ClientBase<
         base.InvokeAsync(this.onBeginGetMyMessagesDelegate, new object[] {
                     username}, this.onEndGetMyMessagesDelegate, this.onGetMyMessagesCompletedDelegate, userState);
     }
-    
+
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    System.IAsyncResult ITechSupportService1.BeginLogout(string username, System.AsyncCallback callback, object asyncState)
+    {
+        return base.Channel.BeginLogout(username, callback, asyncState);
+    }
+
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    void ITechSupportService1.EndLogout(System.IAsyncResult result)
+    {
+        base.Channel.EndLogout(result);
+    }
+
+    private System.IAsyncResult OnBeginLogout(object[] inValues, System.AsyncCallback callback, object asyncState)
+    {
+        string username = ((string)(inValues[0]));
+        return ((ITechSupportService1)(this)).BeginLogout(username, callback, asyncState);
+    }
+
+    private object[] OnEndLogout(System.IAsyncResult result)
+    {
+        ((ITechSupportService1)(this)).EndLogout(result);
+        return null;
+    }
+
+    private void OnLogoutCompleted(object state)
+    {
+        if ((this.LogoutCompleted != null))
+        {
+            InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+            this.LogoutCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
+        }
+    }
+
+    public void LogoutAsync(string username)
+    {
+        this.LogoutAsync(username, null);
+    }
+
+    public void LogoutAsync(string username, object userState)
+    {
+        if ((this.onBeginLogoutDelegate == null))
+        {
+            this.onBeginLogoutDelegate = new BeginOperationDelegate(this.OnBeginLogout);
+        }
+        if ((this.onEndLogoutDelegate == null))
+        {
+            this.onEndLogoutDelegate = new EndOperationDelegate(this.OnEndLogout);
+        }
+        if ((this.onLogoutCompletedDelegate == null))
+        {
+            this.onLogoutCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnLogoutCompleted);
+        }
+        base.InvokeAsync(this.onBeginLogoutDelegate, new object[] {
+                    username}, this.onEndLogoutDelegate, this.onLogoutCompletedDelegate, userState);
+    }
+
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    System.IAsyncResult ITechSupportService1.BeginChangeMyStatus(string username, TechSupportService.Status newStatus, System.AsyncCallback callback, object asyncState)
+    {
+        return base.Channel.BeginChangeMyStatus(username, newStatus, callback, asyncState);
+    }
+
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    void ITechSupportService1.EndChangeMyStatus(System.IAsyncResult result)
+    {
+        base.Channel.EndChangeMyStatus(result);
+    }
+
+    private System.IAsyncResult OnBeginChangeMyStatus(object[] inValues, System.AsyncCallback callback, object asyncState)
+    {
+        string username = ((string)(inValues[0]));
+        TechSupportService.Status newStatus = ((TechSupportService.Status)(inValues[1]));
+        return ((ITechSupportService1)(this)).BeginChangeMyStatus(username, newStatus, callback, asyncState);
+    }
+
+    private object[] OnEndChangeMyStatus(System.IAsyncResult result)
+    {
+        ((ITechSupportService1)(this)).EndChangeMyStatus(result);
+        return null;
+    }
+
+    private void OnChangeMyStatusCompleted(object state)
+    {
+        if ((this.ChangeMyStatusCompleted != null))
+        {
+            InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+            this.ChangeMyStatusCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
+        }
+    }
+
+    public void ChangeMyStatusAsync(string username, TechSupportService.Status newStatus)
+    {
+        this.ChangeMyStatusAsync(username, newStatus, null);
+    }
+
+    public void ChangeMyStatusAsync(string username, TechSupportService.Status newStatus, object userState)
+    {
+        if ((this.onBeginChangeMyStatusDelegate == null))
+        {
+            this.onBeginChangeMyStatusDelegate = new BeginOperationDelegate(this.OnBeginChangeMyStatus);
+        }
+        if ((this.onEndChangeMyStatusDelegate == null))
+        {
+            this.onEndChangeMyStatusDelegate = new EndOperationDelegate(this.OnEndChangeMyStatus);
+        }
+        if ((this.onChangeMyStatusCompletedDelegate == null))
+        {
+            this.onChangeMyStatusCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnChangeMyStatusCompleted);
+        }
+        base.InvokeAsync(this.onBeginChangeMyStatusDelegate, new object[] {
+                    username,
+                    newStatus}, this.onEndChangeMyStatusDelegate, this.onChangeMyStatusCompletedDelegate, userState);
+    }
+
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    System.IAsyncResult ITechSupportService1.BeginChangeMyTechnicianStatus(string username, TechSupportService.DataContract.TechnicianStatus status, System.AsyncCallback callback, object asyncState)
+    {
+        return base.Channel.BeginChangeMyTechnicianStatus(username, status, callback, asyncState);
+    }
+
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    void ITechSupportService1.EndChangeMyTechnicianStatus(System.IAsyncResult result)
+    {
+        base.Channel.EndChangeMyTechnicianStatus(result);
+    }
+
+    private System.IAsyncResult OnBeginChangeMyTechnicianStatus(object[] inValues, System.AsyncCallback callback, object asyncState)
+    {
+        string username = ((string)(inValues[0]));
+        TechSupportService.DataContract.TechnicianStatus status = ((TechSupportService.DataContract.TechnicianStatus)(inValues[1]));
+        return ((ITechSupportService1)(this)).BeginChangeMyTechnicianStatus(username, status, callback, asyncState);
+    }
+
+    private object[] OnEndChangeMyTechnicianStatus(System.IAsyncResult result)
+    {
+        ((ITechSupportService1)(this)).EndChangeMyTechnicianStatus(result);
+        return null;
+    }
+
+    private void OnChangeMyTechnicianStatusCompleted(object state)
+    {
+        if ((this.ChangeMyTechnicianStatusCompleted != null))
+        {
+            InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+            this.ChangeMyTechnicianStatusCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
+        }
+    }
+
+    public void ChangeMyTechnicianStatusAsync(string username, TechSupportService.DataContract.TechnicianStatus status)
+    {
+        this.ChangeMyTechnicianStatusAsync(username, status, null);
+    }
+
+    public void ChangeMyTechnicianStatusAsync(string username, TechSupportService.DataContract.TechnicianStatus status, object userState)
+    {
+        if ((this.onBeginChangeMyTechnicianStatusDelegate == null))
+        {
+            this.onBeginChangeMyTechnicianStatusDelegate = new BeginOperationDelegate(this.OnBeginChangeMyTechnicianStatus);
+        }
+        if ((this.onEndChangeMyTechnicianStatusDelegate == null))
+        {
+            this.onEndChangeMyTechnicianStatusDelegate = new EndOperationDelegate(this.OnEndChangeMyTechnicianStatus);
+        }
+        if ((this.onChangeMyTechnicianStatusCompletedDelegate == null))
+        {
+            this.onChangeMyTechnicianStatusCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnChangeMyTechnicianStatusCompleted);
+        }
+        base.InvokeAsync(this.onBeginChangeMyTechnicianStatusDelegate, new object[] {
+                    username,
+                    status}, this.onEndChangeMyTechnicianStatusDelegate, this.onChangeMyTechnicianStatusCompletedDelegate, userState);
+    }
+
     private System.IAsyncResult OnBeginOpen(object[] inValues, System.AsyncCallback callback, object asyncState)
     {
         return ((System.ServiceModel.ICommunicationObject)(this)).BeginOpen(callback, asyncState);
     }
-    
+
     private object[] OnEndOpen(System.IAsyncResult result)
     {
         ((System.ServiceModel.ICommunicationObject)(this)).EndOpen(result);
         return null;
     }
-    
+
     private void OnOpenCompleted(object state)
     {
         if ((this.OpenCompleted != null))
@@ -1732,12 +1961,12 @@ public partial class TechSupportService1Client : System.ServiceModel.ClientBase<
             this.OpenCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
         }
     }
-    
+
     public void OpenAsync()
     {
         this.OpenAsync(null);
     }
-    
+
     public void OpenAsync(object userState)
     {
         if ((this.onBeginOpenDelegate == null))
@@ -1754,18 +1983,18 @@ public partial class TechSupportService1Client : System.ServiceModel.ClientBase<
         }
         base.InvokeAsync(this.onBeginOpenDelegate, null, this.onEndOpenDelegate, this.onOpenCompletedDelegate, userState);
     }
-    
+
     private System.IAsyncResult OnBeginClose(object[] inValues, System.AsyncCallback callback, object asyncState)
     {
         return ((System.ServiceModel.ICommunicationObject)(this)).BeginClose(callback, asyncState);
     }
-    
+
     private object[] OnEndClose(System.IAsyncResult result)
     {
         ((System.ServiceModel.ICommunicationObject)(this)).EndClose(result);
         return null;
     }
-    
+
     private void OnCloseCompleted(object state)
     {
         if ((this.CloseCompleted != null))
@@ -1774,12 +2003,12 @@ public partial class TechSupportService1Client : System.ServiceModel.ClientBase<
             this.CloseCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
         }
     }
-    
+
     public void CloseAsync()
     {
         this.CloseAsync(null);
     }
-    
+
     public void CloseAsync(object userState)
     {
         if ((this.onBeginCloseDelegate == null))
@@ -1796,20 +2025,20 @@ public partial class TechSupportService1Client : System.ServiceModel.ClientBase<
         }
         base.InvokeAsync(this.onBeginCloseDelegate, null, this.onEndCloseDelegate, this.onCloseCompletedDelegate, userState);
     }
-    
+
     protected override ITechSupportService1 CreateChannel()
     {
         return new TechSupportService1ClientChannel(this);
     }
-    
+
     private class TechSupportService1ClientChannel : ChannelBase<ITechSupportService1>, ITechSupportService1
     {
-        
-        public TechSupportService1ClientChannel(System.ServiceModel.ClientBase<ITechSupportService1> client) : 
+
+        public TechSupportService1ClientChannel(System.ServiceModel.ClientBase<ITechSupportService1> client) :
                 base(client)
         {
         }
-        
+
         public System.IAsyncResult BeginTechnicianLogin(string username, string passWD, System.AsyncCallback callback, object asyncState)
         {
             object[] _args = new object[2];
@@ -1818,42 +2047,42 @@ public partial class TechSupportService1Client : System.ServiceModel.ClientBase<
             System.IAsyncResult _result = base.BeginInvoke("TechnicianLogin", _args, callback, asyncState);
             return _result;
         }
-        
+
         public TechSupportService.LoginResult EndTechnicianLogin(System.IAsyncResult result)
         {
             object[] _args = new object[0];
             TechSupportService.LoginResult _result = ((TechSupportService.LoginResult)(base.EndInvoke("TechnicianLogin", _args, result)));
             return _result;
         }
-        
+
         public System.IAsyncResult BeginHelpDeskWorkerList(System.AsyncCallback callback, object asyncState)
         {
             object[] _args = new object[0];
             System.IAsyncResult _result = base.BeginInvoke("HelpDeskWorkerList", _args, callback, asyncState);
             return _result;
         }
-        
+
         public TechSupportService.WorkerData[] EndHelpDeskWorkerList(System.IAsyncResult result)
         {
             object[] _args = new object[0];
             TechSupportService.WorkerData[] _result = ((TechSupportService.WorkerData[])(base.EndInvoke("HelpDeskWorkerList", _args, result)));
             return _result;
         }
-        
+
         public System.IAsyncResult BeginCustomerList(System.AsyncCallback callback, object asyncState)
         {
             object[] _args = new object[0];
             System.IAsyncResult _result = base.BeginInvoke("CustomerList", _args, callback, asyncState);
             return _result;
         }
-        
+
         public TechSupportService.DataContract.CustomerData[] EndCustomerList(System.IAsyncResult result)
         {
             object[] _args = new object[0];
             TechSupportService.DataContract.CustomerData[] _result = ((TechSupportService.DataContract.CustomerData[])(base.EndInvoke("CustomerList", _args, result)));
             return _result;
         }
-        
+
         public System.IAsyncResult BeginGetMyNewTechworks(string username, System.AsyncCallback callback, object asyncState)
         {
             object[] _args = new object[1];
@@ -1861,14 +2090,14 @@ public partial class TechSupportService1Client : System.ServiceModel.ClientBase<
             System.IAsyncResult _result = base.BeginInvoke("GetMyNewTechworks", _args, callback, asyncState);
             return _result;
         }
-        
+
         public TechSupportService.DataContract.NewTechWork[] EndGetMyNewTechworks(System.IAsyncResult result)
         {
             object[] _args = new object[0];
             TechSupportService.DataContract.NewTechWork[] _result = ((TechSupportService.DataContract.NewTechWork[])(base.EndInvoke("GetMyNewTechworks", _args, result)));
             return _result;
         }
-        
+
         public System.IAsyncResult BeginUploadSolvedQuestion(TechSupportService.SolvedQuestion question, System.AsyncCallback callback, object asyncState)
         {
             object[] _args = new object[1];
@@ -1876,13 +2105,13 @@ public partial class TechSupportService1Client : System.ServiceModel.ClientBase<
             System.IAsyncResult _result = base.BeginInvoke("UploadSolvedQuestion", _args, callback, asyncState);
             return _result;
         }
-        
+
         public void EndUploadSolvedQuestion(System.IAsyncResult result)
         {
             object[] _args = new object[0];
             base.EndInvoke("UploadSolvedQuestion", _args, result);
         }
-        
+
         public System.IAsyncResult BeginUserLogin(string username, string password, System.AsyncCallback callback, object asyncState)
         {
             object[] _args = new object[2];
@@ -1891,14 +2120,14 @@ public partial class TechSupportService1Client : System.ServiceModel.ClientBase<
             System.IAsyncResult _result = base.BeginInvoke("UserLogin", _args, callback, asyncState);
             return _result;
         }
-        
+
         public bool EndUserLogin(System.IAsyncResult result)
         {
             object[] _args = new object[0];
             bool _result = ((bool)(base.EndInvoke("UserLogin", _args, result)));
             return _result;
         }
-        
+
         public System.IAsyncResult BeginGetProfilePicture(string username, System.AsyncCallback callback, object asyncState)
         {
             object[] _args = new object[1];
@@ -1906,14 +2135,14 @@ public partial class TechSupportService1Client : System.ServiceModel.ClientBase<
             System.IAsyncResult _result = base.BeginInvoke("GetProfilePicture", _args, callback, asyncState);
             return _result;
         }
-        
+
         public string EndGetProfilePicture(System.IAsyncResult result)
         {
             object[] _args = new object[0];
             string _result = ((string)(base.EndInvoke("GetProfilePicture", _args, result)));
             return _result;
         }
-        
+
         public System.IAsyncResult BeginGetUserProfilePicture(string username, System.AsyncCallback callback, object asyncState)
         {
             object[] _args = new object[1];
@@ -1921,14 +2150,14 @@ public partial class TechSupportService1Client : System.ServiceModel.ClientBase<
             System.IAsyncResult _result = base.BeginInvoke("GetUserProfilePicture", _args, callback, asyncState);
             return _result;
         }
-        
+
         public string EndGetUserProfilePicture(System.IAsyncResult result)
         {
             object[] _args = new object[0];
             string _result = ((string)(base.EndInvoke("GetUserProfilePicture", _args, result)));
             return _result;
         }
-        
+
         public System.IAsyncResult BeginRegisterNewUser(string fullName, string email, string userName, string password, string profilePicture, System.AsyncCallback callback, object asyncState)
         {
             object[] _args = new object[5];
@@ -1940,13 +2169,13 @@ public partial class TechSupportService1Client : System.ServiceModel.ClientBase<
             System.IAsyncResult _result = base.BeginInvoke("RegisterNewUser", _args, callback, asyncState);
             return _result;
         }
-        
+
         public void EndRegisterNewUser(System.IAsyncResult result)
         {
             object[] _args = new object[0];
             base.EndInvoke("RegisterNewUser", _args, result);
         }
-        
+
         public System.IAsyncResult BeginSendMessageToSupport(string username, string sender, string message, System.AsyncCallback callback, object asyncState)
         {
             object[] _args = new object[3];
@@ -1956,13 +2185,13 @@ public partial class TechSupportService1Client : System.ServiceModel.ClientBase<
             System.IAsyncResult _result = base.BeginInvoke("SendMessageToSupport", _args, callback, asyncState);
             return _result;
         }
-        
+
         public void EndSendMessageToSupport(System.IAsyncResult result)
         {
             object[] _args = new object[0];
             base.EndInvoke("SendMessageToSupport", _args, result);
         }
-        
+
         public System.IAsyncResult BeginGetMyMessages(string username, System.AsyncCallback callback, object asyncState)
         {
             object[] _args = new object[1];
@@ -1970,12 +2199,56 @@ public partial class TechSupportService1Client : System.ServiceModel.ClientBase<
             System.IAsyncResult _result = base.BeginInvoke("GetMyMessages", _args, callback, asyncState);
             return _result;
         }
-        
+
         public TechSupportService.DataContract.Message[] EndGetMyMessages(System.IAsyncResult result)
         {
             object[] _args = new object[0];
             TechSupportService.DataContract.Message[] _result = ((TechSupportService.DataContract.Message[])(base.EndInvoke("GetMyMessages", _args, result)));
             return _result;
+        }
+
+        public System.IAsyncResult BeginLogout(string username, System.AsyncCallback callback, object asyncState)
+        {
+            object[] _args = new object[1];
+            _args[0] = username;
+            System.IAsyncResult _result = base.BeginInvoke("Logout", _args, callback, asyncState);
+            return _result;
+        }
+
+        public void EndLogout(System.IAsyncResult result)
+        {
+            object[] _args = new object[0];
+            base.EndInvoke("Logout", _args, result);
+        }
+
+        public System.IAsyncResult BeginChangeMyStatus(string username, TechSupportService.Status newStatus, System.AsyncCallback callback, object asyncState)
+        {
+            object[] _args = new object[2];
+            _args[0] = username;
+            _args[1] = newStatus;
+            System.IAsyncResult _result = base.BeginInvoke("ChangeMyStatus", _args, callback, asyncState);
+            return _result;
+        }
+
+        public void EndChangeMyStatus(System.IAsyncResult result)
+        {
+            object[] _args = new object[0];
+            base.EndInvoke("ChangeMyStatus", _args, result);
+        }
+
+        public System.IAsyncResult BeginChangeMyTechnicianStatus(string username, TechSupportService.DataContract.TechnicianStatus status, System.AsyncCallback callback, object asyncState)
+        {
+            object[] _args = new object[2];
+            _args[0] = username;
+            _args[1] = status;
+            System.IAsyncResult _result = base.BeginInvoke("ChangeMyTechnicianStatus", _args, callback, asyncState);
+            return _result;
+        }
+
+        public void EndChangeMyTechnicianStatus(System.IAsyncResult result)
+        {
+            object[] _args = new object[0];
+            base.EndInvoke("ChangeMyTechnicianStatus", _args, result);
         }
     }
 }

@@ -20,20 +20,17 @@ namespace SolvedQuestionInit.ViewModels
 {
     public class MainPageViewModel : ViewModelBase
     {
-        static Random rnd = new Random();
-        private TechSupportService1Client _host;
         private string _question;
         private string _answer;
         private string _newTopic;
         private string _keyPhrases;
-        private List<WorkerData> _workers;
-        private List<CustomerData> _customers;
-        private Intentsresult[] _luisIntents;
+        static Random rnd = new Random();
         public WorkerData _selectedWorker;
+        private List<WorkerData> _workers;
+        private Intentsresult[] _luisIntents;
+        private List<CustomerData> _customers;
         public CustomerData _selectedCustomer;
-        public Intentsresult SelectedTopic { get; set; }
-        public ICommand AddNewTopic { get; private set; }
-        public ICommand SendSolved { get; private set; }
+        private TechSupportService1Client _host;
 
         public MainPageViewModel()
         {
@@ -42,6 +39,10 @@ namespace SolvedQuestionInit.ViewModels
             SendSolved = new RelayCommand(Send);
             Init();
         }
+
+        public Intentsresult SelectedTopic { get; set; }
+        public ICommand AddNewTopic { get; private set; }
+        public ICommand SendSolved { get; private set; }
         public string Question
         {
             get { return _question; }
@@ -99,6 +100,19 @@ namespace SolvedQuestionInit.ViewModels
             set { Set(ref _luisIntents, value); }
         }
 
+        private async void SetData()
+        {
+            if (!String.IsNullOrEmpty(Question))
+            {
+                var dispatcher = Windows.UI.Core.CoreWindow.GetForCurrentThread().Dispatcher;
+                await dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                {
+                    SetTopic();
+                    SetTextAnalitycsData();
+                });
+            }
+
+        }
         //business logic should be separeted
         private async void Send()
         {
@@ -147,20 +161,6 @@ namespace SolvedQuestionInit.ViewModels
             Workers = data2.ToList();
             SelectedCustomer = Customers.FirstOrDefault();
             SelectedWorker = Workers.FirstOrDefault();
-        }
-
-        private async void SetData()
-        {
-            if (!String.IsNullOrEmpty(Question))
-            {
-                var dispatcher = Windows.UI.Core.CoreWindow.GetForCurrentThread().Dispatcher;
-                await dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-                {
-                    SetTopic();
-                    SetTextAnalitycsData();
-                });
-            }
-
         }
 
         private async void SetTopic()

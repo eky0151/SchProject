@@ -1,9 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="TechSupportService1" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
-  <wsp:Policy wsu:Id="WSHttpBinding_ITechSupportService1_policy">
+  <wsp:Policy wsu:Id="BasicHttpsBinding_ITechSupportService1_policy">
     <wsp:ExactlyOne>
       <wsp:All>
-        <wsaw:UsingAddressing />
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <sp:HttpsToken RequireClientCertificate="false" />
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict />
+              </wsp:Policy>
+            </sp:Layout>
+          </wsp:Policy>
+        </sp:TransportBinding>
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
@@ -34,6 +52,12 @@
   <wsdl:message name="ITechSupportService1_CustomerList_OutputMessage">
     <wsdl:part name="parameters" element="tns:CustomerListResponse" />
   </wsdl:message>
+  <wsdl:message name="ITechSupportService1_GetMyNewTechworks_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMyNewTechworks" />
+  </wsdl:message>
+  <wsdl:message name="ITechSupportService1_GetMyNewTechworks_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMyNewTechworksResponse" />
+  </wsdl:message>
   <wsdl:message name="ITechSupportService1_UploadSolvedQuestion_InputMessage">
     <wsdl:part name="parameters" element="tns:UploadSolvedQuestion" />
   </wsdl:message>
@@ -61,6 +85,24 @@
   <wsdl:message name="ITechSupportService1_RegisterNewUser_InputMessage">
     <wsdl:part name="parameters" element="tns:RegisterNewUser" />
   </wsdl:message>
+  <wsdl:message name="ITechSupportService1_SendMessageToSupport_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendMessageToSupport" />
+  </wsdl:message>
+  <wsdl:message name="ITechSupportService1_GetMyMessages_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMyMessages" />
+  </wsdl:message>
+  <wsdl:message name="ITechSupportService1_GetMyMessages_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMyMessagesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITechSupportService1_Logout_InputMessage">
+    <wsdl:part name="parameters" element="tns:Logout" />
+  </wsdl:message>
+  <wsdl:message name="ITechSupportService1_ChangeMyStatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:ChangeMyStatus" />
+  </wsdl:message>
+  <wsdl:message name="ITechSupportService1_ChangeMyTechnicianStatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:ChangeMyTechnicianStatus" />
+  </wsdl:message>
   <wsdl:portType name="ITechSupportService1">
     <wsdl:operation name="TechnicianLogin">
       <wsdl:input wsaw:Action="http://tempuri.org/ITechSupportService1/TechnicianLogin" message="tns:ITechSupportService1_TechnicianLogin_InputMessage" />
@@ -73,6 +115,10 @@
     <wsdl:operation name="CustomerList">
       <wsdl:input wsaw:Action="http://tempuri.org/ITechSupportService1/CustomerList" message="tns:ITechSupportService1_CustomerList_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ITechSupportService1/CustomerListResponse" message="tns:ITechSupportService1_CustomerList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMyNewTechworks">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITechSupportService1/GetMyNewTechworks" message="tns:ITechSupportService1_GetMyNewTechworks_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITechSupportService1/GetMyNewTechworksResponse" message="tns:ITechSupportService1_GetMyNewTechworks_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="UploadSolvedQuestion">
       <wsdl:input wsaw:Action="http://tempuri.org/ITechSupportService1/UploadSolvedQuestion" message="tns:ITechSupportService1_UploadSolvedQuestion_InputMessage" />
@@ -93,86 +139,141 @@
     <wsdl:operation name="RegisterNewUser">
       <wsdl:input wsaw:Action="http://tempuri.org/ITechSupportService1/RegisterNewUser" message="tns:ITechSupportService1_RegisterNewUser_InputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="SendMessageToSupport">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITechSupportService1/SendMessageToSupport" message="tns:ITechSupportService1_SendMessageToSupport_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMyMessages">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITechSupportService1/GetMyMessages" message="tns:ITechSupportService1_GetMyMessages_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITechSupportService1/GetMyMessagesResponse" message="tns:ITechSupportService1_GetMyMessages_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Logout">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITechSupportService1/Logout" message="tns:ITechSupportService1_Logout_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeMyStatus">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITechSupportService1/ChangeMyStatus" message="tns:ITechSupportService1_ChangeMyStatus_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeMyTechnicianStatus">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITechSupportService1/ChangeMyTechnicianStatus" message="tns:ITechSupportService1_ChangeMyTechnicianStatus_InputMessage" />
+    </wsdl:operation>
   </wsdl:portType>
-  <wsdl:binding name="WSHttpBinding_ITechSupportService1" type="tns:ITechSupportService1">
-    <wsp:PolicyReference URI="#WSHttpBinding_ITechSupportService1_policy" />
-    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+  <wsdl:binding name="BasicHttpsBinding_ITechSupportService1" type="tns:ITechSupportService1">
+    <wsp:PolicyReference URI="#BasicHttpsBinding_ITechSupportService1_policy" />
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="TechnicianLogin">
-      <soap12:operation soapAction="http://tempuri.org/ITechSupportService1/TechnicianLogin" style="document" />
+      <soap:operation soapAction="http://tempuri.org/ITechSupportService1/TechnicianLogin" style="document" />
       <wsdl:input>
-        <soap12:body use="literal" />
+        <soap:body use="literal" />
       </wsdl:input>
       <wsdl:output>
-        <soap12:body use="literal" />
+        <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="HelpDeskWorkerList">
-      <soap12:operation soapAction="http://tempuri.org/ITechSupportService1/HelpDeskWorkerList" style="document" />
+      <soap:operation soapAction="http://tempuri.org/ITechSupportService1/HelpDeskWorkerList" style="document" />
       <wsdl:input>
-        <soap12:body use="literal" />
+        <soap:body use="literal" />
       </wsdl:input>
       <wsdl:output>
-        <soap12:body use="literal" />
+        <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="CustomerList">
-      <soap12:operation soapAction="http://tempuri.org/ITechSupportService1/CustomerList" style="document" />
+      <soap:operation soapAction="http://tempuri.org/ITechSupportService1/CustomerList" style="document" />
       <wsdl:input>
-        <soap12:body use="literal" />
+        <soap:body use="literal" />
       </wsdl:input>
       <wsdl:output>
-        <soap12:body use="literal" />
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMyNewTechworks">
+      <soap:operation soapAction="http://tempuri.org/ITechSupportService1/GetMyNewTechworks" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="UploadSolvedQuestion">
-      <soap12:operation soapAction="http://tempuri.org/ITechSupportService1/UploadSolvedQuestion" style="document" />
+      <soap:operation soapAction="http://tempuri.org/ITechSupportService1/UploadSolvedQuestion" style="document" />
       <wsdl:input>
-        <soap12:body use="literal" />
+        <soap:body use="literal" />
       </wsdl:input>
       <wsdl:output>
-        <soap12:body use="literal" />
+        <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="UserLogin">
-      <soap12:operation soapAction="http://tempuri.org/ITechSupportService1/UserLogin" style="document" />
+      <soap:operation soapAction="http://tempuri.org/ITechSupportService1/UserLogin" style="document" />
       <wsdl:input>
-        <soap12:body use="literal" />
+        <soap:body use="literal" />
       </wsdl:input>
       <wsdl:output>
-        <soap12:body use="literal" />
+        <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="GetProfilePicture">
-      <soap12:operation soapAction="http://tempuri.org/ITechSupportService1/GetProfilePicture" style="document" />
+      <soap:operation soapAction="http://tempuri.org/ITechSupportService1/GetProfilePicture" style="document" />
       <wsdl:input>
-        <soap12:body use="literal" />
+        <soap:body use="literal" />
       </wsdl:input>
       <wsdl:output>
-        <soap12:body use="literal" />
+        <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="GetUserProfilePicture">
-      <soap12:operation soapAction="http://tempuri.org/ITechSupportService1/GetUserProfilePicture" style="document" />
+      <soap:operation soapAction="http://tempuri.org/ITechSupportService1/GetUserProfilePicture" style="document" />
       <wsdl:input>
-        <soap12:body use="literal" />
+        <soap:body use="literal" />
       </wsdl:input>
       <wsdl:output>
-        <soap12:body use="literal" />
+        <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="RegisterNewUser">
-      <soap12:operation soapAction="http://tempuri.org/ITechSupportService1/RegisterNewUser" style="document" />
+      <soap:operation soapAction="http://tempuri.org/ITechSupportService1/RegisterNewUser" style="document" />
       <wsdl:input>
-        <soap12:body use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="SendMessageToSupport">
+      <soap:operation soapAction="http://tempuri.org/ITechSupportService1/SendMessageToSupport" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="GetMyMessages">
+      <soap:operation soapAction="http://tempuri.org/ITechSupportService1/GetMyMessages" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Logout">
+      <soap:operation soapAction="http://tempuri.org/ITechSupportService1/Logout" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeMyStatus">
+      <soap:operation soapAction="http://tempuri.org/ITechSupportService1/ChangeMyStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeMyTechnicianStatus">
+      <soap:operation soapAction="http://tempuri.org/ITechSupportService1/ChangeMyTechnicianStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
       </wsdl:input>
     </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="TechSupportService1">
-    <wsdl:port name="WSHttpBinding_ITechSupportService1" binding="tns:WSHttpBinding_ITechSupportService1">
-      <soap12:address location="http://techsupportserver.azurewebsites.net/TechSupportService.svc" />
-      <wsa10:EndpointReference>
-        <wsa10:Address>http://techsupportserver.azurewebsites.net/TechSupportService.svc</wsa10:Address>
-      </wsa10:EndpointReference>
+    <wsdl:port name="BasicHttpsBinding_ITechSupportService1" binding="tns:BasicHttpsBinding_ITechSupportService1">
+      <soap:address location="https://techsupportserver.azurewebsites.net/TechSupportService.svc" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

@@ -119,15 +119,7 @@
       <InProject>false</InProject>
     </ImageAsset>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\" />
-    <Folder Include="Controllers\" />
-    <Folder Include="SLide\" />
-    <Folder Include="Map\" />
-    <Folder Include="Views\" />
-    <Folder Include="WCF\" />
-    <Folder Include="Images\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
     <InterfaceDefinition Include="Main.storyboard" />
@@ -178,7 +170,6 @@
     <Compile Include="Controllers\DetailsViewController.designer.cs">
       <DependentUpon>DetailsViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="AzureServiceBus.cs" />
     <Compile Include="WCF\TechSupportService1.cs" />
     <Compile Include="Map\LocationHelper.cs" />
     <Compile Include="Controllers\MessagesDataSource.cs" />

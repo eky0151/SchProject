@@ -390,6 +390,96 @@ namespace SolvedQuestionInit.TechSupportService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="NewTechWork", Namespace="http://schemas.datacontract.org/2004/07/TechSupportService.DataContract")]
+    public partial class NewTechWork : object, System.ComponentModel.INotifyPropertyChanged {
+        
+        private string AddressField;
+        
+        private string CustomerNameField;
+        
+        private int IDField;
+        
+        private int TechIDField;
+        
+        private System.DateTime TimeOrderedField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Address {
+            get {
+                return this.AddressField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AddressField, value) != true)) {
+                    this.AddressField = value;
+                    this.RaisePropertyChanged("Address");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string CustomerName {
+            get {
+                return this.CustomerNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CustomerNameField, value) != true)) {
+                    this.CustomerNameField = value;
+                    this.RaisePropertyChanged("CustomerName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ID {
+            get {
+                return this.IDField;
+            }
+            set {
+                if ((this.IDField.Equals(value) != true)) {
+                    this.IDField = value;
+                    this.RaisePropertyChanged("ID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int TechID {
+            get {
+                return this.TechIDField;
+            }
+            set {
+                if ((this.TechIDField.Equals(value) != true)) {
+                    this.TechIDField = value;
+                    this.RaisePropertyChanged("TechID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime TimeOrdered {
+            get {
+                return this.TimeOrderedField;
+            }
+            set {
+                if ((this.TimeOrderedField.Equals(value) != true)) {
+                    this.TimeOrderedField = value;
+                    this.RaisePropertyChanged("TimeOrdered");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="SolvedQuestion", Namespace="http://schemas.datacontract.org/2004/07/TechSupportService")]
     public partial class SolvedQuestion : object, System.ComponentModel.INotifyPropertyChanged {
         
@@ -398,6 +488,8 @@ namespace SolvedQuestionInit.TechSupportService {
         private string CategoryField;
         
         private int CustomerIDField;
+        
+        private int IDField;
         
         private System.Collections.ObjectModel.ObservableCollection<string> KeyWordsField;
         
@@ -448,6 +540,19 @@ namespace SolvedQuestionInit.TechSupportService {
                 if ((this.CustomerIDField.Equals(value) != true)) {
                     this.CustomerIDField = value;
                     this.RaisePropertyChanged("CustomerID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ID {
+            get {
+                return this.IDField;
+            }
+            set {
+                if ((this.IDField.Equals(value) != true)) {
+                    this.IDField = value;
+                    this.RaisePropertyChanged("ID");
                 }
             }
         }
@@ -553,6 +658,68 @@ namespace SolvedQuestionInit.TechSupportService {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Message", Namespace="http://schemas.datacontract.org/2004/07/TechSupportService.DataContract")]
+    public partial class Message : object, System.ComponentModel.INotifyPropertyChanged {
+        
+        private string MessagField;
+        
+        private string SenderField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Messag {
+            get {
+                return this.MessagField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MessagField, value) != true)) {
+                    this.MessagField = value;
+                    this.RaisePropertyChanged("Messag");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Sender {
+            get {
+                return this.SenderField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SenderField, value) != true)) {
+                    this.SenderField = value;
+                    this.RaisePropertyChanged("Sender");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="TechnicianStatus", Namespace="http://schemas.datacontract.org/2004/07/TechSupportService.DataContract")]
+    public enum TechnicianStatus : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        FromCustomer = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        AtCustomer = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Break = 2,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Available = 3,
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="TechSupportService.ITechSupportService1")]
     public interface ITechSupportService1 {
@@ -565,6 +732,9 @@ namespace SolvedQuestionInit.TechSupportService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportService1/CustomerList", ReplyAction="http://tempuri.org/ITechSupportService1/CustomerListResponse")]
         System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<SolvedQuestionInit.TechSupportService.CustomerData>> CustomerListAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportService1/GetMyNewTechworks", ReplyAction="http://tempuri.org/ITechSupportService1/GetMyNewTechworksResponse")]
+        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<SolvedQuestionInit.TechSupportService.NewTechWork>> GetMyNewTechworksAsync(string username);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportService1/UploadSolvedQuestion", ReplyAction="http://tempuri.org/ITechSupportService1/UploadSolvedQuestionResponse")]
         System.Threading.Tasks.Task UploadSolvedQuestionAsync(SolvedQuestionInit.TechSupportService.SolvedQuestion question);
@@ -579,7 +749,22 @@ namespace SolvedQuestionInit.TechSupportService {
         System.Threading.Tasks.Task<string> GetUserProfilePictureAsync(string username);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ITechSupportService1/RegisterNewUser")]
-        System.Threading.Tasks.Task RegisterNewUserAsync(string fullName, string email, string userName, string password);
+        System.Threading.Tasks.Task RegisterNewUserAsync(string fullName, string email, string userName, string password, string profilePicture);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ITechSupportService1/SendMessageToSupport")]
+        System.Threading.Tasks.Task SendMessageToSupportAsync(string username, string sender, string message);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportService1/GetMyMessages", ReplyAction="http://tempuri.org/ITechSupportService1/GetMyMessagesResponse")]
+        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<SolvedQuestionInit.TechSupportService.Message>> GetMyMessagesAsync(string username);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ITechSupportService1/Logout")]
+        System.Threading.Tasks.Task LogoutAsync(string username);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ITechSupportService1/ChangeMyStatus")]
+        System.Threading.Tasks.Task ChangeMyStatusAsync(string username, SolvedQuestionInit.TechSupportService.Status newStatus);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ITechSupportService1/ChangeMyTechnicianStatus")]
+        System.Threading.Tasks.Task ChangeMyTechnicianStatusAsync(string username, SolvedQuestionInit.TechSupportService.TechnicianStatus status);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -599,7 +784,7 @@ namespace SolvedQuestionInit.TechSupportService {
         
         public TechSupportService1Client() : 
                 base(TechSupportService1Client.GetDefaultBinding(), TechSupportService1Client.GetDefaultEndpointAddress()) {
-            this.Endpoint.Name = EndpointConfiguration.WSHttpBinding_ITechSupportService1.ToString();
+            this.Endpoint.Name = EndpointConfiguration.BasicHttpsBinding_ITechSupportService1.ToString();
             ConfigureEndpoint(this.Endpoint, this.ClientCredentials);
         }
         
@@ -637,6 +822,10 @@ namespace SolvedQuestionInit.TechSupportService {
             return base.Channel.CustomerListAsync();
         }
         
+        public System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<SolvedQuestionInit.TechSupportService.NewTechWork>> GetMyNewTechworksAsync(string username) {
+            return base.Channel.GetMyNewTechworksAsync(username);
+        }
+        
         public System.Threading.Tasks.Task UploadSolvedQuestionAsync(SolvedQuestionInit.TechSupportService.SolvedQuestion question) {
             return base.Channel.UploadSolvedQuestionAsync(question);
         }
@@ -653,8 +842,28 @@ namespace SolvedQuestionInit.TechSupportService {
             return base.Channel.GetUserProfilePictureAsync(username);
         }
         
-        public System.Threading.Tasks.Task RegisterNewUserAsync(string fullName, string email, string userName, string password) {
-            return base.Channel.RegisterNewUserAsync(fullName, email, userName, password);
+        public System.Threading.Tasks.Task RegisterNewUserAsync(string fullName, string email, string userName, string password, string profilePicture) {
+            return base.Channel.RegisterNewUserAsync(fullName, email, userName, password, profilePicture);
+        }
+        
+        public System.Threading.Tasks.Task SendMessageToSupportAsync(string username, string sender, string message) {
+            return base.Channel.SendMessageToSupportAsync(username, sender, message);
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<SolvedQuestionInit.TechSupportService.Message>> GetMyMessagesAsync(string username) {
+            return base.Channel.GetMyMessagesAsync(username);
+        }
+        
+        public System.Threading.Tasks.Task LogoutAsync(string username) {
+            return base.Channel.LogoutAsync(username);
+        }
+        
+        public System.Threading.Tasks.Task ChangeMyStatusAsync(string username, SolvedQuestionInit.TechSupportService.Status newStatus) {
+            return base.Channel.ChangeMyStatusAsync(username, newStatus);
+        }
+        
+        public System.Threading.Tasks.Task ChangeMyTechnicianStatusAsync(string username, SolvedQuestionInit.TechSupportService.TechnicianStatus status) {
+            return base.Channel.ChangeMyTechnicianStatusAsync(username, status);
         }
         
         public virtual System.Threading.Tasks.Task OpenAsync() {
@@ -666,38 +875,36 @@ namespace SolvedQuestionInit.TechSupportService {
         }
         
         private static System.ServiceModel.Channels.Binding GetBindingForEndpoint(EndpointConfiguration endpointConfiguration) {
-            if ((endpointConfiguration == EndpointConfiguration.WSHttpBinding_ITechSupportService1)) {
-                System.ServiceModel.Channels.CustomBinding result = new System.ServiceModel.Channels.CustomBinding();
-                System.ServiceModel.Channels.TextMessageEncodingBindingElement textBindingElement = new System.ServiceModel.Channels.TextMessageEncodingBindingElement();
-                result.Elements.Add(textBindingElement);
-                System.ServiceModel.Channels.HttpTransportBindingElement httpBindingElement = new System.ServiceModel.Channels.HttpTransportBindingElement();
-                httpBindingElement.AllowCookies = true;
-                httpBindingElement.MaxBufferSize = int.MaxValue;
-                httpBindingElement.MaxReceivedMessageSize = int.MaxValue;
-                result.Elements.Add(httpBindingElement);
+            if ((endpointConfiguration == EndpointConfiguration.BasicHttpsBinding_ITechSupportService1)) {
+                System.ServiceModel.BasicHttpBinding result = new System.ServiceModel.BasicHttpBinding();
+                result.MaxBufferSize = int.MaxValue;
+                result.ReaderQuotas = System.Xml.XmlDictionaryReaderQuotas.Max;
+                result.MaxReceivedMessageSize = int.MaxValue;
+                result.AllowCookies = true;
+                result.Security.Mode = System.ServiceModel.BasicHttpSecurityMode.Transport;
                 return result;
             }
             throw new System.InvalidOperationException(string.Format("Could not find endpoint with name \'{0}\'.", endpointConfiguration));
         }
         
         private static System.ServiceModel.EndpointAddress GetEndpointAddress(EndpointConfiguration endpointConfiguration) {
-            if ((endpointConfiguration == EndpointConfiguration.WSHttpBinding_ITechSupportService1)) {
-                return new System.ServiceModel.EndpointAddress("http://techsupportserver.azurewebsites.net/TechSupportService.svc");
+            if ((endpointConfiguration == EndpointConfiguration.BasicHttpsBinding_ITechSupportService1)) {
+                return new System.ServiceModel.EndpointAddress("https://techsupportserver.azurewebsites.net/TechSupportService.svc");
             }
             throw new System.InvalidOperationException(string.Format("Could not find endpoint with name \'{0}\'.", endpointConfiguration));
         }
         
         private static System.ServiceModel.Channels.Binding GetDefaultBinding() {
-            return TechSupportService1Client.GetBindingForEndpoint(EndpointConfiguration.WSHttpBinding_ITechSupportService1);
+            return TechSupportService1Client.GetBindingForEndpoint(EndpointConfiguration.BasicHttpsBinding_ITechSupportService1);
         }
         
         private static System.ServiceModel.EndpointAddress GetDefaultEndpointAddress() {
-            return TechSupportService1Client.GetEndpointAddress(EndpointConfiguration.WSHttpBinding_ITechSupportService1);
+            return TechSupportService1Client.GetEndpointAddress(EndpointConfiguration.BasicHttpsBinding_ITechSupportService1);
         }
         
         public enum EndpointConfiguration {
             
-            WSHttpBinding_ITechSupportService1,
+            BasicHttpsBinding_ITechSupportService1,
         }
     }
 }

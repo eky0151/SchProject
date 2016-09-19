@@ -42,6 +42,7 @@
       <xs:element minOccurs="0" name="Answer" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Category" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="CustomerID" type="xs:int" />
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
       <xs:element xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="KeyWords" nillable="true" type="q3:ArrayOfstring" />
       <xs:element minOccurs="0" name="Question" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="TimeAnswered" type="xs:dateTime" />

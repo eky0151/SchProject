@@ -28,4 +28,42 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="CustomerData" nillable="true" type="tns:CustomerData" />
+  <xs:complexType name="ArrayOfNewTechWork">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="NewTechWork" nillable="true" type="tns:NewTechWork" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfNewTechWork" nillable="true" type="tns:ArrayOfNewTechWork" />
+  <xs:complexType name="NewTechWork">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Address" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CustomerName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="TechID" type="xs:int" />
+      <xs:element minOccurs="0" name="TimeOrdered" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="NewTechWork" nillable="true" type="tns:NewTechWork" />
+  <xs:complexType name="ArrayOfMessage">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Message" nillable="true" type="tns:Message" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfMessage" nillable="true" type="tns:ArrayOfMessage" />
+  <xs:complexType name="Message">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Messag" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Sender" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Message" nillable="true" type="tns:Message" />
+  <xs:simpleType name="TechnicianStatus">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="FromCustomer" />
+      <xs:enumeration value="AtCustomer" />
+      <xs:enumeration value="Break" />
+      <xs:enumeration value="Available" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="TechnicianStatus" nillable="true" type="tns:TechnicianStatus" />
 </xs:schema>

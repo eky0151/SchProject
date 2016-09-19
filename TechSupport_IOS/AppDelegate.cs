@@ -1,4 +1,6 @@
 ﻿using Foundation;
+using TechSupportService;
+using TechSupportService.DataContract;
 using UIKit;
 
 namespace TechSupport
@@ -44,6 +46,8 @@ namespace TechSupport
 		{
 			// Use this method to release shared resources, save user data, invalidate timers and store the application state.
 			// If your application supports background exection this method is called instead of WillTerminate when the user quits.
+            TechSupportServer.Client.ChangeMyStatusAsync(UserData.Username,Status.Away);
+            TechSupportServer.Client.ChangeMyTechnicianStatusAsync(UserData.Username,TechnicianStatus.Break);
 		}
 
 		public override void WillEnterForeground(UIApplication application)

@@ -11,7 +11,7 @@ namespace TechSupport
 	{
 
 
-		string profilePicture;
+		string _profilePicture;
 		public LoginViewModel(IntPtr handle) : base(handle)
 		{
 
@@ -24,7 +24,7 @@ namespace TechSupport
 			{
 				if (e.Result != null && !string.IsNullOrEmpty(e.Result))
 				{
-					profilePicture = e.Result;
+					_profilePicture = e.Result;
 					ProfileImage.SetImage(
 			 url: new NSUrl("https://techsupportfiles.blob.core.windows.net/images/512/" + e.Result)
 	   );
@@ -42,7 +42,7 @@ namespace TechSupport
 			{
 				if (e.Result.Valid)
 				{
-					UserData.SetData(e.Result.FullName, Username.Text, profilePicture, e.Result.Role);
+					UserData.SetData(e.Result.FullName, Username.Text, _profilePicture, e.Result.Role);
 					var menu = (MenuController)SidebarController.MenuAreaController;
 					menu.SetUserData();
 					this.SidebarController.ChangeContentView(this.Storyboard.InstantiateViewController("MainView"));
