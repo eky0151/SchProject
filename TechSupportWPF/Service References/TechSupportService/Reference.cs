@@ -823,6 +823,23 @@ namespace SchProject.TechSupportService {
         }
     }
     
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="TechnicianStatus", Namespace="http://schemas.datacontract.org/2004/07/TechSupportService.DataContract")]
+    public enum TechnicianStatus : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        FromCustomer = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        AtCustomer = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Break = 2,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Available = 3,
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="TechSupportService.ITechSupportService1")]
     public interface ITechSupportService1 {
@@ -892,6 +909,24 @@ namespace SchProject.TechSupportService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportService1/GetMyMessages", ReplyAction="http://tempuri.org/ITechSupportService1/GetMyMessagesResponse")]
         System.Threading.Tasks.Task<SchProject.TechSupportService.Message[]> GetMyMessagesAsync(string username);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ITechSupportService1/Logout")]
+        void Logout(string username);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ITechSupportService1/Logout")]
+        System.Threading.Tasks.Task LogoutAsync(string username);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ITechSupportService1/ChangeMyStatus")]
+        void ChangeMyStatus(string username, SchProject.TechSupportService.Status newStatus);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ITechSupportService1/ChangeMyStatus")]
+        System.Threading.Tasks.Task ChangeMyStatusAsync(string username, SchProject.TechSupportService.Status newStatus);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ITechSupportService1/ChangeMyTechnicianStatus")]
+        void ChangeMyTechnicianStatus(string username, SchProject.TechSupportService.TechnicianStatus status);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ITechSupportService1/ChangeMyTechnicianStatus")]
+        System.Threading.Tasks.Task ChangeMyTechnicianStatusAsync(string username, SchProject.TechSupportService.TechnicianStatus status);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1007,6 +1042,30 @@ namespace SchProject.TechSupportService {
         
         public System.Threading.Tasks.Task<SchProject.TechSupportService.Message[]> GetMyMessagesAsync(string username) {
             return base.Channel.GetMyMessagesAsync(username);
+        }
+        
+        public void Logout(string username) {
+            base.Channel.Logout(username);
+        }
+        
+        public System.Threading.Tasks.Task LogoutAsync(string username) {
+            return base.Channel.LogoutAsync(username);
+        }
+        
+        public void ChangeMyStatus(string username, SchProject.TechSupportService.Status newStatus) {
+            base.Channel.ChangeMyStatus(username, newStatus);
+        }
+        
+        public System.Threading.Tasks.Task ChangeMyStatusAsync(string username, SchProject.TechSupportService.Status newStatus) {
+            return base.Channel.ChangeMyStatusAsync(username, newStatus);
+        }
+        
+        public void ChangeMyTechnicianStatus(string username, SchProject.TechSupportService.TechnicianStatus status) {
+            base.Channel.ChangeMyTechnicianStatus(username, status);
+        }
+        
+        public System.Threading.Tasks.Task ChangeMyTechnicianStatusAsync(string username, SchProject.TechSupportService.TechnicianStatus status) {
+            return base.Channel.ChangeMyTechnicianStatusAsync(username, status);
         }
     }
 }

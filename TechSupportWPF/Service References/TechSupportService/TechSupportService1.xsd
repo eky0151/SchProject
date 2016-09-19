@@ -57,4 +57,13 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Message" nillable="true" type="tns:Message" />
+  <xs:simpleType name="TechnicianStatus">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="FromCustomer" />
+      <xs:enumeration value="AtCustomer" />
+      <xs:enumeration value="Break" />
+      <xs:enumeration value="Available" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="TechnicianStatus" nillable="true" type="tns:TechnicianStatus" />
 </xs:schema>

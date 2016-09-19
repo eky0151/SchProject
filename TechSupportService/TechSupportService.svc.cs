@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Serialization;
-using System.ServiceModel;
-using System.ServiceModel.Activation;
 using AutoMapper;
 using DbAndRepository;
 using DbAndRepository.IRepositories;
@@ -17,19 +14,21 @@ namespace TechSupportService
         private readonly ILoginDataRepository _auth;
         private readonly IWorkerRepository _workerRepository;
         private readonly IRegUserRepository _regUserRepository;
-        private readonly ISolvedQuestionsRepository _solvedQuestionsRepository;
-        private readonly INewTechWorksRepository _newTechWorksRepository;
         private readonly ITechWorksRepository _techWorksRepository;
+        private readonly ITechnicianRepository _technicianRepository;
+        private readonly INewTechWorksRepository _newTechWorksRepository;
+        private readonly ISolvedQuestionsRepository _solvedQuestionsRepository;
 
         public TechSupportService1()
         {
-            TechSupportDatabaseEntities db = new TechSupportDatabaseEntities();
+            var db = new TechSupportDatabaseEntities();
             _auth = new LoginDataRepository(db);
             _workerRepository = new WorkerRepository(db);
             _regUserRepository = new RegUserRepository(db);
-            _solvedQuestionsRepository = new SolvedQuestionsRepository(db);
-            _newTechWorksRepository = new NewTechWorksRepository(db);
             _techWorksRepository = new TechWorksRepository(db);
+            _technicianRepository = new TechninicanRepository(db);
+            _newTechWorksRepository = new NewTechWorksRepository(db);
+            _solvedQuestionsRepository = new SolvedQuestionsRepository(db);
             AutoMapperConfig.Init();
         }
         public bool UserLogin(string username, string password)
@@ -52,7 +51,8 @@ namespace TechSupportService
         }
         public string GetUserProfilePicture(string username)
         {
-            return "";
+            var picture = _regUserRepository.GetPicture(username);
+            return picture ?? "";
         }
         public void RegisterNewUser(string fullName, string email, string userName, string password, string profilePicture)
         {
@@ -84,18 +84,44 @@ namespace TechSupportService
                 var user = _auth.Get(x => x.Username == username).FirstOrDefault();
                 if (user != null)
                 {
-                    user.Worker.Status = "Working";
-                    _auth.Update(user);
-                    AzureServiceBus.SendCustomerLoginNotification((CustomerData)_regUserRepository.GetUserByUsername(username));
+                    ChangeMyStatus(username, Status.Working);
+                    ChangeMyTechnicianStatus(username, TechnicianStatus.Available);
                     return new LoginResult()
                     {
                         FullName = user.Worker.FullName,
-                        Role = (Role) Enum.Parse(typeof(Role), user.Urole),
+                        Role = (Role)Enum.Parse(typeof(Role), user.Urole),
                         Valid = true
                     };
                 }
             }
             return new LoginResult() { Valid = false };
+        }
+
+        public void Logout(string username)
+        {
+            ChangeMyStatus(username, Status.Away);
+            ChangeMyTechnicianStatus(username, TechnicianStatus.Break);
+        }
+        public void ChangeMyStatus(string username, Status newStatus)
+        {
+            var user = _auth.Get(x => x.Username == username).FirstOrDefault();
+            if (user != null)
+            {
+                user.Worker.Status = Enum.GetName(typeof(Status), newStatus);
+                _auth.Update(user);
+                AzureServiceBus.SendStatusNotification(username, newStatus);
+            }
+        }
+
+        public void ChangeMyTechnicianStatus(string username, TechnicianStatus status)
+        {
+            var user = _auth.Get(x => x.Username == username).FirstOrDefault();
+            var technician = user?.Worker.Technician.FirstOrDefault();
+            if (technician != null)
+            {
+                technician.Available = Enum.GetName(typeof(TechnicianStatus), status);
+                _technicianRepository.Update(technician);
+            }
         }
 
         public void UploadSolvedQuestion(SolvedQuestion question)
@@ -109,14 +135,14 @@ namespace TechSupportService
             return _newTechWorksRepository.GetMyNewTechWorks(username).Select(Mapper.Map<NewTechWorks, NewTechWork>).ToList();
         }
 
-        public async void SendMessageToSupport(string username,string sender, string message)
+        public async void SendMessageToSupport(string username, string sender, string message)
         {
-            await AzureServiceBus.SendMessage(username,sender, message);
+            await AzureServiceBus.SendMessage(username, sender, message);
         }
 
         public List<Message> GetMyMessages(string username)
         {
-           return AzureServiceBus.GetMessages(username);
+            return AzureServiceBus.GetMessages(username);
         }
     }
 }

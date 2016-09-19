@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace SupportBot.LUIS_Classes
+﻿namespace TechSharedLibraries.LUIS_Classes
 {
     public class Rootobject
     {

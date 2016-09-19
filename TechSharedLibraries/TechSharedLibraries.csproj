@@ -84,7 +84,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AzureBlobUploader.cs" />
+    <Compile Include="LUIS_Classes\LUIS.cs" />
+    <Compile Include="LUIS_Classes\RootObject.cs" />
+    <Compile Include="LUIS_Classes\UploadIntent.cs" />
+    <Compile Include="LUIS_Classes\UploadLabel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TextAnalitycs_Classes\KeyPhrases.cs" />
+    <Compile Include="TextAnalitycs_Classes\RootObject.cs" />
+    <Compile Include="TextAnalitycs_Classes\TextAnalitycs.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

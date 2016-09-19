@@ -150,13 +150,6 @@
     <Compile Include="DataContract\WorkerData.cs" />
     <Compile Include="DataContract\WorkerDataRegistrationData.cs" />
     <Compile Include="DataContract\Status.cs" />
-    <Compile Include="Entities\LoginData.cs" />
-    <Compile Include="Entities\Technician.cs" />
-    <Compile Include="Entities\Worker.cs" />
-    <Compile Include="LUIS_Classes\LUIS.cs" />
-    <Compile Include="LUIS_Classes\RootObject.cs" />
-    <Compile Include="LUIS_Classes\UploadIntent.cs" />
-    <Compile Include="LUIS_Classes\UploadLabel.cs" />
     <Compile Include="ServiceContract\ITechSupportBotService.cs" />
     <Compile Include="ServiceContract\ITechSupportService1.cs" />
     <Compile Include="Security\AuthorizationPolicy.cs" />
@@ -175,9 +168,6 @@
     <Compile Include="ServiceContract\ITechSupportServiceSecure1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DataContract\UsernameValidationResult.cs" />
-    <Compile Include="TextAnalitycs_Classes\KeyPhrases.cs" />
-    <Compile Include="TextAnalitycs_Classes\RootObject.cs" />
-    <Compile Include="TextAnalitycs_Classes\TextAnalitycs.cs" />
     <Compile Include="WebRole.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -204,6 +194,10 @@
     <ProjectReference Include="..\DbAndRepository\DbAndRepository.csproj">
       <Project>{72bd122c-9e79-481b-a377-86c192f10505}</Project>
       <Name>DbAndRepository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TechSharedLibraries\TechSharedLibraries.csproj">
+      <Project>{86e64cf5-55d1-4b73-bcb0-8edb66dd348f}</Project>
+      <Name>TechSharedLibraries</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

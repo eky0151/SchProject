@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using SolvedQuestionInit.LUIS_Classes;
 
-namespace SupportBot.LUIS_Classes
+namespace TechSharedLibraries.LUIS_Classes
 {
     public class LUIS
     {

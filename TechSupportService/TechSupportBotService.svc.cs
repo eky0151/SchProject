@@ -7,8 +7,8 @@ using System.Text;
 using DbAndRepository;
 using DbAndRepository.IRepositories;
 using DbAndRepository.Repostirories;
-using SupportBot.LUIS_Classes;
-using SupportBot.TextAnalitycs_Classes;
+using TechSharedLibraries.LUIS_Classes;
+using TechSharedLibraries.TextAnalitycs_Classes;
 using TechSupportService.DataContract;
 
 namespace TechSupportService

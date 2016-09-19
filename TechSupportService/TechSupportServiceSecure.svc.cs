@@ -1,15 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity.Spatial;
 using System.Linq;
-using System.Runtime.Serialization;
-using System.Security;
 using System.Security.Permissions;
 using System.ServiceModel;
-using System.ServiceModel.Web;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using DbAndRepository;
 using DbAndRepository.IRepositories;
 using DbAndRepository.Repostirories;
@@ -19,31 +12,31 @@ namespace TechSupportService
 {
     public class TechSupportServiceSecure1 : ITechSupportServiceSecure1
     {
-        private readonly ILoginDataRepository _authRepository;
-        private readonly IWorkerRepository _workerRepository;
         private readonly IBankRepository _bankRepository;
-        private readonly ITechnicianRepository _technicianRepository;
-        private readonly IBugreportRepository _bugsRepository;
         private readonly IFileRepository _fileRepository;
-        private readonly ISolvedQuestionsRepository _solvedQuestionsRepository;
-        private readonly ITechWorksRepository _techworksRepository;
+        private readonly IWorkerRepository _workerRepository;
+        private readonly IBugreportRepository _bugsRepository;
+        private readonly ILoginDataRepository _authRepository;
         private readonly IRegUserRepository _regUserRepository;
+        private readonly ITechWorksRepository _techworksRepository;
+        private readonly ITechnicianRepository _technicianRepository;
         private readonly INewTechWorksRepository _newTechWorksRepository;
+        private readonly ISolvedQuestionsRepository _solvedQuestionsRepository;
 
 
         public TechSupportServiceSecure1()
         {
-            TechSupportDatabaseEntities db = new TechSupportDatabaseEntities();
-            _authRepository = new LoginDataRepository(db);
-            _workerRepository = new WorkerRepository(db);
+            var db = new TechSupportDatabaseEntities();
             _bankRepository = new BankRepository(db);
-            _technicianRepository = new TechninicanRepository(db);
-            _bugsRepository = new BugreportRepository(db);
             _fileRepository = new FilesRepository(db);
-            _solvedQuestionsRepository = new SolvedQuestionsRepository(db);
-            _techworksRepository = new TechWorksRepository(db);
+            _workerRepository = new WorkerRepository(db);
+            _bugsRepository = new BugreportRepository(db);
+            _authRepository = new LoginDataRepository(db);
             _regUserRepository = new RegUserRepository(db);
+            _techworksRepository = new TechWorksRepository(db);
+            _technicianRepository = new TechninicanRepository(db);
             _newTechWorksRepository = new NewTechWorksRepository(db);
+            _solvedQuestionsRepository = new SolvedQuestionsRepository(db);
         }
 
 
@@ -74,8 +67,10 @@ namespace TechSupportService
         public void ChangeWorkerStatus(string username, Status status)
         {
             AzureServiceBus.SendStatusNotification(username, status);
-            _authRepository.Get(x => x.Username == username).SingleOrDefault().Worker.Status =
-                Enum.GetName(typeof(Status), status);
+            var loginData = _authRepository.Get(x => x.Username == username).SingleOrDefault();
+            if (loginData != null)
+                loginData.Worker.Status =
+                    Enum.GetName(typeof(Status), status);
         }
 
         public void SendBugreport(string message, List<string> file)
@@ -106,13 +101,10 @@ namespace TechSupportService
         public void ChangePassWD(string newPassWD)
         {
             var user =
-                _authRepository.Get(x => x.Username == ServiceSecurityContext.Current.PrimaryIdentity.Name)
-                    .SingleOrDefault();
-            if (user != null)
-            {
-                user.Password = newPassWD;
-                _authRepository.Update(user);
-            }
+                _authRepository.Get(x => x.Username == ServiceSecurityContext.Current.PrimaryIdentity.Name).FirstOrDefault();
+            if (user == null) return;
+            user.Password = newPassWD;
+            _authRepository.Update(user);
         }
 
         public WorkerData GetWorker(string username)
@@ -239,18 +231,13 @@ namespace TechSupportService
                 worker.Technician.FirstOrDefault().Available = "Available";
             }
             _workerRepository.Update(worker);
-            if (worker != null)
+            AzureServiceBus.SendWorkerLoginData(name);
+            AzureServiceBus.SendStatusNotification(name, Status.Working);
+            return new LoginResult()
             {
-                AzureServiceBus.SendWorkerLoginData(name);
-                AzureServiceBus.SendStatusNotification(name, Status.Working);
-                return new LoginResult()
-                {
-                    FullName = worker.FullName,
-                    Role = (Role)Enum.Parse(typeof(Role), worker.LoginData.FirstOrDefault().Urole)
-                };
-
-            }
-            return null;
+                FullName = worker.FullName,
+                Role = (Role)Enum.Parse(typeof(Role), worker.LoginData.FirstOrDefault().Urole)
+            };
         }
 
         public void ChangeMyStatus(Status newStatus)
@@ -273,7 +260,9 @@ namespace TechSupportService
 
         public void ChangeMyPicture(string picture)
         {
-            _workerRepository.ChangePicture(_authRepository.Get(x => x.Username == ServiceSecurityContext.Current.PrimaryIdentity.Name).FirstOrDefault().WorkerID, picture);
+            var loginData = _authRepository.Get(x => x.Username == ServiceSecurityContext.Current.PrimaryIdentity.Name).FirstOrDefault();
+            if (loginData != null)
+                _workerRepository.ChangePicture(loginData.WorkerID, picture);
         }
 
         public bool CheckMyPassWD(string passWD)
@@ -294,9 +283,9 @@ namespace TechSupportService
             return a;
         }
 
-        public async void SendMessageToTechnician(string username,string sender, string message)
+        public async void SendMessageToTechnician(string username, string sender, string message)
         {
-            await AzureServiceBus.SendMessageToTechnician(username,sender, message);
+            await AzureServiceBus.SendMessageToTechnician(username, sender, message);
         }
 
         public void InsertNewTechWorks(NewTechWork d)

@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.ServiceModel;
-using System.Text;
-using System.Threading.Tasks;
 using TechSupportService.DataContract;
 
 namespace TechSupportService
@@ -39,10 +35,20 @@ namespace TechSupportService
         void RegisterNewUser(string fullName, string email, string userName, string password, string profilePicture);
 
         [OperationContract(IsOneWay = true)]
-        void SendMessageToSupport(string username,string sender, string message);
+        void SendMessageToSupport(string username, string sender, string message);
 
         [OperationContract]
         List<Message> GetMyMessages(string username);
+
+        [OperationContract(IsOneWay = true)]
+        void Logout(string username);
+
+        [OperationContract(IsOneWay = true)]
+        void ChangeMyStatus(string username, Status newStatus);
+
+        [OperationContract(IsOneWay = true)]
+        void ChangeMyTechnicianStatus(string username, TechnicianStatus status);
+
 
     }
 }
