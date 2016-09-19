@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace SchProject.Resources
 {
@@ -16,7 +17,7 @@ namespace SchProject.Resources
         }
         public void Put(T item)
         {
-            App.Current.Dispatcher.Invoke(() =>
+            Application.Current.Dispatcher.Invoke(() =>
             {
                 if(Count==_maxSize)
                     this.RemoveAt(_maxSize-1);

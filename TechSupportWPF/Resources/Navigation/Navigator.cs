@@ -28,6 +28,11 @@ namespace SchProject
     {
         private UserControl _rootControl;
 
+        public Navigator()
+        {
+            RootControl = new Login();
+        }
+
         public UserControl RootControl
         {
             get
@@ -40,11 +45,6 @@ namespace SchProject
                 _rootControl = value;
                 OnPropertyChanged();
             }
-        }
-
-        public Navigator()
-        {
-            RootControl = new Login();
         }
         public void Login()
         {

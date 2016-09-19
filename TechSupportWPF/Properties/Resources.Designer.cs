@@ -59,5 +59,14 @@ namespace SchProject.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to mark message as completed, because subscription is closed.
+        /// </summary>
+        internal static string AzureServiceBus_CompleteMessagesSafe_Failed_to_mark_message_as_completed {
+            get {
+                return ResourceManager.GetString("AzureServiceBus_CompleteMessagesSafe_Failed_to_mark_message_as_completed", resourceCulture);
+            }
+        }
     }
 }

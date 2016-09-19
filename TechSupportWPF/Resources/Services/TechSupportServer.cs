@@ -31,10 +31,9 @@ namespace SchProject
                     host.Open();
                     success = true;
                 }
-                catch (SecurityAccessDeniedException e)
+                catch (SecurityAccessDeniedException exception)
                 {
-
-                    success = false;
+                    Console.WriteLine("Got {0}", exception.GetType());
                 }
                 catch (TimeoutException exception)
                 {

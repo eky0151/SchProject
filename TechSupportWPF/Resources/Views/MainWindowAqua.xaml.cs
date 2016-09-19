@@ -14,7 +14,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using DesktopToast;
-using DesktopToast.Wpf;
 using GalaSoft.MvvmLight.Ioc;
 using SchProject.TechSupportSecure;
 using GalaSoft.MvvmLight.Messaging;

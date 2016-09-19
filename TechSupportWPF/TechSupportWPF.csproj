@@ -56,7 +56,7 @@
   <ItemGroup>
     <Reference Include="DesktopToast, Version=0.5.0.8, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>dll\DesktopToast.dll</HintPath>
+      <HintPath>lib\DesktopToast.dll</HintPath>
     </Reference>
     <Reference Include="GalaSoft.MvvmLight, Version=5.3.0.19026, Culture=neutral, PublicKeyToken=e7570ab207bcb616, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmLightLibs.5.3.0.0\lib\net45\GalaSoft.MvvmLight.dll</HintPath>
@@ -96,7 +96,7 @@
     </Reference>
     <Reference Include="Microsoft.Maps.MapControl.WPF, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Bing Maps WPF Control\V1\Libraries\Microsoft.Maps.MapControl.WPF.dll</HintPath>
+      <HintPath>lib\Microsoft.Maps.MapControl.WPF.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
@@ -200,8 +200,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Resources\FixSizedObservableCollection.cs" />
-    <Compile Include="Resources\Layout\Converters\ConnectionToImageSourceConverter.cs" />
     <Compile Include="Resources\Layout\Converters\ParametersToArrayConverter.cs" />
+    <Compile Include="Resources\Layout\Converters\TechnicianStatusToImageSourceConverter.cs" />
     <Compile Include="Resources\NotificationActivator.cs" />
     <Compile Include="Resources\Notifications.cs" />
     <Compile Include="Resources\ReplyMessage.cs" />

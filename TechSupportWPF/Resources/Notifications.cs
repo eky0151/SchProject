@@ -5,7 +5,6 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using DesktopToast;
-using DesktopToast.Wpf;
 using System.IO;
 using NotificationsExtensions;
 using NotificationsExtensions.Toasts;

@@ -4,8 +4,9 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using DesktopToast;
 
-namespace DesktopToast.Wpf
+namespace SchProject.Resources
 {
     /// <summary>
     /// Inherited class of notification activator (for Action Center of Windows 10)

@@ -53,11 +53,6 @@ namespace SchProject.ViewModel
             SimpleIoc.Default.Register<AzureServiceBus>();
             SimpleIoc.Default.Register<ContentNavigator>();
             SimpleIoc.Default.Register<Notifications>();
-            //SimpleIoc.Default.Register<ChatViewModel>();
-
-            //wcf
-            //SimpleIoc.Default.Register<Chatservice.ChatClient>();
-            // SimpleIoc.Default.Register<TechSupportService.TechSupportService1Client>();
         }
         public ManagementViewModel Management
         {

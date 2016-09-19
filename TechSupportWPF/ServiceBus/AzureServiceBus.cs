@@ -18,23 +18,25 @@ namespace SchProject
 {
     public class AzureServiceBus
     {
+        private readonly string _messagesSubName = "Messages";
+        private readonly string _customerChatPath = "Messages";
         private readonly string _notificationsPath = "Notifications";
         private readonly string _technicianChatPath = "TechnicianChat";
-        private readonly string _customerChatPath = "Messages";
-        private readonly string _messagesSubName = "Messages";
-        private NamespaceManager NamespaceMgr;
-        private MessagingFactory Factory;
-        public SubscriptionClient CustomerClient;
-        private SubscriptionClient _subscriptionClient;
-        private SubscriptionClient _technicianMessage;
-        private SubscriptionClient _customerMessageWireTap;
-        public event EventHandler<LoginEventArgs> LoginHandler;
-        public event EventHandler<StatusChangedEventArgs> StatusHandler;
-        public event EventHandler<BugEventArgs> BugHandler;
-        public event EventHandler<CustomerLoginEventArgs> CustomerLoginHandler;
-        public event EventHandler<MessageEventArgs> MessageHandler;
-        public event EventHandler<NewCustomerMessageEventArgs> CustomerMessage;
+
         private string _subName;
+        private MessagingFactory _factory;
+        private NamespaceManager _namespaceMgr;
+        public SubscriptionClient CustomerClient;
+        private SubscriptionClient _technicianMessage;
+        private SubscriptionClient _subscriptionClient;
+        private SubscriptionClient _customerMessageWireTap;
+        public event EventHandler<BugEventArgs> BugHandler;
+        public event EventHandler<LoginEventArgs> LoginHandler;
+        public event EventHandler<MessageEventArgs> MessageHandler;
+        public event EventHandler<StatusChangedEventArgs> StatusHandler;
+        public event EventHandler<CustomerLoginEventArgs> CustomerLoginHandler;
+        public event EventHandler<NewCustomerMessageEventArgs> CustomerMessage;
+
 
 
         public AzureServiceBus()
@@ -46,21 +48,18 @@ namespace SchProject
         {
             _subName = Guid.NewGuid().ToString();
 
-            string connectionString =
-                ConfigurationManager.AppSettings["Microsoft.Azure.NotificationHubs.ConnectionString"];
+            string connectionString = ConfigurationManager.AppSettings["Microsoft.Azure.NotificationHubs.ConnectionString"];
+            _factory = MessagingFactory.CreateFromConnectionString(connectionString);
+            _namespaceMgr = NamespaceManager.CreateFromConnectionString(connectionString);
 
-            NamespaceMgr = NamespaceManager.CreateFromConnectionString(connectionString);
-            Factory = MessagingFactory.CreateFromConnectionString(connectionString);
-            CreateSubs(_subName);
-            _subscriptionClient = SubscriptionClient.CreateFromConnectionString(connectionString, _notificationsPath,
-                _subName);
             OnMessageOptions options = new OnMessageOptions() { MaxConcurrentCalls = 1, AutoComplete = false };
+
+            CreateSubs(_subName);
+            _subscriptionClient = SubscriptionClient.CreateFromConnectionString(connectionString, _notificationsPath, _subName);
+            CustomerClient = SubscriptionClient.CreateFromConnectionString(connectionString, _customerChatPath,_messagesSubName);
+            _customerMessageWireTap = SubscriptionClient.CreateFromConnectionString(connectionString, _customerChatPath, _subName);
             _subscriptionClient.OnMessage(ProcessMessage, options);
-            CustomerClient = SubscriptionClient.CreateFromConnectionString(connectionString, _customerChatPath,
-                _messagesSubName);
-            _customerMessageWireTap = SubscriptionClient.CreateFromConnectionString(connectionString,
-                _customerChatPath, _subName);
-            _customerMessageWireTap.OnMessage(Customermessageprocess);
+            _customerMessageWireTap.OnMessage(CustomerMessagesTapProcess);
         }
 
         private void CreateSubs(string subscriptName)
@@ -78,15 +77,17 @@ namespace SchProject
             {
                 AutoDeleteOnIdle = TimeSpan.FromMinutes(5)
             };
-            NamespaceMgr.CreateSubscription(description);
-            NamespaceMgr.CreateSubscription(wiretapDescription);
-            if (!NamespaceMgr.SubscriptionExists(_customerChatPath, _messagesSubName))
+
+            _namespaceMgr.CreateSubscription(description);
+            _namespaceMgr.CreateSubscription(wiretapDescription);
+
+            if (!_namespaceMgr.SubscriptionExists(_customerChatPath, _messagesSubName))
             {
-                NamespaceMgr.CreateSubscription(customerDescription);
+                _namespaceMgr.CreateSubscription(customerDescription);
             }
         }
 
-        private void Customermessageprocess(BrokeredMessage message)
+        private void CustomerMessagesTapProcess(BrokeredMessage message)
         {
             EventHandler<NewCustomerMessageEventArgs> temp = CustomerMessage;
             temp?.Invoke(this, new NewCustomerMessageEventArgs()
@@ -99,65 +100,69 @@ namespace SchProject
 
         private void ProcessMessage(BrokeredMessage message)
         {
-            if (message.ContentType == "Login")
+            switch (message.ContentType)
             {
-                EventHandler<LoginEventArgs> temp = LoginHandler;
-                temp?.Invoke(this, new LoginEventArgs() { FullName = message.GetBody<string>() });
-            }
-
-            else if (message.ContentType == "Status")
-            {
-                EventHandler<StatusChangedEventArgs> temp = StatusHandler;
-                if (temp != null)
+                case "Login":
                 {
-                    var msg = message.GetBody<StatusChanged>();
-                    temp.Invoke(this, new StatusChangedEventArgs() { Username = msg.Username, Status = msg.NewStatus });
+                    EventHandler<LoginEventArgs> temp = LoginHandler;
+                    temp?.Invoke(this, new LoginEventArgs() { FullName = message.GetBody<string>() });
                 }
-
-            }
-            else if (message.ContentType == "CustomerLogin")
-            {
-                EventHandler<CustomerLoginEventArgs> temp = CustomerLoginHandler;
-                if (temp != null)
+                    break;
+                case "Status":
                 {
-                    var msg = message.GetBody<CustomerData>();
-                    temp.Invoke(this, new CustomerLoginEventArgs() { Customer = msg });
-                }
-            }
+                    EventHandler<StatusChangedEventArgs> temp = StatusHandler;
+                    if (temp != null)
+                    {
+                        var msg = message.GetBody<StatusChanged>();
+                        temp.Invoke(this, new StatusChangedEventArgs() { Username = msg.Username, Status = msg.NewStatus });
+                    }
 
-            else if (message.ContentType == "Bug")
-            {
-                EventHandler<BugEventArgs> temp = BugHandler;
-                if (temp != null)
-                {
-                    var msg = message.GetBody<string>();
-                    temp.Invoke(this, new BugEventArgs() { Message = msg });
                 }
+                    break;
+                case "CustomerLogin":
+                {
+                    EventHandler<CustomerLoginEventArgs> temp = CustomerLoginHandler;
+                    if (temp != null)
+                    {
+                        var msg = message.GetBody<CustomerData>();
+                        temp.Invoke(this, new CustomerLoginEventArgs() { Customer = msg });
+                    }
+                }
+                    break;
+                case "Bug":
+                {
+                    EventHandler<BugEventArgs> temp = BugHandler;
+                    if (temp != null)
+                    {
+                        var msg = message.GetBody<string>();
+                        temp.Invoke(this, new BugEventArgs() { Message = msg });
+                    }
+                }
+                    break;
             }
             CompleteMessagesSafe(message);
         }
 
         public void DeleteSubs()
         {
+            CustomerClient.Close();
+            _technicianMessage.Close();
             _subscriptionClient.Close();
             _customerMessageWireTap.Close();
-            _technicianMessage.Close();
-            CustomerClient.Close();
-            NamespaceMgr.DeleteSubscription(_notificationsPath, _subName);
-            NamespaceMgr.DeleteSubscription(_customerChatPath, _subName);
+            _namespaceMgr.DeleteSubscription(_customerChatPath, _subName);
+            _namespaceMgr.DeleteSubscription(_notificationsPath, _subName);
         }
 
         public int GetMessagesCount()
         {
-            var data = NamespaceMgr.GetSubscription(_customerChatPath, _messagesSubName).MessageCount;
-            return (int)data;
+            return (int) _namespaceMgr.GetSubscription(_customerChatPath, _messagesSubName).MessageCount;
         }
 
         public async void MessagesInit(string username)
         {
             _technicianMessage = await Task.Factory.StartNew(() =>
             {
-                if (!NamespaceMgr.SubscriptionExists(_technicianChatPath, username))
+                if (!_namespaceMgr.SubscriptionExists(_technicianChatPath, username))
                 {
                     var desc = new SubscriptionDescription(_technicianChatPath, username)
                     {
@@ -165,9 +170,9 @@ namespace SchProject
                         DefaultMessageTimeToLive = TimeSpan.FromDays(3),
                         MaxDeliveryCount = 100
                     };
-                    NamespaceMgr.CreateSubscription(desc, new SqlFilter($" Username = '{username}' "));
+                    _namespaceMgr.CreateSubscription(desc, new SqlFilter($" Username = '{username}' "));
                 }
-                return Factory.CreateSubscriptionClient(_technicianChatPath, username);
+                return _factory.CreateSubscriptionClient(_technicianChatPath, username);
             });
             OnMessageOptions options = new OnMessageOptions() { MaxConcurrentCalls = 1, AutoComplete = false };
             _technicianMessage.OnMessage(RecieveMessage, options);
@@ -194,6 +199,7 @@ namespace SchProject
             catch (OperationCanceledException)
             {
                 //LOG
+                Console.WriteLine(Properties.Resources.AzureServiceBus_CompleteMessagesSafe_Failed_to_mark_message_as_completed);
             }
         }
     }

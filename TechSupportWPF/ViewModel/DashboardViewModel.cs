@@ -8,10 +8,11 @@ using System.Windows.Media;
 using System.Windows.Threading;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
+using SchProject.Resources;
 using SchProject.TechSupportSecure;
 
 
-namespace SchProject.Resources.Layout.StyleResources
+namespace SchProject.ViewModel
 {
     public class TicketTemporary
     {
@@ -80,8 +81,6 @@ namespace SchProject.Resources.Layout.StyleResources
                     bus.CustomerLoginHandler += CustomerLogin_event;
                     NewTickets = bus.GetMessagesCount();
                 });
-
-
         }
 
 

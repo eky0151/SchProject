@@ -14,16 +14,16 @@ namespace SchProject.Resources.Layout.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            Thread.CurrentThread.CurrentCulture = System.Globalization.CultureInfo.InvariantCulture;
+            Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
             string loc = (string)value;
             if (loc.Length > 2)
             {
-                var data=loc.Split('$');
+                var data = loc.Split('$');
                 float lat;
                 float longi;
-                float.TryParse(data[0],out lat);
+                float.TryParse(data[0], out lat);
                 float.TryParse(data[1], out longi);
-                return new Location(lat,longi);
+                return new Location(lat, longi);
             }
             return new Location(44, 33);
         }

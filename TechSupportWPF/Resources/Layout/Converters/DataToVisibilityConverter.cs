@@ -9,7 +9,7 @@ using System.Windows.Data;
 
 namespace SchProject.Resources.Layout.Converters
 {
-    public class DataToVisibilityConverter:IValueConverter
+    public class DataToVisibilityConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {

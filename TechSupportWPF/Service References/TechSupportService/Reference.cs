@@ -882,10 +882,10 @@ namespace SchProject.TechSupportService {
         System.Threading.Tasks.Task RegisterNewUserAsync(string fullName, string email, string userName, string password, string profilePicture);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ITechSupportService1/SendMessageToSupport")]
-        void SendMessageToSupport(string username, string message);
+        void SendMessageToSupport(string username, string sender, string message);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ITechSupportService1/SendMessageToSupport")]
-        System.Threading.Tasks.Task SendMessageToSupportAsync(string username, string message);
+        System.Threading.Tasks.Task SendMessageToSupportAsync(string username, string sender, string message);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITechSupportService1/GetMyMessages", ReplyAction="http://tempuri.org/ITechSupportService1/GetMyMessagesResponse")]
         SchProject.TechSupportService.Message[] GetMyMessages(string username);
@@ -993,12 +993,12 @@ namespace SchProject.TechSupportService {
             return base.Channel.RegisterNewUserAsync(fullName, email, userName, password, profilePicture);
         }
         
-        public void SendMessageToSupport(string username, string message) {
-            base.Channel.SendMessageToSupport(username, message);
+        public void SendMessageToSupport(string username, string sender, string message) {
+            base.Channel.SendMessageToSupport(username, sender, message);
         }
         
-        public System.Threading.Tasks.Task SendMessageToSupportAsync(string username, string message) {
-            return base.Channel.SendMessageToSupportAsync(username, message);
+        public System.Threading.Tasks.Task SendMessageToSupportAsync(string username, string sender, string message) {
+            return base.Channel.SendMessageToSupportAsync(username, sender, message);
         }
         
         public SchProject.TechSupportService.Message[] GetMyMessages(string username) {
