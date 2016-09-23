@@ -39,8 +39,8 @@ namespace SchProject.Resources.Layout
 
         protected override void OnClosing(CancelEventArgs e)
         {
-            base.OnClosing(e);
             NotificationActivator.UnregisterComType();
+            base.OnClosing(e);
         }
         private async void OnActivated(string arguments, Dictionary<string, string> data)
         {
@@ -59,7 +59,6 @@ namespace SchProject.Resources.Layout
 
         private void MainWindowAqua_OnClosing(object sender, CancelEventArgs e)
         {
-            Messenger.Default.Send<string>("closing");
             var host = SimpleIoc.Default.GetInstance<TechSupportServer>().host;
             host?.ChangeMyStatus(Status.Away);
             if (SimpleIoc.Default.GetInstance<UserData>().Role == Role.Technician)

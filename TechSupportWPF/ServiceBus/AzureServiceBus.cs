@@ -56,7 +56,7 @@ namespace SchProject
 
             CreateSubs(_subName);
             _subscriptionClient = SubscriptionClient.CreateFromConnectionString(connectionString, _notificationsPath, _subName);
-            CustomerClient = SubscriptionClient.CreateFromConnectionString(connectionString, _customerChatPath,_messagesSubName);
+            CustomerClient = SubscriptionClient.CreateFromConnectionString(connectionString, _customerChatPath, _messagesSubName);
             _customerMessageWireTap = SubscriptionClient.CreateFromConnectionString(connectionString, _customerChatPath, _subName);
             _subscriptionClient.OnMessage(ProcessMessage, options);
             _customerMessageWireTap.OnMessage(CustomerMessagesTapProcess);
@@ -103,41 +103,41 @@ namespace SchProject
             switch (message.ContentType)
             {
                 case "Login":
-                {
-                    EventHandler<LoginEventArgs> temp = LoginHandler;
-                    temp?.Invoke(this, new LoginEventArgs() { FullName = message.GetBody<string>() });
-                }
+                    {
+                        EventHandler<LoginEventArgs> temp = LoginHandler;
+                        temp?.Invoke(this, new LoginEventArgs() { FullName = message.GetBody<string>() });
+                    }
                     break;
                 case "Status":
-                {
-                    EventHandler<StatusChangedEventArgs> temp = StatusHandler;
-                    if (temp != null)
                     {
-                        var msg = message.GetBody<StatusChanged>();
-                        temp.Invoke(this, new StatusChangedEventArgs() { Username = msg.Username, Status = msg.NewStatus });
-                    }
+                        EventHandler<StatusChangedEventArgs> temp = StatusHandler;
+                        if (temp != null)
+                        {
+                            var msg = message.GetBody<StatusChanged>();
+                            temp.Invoke(this, new StatusChangedEventArgs() { Username = msg.Username, Status = msg.NewStatus });
+                        }
 
-                }
+                    }
                     break;
                 case "CustomerLogin":
-                {
-                    EventHandler<CustomerLoginEventArgs> temp = CustomerLoginHandler;
-                    if (temp != null)
                     {
-                        var msg = message.GetBody<CustomerData>();
-                        temp.Invoke(this, new CustomerLoginEventArgs() { Customer = msg });
+                        EventHandler<CustomerLoginEventArgs> temp = CustomerLoginHandler;
+                        if (temp != null)
+                        {
+                            var msg = message.GetBody<CustomerData>();
+                            temp.Invoke(this, new CustomerLoginEventArgs() { Customer = msg });
+                        }
                     }
-                }
                     break;
                 case "Bug":
-                {
-                    EventHandler<BugEventArgs> temp = BugHandler;
-                    if (temp != null)
                     {
-                        var msg = message.GetBody<string>();
-                        temp.Invoke(this, new BugEventArgs() { Message = msg });
+                        EventHandler<BugEventArgs> temp = BugHandler;
+                        if (temp != null)
+                        {
+                            var msg = message.GetBody<string>();
+                            temp.Invoke(this, new BugEventArgs() { Message = msg });
+                        }
                     }
-                }
                     break;
             }
             CompleteMessagesSafe(message);
@@ -145,17 +145,19 @@ namespace SchProject
 
         public void DeleteSubs()
         {
+
             CustomerClient.Close();
-            _technicianMessage.Close();
+            _technicianMessage?.Close();
             _subscriptionClient.Close();
             _customerMessageWireTap.Close();
             _namespaceMgr.DeleteSubscription(_customerChatPath, _subName);
             _namespaceMgr.DeleteSubscription(_notificationsPath, _subName);
+
         }
 
         public int GetMessagesCount()
         {
-            return (int) _namespaceMgr.GetSubscription(_customerChatPath, _messagesSubName).MessageCount;
+            return (int)_namespaceMgr.GetSubscription(_customerChatPath, _messagesSubName).MessageCount;
         }
 
         public async void MessagesInit(string username)

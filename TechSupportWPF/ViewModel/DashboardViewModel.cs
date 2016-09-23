@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
 using System.Windows.Media;
 using System.Windows.Threading;
 using GalaSoft.MvvmLight;
@@ -86,6 +87,7 @@ namespace SchProject.ViewModel
 
         private void Bus_CustomerMessage(object sender, ServiceBus.NewCustomerMessageEventArgs e)
         {
+            NewTickets++;
             LastTickets.Put(new TicketTemporary(e.ID, e.Message, "New"));
         }
 
@@ -93,6 +95,7 @@ namespace SchProject.ViewModel
         {
             LastClients.Put(e.Customer);
         }
+
 
         private void WorkerList_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {

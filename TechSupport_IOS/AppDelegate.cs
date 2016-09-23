@@ -46,8 +46,6 @@ namespace TechSupport
 		{
 			// Use this method to release shared resources, save user data, invalidate timers and store the application state.
 			// If your application supports background exection this method is called instead of WillTerminate when the user quits.
-            TechSupportServer.Client.ChangeMyStatusAsync(UserData.Username,Status.Away);
-            TechSupportServer.Client.ChangeMyTechnicianStatusAsync(UserData.Username,TechnicianStatus.Break);
 		}
 
 		public override void WillEnterForeground(UIApplication application)
@@ -64,8 +62,9 @@ namespace TechSupport
 
 		public override void WillTerminate(UIApplication application)
 		{
-			// Called when the application is about to terminate. Save data, if needed. See also DidEnterBackground.
-		}
-	}
+            // Called when the application is about to terminate. Save data, if needed. See also DidEnterBackground.
+            TechSupportServer.Client.LogoutAsync(UserData.Username);
+        }
+    }
 }
 

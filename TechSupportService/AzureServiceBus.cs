@@ -12,13 +12,14 @@ namespace TechSupportService
 {
     public static class AzureServiceBus
     {
+        private static object _sync = new object();
+
+        private static TopicClient _topicClient;
+        private static MessagingFactory _factory;
+        private static NamespaceManager _namespaceMgr;
+        private static TopicClient _technicianMessage;
         private static readonly string _topicPath = "Notifications";
         private static readonly string _technicianChatPath = "TechnicianChat";
-        private static NamespaceManager NamespaceMgr;
-        private static object _sync = new object();
-        private static MessagingFactory Factory;
-        private static TopicClient _topicClient;
-        private static TopicClient _technicianMessage;
 
         static AzureServiceBus()
         {
@@ -31,23 +32,23 @@ namespace TechSupportService
             string connectionString =
                 ConfigurationManager.AppSettings["Microsoft.ServiceBus.ConnectionString"];
 
-            NamespaceMgr = NamespaceManager.CreateFromConnectionString(connectionString);
-            Factory = MessagingFactory.CreateFromConnectionString(connectionString);
-            if (!NamespaceMgr.TopicExists(_topicPath))
+            _namespaceMgr = NamespaceManager.CreateFromConnectionString(connectionString);
+            _factory = MessagingFactory.CreateFromConnectionString(connectionString);
+            if (!_namespaceMgr.TopicExists(_topicPath))
             {
-                NamespaceMgr.CreateTopic(_topicPath);
+                _namespaceMgr.CreateTopic(_topicPath);
             }
-            _topicClient = Factory.CreateTopicClient(_topicPath);
+            _topicClient = _factory.CreateTopicClient(_topicPath);
         }
         private static async void InitTechnicianMessages()
         {
             _technicianMessage = await Task.Factory.StartNew(() =>
             {
-                if (!NamespaceMgr.TopicExists(_technicianChatPath))
+                if (!_namespaceMgr.TopicExists(_technicianChatPath))
                 {
-                    NamespaceMgr.CreateTopic(_technicianChatPath);
+                    _namespaceMgr.CreateTopic(_technicianChatPath);
                 }
-                return Factory.CreateTopicClient(_technicianChatPath);
+                return _factory.CreateTopicClient(_technicianChatPath);
             });
         }
 
@@ -82,10 +83,10 @@ namespace TechSupportService
 
         public static async Task SendMessageToTechnician(string username,string sender, string message)
         {
-            if (!NamespaceMgr.SubscriptionExists(_technicianChatPath, username))
+            if (!_namespaceMgr.SubscriptionExists(_technicianChatPath, username))
             {
                 var desc = new SubscriptionDescription(_technicianChatPath, username) { AutoDeleteOnIdle = TimeSpan.FromDays(3), DefaultMessageTimeToLive = TimeSpan.FromDays(3),MaxDeliveryCount = 100};
-                NamespaceMgr.CreateSubscription(desc, new SqlFilter($" Username = '{username}' "));
+                _namespaceMgr.CreateSubscription(desc, new SqlFilter($" Username = '{username}' "));
             }
             await SendMessage(username, sender, message);
         }
@@ -118,9 +119,9 @@ namespace TechSupportService
 
         public static List<Message> GetMessages(string username)
         {
-            if (NamespaceMgr.SubscriptionExists(_technicianChatPath, username))
+            if (_namespaceMgr.SubscriptionExists(_technicianChatPath, username))
             {
-                SubscriptionClient subClient = Factory.CreateSubscriptionClient(_technicianChatPath, username);
+                SubscriptionClient subClient = _factory.CreateSubscriptionClient(_technicianChatPath, username);
                 var cucc = subClient.ReceiveBatch(100);
                 var brokeredMessages = cucc as BrokeredMessage[] ?? cucc.ToArray();
                 foreach (BrokeredMessage brokeredMessage in brokeredMessages)
